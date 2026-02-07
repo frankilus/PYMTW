@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Put Your Money to Work in Bitcoin</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">₿</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animated background particles -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">₿</span>
+        <span class="logo-text">PYMTWiB</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="#getting-started">Get Started</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#learn">Learn</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">The Future of Money</div>
+      <h1 class="hero-title">
+        Put Your Money<br>
+        <span class="gradient-text">to Work in Bitcoin</span>
+      </h1>
+      <p class="hero-subtitle">
+        Your journey into the world's most powerful decentralized currency starts here.
+        Learn, invest, and grow your wealth with confidence.
+      </p>
+      <div class="hero-actions">
+        <a href="#getting-started" class="btn btn-primary">
+          <span>Start Your Journey</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#why-bitcoin" class="btn btn-secondary">
+          <span>Why Bitcoin?</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number" data-target="21000000" data-suffix="">21M</span>
+          <span class="stat-label">Maximum Supply</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">len(nodes)</span>
+          <span class="stat-label">Global Network</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">15+ Years</span>
+          <span class="stat-label">Proven Track Record</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="bitcoin-3d">
+        <div class="coin-face front">₿</div>
+        <div class="coin-face back">₿</div>
+        <div class="coin-edge"></div>
+      </div>
+      <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
+      <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
+      <div class="orbit orbit-3"><div class="orbit-dot"></div></div>
+    </div>
+  </header>
+
+  <!-- Ticker Bar -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="ticker-content">
+        <span class="ticker-item">DECENTRALIZED</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">PERMISSIONLESS</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">BORDERLESS</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">CENSORSHIP-RESISTANT</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">PEER-TO-PEER</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">OPEN SOURCE</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">SOUND MONEY</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">DIGITAL GOLD</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">DECENTRALIZED</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">PERMISSIONLESS</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">BORDERLESS</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">CENSORSHIP-RESISTANT</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">PEER-TO-PEER</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">OPEN SOURCE</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">SOUND MONEY</span>
+        <span class="ticker-dot">◆</span>
+        <span class="ticker-item">DIGITAL GOLD</span>
+        <span class="ticker-dot">◆</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Bitcoin Section -->
+  <section class="section why-bitcoin" id="why-bitcoin">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why Bitcoin</span>
+        <h2 class="section-title">Money That <span class="gradient-text">Works for You</span></h2>
+        <p class="section-subtitle">Bitcoin isn't just a currency — it's a revolution in how we think about and use money.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Secure by Design</h3>
+          <p>Protected by the most powerful computing network on Earth. Your bitcoin is secured by unbreakable cryptography.</p>
+        </div>
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Truly Global</h3>
+          <p>Send value anywhere on Earth in minutes, not days. No banks, no borders, no permission needed.</p>
+        </div>
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Scarce & Valuable</h3>
+          <p>Only 21 million bitcoin will ever exist. Unlike fiat currency, no one can print more and dilute your savings.</p>
+        </div>
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>You Own It</h3>
+          <p>True ownership of your wealth. No third party can freeze, seize, or devalue your bitcoin holdings.</p>
+        </div>
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>The Lightning Network enables instant, nearly free transactions. Buy your coffee with bitcoin today.</p>
+        </div>
+        <div class="feature-card" data-tilt>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          </div>
+          <h3>Growing Adoption</h3>
+          <p>Nations, institutions, and millions of individuals are adopting bitcoin as a store of value and medium of exchange.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started Section -->
+  <section class="section getting-started" id="getting-started">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get Started</span>
+        <h2 class="section-title">Your Bitcoin Journey in <span class="gradient-text">4 Steps</span></h2>
+        <p class="section-subtitle">From zero to bitcoin holder. It's simpler than you think.</p>
+      </div>
+      <div class="steps-timeline">
+        <div class="step" data-step="1">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Educate Yourself</h3>
+            <p>Understanding what you're investing in is the most important step. Read, watch, and listen to trusted resources about how Bitcoin works and why it matters.</p>
+            <div class="step-tags">
+              <button class="tag tag-interactive" data-edu-tab="books">📖 Books</button>
+              <button class="tag tag-interactive" data-edu-tab="podcasts">🎙️ Podcasts</button>
+              <button class="tag tag-interactive" data-edu-tab="articles">📝 Articles</button>
+            </div>
+
+            <!-- Education Resource Panels -->
+            <div class="edu-panels">
+
+              <!-- BOOKS Panel -->
+              <div class="edu-panel" id="edu-books">
+                <a href="https://saifedean.com/thebitcoinstandard/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📖</div>
+                  <div class="edu-item-info">
+                    <h4>The Bitcoin Standard</h4>
+                    <span class="edu-item-author">Saifedean Ammous</span>
+                    <p>The essential guide to Bitcoin's economic roots. Explores the history of money and why Bitcoin is the hardest money ever invented.</p>
+                  </div>
+                  <span class="edu-item-badge">Must Read</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://littlebitcoinbook.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📖</div>
+                  <div class="edu-item-info">
+                    <h4>The Little Bitcoin Book</h4>
+                    <span class="edu-item-author">Bitcoin Collective</span>
+                    <p>A short, accessible intro written for everyday people. Covers why Bitcoin matters for freedom, finance, and the future in plain language.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Beginner</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://inventingbitcoin.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📖</div>
+                  <div class="edu-item-info">
+                    <h4>Inventing Bitcoin</h4>
+                    <span class="edu-item-author">Yan Pritzker</span>
+                    <p>A non-technical explanation of how Bitcoin works under the hood. Perfect for curious minds who want to understand the technology without code.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Beginner</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://github.com/bitcoinbook/bitcoinbook" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📖</div>
+                  <div class="edu-item-info">
+                    <h4>Mastering Bitcoin</h4>
+                    <span class="edu-item-author">Andreas M. Antonopoulos</span>
+                    <p>The most comprehensive technical guide to Bitcoin. Open source and free to read online. Ideal once you want a deeper understanding.</p>
+                  </div>
+                  <span class="edu-item-badge technical">Technical</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.resistance.money/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📖</div>
+                  <div class="edu-item-info">
+                    <h4>The Fiat Standard</h4>
+                    <span class="edu-item-author">Saifedean Ammous</span>
+                    <p>The follow-up to The Bitcoin Standard. Reveals the mechanics of the fiat monetary system and how Bitcoin offers a superior alternative.</p>
+                  </div>
+                  <span class="edu-item-badge">Follow-Up</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- PODCASTS Panel -->
+              <div class="edu-panel" id="edu-podcasts">
+                <a href="https://www.whatbitcoindid.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎙️</div>
+                  <div class="edu-item-info">
+                    <h4>What Bitcoin Did</h4>
+                    <span class="edu-item-author">Peter McCormack</span>
+                    <p>One of the most popular Bitcoin podcasts. Features interviews with industry leaders, developers, and economists. Great conversational style.</p>
+                  </div>
+                  <span class="edu-item-badge">Popular</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitcoinaudible.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎙️</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin Audible</h4>
+                    <span class="edu-item-author">Guy Swann</span>
+                    <p>The best Bitcoin articles and essays narrated aloud with expert commentary. Perfect for learning during commutes or workouts.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Great Start</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://stephanlivera.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎙️</div>
+                  <div class="edu-item-info">
+                    <h4>Stephan Livera Podcast</h4>
+                    <span class="edu-item-author">Stephan Livera</span>
+                    <p>Deep dives into Austrian economics, Bitcoin technology, and the broader implications of sound money. Excellent for building a strong foundation.</p>
+                  </div>
+                  <span class="edu-item-badge">Economics</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://podcasters.spotify.com/pod/show/bitcoinundeniably" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎙️</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin, Pair of Glasses</h4>
+                    <span class="edu-item-author">Nico & Community</span>
+                    <p>Short-form beginner episodes that tackle one Bitcoin concept at a time. Easy to digest and perfect for newcomers with limited time.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Short &amp; Sweet</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.theinvestorspodcast.com/bitcoin-fundamentals/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎙️</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin Fundamentals</h4>
+                    <span class="edu-item-author">Preston Pysh (TIP Network)</span>
+                    <p>Institutional-grade Bitcoin analysis from an investor's perspective. Excellent for understanding Bitcoin's macro and investment thesis.</p>
+                  </div>
+                  <span class="edu-item-badge">Investing</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- ARTICLES Panel -->
+              <div class="edu-panel" id="edu-articles">
+                <a href="https://vijayboyapati.medium.com/the-bullish-case-for-bitcoin-6ecc8bdecc1" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>The Bullish Case for Bitcoin</h4>
+                    <span class="edu-item-author">Vijay Boyapati</span>
+                    <p>One of the most shared Bitcoin articles ever written. A compelling economic argument for why Bitcoin is evolving through the stages of money.</p>
+                  </div>
+                  <span class="edu-item-badge">Essential</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://nakamotoinstitute.org/bitcoin/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin Whitepaper</h4>
+                    <span class="edu-item-author">Satoshi Nakamoto</span>
+                    <p>The original 9-page paper that started it all. Surprisingly readable and the definitive source for understanding Bitcoin's design.</p>
+                  </div>
+                  <span class="edu-item-badge">The Original</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://dergigi.com/2018/12/21/philosophical-teachings-of-bitcoin/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>21 Lessons — What I've Learned from Bitcoin</h4>
+                    <span class="edu-item-author">Gigi</span>
+                    <p>A beautifully written reflection on what Bitcoin teaches about philosophy, economics, and technology. Eye-opening for newcomers and veterans.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Mind-Opening</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://medium.com/@hugonguyen/money-block-chains-and-social-scalability-7bac0eb26b5a" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>Money, Blockchains, and Social Scalability</h4>
+                    <span class="edu-item-author">Hugo Nguyen (on Nick Szabo's ideas)</span>
+                    <p>Explores why Bitcoin's "inefficiency" is actually its superpower. A key piece to understanding Bitcoin's trust-minimized design.</p>
+                  </div>
+                  <span class="edu-item-badge">Deep Insight</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://unchained.com/gradually-then-suddenly/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>Gradually, Then Suddenly (Series)</h4>
+                    <span class="edu-item-author">Parker Lewis</span>
+                    <p>A brilliant multi-part series explaining Bitcoin from first principles. Covers why Bitcoin is not too slow, not too volatile, and not too late.</p>
+                  </div>
+                  <span class="edu-item-badge">Series</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Choose a Wallet</h3>
+            <p>Your wallet is how you store and manage your bitcoin. Start with a reputable mobile wallet and graduate to hardware wallets as your holdings grow.</p>
+            <div class="step-tags">
+              <button class="tag tag-interactive" data-edu-tab="mobile-wallets">📱 Mobile Wallets</button>
+              <button class="tag tag-interactive" data-edu-tab="hardware-wallets">🔐 Hardware Wallets</button>
+              <button class="tag tag-interactive" data-edu-tab="multisig">🛡️ Multi-sig</button>
+            </div>
+
+            <div class="edu-panels">
+
+              <!-- MOBILE WALLETS Panel -->
+              <div class="edu-panel" id="edu-mobile-wallets">
+                <a href="https://bluewallet.io/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📱</div>
+                  <div class="edu-item-info">
+                    <h4>Blue Wallet</h4>
+                    <span class="edu-item-author">iOS & Android</span>
+                    <p>One of the best beginner wallets. Supports on-chain and Lightning transactions with a clean, intuitive interface. Open source and fully featured.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Beginner Pick</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://muun.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📱</div>
+                  <div class="edu-item-info">
+                    <h4>Muun Wallet</h4>
+                    <span class="edu-item-author">iOS & Android</span>
+                    <p>Beautifully designed self-custodial wallet. Seamlessly handles both on-chain and Lightning payments without any technical setup required.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Easy to Use</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://blockstream.com/green/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📱</div>
+                  <div class="edu-item-info">
+                    <h4>Blockstream Green</h4>
+                    <span class="edu-item-author">iOS, Android & Desktop</span>
+                    <p>A secure, multi-platform wallet by Blockstream. Offers 2-of-2 multisig protection by default and supports hardware wallet connections.</p>
+                  </div>
+                  <span class="edu-item-badge">Secure</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://phoenix.acinq.co/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">⚡</div>
+                  <div class="edu-item-info">
+                    <h4>Phoenix Wallet</h4>
+                    <span class="edu-item-author">iOS & Android</span>
+                    <p>The best Lightning-first wallet. Automatically manages channels so you can send and receive instant, low-fee bitcoin payments effortlessly.</p>
+                  </div>
+                  <span class="edu-item-badge">Lightning</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- HARDWARE WALLETS Panel -->
+              <div class="edu-panel" id="edu-hardware-wallets">
+                <a href="https://coldcard.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔐</div>
+                  <div class="edu-item-info">
+                    <h4>Coldcard</h4>
+                    <span class="edu-item-author">Coinkite</span>
+                    <p>The gold standard for Bitcoin-only hardware wallets. Air-gapped signing, secure element chip, and a security-first design trusted by hardcore Bitcoiners.</p>
+                  </div>
+                  <span class="edu-item-badge">Top Security</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://trezor.io/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔐</div>
+                  <div class="edu-item-info">
+                    <h4>Trezor</h4>
+                    <span class="edu-item-author">SatoshiLabs</span>
+                    <p>The original hardware wallet. Open-source firmware, easy-to-use interface, and a proven track record. Great entry point into hardware security.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Beginner Friendly</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitbox.swiss/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔐</div>
+                  <div class="edu-item-info">
+                    <h4>BitBox02 (Bitcoin-Only)</h4>
+                    <span class="edu-item-author">Shift Crypto</span>
+                    <p>A minimalist, Swiss-designed hardware wallet. The Bitcoin-only edition strips away complexity — just pure, secure bitcoin storage.</p>
+                  </div>
+                  <span class="edu-item-badge">Minimalist</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://foundation.xyz/passport" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔐</div>
+                  <div class="edu-item-info">
+                    <h4>Foundation Passport</h4>
+                    <span class="edu-item-author">Foundation Devices</span>
+                    <p>A beautifully crafted, air-gapped hardware wallet. Fully open-source with a premium feel. Pairs with the Envoy companion app on mobile.</p>
+                  </div>
+                  <span class="edu-item-badge">Premium</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- MULTI-SIG Panel -->
+              <div class="edu-panel" id="edu-multisig">
+                <a href="https://unchained.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🛡️</div>
+                  <div class="edu-item-info">
+                    <h4>Unchained Capital</h4>
+                    <span class="edu-item-author">Collaborative Custody</span>
+                    <p>A concierge multisig service. You hold 2 of 3 keys, Unchained holds 1 as backup. Perfect for larger amounts — combines security with peace of mind.</p>
+                  </div>
+                  <span class="edu-item-badge">Recommended</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://nunchuk.io/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🛡️</div>
+                  <div class="edu-item-info">
+                    <h4>Nunchuk</h4>
+                    <span class="edu-item-author">iOS, Android & Desktop</span>
+                    <p>A powerful multisig wallet that makes collaborative key management simple. Supports all major hardware wallets and offers assisted custody options.</p>
+                  </div>
+                  <span class="edu-item-badge">Versatile</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://sparrowwallet.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🛡️</div>
+                  <div class="edu-item-info">
+                    <h4>Sparrow Wallet</h4>
+                    <span class="edu-item-author">Desktop (Mac, Windows, Linux)</span>
+                    <p>A feature-rich desktop wallet with full multisig support. Designed for those who want granular control, UTXO management, and privacy features.</p>
+                  </div>
+                  <span class="edu-item-badge technical">Power Users</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://btcguide.github.io/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>10x Security Bitcoin Guide</h4>
+                    <span class="edu-item-author">Michael Flaxman</span>
+                    <p>A free, step-by-step guide to setting up DIY multisig. Learn exactly how and why multisig dramatically improves your bitcoin security.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Free Guide</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Buy Your First Bitcoin</h3>
+            <p>You don't need to buy a whole bitcoin. Start small — even $10 worth. Use a reputable exchange and consider dollar-cost averaging (DCA) to build your position over time.</p>
+            <div class="step-tags">
+              <button class="tag tag-interactive" data-edu-tab="exchanges">🏦 Exchanges</button>
+              <button class="tag tag-interactive" data-edu-tab="dca-tools">📈 DCA Tools</button>
+              <button class="tag tag-interactive" data-edu-tab="buying-guides">📚 Buying Guides</button>
+            </div>
+
+            <div class="edu-panels">
+
+              <!-- EXCHANGES Panel -->
+              <div class="edu-panel" id="edu-exchanges">
+                <a href="https://river.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🏦</div>
+                  <div class="edu-item-info">
+                    <h4>River</h4>
+                    <span class="edu-item-author">US-Based, Bitcoin-Only</span>
+                    <p>A Bitcoin-only exchange built for long-term investors. Zero-fee recurring buys, automatic withdrawals to your wallet, and Lightning support.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Top Pick</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://strike.me/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">⚡</div>
+                  <div class="edu-item-info">
+                    <h4>Strike</h4>
+                    <span class="edu-item-author">US & Global</span>
+                    <p>Buy bitcoin with no fees on purchases. Lightning-native app that also works for instant payments. One of the easiest on-ramps for beginners.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">No Fees</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.swanbitcoin.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🦢</div>
+                  <div class="edu-item-info">
+                    <h4>Swan Bitcoin</h4>
+                    <span class="edu-item-author">US-Based, Bitcoin-Only</span>
+                    <p>Built specifically for automatic bitcoin savings. Set up recurring buys and auto-withdrawal to your own wallet. Great educational resources included.</p>
+                  </div>
+                  <span class="edu-item-badge">Auto-DCA</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bisq.network/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔒</div>
+                  <div class="edu-item-info">
+                    <h4>Bisq</h4>
+                    <span class="edu-item-author">Decentralized, Global</span>
+                    <p>A fully decentralized peer-to-peer exchange. No KYC, no central authority. For those who prioritize privacy and censorship resistance.</p>
+                  </div>
+                  <span class="edu-item-badge technical">Privacy</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- DCA TOOLS Panel -->
+              <div class="edu-panel" id="edu-dca-tools">
+                <a href="https://dcabtc.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📊</div>
+                  <div class="edu-item-info">
+                    <h4>DCA BTC Calculator</h4>
+                    <span class="edu-item-author">Free Online Tool</span>
+                    <p>See exactly how DCA would have performed at any time frame. Input your amount and frequency and visualize your potential returns over time.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Try It</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.swanbitcoin.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🦢</div>
+                  <div class="edu-item-info">
+                    <h4>Swan Bitcoin — Auto DCA</h4>
+                    <span class="edu-item-author">Automated Recurring Buys</span>
+                    <p>Set a daily, weekly, or monthly bitcoin purchase that runs on autopilot. Swan auto-withdraws to your own wallet so you stay in control.</p>
+                  </div>
+                  <span class="edu-item-badge">Set & Forget</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://river.com/learn/dollar-cost-averaging-bitcoin/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>Dollar Cost Averaging Explained</h4>
+                    <span class="edu-item-author">River Learn</span>
+                    <p>A clear walkthrough of what DCA is, why it works, and how it removes emotion from investing. Includes historical charts and data.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Learn DCA</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitcoinmonthlyreturn.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📅</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin Monthly Return</h4>
+                    <span class="edu-item-author">Historical Data Tool</span>
+                    <p>A visual calendar of Bitcoin's historical monthly returns. Helps you understand Bitcoin's volatility cycles and why long-term thinking matters.</p>
+                  </div>
+                  <span class="edu-item-badge">Data</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- BUYING GUIDES Panel -->
+              <div class="edu-panel" id="edu-buying-guides">
+                <a href="https://bitcoin.org/en/buy" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📚</div>
+                  <div class="edu-item-info">
+                    <h4>bitcoin.org — How to Buy</h4>
+                    <span class="edu-item-author">Official Bitcoin Resource</span>
+                    <p>The official guide to buying bitcoin. Explains the different methods, what to look for in an exchange, and region-specific recommendations.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Start Here</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.buybitcoinworldwide.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🌍</div>
+                  <div class="edu-item-info">
+                    <h4>Buy Bitcoin Worldwide</h4>
+                    <span class="edu-item-author">Country-by-Country Guide</span>
+                    <p>Find the best way to buy bitcoin in your specific country. Comprehensive comparison of exchanges, payment methods, and fees by region.</p>
+                  </div>
+                  <span class="edu-item-badge">Global</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://river.com/learn/how-to-buy-bitcoin/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📚</div>
+                  <div class="edu-item-info">
+                    <h4>How to Buy Bitcoin Step-by-Step</h4>
+                    <span class="edu-item-author">River Learn</span>
+                    <p>A detailed step-by-step walkthrough of the entire buying process. Covers account setup, verification, placing an order, and withdrawing safely.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Step-by-Step</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitcoiner.guide/buying/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📚</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoiner Guide — Buying</h4>
+                    <span class="edu-item-author">Community Resource</span>
+                    <p>A comparison of KYC vs non-KYC buying options. Understand the trade-offs of privacy vs convenience and choose the approach that fits you.</p>
+                  </div>
+                  <span class="edu-item-badge">Privacy Focus</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Secure & HODL</h3>
+            <p>Move your bitcoin off the exchange and into your own wallet. Write down your seed phrase and store it safely. Remember: not your keys, not your coins.</p>
+            <div class="step-tags">
+              <button class="tag tag-interactive" data-edu-tab="self-custody">🔑 Self-Custody</button>
+              <button class="tag tag-interactive" data-edu-tab="seed-phrase">🌱 Seed Phrase</button>
+              <button class="tag tag-interactive" data-edu-tab="cold-storage">🧊 Cold Storage</button>
+            </div>
+
+            <div class="edu-panels">
+
+              <!-- SELF-CUSTODY Panel -->
+              <div class="edu-panel" id="edu-self-custody">
+                <a href="https://www.youtube.com/watch?v=Y1OBIGslgGM" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🎬</div>
+                  <div class="edu-item-info">
+                    <h4>Why Self-Custody Matters</h4>
+                    <span class="edu-item-author">Andreas Antonopoulos</span>
+                    <p>A powerful talk on why holding your own keys is the whole point of Bitcoin. Understand the risks of leaving bitcoin on exchanges.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Watch First</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitcoiner.guide/wallet/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📚</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoiner Guide — Wallets</h4>
+                    <span class="edu-item-author">Community Resource</span>
+                    <p>A comprehensive comparison of wallet types: hot vs cold, custodial vs non-custodial, single-sig vs multi-sig. Helps you pick the right one.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Compare Wallets</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://unchained.com/blog/why-bitcoin-self-custody/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📝</div>
+                  <div class="edu-item-info">
+                    <h4>Why Bitcoin Self-Custody?</h4>
+                    <span class="edu-item-author">Unchained Capital</span>
+                    <p>A clear article on the "why" behind self-custody. Covers the history of exchange failures and why you should never trust a third party with your bitcoin.</p>
+                  </div>
+                  <span class="edu-item-badge">Essential</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://sparrowwallet.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🐦</div>
+                  <div class="edu-item-info">
+                    <h4>Sparrow Wallet</h4>
+                    <span class="edu-item-author">Desktop Wallet</span>
+                    <p>The best desktop wallet for self-custody. Full coin control, UTXO labeling, hardware wallet support, and advanced privacy features for serious users.</p>
+                  </div>
+                  <span class="edu-item-badge technical">Power Tool</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- SEED PHRASE Panel -->
+              <div class="edu-panel" id="edu-seed-phrase">
+                <a href="https://river.com/learn/what-is-a-seed-phrase/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🌱</div>
+                  <div class="edu-item-info">
+                    <h4>What Is a Seed Phrase?</h4>
+                    <span class="edu-item-author">River Learn</span>
+                    <p>A beginner-friendly explanation of seed phrases — what they are, how they work, and why your 12 or 24 words are the master key to all your bitcoin.</p>
+                  </div>
+                  <span class="edu-item-badge beginner">Start Here</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://bitcoiner.guide/seed/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🌱</div>
+                  <div class="edu-item-info">
+                    <h4>Seed Phrase Best Practices</h4>
+                    <span class="edu-item-author">Bitcoiner Guide</span>
+                    <p>How to properly back up, store, and protect your seed phrase. Covers metal backups, splitting strategies, and common mistakes to avoid.</p>
+                  </div>
+                  <span class="edu-item-badge">Best Practices</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://shop.coinkite.com/store" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🔩</div>
+                  <div class="edu-item-info">
+                    <h4>Seedplate — Metal Backup</h4>
+                    <span class="edu-item-author">Coinkite</span>
+                    <p>A steel plate for permanently stamping your seed words. Fire-proof, flood-proof, and crush-resistant. Your seed phrase deserves better than paper.</p>
+                  </div>
+                  <span class="edu-item-badge">Physical Backup</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://jlopp.github.io/metal-bitcoin-storage-reviews/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🧪</div>
+                  <div class="edu-item-info">
+                    <h4>Metal Seed Storage Reviews</h4>
+                    <span class="edu-item-author">Jameson Lopp</span>
+                    <p>Stress-test results for dozens of metal seed backup products. See which ones survive fire, crushing, and corrosion before you buy.</p>
+                  </div>
+                  <span class="edu-item-badge">Reviews</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+              <!-- COLD STORAGE Panel -->
+              <div class="edu-panel" id="edu-cold-storage">
+                <a href="https://coldcard.com/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🧊</div>
+                  <div class="edu-item-info">
+                    <h4>Coldcard Wallet</h4>
+                    <span class="edu-item-author">Coinkite</span>
+                    <p>The most security-focused Bitcoin hardware wallet. Air-gapped operation, duress PINs, and tamper-evident packaging. The standard for cold storage.</p>
+                  </div>
+                  <span class="edu-item-badge">Gold Standard</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://foundation.xyz/passport" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🧊</div>
+                  <div class="edu-item-info">
+                    <h4>Foundation Passport</h4>
+                    <span class="edu-item-author">Foundation Devices</span>
+                    <p>An air-gapped hardware wallet with a premium build. Open-source, Bitcoin-only, and designed for the security-conscious with a beautiful interface.</p>
+                  </div>
+                  <span class="edu-item-badge">Premium</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://btcguide.github.io/" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">📚</div>
+                  <div class="edu-item-info">
+                    <h4>10x Security Guide</h4>
+                    <span class="edu-item-author">Michael Flaxman</span>
+                    <p>An opinionated, step-by-step guide to the most secure way to hold bitcoin. Walks through multi-sig cold storage setup from scratch.</p>
+                  </div>
+                  <span class="edu-item-badge technical">Advanced</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <a href="https://www.lopp.net/bitcoin-information/security.html" target="_blank" rel="noopener" class="edu-item">
+                  <div class="edu-item-icon">🛡️</div>
+                  <div class="edu-item-info">
+                    <h4>Bitcoin Security Guide</h4>
+                    <span class="edu-item-author">Jameson Lopp</span>
+                    <p>A comprehensive collection of Bitcoin security resources. Covers physical security, operational security, inheritance planning, and threat modeling.</p>
+                  </div>
+                  <span class="edu-item-badge">Complete</span>
+                  <svg class="edu-item-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section class="section resources" id="resources">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Resources</span>
+        <h2 class="section-title">Essential <span class="gradient-text">Bitcoin Resources</span></h2>
+        <p class="section-subtitle">Curated picks to fast-track your Bitcoin education.</p>
+      </div>
+
+      <!-- Resource Filter Tabs -->
+      <div class="resource-tabs">
+        <button class="tab-btn active" data-filter="all">All</button>
+        <button class="tab-btn" data-filter="books">Books</button>
+        <button class="tab-btn" data-filter="podcasts">Podcasts</button>
+        <button class="tab-btn" data-filter="videos">Videos</button>
+        <button class="tab-btn" data-filter="websites">Websites</button>
+      </div>
+
+      <div class="resources-grid" id="resources-grid">
+        <!-- Books -->
+        <div class="resource-card" data-category="books">
+          <div class="resource-badge">Book</div>
+          <div class="resource-icon">📖</div>
+          <h3>The Bitcoin Standard</h3>
+          <p class="resource-author">by Saifedean Ammous</p>
+          <p>The definitive guide to understanding Bitcoin's economic significance and why it's the hardest money ever created.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Must Read</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="books">
+          <div class="resource-badge">Book</div>
+          <div class="resource-icon">📖</div>
+          <h3>The Little Bitcoin Book</h3>
+          <p class="resource-author">by Bitcoin Collective</p>
+          <p>A short, accessible introduction to why Bitcoin matters for freedom, finance, and the future.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Beginner Friendly</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="books">
+          <div class="resource-badge">Book</div>
+          <div class="resource-icon">📖</div>
+          <h3>Mastering Bitcoin</h3>
+          <p class="resource-author">by Andreas M. Antonopoulos</p>
+          <p>A comprehensive technical introduction to Bitcoin for developers and the technically curious.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Technical Deep Dive</span>
+          </div>
+        </div>
+
+        <!-- Podcasts -->
+        <div class="resource-card" data-category="podcasts">
+          <div class="resource-badge">Podcast</div>
+          <div class="resource-icon">🎙️</div>
+          <h3>What Bitcoin Did</h3>
+          <p class="resource-author">by Peter McCormack</p>
+          <p>Interviews with leading figures in Bitcoin covering everything from technology to economics to philosophy.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Weekly Episodes</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="podcasts">
+          <div class="resource-badge">Podcast</div>
+          <div class="resource-icon">🎙️</div>
+          <h3>Bitcoin Audible</h3>
+          <p class="resource-author">by Guy Swann</p>
+          <p>The best Bitcoin articles narrated aloud. Perfect for learning on the go.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★☆</span>
+            <span>Great for Commutes</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="podcasts">
+          <div class="resource-badge">Podcast</div>
+          <div class="resource-icon">🎙️</div>
+          <h3>Stephan Livera Podcast</h3>
+          <p class="resource-author">by Stephan Livera</p>
+          <p>Deep dives into Austrian economics, Bitcoin technology, and the broader implications of sound money.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Economics Focus</span>
+          </div>
+        </div>
+
+        <!-- Videos -->
+        <div class="resource-card" data-category="videos">
+          <div class="resource-badge">Video</div>
+          <div class="resource-icon">🎬</div>
+          <h3>But How Does Bitcoin Actually Work?</h3>
+          <p class="resource-author">by 3Blue1Brown</p>
+          <p>A beautiful visual explanation of the cryptographic concepts behind Bitcoin, explained clearly for anyone.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Visual Learners</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="videos">
+          <div class="resource-badge">Video</div>
+          <div class="resource-icon">🎬</div>
+          <h3>Bitcoin for Beginners</h3>
+          <p class="resource-author">by Andreas Antonopoulos</p>
+          <p>A series of talks by one of Bitcoin's best educators, covering fundamentals through advanced topics.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Free on YouTube</span>
+          </div>
+        </div>
+
+        <!-- Websites -->
+        <div class="resource-card" data-category="websites">
+          <div class="resource-badge">Website</div>
+          <div class="resource-icon">🌐</div>
+          <h3>bitcoin.org</h3>
+          <p class="resource-author">Official Resource</p>
+          <p>The original Bitcoin website. Includes getting started guides, developer documentation, and wallet recommendations.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Start Here</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="websites">
+          <div class="resource-badge">Website</div>
+          <div class="resource-icon">🌐</div>
+          <h3>mempool.space</h3>
+          <p class="resource-author">Open Source Explorer</p>
+          <p>A beautifully designed Bitcoin blockchain explorer. Watch transactions and blocks in real-time.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★★</span>
+            <span>Block Explorer</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="websites">
+          <div class="resource-badge">Website</div>
+          <div class="resource-icon">🌐</div>
+          <h3>Clark Moody Dashboard</h3>
+          <p class="resource-author">Bitcoin Dashboard</p>
+          <p>Real-time Bitcoin statistics including price, network hashrate, difficulty, and supply data.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★☆</span>
+            <span>Live Stats</span>
+          </div>
+        </div>
+
+        <div class="resource-card" data-category="websites">
+          <div class="resource-badge">Website</div>
+          <div class="resource-icon">🌐</div>
+          <h3>Bitcoin Wiki</h3>
+          <p class="resource-author">Community Knowledge</p>
+          <p>The community-maintained knowledge base covering every aspect of Bitcoin from basics to deep technical details.</p>
+          <div class="resource-rating">
+            <span class="stars">★★★★☆</span>
+            <span>Reference</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn Section - Interactive -->
+  <section class="section learn" id="learn">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Learn</span>
+        <h2 class="section-title">Bitcoin <span class="gradient-text">Knowledge Check</span></h2>
+        <p class="section-subtitle">Test your understanding with these common Bitcoin questions.</p>
+      </div>
+      <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+        </div>
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="btn btn-primary quiz-next" id="quiz-next" style="display:none;">
+          <span>Next Question</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="quiz-score" id="quiz-score" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+        <p class="section-subtitle">Quick answers to the questions every beginner asks.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do I need to buy a whole bitcoin?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No! Bitcoin is divisible to 8 decimal places. The smallest unit is called a "satoshi" (0.00000001 BTC). You can buy as little as a few dollars worth. Many people start with just $10-$50 and build from there.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is Bitcoin safe?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Bitcoin's network has never been hacked in over 15 years of operation. It's secured by the largest computing network on Earth. However, like any investment, there are risks. The price can be volatile, and you must secure your own keys properly. Education is your best protection.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is a Bitcoin wallet?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>A Bitcoin wallet is software (or hardware) that stores your private keys — the cryptographic proof that bitcoin belongs to you. It lets you send and receive bitcoin. Popular beginner wallets include Blue Wallet, Muun, and Green Wallet. As you accumulate more bitcoin, consider a hardware wallet like Coldcard or Trezor.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is dollar-cost averaging (DCA)?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>DCA means buying a fixed dollar amount of bitcoin on a regular schedule (e.g., $50 every week) regardless of the price. This removes the stress of trying to "time the market" and averages out your purchase price over time. It's widely considered the best strategy for beginners.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What does "not your keys, not your coins" mean?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>This is Bitcoin's most important mantra. If your bitcoin is on an exchange, the exchange holds the private keys — meaning they technically control your bitcoin. By moving bitcoin to your own wallet, you hold the keys and have true ownership. Self-custody is a core principle of Bitcoin.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is it too late to buy bitcoin?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>People have asked this question at every price level since bitcoin was $1. Bitcoin is still in its early adoption phase. Less than 5% of the global population owns bitcoin, and institutional adoption is just beginning. The best time to start was years ago; the second best time is now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <h2>Ready to Start?</h2>
+        <p>Every great journey begins with a single step. Take yours today.</p>
+        <div class="cta-actions">
+          <a href="#getting-started" class="btn btn-primary btn-lg">
+            <span>Begin Your Journey</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <p class="cta-note">Remember: Don't invest more than you can afford to lose. Always do your own research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">₿</span>
+            <span class="logo-text">PYMTWiB</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="#getting-started">Get Started</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#learn">Learn</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
