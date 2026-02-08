@@ -968,6 +968,13 @@ img {
   position: relative;
 }
 
+a.resource-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .resource-card.hidden {
   display: none;
 }
