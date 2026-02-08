@@ -252,6 +252,11 @@ img {
   animation: fadeInUp 0.8s ease 0.1s both;
 }
 
+.hero-initial {
+  color: var(--accent-gold);
+  font-weight: 900;
+}
+
 .gradient-text {
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end), var(--gradient-alt));
   -webkit-background-clip: text;
