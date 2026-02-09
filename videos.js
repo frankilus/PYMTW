@@ -193,7 +193,7 @@
       subtitle: 'Understanding money, inflation, and why Bitcoin matters.',
       videos: [
         { id: 'DyV0OfU3-FU', title: 'Hidden Secrets of Money - Ep 1', creator: 'Mike Maloney', duration: '29:28' },
-        { id: 'jqvKjsIxT_8', title: 'Money As Debt', creator: 'Paul Grignon', duration: '47:07' },
+        { id: 'PHe0bXAIuk0', title: 'How The Economic Machine Works', creator: 'Ray Dalio', duration: '31:00' },
         { id: 'zpNlG3VtcBM', title: 'Bitcoin: The End of Money As We Know It', creator: 'Torsten Hoffmann', duration: '1:16:36' },
         { id: 'sDNN0uH2Z3o', title: 'Why Blockchain Matters More Than You Think', creator: 'ColdFusion', duration: '16:38' },
         { id: 'SaLCJMwMmgo', title: 'Masters and Slaves of Money', creator: 'Robert Breedlove', duration: '45:21' }
@@ -227,7 +227,7 @@
         { id: 'Y1OBIGslgGM', title: 'Why Self-Custody Matters', creator: 'Andreas Antonopoulos', duration: '15:42' },
         { id: 'R0YWdw2AOCg', title: 'How To Use a Bitcoin Hardware Wallet', creator: 'BTC Sessions', duration: '20:15' },
         { id: 'nYm8ROOSRCk', title: 'Bitcoin Security Made Simple', creator: 'BTC Sessions', duration: '15:30' },
-        { id: 'lt2FhYOWK5g', title: 'Seed Phrase Security Guide', creator: 'BTC Sessions', duration: '12:18' }
+        { id: 'qJ_SpQX_YKw', title: 'Sparrow Wallet: Complete Bitcoin Self-Custody Guide', creator: 'BTC Sessions', duration: '36:00' }
       ]
     },
     documentaries: {
