@@ -1,0 +1,699 @@
+/* ============================================
+   Bitcoin Net Worth Calculator - Styles
+   ============================================ */
+
+/* --- Calculator Hero --- */
+.calc-hero {
+  position: relative;
+  padding: 158px 24px 48px;
+  text-align: center;
+  z-index: 1;
+}
+
+.calc-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(247, 147, 26, 0.1);
+  border: 1px solid rgba(247, 147, 26, 0.25);
+  color: var(--accent-orange);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  animation: fadeInDown 0.8s ease;
+}
+
+.calc-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.calc-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* --- Calculator Section --- */
+.calc-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 0 80px;
+}
+
+.calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* --- Input Column --- */
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.calc-group-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+}
+
+.calc-group-title svg {
+  color: var(--accent-orange);
+}
+
+.calc-group-liabilities .calc-group-title svg {
+  color: #f87171;
+}
+
+/* --- Category Cards --- */
+.calc-category {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.calc-category:hover {
+  border-color: var(--border-color);
+}
+
+.calc-category-btc {
+  border-color: rgba(247, 147, 26, 0.25);
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.03), var(--bg-card));
+}
+
+.calc-category-btc:hover {
+  border-color: rgba(247, 147, 26, 0.4);
+}
+
+.calc-category-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font-main);
+}
+
+.calc-category-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.calc-category-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calc-category-icon {
+  font-size: 1.2rem;
+}
+
+.calc-category-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.calc-category-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calc-category-total {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.calc-chevron {
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.calc-category.open .calc-chevron {
+  transform: rotate(180deg);
+}
+
+/* Collapsible body */
+.calc-category-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.calc-category.open .calc-category-body {
+  max-height: 500px;
+  padding: 0 20px 20px;
+}
+
+/* --- Input Fields --- */
+.calc-field {
+  margin-bottom: 14px;
+}
+
+.calc-field:last-child {
+  margin-bottom: 0;
+}
+
+.calc-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.calc-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.calc-input-wrap:focus-within {
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.1);
+}
+
+.calc-input-btc:focus-within {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.calc-input-prefix {
+  padding: 10px 0 10px 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.calc-input-btc .calc-input-prefix {
+  color: var(--accent-orange);
+}
+
+.calc-input-wrap input {
+  flex: 1;
+  padding: 10px 14px 10px 8px;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.calc-input-wrap input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Remove number spinners */
+.calc-input-wrap input::-webkit-outer-spin-button,
+.calc-input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.calc-input-wrap input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* BTC hint */
+.calc-field-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.calc-hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  animation: btcPulse 2s ease-in-out infinite;
+}
+
+/* --- Results Panel --- */
+.calc-results {
+  position: sticky;
+  top: 100px;
+}
+
+.calc-results-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calc-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc-results-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.calc-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
+}
+
+.calc-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: btcPulse 2s ease-in-out infinite;
+}
+
+/* Net Worth */
+.calc-net-worth {
+  text-align: center;
+  padding: 20px 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.05), rgba(255, 215, 0, 0.03));
+  border: 1px solid rgba(247, 147, 26, 0.1);
+}
+
+.calc-net-worth-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.calc-net-worth-value {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calc-net-worth-value.negative {
+  background: linear-gradient(135deg, #f87171, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* BTC Denomination */
+.calc-btc-worth {
+  text-align: center;
+  padding: 14px 0;
+}
+
+.calc-btc-worth-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.calc-btc-worth-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+/* Totals */
+.calc-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calc-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-total-label {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.calc-total-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.calc-total-assets .calc-total-value {
+  color: #4ade80;
+}
+
+.calc-total-liabilities .calc-total-value {
+  color: #f87171;
+}
+
+/* Allocation Bar */
+.calc-allocation {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calc-allocation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.calc-allocation-pct {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.calc-allocation-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.calc-allocation-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 100px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Asset Breakdown */
+.calc-breakdown {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calc-breakdown-title {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.calc-breakdown-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 100px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.calc-breakdown-segment {
+  height: 100%;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 0;
+}
+
+.calc-breakdown-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.calc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.calc-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* --- Projection Section --- */
+.calc-projection {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.calc-projection-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.calc-projection-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.calc-projection-title svg {
+  color: var(--accent-orange);
+}
+
+.calc-projection-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.calc-projection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.calc-proj-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.calc-proj-card:hover {
+  border-color: var(--border-color);
+  transform: translateY(-3px);
+}
+
+.calc-proj-target {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.calc-proj-price {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.calc-proj-btc-value {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.calc-proj-net-worth {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calc-proj-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+}
+
+.calc-proj-change .arrow {
+  font-size: 0.7rem;
+}
+
+/* Empty projection prompt */
+.calc-proj-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.calc-proj-empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.4;
+  font-family: var(--font-display);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calc-proj-empty p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.calc-projection-disclaimer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* --- Responsive --- */
+@media (max-width: 968px) {
+  .calc-hero {
+    padding-top: 138px;
+  }
+
+  .calc-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-results {
+    position: static;
+  }
+
+  .calc-projection-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .calc-hero {
+    padding-top: 120px;
+  }
+
+  .calc-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .calc-hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .calc-net-worth-value {
+    font-size: 1.8rem;
+  }
+
+  .calc-results-inner {
+    padding: 20px;
+  }
+
+  .calc-proj-card {
+    padding: 18px 14px;
+  }
+
+  .calc-proj-price {
+    font-size: 1rem;
+  }
+
+  .calc-proj-net-worth {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calc-projection-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calc-category-name {
+    font-size: 0.88rem;
+  }
+
+  .calc-category-total {
+    font-size: 0.82rem;
+  }
+}

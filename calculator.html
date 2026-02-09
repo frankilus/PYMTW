@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Net Worth Calculator | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="calculator.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">₿</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">₿</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="index.html#getting-started">Get Started</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#learn">Learn</a></li>
+        <li><a href="calculator.html" class="nav-active">Calculator</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Calculator Hero -->
+  <section class="calc-hero">
+    <div class="container">
+      <div class="calc-hero-badge">Interactive Tool</div>
+      <h1 class="calc-hero-title">
+        Bitcoin <span class="gradient-text">Net Worth</span> Calculator
+      </h1>
+      <p class="calc-hero-subtitle">
+        Calculate your total net worth, see it denominated in Bitcoin, and explore how different BTC price targets could transform your wealth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-layout">
+
+        <!-- Left Column: Inputs -->
+        <div class="calc-inputs">
+
+          <!-- Assets -->
+          <div class="calc-group">
+            <h2 class="calc-group-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              Assets
+            </h2>
+
+            <!-- Cash & Savings -->
+            <div class="calc-category" data-category="cash">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">💰</span>
+                  <span class="calc-category-name">Cash &amp; Savings</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="cash">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Checking Account</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="cash" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Savings Account</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="cash" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Emergency Fund</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="cash" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Investments -->
+            <div class="calc-category" data-category="investments">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">📈</span>
+                  <span class="calc-category-name">Investments</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="investments">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Stocks / ETFs</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="investments" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>401(k) / IRA</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="investments" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Bonds / Fixed Income</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="investments" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Other Investments</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="investments" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real Estate -->
+            <div class="calc-category" data-category="realestate">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">🏠</span>
+                  <span class="calc-category-name">Real Estate</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="realestate">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Primary Home Value</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="realestate" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Rental / Investment Properties</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="realestate" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bitcoin -->
+            <div class="calc-category calc-category-btc open" data-category="bitcoin">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">₿</span>
+                  <span class="calc-category-name">Bitcoin</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="bitcoin">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Bitcoin Amount</label>
+                  <div class="calc-input-wrap calc-input-btc">
+                    <span class="calc-input-prefix">₿</span>
+                    <input type="number" id="btc-amount-input" data-asset="bitcoin" placeholder="0.00000000" min="0" step="any">
+                  </div>
+                  <div class="calc-field-hint">
+                    <span class="calc-hint-dot"></span>
+                    <span id="btc-usd-hint">Enter your BTC to see USD value</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Other Assets -->
+            <div class="calc-category" data-category="other">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">🚗</span>
+                  <span class="calc-category-name">Other Assets</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="other">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Vehicles</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="other" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+                <div class="calc-field">
+                  <label>Valuables / Collectibles</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-asset="other" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liabilities -->
+          <div class="calc-group calc-group-liabilities">
+            <h2 class="calc-group-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              Liabilities
+            </h2>
+
+            <!-- Mortgage -->
+            <div class="calc-category" data-category="mortgage">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">🏦</span>
+                  <span class="calc-category-name">Mortgage</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="mortgage">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Mortgage Balance</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-liability="mortgage" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student Loans -->
+            <div class="calc-category" data-category="student">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">🎓</span>
+                  <span class="calc-category-name">Student Loans</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="student">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Student Loan Balance</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-liability="student" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Credit Card Debt -->
+            <div class="calc-category" data-category="creditcard">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">💳</span>
+                  <span class="calc-category-name">Credit Card Debt</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="creditcard">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Credit Card Balance</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-liability="creditcard" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auto Loans -->
+            <div class="calc-category" data-category="auto">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">🚘</span>
+                  <span class="calc-category-name">Auto Loans</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="auto">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Auto Loan Balance</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-liability="auto" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Other Debts -->
+            <div class="calc-category" data-category="otherdebts">
+              <button class="calc-category-header" type="button">
+                <div class="calc-category-left">
+                  <span class="calc-category-icon">📋</span>
+                  <span class="calc-category-name">Other Debts</span>
+                </div>
+                <div class="calc-category-right">
+                  <span class="calc-category-total" data-total="otherdebts">$0</span>
+                  <svg class="calc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </button>
+              <div class="calc-category-body">
+                <div class="calc-field">
+                  <label>Other Debt Balance</label>
+                  <div class="calc-input-wrap">
+                    <span class="calc-input-prefix">$</span>
+                    <input type="number" data-liability="otherdebts" placeholder="0" min="0" step="any">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Results Panel -->
+        <div class="calc-results">
+          <div class="calc-results-inner">
+            <div class="calc-results-header">
+              <h3>Your Net Worth</h3>
+              <div class="calc-live-badge">
+                <span class="calc-live-dot"></span>
+                Live BTC Price
+              </div>
+            </div>
+
+            <!-- Net Worth Display -->
+            <div class="calc-net-worth">
+              <div class="calc-net-worth-label">Total Net Worth</div>
+              <div class="calc-net-worth-value" id="calc-net-worth">$0</div>
+            </div>
+
+            <!-- BTC Denomination -->
+            <div class="calc-btc-worth">
+              <div class="calc-btc-worth-label">Net Worth in Bitcoin</div>
+              <div class="calc-btc-worth-value" id="calc-btc-worth">₿ 0.0000</div>
+            </div>
+
+            <!-- Totals Breakdown -->
+            <div class="calc-totals">
+              <div class="calc-total-row calc-total-assets">
+                <span class="calc-total-label">Total Assets</span>
+                <span class="calc-total-value" id="calc-total-assets">$0</span>
+              </div>
+              <div class="calc-total-row calc-total-liabilities">
+                <span class="calc-total-label">Total Liabilities</span>
+                <span class="calc-total-value" id="calc-total-liabilities">$0</span>
+              </div>
+            </div>
+
+            <!-- Bitcoin Allocation Bar -->
+            <div class="calc-allocation" id="calc-allocation" style="display: none;">
+              <div class="calc-allocation-header">
+                <span>Bitcoin Allocation</span>
+                <span class="calc-allocation-pct" id="calc-btc-pct">0%</span>
+              </div>
+              <div class="calc-allocation-bar">
+                <div class="calc-allocation-fill" id="calc-allocation-fill" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <!-- Asset Breakdown Bar -->
+            <div class="calc-breakdown" id="calc-breakdown" style="display: none;">
+              <div class="calc-breakdown-title">Asset Breakdown</div>
+              <div class="calc-breakdown-bar" id="calc-breakdown-bar"></div>
+              <div class="calc-breakdown-legend" id="calc-breakdown-legend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bitcoin Growth Projection -->
+      <div class="calc-projection" id="calc-projection">
+        <div class="calc-projection-header">
+          <h2 class="calc-projection-title">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Bitcoin Growth Projection
+          </h2>
+          <p class="calc-projection-subtitle">See how your net worth changes at different Bitcoin price targets</p>
+        </div>
+        <div class="calc-projection-grid" id="calc-projection-grid">
+          <!-- Projection cards generated by JS -->
+        </div>
+        <p class="calc-projection-disclaimer">
+          * Projections are hypothetical and for entertainment purposes only. They assume all other asset values remain constant. This is not financial advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">₿</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
