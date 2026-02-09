@@ -196,7 +196,7 @@
         { id: 'PHe0bXAIuk0', title: 'How The Economic Machine Works', creator: 'Ray Dalio', duration: '31:00' },
         { id: 'zpNlG3VtcBM', title: 'Bitcoin: The End of Money As We Know It', creator: 'Torsten Hoffmann', duration: '1:16:36' },
         { id: 'sDNN0uH2Z3o', title: 'Why Blockchain Matters More Than You Think', creator: 'ColdFusion', duration: '16:38' },
-        { id: 'SaLCJMwMmgo', title: 'Masters and Slaves of Money', creator: 'Robert Breedlove', duration: '45:21' }
+        { id: '7tQIGuCyOHQ', title: 'The Price of Tomorrow & Bitcoin', creator: 'Jeff Booth / Natalie Brunell', duration: '1:15:44' }
       ]
     },
     technical: {
