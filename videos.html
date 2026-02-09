@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Video Library | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="videos.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">₿</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">₿</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="index.html#getting-started">Get Started</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#learn">Learn</a></li>
+        <li><a href="videos.html" class="nav-active">Videos</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="vid-hero">
+    <div class="container">
+      <div class="vid-hero-badge">Video Library</div>
+      <h1 class="vid-hero-title">
+        Bitcoin <span class="gradient-text">Video Library</span>
+      </h1>
+      <p class="vid-hero-subtitle">
+        Curated, highly-rated videos to accelerate your Bitcoin education.
+        From beginner explainers to deep technical dives and riveting documentaries.
+      </p>
+      <div class="vid-search-wrap">
+        <svg class="vid-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" id="vid-search" class="vid-search-input"
+               placeholder="Search videos by title, creator, or topic..." autocomplete="off">
+        <button class="vid-search-clear" id="vid-search-clear" aria-label="Clear search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Spotlight -->
+  <section class="vid-spotlight">
+    <div class="container">
+      <div class="vid-spotlight-card" data-video-id="bBC-nXj3Ng4">
+        <div class="vid-spotlight-thumb">
+          <img src="https://img.youtube.com/vi/bBC-nXj3Ng4/maxresdefault.jpg"
+               alt="But how does bitcoin actually work?"
+               onerror="this.src='https://img.youtube.com/vi/bBC-nXj3Ng4/hqdefault.jpg'">
+          <div class="vid-spotlight-overlay">
+            <button class="vid-play-btn vid-play-btn-lg" aria-label="Play video">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+          </div>
+          <span class="vid-duration-badge">26:21</span>
+        </div>
+        <div class="vid-spotlight-info">
+          <span class="vid-spotlight-tag">Featured</span>
+          <h2 class="vid-spotlight-title">But how does bitcoin actually work?</h2>
+          <p class="vid-spotlight-creator">3Blue1Brown</p>
+          <p class="vid-spotlight-desc">
+            A beautifully animated explanation of the cryptographic concepts behind Bitcoin.
+            One of the most-watched Bitcoin explainers on YouTube, and the perfect starting
+            point for understanding how it all works under the hood.
+          </p>
+          <button class="btn btn-primary vid-spotlight-play" data-video-id="bBC-nXj3Ng4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Watch Now</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Category Navigation -->
+  <nav class="vid-cat-nav" id="vid-cat-nav">
+    <div class="vid-cat-nav-inner">
+      <button class="vid-cat-pill active" data-category="essentials">Essentials</button>
+      <button class="vid-cat-pill" data-category="economics">Economics</button>
+      <button class="vid-cat-pill" data-category="technical">Technical</button>
+      <button class="vid-cat-pill" data-category="interviews">Interviews</button>
+      <button class="vid-cat-pill" data-category="security">Security</button>
+      <button class="vid-cat-pill" data-category="documentaries">Documentaries</button>
+    </div>
+  </nav>
+
+  <!-- Category: Essentials -->
+  <section class="vid-category" id="cat-essentials" data-category="essentials">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Bitcoin Essentials</h2>
+          <p class="vid-category-subtitle">Start here. The best beginner-friendly explainers.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="essentials">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category: Economics -->
+  <section class="vid-category" id="cat-economics" data-category="economics">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Economics &amp; Money</h2>
+          <p class="vid-category-subtitle">Understanding money, inflation, and why Bitcoin matters.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="economics">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category: Technical -->
+  <section class="vid-category" id="cat-technical" data-category="technical">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Deep Dives &amp; Technical</h2>
+          <p class="vid-category-subtitle">How the technology works under the hood.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="technical">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category: Interviews -->
+  <section class="vid-category" id="cat-interviews" data-category="interviews">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Interviews &amp; Conversations</h2>
+          <p class="vid-category-subtitle">Long-form conversations with leading Bitcoin thinkers.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="interviews">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category: Security -->
+  <section class="vid-category" id="cat-security" data-category="security">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Security &amp; Self-Custody</h2>
+          <p class="vid-category-subtitle">Protect your Bitcoin. Your keys, your coins.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="security">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category: Documentaries -->
+  <section class="vid-category" id="cat-documentaries" data-category="documentaries">
+    <div class="container">
+      <div class="vid-category-header">
+        <div class="vid-category-header-left">
+          <h2 class="vid-category-title">Culture &amp; Documentaries</h2>
+          <p class="vid-category-subtitle">The people, stories, and history behind Bitcoin.</p>
+        </div>
+        <div class="vid-carousel-arrows">
+          <button class="vid-arrow vid-arrow-left" aria-label="Scroll left" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="vid-arrow vid-arrow-right" aria-label="Scroll right">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="vid-carousel" data-carousel="documentaries">
+        <div class="vid-carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results (hidden by default) -->
+  <section class="vid-search-results" id="vid-search-results" style="display:none;">
+    <div class="container">
+      <div class="vid-search-results-header">
+        <h2 id="vid-search-results-title">Results</h2>
+        <button class="vid-search-results-clear" id="vid-search-results-clear">Clear Search</button>
+      </div>
+      <div class="vid-search-results-grid" id="vid-search-results-grid"></div>
+    </div>
+  </section>
+
+  <!-- Video Modal -->
+  <div class="vid-modal" id="vid-modal" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="vid-modal-backdrop" id="vid-modal-backdrop"></div>
+    <div class="vid-modal-content">
+      <button class="vid-modal-close" id="vid-modal-close" aria-label="Close video">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="vid-modal-player">
+        <iframe id="vid-modal-iframe" width="100%" height="100%"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+      <div class="vid-modal-info">
+        <h3 id="vid-modal-title"></h3>
+        <p id="vid-modal-creator"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">₿</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="videos.js"></script>
+</body>
+</html>
