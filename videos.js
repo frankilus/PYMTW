@@ -234,8 +234,8 @@
       title: 'Culture & Documentaries',
       subtitle: 'The people, stories, and history behind Bitcoin.',
       videos: [
-        { id: 'A06qdTpOYcg', title: 'The Rise and Rise of Bitcoin', creator: 'Daniel Mross (2014)', duration: '1:36:00' },
-        { id: '7sKOqCS1gKg', title: 'Banking on Bitcoin', creator: 'Christopher Cannucciari (2016)', duration: '1:30:00' },
+        { id: 'b4xuRZYLpgk', title: 'God Bless Bitcoin', creator: 'God Bless Bitcoin (2024)', duration: '1:29:00' },
+        { id: 'b-7dMVcVWgc', title: 'This Machine Greens', creator: 'Swan Bitcoin (2021)', duration: '43:00' },
         { id: 'LszOt51OjXU', title: 'Bitcoin: Beyond the Bubble', creator: 'Tim Delmastro (2018)', duration: '35:00' },
         { id: 'zpNlG3VtcBM', title: 'Bitcoin: The End of Money As We Know It', creator: 'Torsten Hoffmann (2015)', duration: '1:16:36' }
       ]
