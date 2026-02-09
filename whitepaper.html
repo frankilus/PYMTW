@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Whitepaper Decoded | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="whitepaper.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="wp-progress-bar" id="wp-progress-bar">
+    <div class="wp-progress-fill" id="wp-progress-fill"></div>
+  </div>
+
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">&#8383;</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#8383;</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="index.html#getting-started">Get Started</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#learn">Learn</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="whitepaper.html" class="nav-active">Whitepaper</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="wp-hero">
+    <div class="container">
+      <div class="wp-hero-badge">Satoshi Nakamoto &middot; October 31, 2008</div>
+      <h1 class="wp-hero-title">The <span class="gradient-text">Whitepaper</span></h1>
+      <p class="wp-hero-subtitle">The 9 pages that changed everything. A section-by-section decoded guide to the document that launched a financial revolution.</p>
+      <blockquote class="wp-hero-quote">
+        <p>&ldquo;A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.&rdquo;</p>
+        <cite>&mdash; Satoshi Nakamoto, Bitcoin Whitepaper Abstract</cite>
+      </blockquote>
+      <div class="wp-hero-actions">
+        <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Read the Original PDF
+        </a>
+        <a href="#wp-section-0" class="btn btn-secondary" id="wp-start-btn">
+          Start the Decoded Guide
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Context -->
+  <section class="wp-timeline">
+    <div class="container">
+      <div class="wp-timeline-track">
+        <div class="wp-timeline-item reveal">
+          <span class="wp-timeline-year">1990s</span>
+          <span class="wp-timeline-dot"></span>
+          <span class="wp-timeline-label">Cypherpunk Movement</span>
+          <span class="wp-timeline-desc">Cryptographers envision digital cash and privacy tools</span>
+        </div>
+        <div class="wp-timeline-item reveal">
+          <span class="wp-timeline-year">2008</span>
+          <span class="wp-timeline-dot active"></span>
+          <span class="wp-timeline-label">Financial Crisis</span>
+          <span class="wp-timeline-desc">Global banking system collapses, trust in institutions shattered</span>
+        </div>
+        <div class="wp-timeline-item reveal">
+          <span class="wp-timeline-year">Oct 31, 2008</span>
+          <span class="wp-timeline-dot active"></span>
+          <span class="wp-timeline-label">Whitepaper Published</span>
+          <span class="wp-timeline-desc">Satoshi publishes &ldquo;Bitcoin: A Peer-to-Peer Electronic Cash System&rdquo;</span>
+        </div>
+        <div class="wp-timeline-item reveal">
+          <span class="wp-timeline-year">Jan 3, 2009</span>
+          <span class="wp-timeline-dot"></span>
+          <span class="wp-timeline-label">Genesis Block</span>
+          <span class="wp-timeline-desc">The Bitcoin network goes live with the first block ever mined</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Decoded Content -->
+  <div class="wp-main" id="wp-main">
+    <!-- Sidebar Navigator (Desktop) -->
+    <aside class="wp-sidebar" id="wp-sidebar">
+      <nav class="wp-sidebar-nav">
+        <h3 class="wp-sidebar-title">Sections</h3>
+        <ul class="wp-sidebar-list" id="wp-sidebar-list">
+          <li><a href="#wp-section-0" class="wp-sidebar-link active" data-section="0"><span class="wp-sidebar-num">0</span><span class="wp-sidebar-text">Abstract</span></a></li>
+          <li><a href="#wp-section-1" class="wp-sidebar-link" data-section="1"><span class="wp-sidebar-num">1</span><span class="wp-sidebar-text">Introduction</span></a></li>
+          <li><a href="#wp-section-2" class="wp-sidebar-link" data-section="2"><span class="wp-sidebar-num">2</span><span class="wp-sidebar-text">Transactions</span></a></li>
+          <li><a href="#wp-section-3" class="wp-sidebar-link" data-section="3"><span class="wp-sidebar-num">3</span><span class="wp-sidebar-text">Timestamp Server</span></a></li>
+          <li><a href="#wp-section-4" class="wp-sidebar-link" data-section="4"><span class="wp-sidebar-num">4</span><span class="wp-sidebar-text">Proof-of-Work</span></a></li>
+          <li><a href="#wp-section-5" class="wp-sidebar-link" data-section="5"><span class="wp-sidebar-num">5</span><span class="wp-sidebar-text">Network</span></a></li>
+          <li><a href="#wp-section-6" class="wp-sidebar-link" data-section="6"><span class="wp-sidebar-num">6</span><span class="wp-sidebar-text">Incentive</span></a></li>
+          <li><a href="#wp-section-7" class="wp-sidebar-link" data-section="7"><span class="wp-sidebar-num">7</span><span class="wp-sidebar-text">Reclaiming Disk Space</span></a></li>
+          <li><a href="#wp-section-8" class="wp-sidebar-link" data-section="8"><span class="wp-sidebar-num">8</span><span class="wp-sidebar-text">Simplified Payment Verification</span></a></li>
+          <li><a href="#wp-section-9" class="wp-sidebar-link" data-section="9"><span class="wp-sidebar-num">9</span><span class="wp-sidebar-text">Combining &amp; Splitting Value</span></a></li>
+          <li><a href="#wp-section-10" class="wp-sidebar-link" data-section="10"><span class="wp-sidebar-num">10</span><span class="wp-sidebar-text">Privacy</span></a></li>
+          <li><a href="#wp-section-11" class="wp-sidebar-link" data-section="11"><span class="wp-sidebar-num">11</span><span class="wp-sidebar-text">Calculations</span></a></li>
+          <li><a href="#wp-section-12" class="wp-sidebar-link" data-section="12"><span class="wp-sidebar-num">12</span><span class="wp-sidebar-text">Conclusion</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Mobile Section Navigator -->
+    <nav class="wp-mobile-nav" id="wp-mobile-nav">
+      <div class="wp-mobile-nav-inner">
+        <button class="wp-mobile-pill active" data-section="0">Abstract</button>
+        <button class="wp-mobile-pill" data-section="1">Introduction</button>
+        <button class="wp-mobile-pill" data-section="2">Transactions</button>
+        <button class="wp-mobile-pill" data-section="3">Timestamp</button>
+        <button class="wp-mobile-pill" data-section="4">Proof-of-Work</button>
+        <button class="wp-mobile-pill" data-section="5">Network</button>
+        <button class="wp-mobile-pill" data-section="6">Incentive</button>
+        <button class="wp-mobile-pill" data-section="7">Disk Space</button>
+        <button class="wp-mobile-pill" data-section="8">SPV</button>
+        <button class="wp-mobile-pill" data-section="9">Value</button>
+        <button class="wp-mobile-pill" data-section="10">Privacy</button>
+        <button class="wp-mobile-pill" data-section="11">Calculations</button>
+        <button class="wp-mobile-pill" data-section="12">Conclusion</button>
+      </div>
+    </nav>
+
+    <!-- Section Cards Container -->
+    <div class="wp-content" id="wp-content">
+
+      <!-- Section 0: Abstract -->
+      <article class="wp-section-card reveal" id="wp-section-0" data-section="0">
+        <div class="wp-section-number">0</div>
+        <h2 class="wp-section-title">Abstract</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin eliminates the need for trusted third parties in online payments. It&rsquo;s money that works like cash on the internet &mdash; no banks required.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Before Bitcoin, sending money online always required a middleman: a bank, PayPal, or a credit card company. Satoshi&rsquo;s paper proposes something revolutionary &mdash; a system where people can send digital money directly to each other, just like handing someone cash in person.</p>
+          <p>The abstract lays out the core problem (trust in third parties) and the solution: a peer-to-peer network that uses cryptographic proof to secure transactions, making double-spending impossible without any central authority.</p>
+          <p>This single paragraph became the mission statement for an entirely new form of money.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="peer-to-peer">Peer-to-Peer</span>
+          <span class="wp-concept-tag" data-term="double-spending">Double Spending</span>
+          <span class="wp-concept-tag" data-term="cryptographic-proof">Cryptographic Proof</span>
+          <span class="wp-concept-tag" data-term="trusted-third-party">Trusted Third Party</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution. Digital signatures provide part of the solution, but the main benefits are lost if a trusted third party is still required to prevent double-spending. We propose a solution to the double-spending problem using a peer-to-peer network. The network timestamps transactions by hashing them into an ongoing chain of hash-based proof-of-work, forming a record that cannot be changed without redoing the proof-of-work. The longest chain not only serves as proof of the sequence of events witnessed, but proof that it came from the largest pool of CPU power. As long as a majority of CPU power is controlled by nodes that are not cooperating to attack the network, they&rsquo;ll generate the longest chain and outpace attackers. The network itself requires minimal structure. Messages are broadcast on a best effort basis, and nodes can leave and rejoin the network at will, accepting the longest proof-of-work chain as proof of what happened while they were gone.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 1: Introduction -->
+      <article class="wp-section-card reveal" id="wp-section-1" data-section="1">
+        <div class="wp-section-number">1</div>
+        <h2 class="wp-section-title">Introduction</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> The internet&rsquo;s commerce model is fundamentally broken because it relies on trust. Bitcoin replaces trust with mathematical proof.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;What is needed is an electronic payment system based on cryptographic proof instead of trust, allowing any two willing parties to transact directly with each other without the need for a trusted third party.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Satoshi begins by identifying the weakness of online commerce: everything depends on financial institutions acting as trusted third parties. This creates real costs &mdash; transaction fees, fraud mediation, and the inability to make truly irreversible payments like cash.</p>
+          <p>The introduction argues that reversible transactions are expensive for everyone. Merchants need more information from customers, fraud is accepted as unavoidable, and small casual transactions become impractical because of the overhead.</p>
+          <p>The proposed solution is elegant: replace trust with cryptographic proof. Instead of relying on institutions to verify and approve transactions, use mathematics to make fraud computationally impractical.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="trusted-third-party">Trust Model</span>
+          <span class="wp-concept-tag" data-term="reversible-transactions">Reversible Transactions</span>
+          <span class="wp-concept-tag" data-term="cryptographic-proof">Cryptographic Proof</span>
+          <span class="wp-concept-tag" data-term="digital-signatures">Digital Signatures</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>Commerce on the Internet has come to rely almost exclusively on financial institutions serving as trusted third parties to process electronic payments. While the system works well enough for most transactions, it still suffers from the inherent weaknesses of the trust based model. Completely non-reversible transactions are not really possible, since financial institutions cannot avoid mediating disputes. The cost of mediation increases transaction costs, limiting the minimum practical transaction size and cutting off the possibility for small casual transactions, and there is a broader cost in the loss of ability to make non-reversible payments for non-reversible services. With the possibility of reversal, the need for trust spreads. Merchants must be wary of their customers, hassling them for more information than they would otherwise need. A certain percentage of fraud is accepted as unavoidable. These costs and payment uncertainties can be avoided in person by using physical currency, but no mechanism exists to make payments over a communications channel without a trusted party.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 2: Transactions -->
+      <article class="wp-section-card reveal" id="wp-section-2" data-section="2">
+        <div class="wp-section-number">2</div>
+        <h2 class="wp-section-title">Transactions</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> A bitcoin is not a file or a token &mdash; it&rsquo;s a chain of digital signatures tracing ownership from person to person, like an unbreakable chain of custody.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;We define an electronic coin as a chain of digital signatures.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>This is one of the most important conceptual leaps in the paper. A bitcoin isn&rsquo;t a &ldquo;thing&rdquo; stored somewhere &mdash; it&rsquo;s the entire history of its transfers. Each owner transfers the coin by digitally signing a hash of the previous transaction and the next owner&rsquo;s public key.</p>
+          <p>The problem Satoshi identifies here is double-spending: how do you prevent someone from copying their digital money and spending it twice? In the physical world, handing over a dollar bill solves this naturally. In the digital world, you need a mechanism to verify that coins haven&rsquo;t already been spent.</p>
+          <p>The traditional solution is a trusted central authority (like a bank or mint) that checks every transaction. Satoshi&rsquo;s breakthrough is finding a way to do this without any central party.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="digital-signatures">Digital Signatures</span>
+          <span class="wp-concept-tag" data-term="double-spending">Double Spending</span>
+          <span class="wp-concept-tag" data-term="public-key">Public Keys</span>
+          <span class="wp-concept-tag" data-term="hash-function">Hash Functions</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>We define an electronic coin as a chain of digital signatures. Each owner transfers the coin to the next by digitally signing a hash of the previous transaction and the public key of the next owner and adding these to the end of the coin. A payee can verify the signatures to verify the chain of ownership. The problem of course is the payee can&rsquo;t verify that one of the owners did not double-spend the coin. A common solution is to introduce a trusted central authority, or mint, that checks every transaction for double spending. After each transaction, the coin must be returned to the mint to issue a new coin, and only coins issued directly from the mint are trusted not to be double-spent. The problem with this solution is that the fate of the entire money system depends on the company running the mint, with every transaction having to go through them, just like a bank. We need a way for the payee to know that the previous owners did not sign any earlier transactions.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 3: Timestamp Server -->
+      <article class="wp-section-card reveal" id="wp-section-3" data-section="3">
+        <div class="wp-section-number">3</div>
+        <h2 class="wp-section-title">Timestamp Server</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> By timestamping batches of transactions into linked blocks, Bitcoin creates an unforgeable, chronologically ordered record of every transaction ever made.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;Each timestamp includes the previous timestamp in its hash, forming a chain, with each additional timestamp reinforcing the ones before it.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Think of each block as a page in a ledger that&rsquo;s stamped with the exact time it was created. But here&rsquo;s the clever part: each stamp also includes a fingerprint of the previous page. This means you can&rsquo;t change any page without breaking every page that came after it.</p>
+          <p>This is the foundation of the &ldquo;blockchain&rdquo; &mdash; a chain of timestamped blocks where each one references the one before it. The result is an append-only record: you can add to it, but you can never go back and change history without redoing all subsequent work.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="timestamp">Timestamp Server</span>
+          <span class="wp-concept-tag" data-term="hash-chain">Hash Chain</span>
+          <span class="wp-concept-tag" data-term="block">Blocks</span>
+          <span class="wp-concept-tag" data-term="blockchain">Immutability</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>The solution we propose begins with a timestamp server. A timestamp server works by taking a hash of a block of items to be timestamped and widely publishing the hash. The timestamp proves that the data must have existed at the time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in its hash, forming a chain, with each additional timestamp reinforcing the ones before it.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 4: Proof-of-Work -->
+      <article class="wp-section-card reveal" id="wp-section-4" data-section="4">
+        <div class="wp-section-number">4</div>
+        <h2 class="wp-section-title">Proof-of-Work</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Proof-of-work makes it extraordinarily expensive to cheat but trivially easy to verify honesty. It&rsquo;s democratic security: one CPU, one vote.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;Proof-of-work is essentially one-CPU-one-vote. The majority decision is represented by the longest chain, which has the greatest proof-of-work effort invested in it.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Proof-of-work is the engine that secures Bitcoin. Miners compete to solve a computational puzzle &mdash; finding a number (called a nonce) that, when hashed with the block data, produces a result starting with a certain number of zeros. It&rsquo;s like a lottery where you have to keep guessing until you win.</p>
+          <p>The beauty is in the asymmetry: finding the solution requires enormous computational effort, but verifying it takes almost no effort at all. Anyone can instantly check if a block is valid, but creating a fraudulent block requires re-doing all the work.</p>
+          <p>The difficulty automatically adjusts so that blocks are found roughly every 10 minutes, regardless of how much computing power joins or leaves the network. This elegant self-regulation is key to Bitcoin&rsquo;s resilience.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="proof-of-work">Proof-of-Work</span>
+          <span class="wp-concept-tag" data-term="sha-256">SHA-256</span>
+          <span class="wp-concept-tag" data-term="mining">Mining</span>
+          <span class="wp-concept-tag" data-term="nonce">Nonce</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>To implement a distributed timestamp server on a peer-to-peer basis, we will need to use a proof-of-work system similar to Adam Back&rsquo;s Hashcash. The proof-of-work involves scanning for a value that when hashed, such as with SHA-256, the hash begins with a number of zero bits. The average work required is exponential in the number of zero bits required and can be verified by executing a single hash. For our timestamp network, we implement the proof-of-work by incrementing a nonce in the block until a value is found that gives the block&rsquo;s hash the required zero bits. Once the CPU effort has been expended to make it satisfy the proof-of-work, the block cannot be changed without redoing the work. As later blocks are chained after it, the work to change the block would include redoing all the blocks after it. Proof-of-work is essentially one-CPU-one-vote.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 5: Network -->
+      <article class="wp-section-card reveal" id="wp-section-5" data-section="5">
+        <div class="wp-section-number">5</div>
+        <h2 class="wp-section-title">Network</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> The Bitcoin network runs itself with minimal coordination. Nodes freely join and leave, always trusting the longest valid chain as the source of truth.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;Nodes can leave and rejoin the network at will, accepting the proof-of-work chain as proof of what happened while they were gone.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Satoshi lays out the network&rsquo;s operation in six simple steps: new transactions are broadcast to all nodes, each node collects them into a block, nodes compete to solve the proof-of-work puzzle, the winner broadcasts the solved block, other nodes accept it if all transactions are valid, and everyone starts working on the next block.</p>
+          <p>The elegance is in its simplicity. No node is &ldquo;in charge.&rdquo; If a node goes offline for a week, it simply downloads the blocks it missed and catches up. The longest chain always wins because it represents the most accumulated computational work.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="node">Nodes</span>
+          <span class="wp-concept-tag" data-term="consensus">Consensus</span>
+          <span class="wp-concept-tag" data-term="blockchain">Longest Chain Rule</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>The steps to run the network are as follows: 1) New transactions are broadcast to all nodes. 2) Each node collects new transactions into a block. 3) Each node works on finding a difficult proof-of-work for its block. 4) When a node finds a proof-of-work, it broadcasts the block to all nodes. 5) Nodes accept the block only if all transactions in it are valid and not already spent. 6) Nodes express their acceptance of the block by working on creating the next block in the chain, using the hash of the accepted block as the previous hash. Nodes always consider the longest chain to be the correct one and will keep working on extending it.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 6: Incentive -->
+      <article class="wp-section-card reveal" id="wp-section-6" data-section="6">
+        <div class="wp-section-number">6</div>
+        <h2 class="wp-section-title">Incentive</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin&rsquo;s genius is in its incentive design: it&rsquo;s more profitable to protect the network than to attack it. Greed is channeled into honesty.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;If a greedy attacker is able to assemble more CPU power than all the honest nodes, he would have to choose between using it to defraud people by stealing back his payments, or using it to generate new coins. He ought to find it more profitable to play by the rules.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>This section reveals Bitcoin&rsquo;s brilliant use of game theory. The first transaction in every block creates new bitcoins out of thin air &mdash; the block reward. This is both how new bitcoins enter circulation and how miners are incentivized to do the work of securing the network.</p>
+          <p>The incentive structure is self-reinforcing: even if someone had enough computing power to attack the network, they&rsquo;d earn more by playing honestly. Attacking Bitcoin would destroy the value of the very coins they&rsquo;re trying to steal. It&rsquo;s a system where self-interest and collective good are perfectly aligned.</p>
+          <p>Satoshi also notes that once all 21 million bitcoins are mined, the incentive transitions entirely to transaction fees &mdash; making the system sustainable long-term.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="block-reward">Block Reward</span>
+          <span class="wp-concept-tag" data-term="transaction-fees">Transaction Fees</span>
+          <span class="wp-concept-tag" data-term="halving">Halving</span>
+          <span class="wp-concept-tag" data-term="game-theory">Game Theory</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network, and provides a way to initially distribute coins into circulation, since there is no central authority to issue them. The steady addition of a constant of amount of new coins is analogous to gold miners expending resources to add gold to circulation. In our case, it is CPU time and electricity that is expended. The incentive can also be funded with transaction fees. If the output value of a transaction is less than its input value, the difference is a transaction fee that is added to the incentive value of the block containing the transaction. Once a predetermined number of coins have entered circulation, the incentive can transition entirely to transaction fees and be completely inflation free. The incentive may help encourage nodes to stay honest.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 7: Reclaiming Disk Space -->
+      <article class="wp-section-card reveal" id="wp-section-7" data-section="7">
+        <div class="wp-section-number">7</div>
+        <h2 class="wp-section-title">Reclaiming Disk Space</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin uses Merkle trees to efficiently compress old transaction data. Block headers stay tiny (~80 bytes) even as the chain grows for decades.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>As Bitcoin grows, storing every transaction forever would be impractical. Satoshi&rsquo;s solution is the Merkle tree &mdash; a data structure that lets you summarize thousands of transactions into a single compact hash, like a fingerprint for the entire block.</p>
+          <p>Old transactions whose coins have been spent many times over can be safely discarded. The block header (only about 80 bytes) preserves the proof that everything was valid. At roughly 80 bytes per block header and one block every 10 minutes, the entire chain of headers grows by only about 4.2 MB per year &mdash; trivial even for small devices.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="merkle-tree">Merkle Tree</span>
+          <span class="wp-concept-tag" data-term="block">Block Header</span>
+          <span class="wp-concept-tag" data-term="hash-function">Pruning</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block&rsquo;s hash, transactions are hashed in a Merkle Tree, with only the root included in the block&rsquo;s hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored. A block header with no transactions would be about 80 bytes. If we suppose blocks are generated every 10 minutes, 80 bytes * 6 * 24 * 365 = 4.2MB per year.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 8: Simplified Payment Verification -->
+      <article class="wp-section-card reveal" id="wp-section-8" data-section="8">
+        <div class="wp-section-number">8</div>
+        <h2 class="wp-section-title">Simplified Payment Verification</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> You don&rsquo;t need to run a full node to use Bitcoin safely. Lightweight clients can verify payments by checking block headers alone &mdash; making Bitcoin practical for phones and everyday devices.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;It is possible to verify payments without running a full network node. A user only needs to keep a copy of the block headers of the longest proof-of-work chain.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Not everyone can (or wants to) store the entire blockchain. SPV allows lightweight clients &mdash; like mobile wallets &mdash; to verify that a transaction is included in a block without downloading every transaction. They just need the block headers and a Merkle branch linking their transaction to the block.</p>
+          <p>This is what makes Bitcoin practical for everyday use. Your phone doesn&rsquo;t need to store hundreds of gigabytes of blockchain data to send and receive bitcoin safely. It just needs to verify the proof-of-work chain and check that your transaction is anchored in it.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="spv">SPV</span>
+          <span class="wp-concept-tag" data-term="merkle-tree">Merkle Branch</span>
+          <span class="wp-concept-tag" data-term="node">Full Node</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>It is possible to verify payments without running a full network node. A user only needs to keep a copy of the block headers of the longest proof-of-work chain, which he can get by querying network nodes until he&rsquo;s convinced he has the longest chain, and obtain the Merkle branch linking the transaction to the block it&rsquo;s timestamped in. He can&rsquo;t check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 9: Combining and Splitting Value -->
+      <article class="wp-section-card reveal" id="wp-section-9" data-section="9">
+        <div class="wp-section-number">9</div>
+        <h2 class="wp-section-title">Combining and Splitting Value</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin transactions work like physical cash &mdash; you can combine multiple bills to make a larger payment, or break a large bill and get change back.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;Although it would be possible to handle coins individually, it would be unwieldy to make a separate transaction for every cent in a transfer.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>In the real world, if something costs $7 and you have a $5 bill and a $10 bill, you hand over both and get $8 back in change. Bitcoin transactions work the same way through the UTXO (Unspent Transaction Output) model.</p>
+          <p>A transaction can take multiple inputs (combining smaller amounts) and create multiple outputs (the payment plus your change). This makes Bitcoin flexible enough to handle any payment size without needing exact change.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="utxo">UTXO</span>
+          <span class="wp-concept-tag" data-term="digital-signatures">Inputs &amp; Outputs</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>Although it would be possible to handle coins individually, it would be unwieldy to make a separate transaction for every cent in a transfer. To allow value to be split and combined, transactions contain multiple inputs and outputs. Normally there will be either a single input from a larger previous transaction or multiple inputs combining smaller amounts, and at most two outputs: one for the payment, and one returning the change, if any, back to the sender.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 10: Privacy -->
+      <article class="wp-section-card reveal" id="wp-section-10" data-section="10">
+        <div class="wp-section-number">10</div>
+        <h2 class="wp-section-title">Privacy</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin achieves privacy not by hiding transactions, but by hiding identities. Everyone can see the payment; nobody has to know who made it.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;The public can see that someone is sending an amount to someone else, but without information linking the transaction to anyone.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>Traditional banking achieves privacy by restricting who can see your transactions &mdash; only you and your bank know. Bitcoin flips this model: all transactions are public, but the identities behind them are hidden behind cryptographic keys.</p>
+          <p>Satoshi compares it to the stock exchange, where the time and size of trades are public but the parties are not. For additional privacy, he recommends using a new key pair for each transaction, making it harder to link multiple transactions to the same person.</p>
+          <p>Bitcoin is pseudonymous, not anonymous &mdash; an important distinction. Your transactions are tied to addresses (public keys), not your real name. But if an address is ever linked to your identity, all its transactions become visible.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="pseudonymity">Pseudonymity</span>
+          <span class="wp-concept-tag" data-term="public-key">Public Key</span>
+          <span class="wp-concept-tag" data-term="private-key">Private Key</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>The traditional banking model achieves a level of privacy by limiting access to information to the parties involved and the trusted third party. The necessity to announce all transactions publicly precludes this method, but privacy can still be maintained by breaking the flow of information in another place: by keeping public keys anonymous. The public can see that someone is sending an amount to someone else, but without information linking the transaction to anyone. This is similar to the level of information released by stock exchanges, where the time and size of individual trades, the &ldquo;tape&rdquo;, is made public, but without telling who the parties were. As an additional firewall, a new key pair should be used for each transaction to keep them from being linked to a common owner.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 11: Calculations -->
+      <article class="wp-section-card reveal" id="wp-section-11" data-section="11">
+        <div class="wp-section-number">11</div>
+        <h2 class="wp-section-title">Calculations</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> An attacker&rsquo;s chance of rewriting the blockchain drops exponentially with each new block. After 6 confirmations, a successful attack is virtually impossible.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;The race between the honest chain and an attacker chain can be characterized as a Binomial Random Walk&hellip; The probability of an attacker catching up from a given deficit is analogous to a Gambler&rsquo;s Ruin problem.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>This is the mathematical backbone of Bitcoin&rsquo;s security. Satoshi uses the &ldquo;Gambler&rsquo;s Ruin&rdquo; problem from probability theory to prove that an attacker with less than 50% of the network&rsquo;s computing power will eventually fail.</p>
+          <p>Think of it like a race: the honest miners are always ahead, and the attacker has to catch up. With each new block the honest chain adds, the attacker falls further behind. The probability of catching up decreases exponentially &mdash; after just 6 blocks (about an hour), the chances become vanishingly small.</p>
+          <p>This is why merchants and exchanges wait for &ldquo;confirmations&rdquo; before considering a payment final. Each confirmation exponentially increases your confidence that the transaction is permanent.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="confirmation">Confirmations</span>
+          <span class="wp-concept-tag" data-term="gamblers-ruin">Gambler&rsquo;s Ruin</span>
+          <span class="wp-concept-tag" data-term="51-attack">51% Attack</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>We consider the scenario of an attacker trying to generate an alternate chain faster than the honest chain. Even if this is accomplished, it does not throw the system open to arbitrary changes, such as creating value out of thin air or taking money that never belonged to the attacker. Nodes are not going to accept an invalid transaction as payment, and honest nodes will never accept a block containing them. An attacker can only try to change one of his own transactions to take back money he recently spent. The race between the honest chain and an attacker chain can be characterized as a Binomial Random Walk. The probability of an attacker catching up from a given deficit is analogous to a Gambler&rsquo;s Ruin problem. Suppose a gambler with unlimited credit starts at a deficit and plays potentially an infinite number of trials to try to reach breakeven. We can calculate the probability he ever reaches breakeven, or that an attacker ever catches up with the honest chain.</p></div>
+        </div>
+      </article>
+
+      <!-- Section 12: Conclusion -->
+      <article class="wp-section-card reveal" id="wp-section-12" data-section="12">
+        <div class="wp-section-number">12</div>
+        <h2 class="wp-section-title">Conclusion</h2>
+        <div class="wp-key-insight">
+          <div class="wp-key-insight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="wp-key-insight-text"><strong>Key Insight:</strong> Bitcoin is a system where rules replace rulers. All needed rules and incentives are enforced by consensus &mdash; not by any authority, institution, or individual.</div>
+        </div>
+        <blockquote class="wp-quote"><p>&ldquo;We have proposed a system for electronic transactions without relying on trust&hellip; Any needed rules and incentives can be enforced with this consensus mechanism.&rdquo;</p></blockquote>
+        <div class="wp-decoded">
+          <h3 class="wp-decoded-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Decoded</h3>
+          <p>In the conclusion, Satoshi ties everything together. The entire system &mdash; from digital signatures to proof-of-work to incentives &mdash; creates a trustless electronic payment system. Nodes &ldquo;vote&rdquo; with their CPU power, accepting valid blocks and rejecting invalid ones.</p>
+          <p>The network is robust in its unstructured simplicity. Nodes work simultaneously with little coordination. They don&rsquo;t need to be identified because messages aren&rsquo;t routed to any particular place &mdash; they just need to be delivered on a best-effort basis.</p>
+          <p>In just 9 pages, Satoshi described a complete system that has been running continuously since January 3, 2009 &mdash; with zero downtime &mdash; processing billions of dollars in transactions every day without a single person in charge.</p>
+        </div>
+        <div class="wp-concept-tags">
+          <span class="wp-concept-tag" data-term="consensus">Consensus Mechanism</span>
+          <span class="wp-concept-tag" data-term="peer-to-peer">Decentralization</span>
+          <span class="wp-concept-tag" data-term="proof-of-work">Trustless System</span>
+        </div>
+        <div class="wp-original">
+          <button class="wp-original-toggle" aria-expanded="false"><svg class="wp-original-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>Read Original Text</span></button>
+          <div class="wp-original-content"><p>We have proposed a system for electronic transactions without relying on trust. We started with the usual framework of coins made from digital signatures, which provides strong control of ownership, but is incomplete without a way to prevent double-spending. To solve this, we proposed a peer-to-peer network using proof-of-work to record a public history of transactions that quickly becomes computationally impractical for an attacker to change if honest nodes control a majority of CPU power. The network is robust in its unstructured simplicity. Nodes work all at once with little coordination. They do not need to be identified, since messages are not routed to any particular place and only need to be delivered on a best effort basis. Nodes can leave and rejoin the network at will, accepting the proof-of-work chain as proof of what happened while they were gone. They vote with their CPU power, expressing their acceptance of valid blocks by working on extending them and rejecting invalid blocks by refusing to work on them. Any needed rules and incentives can be enforced with this consensus mechanism.</p></div>
+        </div>
+      </article>
+
+    </div><!-- end wp-content -->
+  </div><!-- end wp-main -->
+
+  <!-- Glossary Section -->
+  <section class="wp-glossary" id="wp-glossary">
+    <div class="container">
+      <div class="wp-glossary-header">
+        <h2 class="wp-glossary-title">Key Concepts <span class="gradient-text">Glossary</span></h2>
+        <p class="wp-glossary-subtitle">Important terms from the whitepaper, explained simply.</p>
+      </div>
+      <div class="wp-glossary-grid">
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Peer-to-Peer (P2P)</h4><p class="wp-glossary-def">A network where participants communicate directly with each other, without a central server. Like handing someone cash instead of wiring money through a bank.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Double Spending</h4><p class="wp-glossary-def">The risk that digital currency could be spent twice. Bitcoin solves this without a central authority by using proof-of-work and the longest chain rule.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Cryptographic Proof</h4><p class="wp-glossary-def">Mathematical evidence that verifies something is true without requiring trust in a third party. The foundation of Bitcoin&rsquo;s security model.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Digital Signature</h4><p class="wp-glossary-def">A mathematical scheme that proves ownership and prevents tampering, like a handwritten signature but mathematically unforgeable.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Hash Function</h4><p class="wp-glossary-def">A one-way mathematical function that converts any data into a fixed-size string of characters. Even a tiny change in input produces a completely different output.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">SHA-256</h4><p class="wp-glossary-def">The specific hash function Bitcoin uses. It produces a unique 256-bit (64 character hex) output for any input, and is computationally infeasible to reverse.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Merkle Tree</h4><p class="wp-glossary-def">A data structure that efficiently summarizes all transactions in a block into a single hash. Allows verification of any transaction without downloading the entire block.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Proof-of-Work</h4><p class="wp-glossary-def">A system requiring computational effort to produce a valid block. Makes it costly to attack but easy to verify, securing the network through energy expenditure.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Nonce</h4><p class="wp-glossary-def">A number that miners repeatedly change to find a valid block hash. Short for &ldquo;number used once&rdquo; &mdash; the key variable in the mining puzzle.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Block</h4><p class="wp-glossary-def">A bundle of verified transactions permanently added to the blockchain roughly every 10 minutes. Each block references the previous one, forming the chain.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Blockchain</h4><p class="wp-glossary-def">A chain of blocks, each linked to the previous by its hash. Creates a tamper-proof, chronological ledger of all Bitcoin transactions ever made.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Node</h4><p class="wp-glossary-def">A computer running Bitcoin software that validates transactions and blocks, maintaining its own copy of the entire blockchain.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Mining</h4><p class="wp-glossary-def">The process of using computational power to solve proof-of-work puzzles, validate transactions, and add new blocks to the blockchain in exchange for bitcoin rewards.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Consensus</h4><p class="wp-glossary-def">The process by which all nodes agree on the valid state of the blockchain without central coordination. The longest valid chain wins.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">SPV (Simplified Payment Verification)</h4><p class="wp-glossary-def">A method to verify transactions without downloading the entire blockchain. Used by lightweight wallets on phones and other devices with limited storage.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">UTXO</h4><p class="wp-glossary-def">Unspent Transaction Output &mdash; the fundamental unit of Bitcoin accounting. Think of each UTXO as a specific coin or bill in your wallet that you can spend.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Public Key</h4><p class="wp-glossary-def">Your Bitcoin address, derived mathematically from your private key. Safe to share &mdash; it&rsquo;s how others send you bitcoin, like an email address for money.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Private Key</h4><p class="wp-glossary-def">A secret number that proves ownership of your bitcoin and authorizes spending. Never share it &mdash; whoever has it controls your funds.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">51% Attack</h4><p class="wp-glossary-def">A theoretical attack where someone controls over half of the network&rsquo;s mining power, potentially able to reverse recent transactions. Economically irrational due to the cost.</p></div>
+        <div class="wp-glossary-item"><h4 class="wp-glossary-term">Halving</h4><p class="wp-glossary-def">An event every ~210,000 blocks (~4 years) where the block reward is cut in half. Controls Bitcoin&rsquo;s inflation rate, ensuring only 21 million will ever exist.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="wp-cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <h2>Continue Your <span class="gradient-text">Bitcoin Journey</span></h2>
+        <p>Now that you understand the whitepaper, explore more ways to learn about Bitcoin and put your money to work.</p>
+        <div class="wp-cta-links">
+          <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener" class="btn btn-primary">Download the Original PDF</a>
+          <a href="videos.html" class="btn btn-secondary">Watch Video Library</a>
+          <a href="calculator.html" class="btn btn-secondary">Try the Calculator</a>
+        </div>
+        <p class="cta-note">The whitepaper is in the public domain and freely available at bitcoin.org</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">&#8383;</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="whitepaper.html">The Whitepaper</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tooltip Container -->
+  <div class="wp-tooltip" id="wp-tooltip" role="tooltip" aria-hidden="true">
+    <div class="wp-tooltip-content" id="wp-tooltip-content"></div>
+  </div>
+
+  <script src="whitepaper.js"></script>
+</body>
+</html>
