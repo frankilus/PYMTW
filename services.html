@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Services | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="services.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">&#8383;</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#8383;</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="index.html#getting-started">Get Started</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#learn">Learn</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="whitepaper.html">Whitepaper</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="services.html" class="nav-active">Services</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="svc-hero">
+    <div class="container">
+      <div class="svc-hero-badge">Professional Bitcoin Services</div>
+      <h1 class="svc-hero-title">Bitcoin <span class="gradient-text">Services</span></h1>
+      <p class="svc-hero-subtitle">Professional guidance for your Bitcoin journey &mdash; from first purchase to advanced self-custody. Learn, secure, and grow with confidence.</p>
+      <div class="svc-payment-badges">
+        <div class="svc-payment-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span>Credit Card Accepted</span>
+        </div>
+        <div class="svc-payment-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 8h3.5a2 2 0 010 4H10m0 0h4a2 2 0 010 4H9.5M12 6v2m0 8v2"/></svg>
+          <span>Bitcoin Accepted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="svc-services" id="services">
+    <div class="container">
+      <div class="svc-section-header">
+        <span class="svc-section-tag">Our Services</span>
+        <h2 class="svc-section-title">How We Can <span class="gradient-text">Help You</span></h2>
+        <p class="svc-section-subtitle">Choose the service that matches where you are on your Bitcoin journey.</p>
+      </div>
+      <div class="svc-services-grid">
+
+        <!-- Service Card 1: Consultation & Education -->
+        <div class="svc-card reveal">
+          <div class="svc-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h3 class="svc-card-title">Consultation &amp; Education</h3>
+          <p class="svc-card-desc">Personalized sessions to help you understand Bitcoin fundamentals, market dynamics, and how to get started safely.</p>
+          <div class="svc-pricing-table">
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Starter Session</span>
+                <span class="svc-pricing-detail">30 minutes</span>
+              </div>
+              <span class="svc-pricing-price">$75</span>
+            </div>
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Deep Dive</span>
+                <span class="svc-pricing-detail">60 minutes</span>
+              </div>
+              <span class="svc-pricing-price">$150</span>
+            </div>
+            <div class="svc-pricing-row svc-pricing-featured">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Mentorship Package</span>
+                <span class="svc-pricing-detail">4 &times; 60-min sessions</span>
+              </div>
+              <span class="svc-pricing-price">$500</span>
+            </div>
+          </div>
+          <a href="#inquiry" class="btn btn-primary svc-card-btn">
+            Request This Service
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Service Card 2: Wallet Setup & Security -->
+        <div class="svc-card reveal">
+          <div class="svc-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="svc-card-title">Wallet Setup &amp; Security</h3>
+          <p class="svc-card-desc">Hands-on help setting up hardware wallets, securing your seed phrase, and building a bulletproof self-custody strategy.</p>
+          <div class="svc-pricing-table">
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Basic Setup</span>
+                <span class="svc-pricing-detail">Hardware wallet + seed backup</span>
+              </div>
+              <span class="svc-pricing-price">$150</span>
+            </div>
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Security Audit</span>
+                <span class="svc-pricing-detail">Review + vulnerability check</span>
+              </div>
+              <span class="svc-pricing-price">$200</span>
+            </div>
+            <div class="svc-pricing-row svc-pricing-featured">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Full Security Package</span>
+                <span class="svc-pricing-detail">Setup + multi-sig + support</span>
+              </div>
+              <span class="svc-pricing-price">$500</span>
+            </div>
+          </div>
+          <a href="#inquiry" class="btn btn-primary svc-card-btn">
+            Request This Service
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Service Card 3: Portfolio & Strategy -->
+        <div class="svc-card reveal">
+          <div class="svc-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="svc-card-title">Portfolio &amp; Strategy</h3>
+          <p class="svc-card-desc">Strategic planning for your Bitcoin allocation &mdash; DCA schedules, portfolio analysis, and long-term growth strategies.</p>
+          <div class="svc-pricing-table">
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Strategy Session</span>
+                <span class="svc-pricing-detail">60-min review + DCA plan</span>
+              </div>
+              <span class="svc-pricing-price">$200</span>
+            </div>
+            <div class="svc-pricing-row">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Comprehensive Plan</span>
+                <span class="svc-pricing-detail">Full analysis + written strategy</span>
+              </div>
+              <span class="svc-pricing-price">$400</span>
+            </div>
+            <div class="svc-pricing-row svc-pricing-featured">
+              <div class="svc-pricing-name">
+                <span class="svc-pricing-label">Ongoing Advisory</span>
+                <span class="svc-pricing-detail">Monthly check-in + adjustments</span>
+              </div>
+              <span class="svc-pricing-price">$300/mo</span>
+            </div>
+          </div>
+          <a href="#inquiry" class="btn btn-primary svc-card-btn">
+            Request This Service
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work With Us -->
+  <section class="svc-trust" id="trust">
+    <div class="container">
+      <div class="svc-section-header">
+        <span class="svc-section-tag">Why Us</span>
+        <h2 class="svc-section-title">Why <span class="gradient-text">Work With Us</span></h2>
+      </div>
+      <div class="svc-trust-grid">
+        <div class="svc-trust-card reveal">
+          <div class="svc-trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Personalized 1-on-1 Guidance</h3>
+          <p>Every session is tailored to your specific goals, experience level, and comfort zone. No cookie-cutter advice.</p>
+        </div>
+        <div class="svc-trust-card reveal">
+          <div class="svc-trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Security-First Approach</h3>
+          <p>Your bitcoin security is our top priority. We follow industry best practices for self-custody and key management.</p>
+        </div>
+        <div class="svc-trust-card reveal">
+          <div class="svc-trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Flexible Payment Options</h3>
+          <p>Pay with credit card or bitcoin &mdash; whichever works best for you. We make it easy and convenient.</p>
+        </div>
+        <div class="svc-trust-card reveal">
+          <div class="svc-trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Ongoing Support Available</h3>
+          <p>Bitcoin is a journey, not a one-time event. We offer ongoing advisory packages to support your long-term strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="svc-process" id="process">
+    <div class="container">
+      <div class="svc-section-header">
+        <span class="svc-section-tag">How It Works</span>
+        <h2 class="svc-section-title">Simple <span class="gradient-text">3-Step Process</span></h2>
+      </div>
+      <div class="svc-steps">
+        <div class="svc-step reveal">
+          <div class="svc-step-number">01</div>
+          <h3>Submit an Inquiry</h3>
+          <p>Fill out the form below with your service interest, goals, and any questions you have.</p>
+        </div>
+        <div class="svc-step-connector"></div>
+        <div class="svc-step reveal">
+          <div class="svc-step-number">02</div>
+          <h3>Get a Consultation Plan</h3>
+          <p>We review your inquiry and respond within 24 hours with a tailored plan and next steps.</p>
+        </div>
+        <div class="svc-step-connector"></div>
+        <div class="svc-step reveal">
+          <div class="svc-step-number">03</div>
+          <h3>Begin Your Journey</h3>
+          <p>Schedule your session, arrange payment via your preferred method, and start learning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form -->
+  <section class="svc-inquiry" id="inquiry">
+    <div class="container">
+      <div class="svc-section-header">
+        <span class="svc-section-tag">Get Started</span>
+        <h2 class="svc-section-title">Send an <span class="gradient-text">Inquiry</span></h2>
+        <p class="svc-section-subtitle">Tell us about your needs and we&rsquo;ll get back to you within 24 hours.</p>
+      </div>
+      <form class="svc-form" id="svc-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New PYMTW Bitcoin Services Inquiry">
+        <input type="hidden" name="from_name" value="PYMTW Services">
+        <input type="checkbox" name="botcheck" style="display:none;">
+
+        <div class="svc-form-grid">
+          <div class="svc-form-field">
+            <label for="svc-name">Full Name <span class="svc-required">*</span></label>
+            <div class="svc-input-wrap">
+              <input type="text" id="svc-name" name="name" required placeholder="Your full name">
+            </div>
+            <span class="svc-field-error" id="svc-name-error"></span>
+          </div>
+          <div class="svc-form-field">
+            <label for="svc-email">Email Address <span class="svc-required">*</span></label>
+            <div class="svc-input-wrap">
+              <input type="email" id="svc-email" name="email" required placeholder="you@example.com">
+            </div>
+            <span class="svc-field-error" id="svc-email-error"></span>
+          </div>
+          <div class="svc-form-field">
+            <label for="svc-service">Service Interest <span class="svc-required">*</span></label>
+            <div class="svc-input-wrap">
+              <select id="svc-service" name="service" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option value="Consultation & Education">Consultation &amp; Education</option>
+                <option value="Wallet Setup & Security">Wallet Setup &amp; Security</option>
+                <option value="Portfolio & Strategy">Portfolio &amp; Strategy</option>
+              </select>
+            </div>
+          </div>
+          <div class="svc-form-field">
+            <label for="svc-budget">Budget Range</label>
+            <div class="svc-input-wrap">
+              <select id="svc-budget" name="budget">
+                <option value="" disabled selected>Select range (optional)</option>
+                <option value="Under $150">Under $150</option>
+                <option value="$150 - $300">$150 - $300</option>
+                <option value="$300 - $500">$300 - $500</option>
+                <option value="$500+">$500+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-form-field svc-form-field-full">
+          <label for="svc-message">Message <span class="svc-required">*</span></label>
+          <div class="svc-input-wrap">
+            <textarea id="svc-message" name="message" required rows="5" placeholder="Tell us about your needs, experience level, and what you hope to achieve..."></textarea>
+          </div>
+          <span class="svc-field-error" id="svc-message-error"></span>
+        </div>
+
+        <div class="svc-form-field svc-form-field-full">
+          <label>Preferred Payment Method</label>
+          <div class="svc-radio-group">
+            <label class="svc-radio">
+              <input type="radio" name="payment_method" value="Credit Card" checked>
+              <span class="svc-radio-custom"></span>
+              <span>Credit Card</span>
+            </label>
+            <label class="svc-radio">
+              <input type="radio" name="payment_method" value="Bitcoin">
+              <span class="svc-radio-custom"></span>
+              <span>Bitcoin</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg svc-submit-btn" id="svc-submit-btn">
+          <span>Send Inquiry</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4z"/></svg>
+        </button>
+
+        <div class="svc-form-status" id="svc-form-status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="svc-faq" id="svc-faq">
+    <div class="container">
+      <div class="svc-section-header">
+        <span class="svc-section-tag">FAQ</span>
+        <h2 class="svc-section-title">Common <span class="gradient-text">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do sessions work?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>All sessions are conducted via video call using Zoom or Google Meet. After your inquiry is confirmed and payment is arranged, you&rsquo;ll receive a calendar link to schedule at a time that works for you. Sessions are recorded (with your permission) so you can review them later.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>We accept credit card payments via invoice and Bitcoin (on-chain or Lightning Network). After your inquiry, we&rsquo;ll send you payment details based on your preferred method. All payment is arranged before your session begins.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you offer refunds?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Your satisfaction is our priority. If you&rsquo;re not completely satisfied with a session, we&rsquo;ll offer a follow-up session at no additional cost or provide a credit toward future services. Cancellations with 24+ hours notice receive a full refund.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is my information kept confidential?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. All client information, financial details, and session content are kept strictly confidential. We never share your information with third parties. Your privacy and security are fundamental to how we operate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="svc-cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <h2>Ready to <span class="gradient-text">Get Started?</span></h2>
+        <p>Take the first step toward mastering Bitcoin with professional guidance.</p>
+        <div style="margin-top: 32px;">
+          <a href="#inquiry" class="btn btn-primary btn-lg">
+            Send an Inquiry
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <p class="cta-note">All services are for educational purposes. This is not financial advice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">&#8383;</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="whitepaper.html">The Whitepaper</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+            <li><a href="services.html">Bitcoin Services</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="services.js"></script>
+</body>
+</html>
