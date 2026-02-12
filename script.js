@@ -614,7 +614,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      const top = section.offsetTop - 100;
+      const top = section.offsetTop - 200;
       if (window.scrollY >= top) {
         current = section.getAttribute('id');
       }
