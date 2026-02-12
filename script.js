@@ -608,7 +608,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ---- Active nav link on scroll ----
 (function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  // Only target section-linking anchors, skip dropdown triggers and generic # links
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-dropdown-trigger)');
 
   window.addEventListener('scroll', () => {
     let current = '';
@@ -621,7 +622,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     navLinks.forEach(link => {
       link.style.color = '';
-      if (link.getAttribute('href') === `#${current}`) {
+      const href = link.getAttribute('href');
+      if (current && href === `#${current}`) {
         link.style.color = 'var(--accent-orange)';
       }
     });
