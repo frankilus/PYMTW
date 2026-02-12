@@ -151,6 +151,53 @@
   color: #000;
 }
 
+/* Toggle Group (View + Scale side by side) */
+.perf-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Chart Type Toggle */
+.perf-chart-type-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.perf-chart-type-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.perf-chart-type-btn svg {
+  flex-shrink: 0;
+}
+
+.perf-chart-type-btn.active {
+  background: rgba(247, 147, 26, 0.12);
+  border-color: rgba(247, 147, 26, 0.3);
+  color: var(--accent-orange);
+}
+
+.perf-chart-type-btn:hover:not(.active) {
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
 /* Scale Toggle */
 .perf-scale-toggle {
   display: flex;
@@ -564,7 +611,17 @@
     justify-content: center;
   }
 
+  .perf-toggle-group {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
   .perf-scale-toggle {
+    justify-content: center;
+  }
+
+  .perf-chart-type-toggle {
     justify-content: center;
   }
 

@@ -225,6 +225,7 @@
   var chart = null;
   var currentPeriod = 'all';
   var currentScale = 'log';
+  var currentChartType = 'line';
 
   // ---- Utility Functions ----
   function calculateGrowth(assetKey, startYear, endYear) {
@@ -323,10 +324,72 @@
   }
 
   // ---- Chart ----
+
+  // Custom plugin to draw % return labels at bar tips
+  var barLabelPlugin = {
+    id: 'barReturnLabels',
+    afterDatasetsDraw: function (chart) {
+      if (chart.config.type !== 'bar') return;
+      var ctx = chart.ctx;
+      var chartArea = chart.chartArea;
+      chart.data.datasets.forEach(function (dataset, i) {
+        var meta = chart.getDatasetMeta(i);
+        if (meta.hidden) return;
+        meta.data.forEach(function (bar, index) {
+          var value = dataset.data[index];
+          var returnPct = ((value / 100) - 1) * 100;
+          var label = formatPercent(returnPct);
+          var isNegative = returnPct < 0;
+
+          ctx.save();
+          ctx.font = "bold 11px 'Space Grotesk', sans-serif";
+          ctx.textAlign = 'center';
+
+          var yPos;
+          if (isNegative) {
+            // Below the bar for negative returns
+            ctx.fillStyle = '#ff6b6b';
+            ctx.textBaseline = 'top';
+            yPos = bar.y + 6;
+          } else {
+            // Above the bar for positive returns
+            ctx.fillStyle = dataset.borderColor[index] || dataset.borderColor;
+            ctx.textBaseline = 'bottom';
+            yPos = bar.y - 6;
+            // Clamp to chart area so label doesn't go off-canvas
+            if (yPos < chartArea.top + 14) {
+              yPos = chartArea.top + 14;
+            }
+          }
+
+          ctx.fillText(label, bar.x, yPos);
+          ctx.restore();
+        });
+      });
+    }
+  };
+
   function renderChart(period) {
     var range = getYearRange(period);
     var startIdx = YEARS.indexOf(range.start);
     var endIdx = YEARS.indexOf(range.end);
+
+    var canvas = document.getElementById('perf-growth-chart');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    if (chart) {
+      chart.destroy();
+    }
+
+    if (currentChartType === 'bar') {
+      renderBarChart(ctx, canvas, range);
+    } else {
+      renderLineChart(ctx, canvas, range, startIdx, endIdx);
+    }
+  }
+
+  function renderLineChart(ctx, canvas, range, startIdx, endIdx) {
     var labels = [range.start - 1 + ''];
     for (var y = startIdx; y <= endIdx; y++) {
       labels.push(YEARS[y] + '');
@@ -350,14 +413,6 @@
         fill: false
       };
     });
-
-    var canvas = document.getElementById('perf-growth-chart');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-
-    if (chart) {
-      chart.destroy();
-    }
 
     chart = new Chart(ctx, {
       type: 'line',
@@ -412,6 +467,98 @@
           y: {
             type: currentScale === 'log' ? 'logarithmic' : 'linear',
             grid: { color: 'rgba(255, 255, 255, 0.04)', drawBorder: false },
+            ticks: {
+              color: '#6a6a80',
+              font: { family: "'Space Grotesk', sans-serif", size: 11, weight: 500 },
+              callback: function (value) {
+                if (currentScale === 'log') {
+                  var logValues = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
+                  if (logValues.indexOf(value) !== -1) return '$' + formatNumber(value);
+                  return '';
+                }
+                return '$' + formatNumber(value);
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function renderBarChart(ctx, canvas, range) {
+    // Each asset gets one bar showing final $100 growth value
+    var labels = ASSET_ORDER.map(function (key) { return ASSETS[key].name; });
+
+    var finalValues = ASSET_ORDER.map(function (key) {
+      var growth = calculateGrowth(key, range.start, range.end);
+      return growth[growth.length - 1];
+    });
+
+    var colors = ASSET_ORDER.map(function (key) { return ASSETS[key].color; });
+    var bgColors = colors.map(function (c) { return c + 'cc'; });
+
+    var datasets = [{
+      label: 'Growth of $100',
+      data: finalValues,
+      backgroundColor: bgColors,
+      borderColor: colors,
+      borderWidth: 2,
+      borderRadius: 6,
+      borderSkipped: false,
+      barPercentage: 0.7,
+      categoryPercentage: 0.8
+    }];
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: { labels: labels, datasets: datasets },
+      plugins: [barLabelPlugin],
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: { top: 24 }
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#1a1a2e',
+            titleColor: '#f0f0f5',
+            bodyColor: '#a0a0b8',
+            borderColor: 'rgba(247, 147, 26, 0.3)',
+            borderWidth: 1,
+            padding: 14,
+            titleFont: { family: "'Space Grotesk', sans-serif", size: 14, weight: 700 },
+            bodyFont: { family: "'Inter', sans-serif", size: 12 },
+            callbacks: {
+              label: function (context) {
+                var value = context.parsed.y;
+                var returnPct = ((value / 100) - 1) * 100;
+                return ' Value: ' + formatDollar(value) + ' (' + formatPercent(returnPct) + ')';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: {
+              color: function (context) {
+                return ASSETS[ASSET_ORDER[context.index]] ? ASSETS[ASSET_ORDER[context.index]].color : '#6a6a80';
+              },
+              font: { family: "'Space Grotesk', sans-serif", size: 12, weight: 600 }
+            }
+          },
+          y: {
+            type: currentScale === 'log' ? 'logarithmic' : 'linear',
+            grid: { color: 'rgba(255, 255, 255, 0.04)', drawBorder: false },
+            beginAtZero: false,
             ticks: {
               color: '#6a6a80',
               font: { family: "'Space Grotesk', sans-serif", size: 11, weight: 500 },
@@ -604,6 +751,24 @@
         renderKPIs(currentPeriod);
       });
     });
+
+    // Chart type toggle
+    var lineBtn = document.getElementById('perf-type-line');
+    var barBtn = document.getElementById('perf-type-bar');
+    if (lineBtn && barBtn) {
+      lineBtn.addEventListener('click', function () {
+        currentChartType = 'line';
+        lineBtn.classList.add('active');
+        barBtn.classList.remove('active');
+        renderChart(currentPeriod);
+      });
+      barBtn.addEventListener('click', function () {
+        currentChartType = 'bar';
+        barBtn.classList.add('active');
+        lineBtn.classList.remove('active');
+        renderChart(currentPeriod);
+      });
+    }
 
     // Scale toggle
     var logBtn = document.getElementById('perf-scale-log');

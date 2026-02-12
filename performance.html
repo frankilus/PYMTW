@@ -118,10 +118,23 @@
           <button class="perf-time-pill" data-period="10">10Y</button>
           <button class="perf-time-pill active" data-period="all">All</button>
         </div>
-        <div class="perf-scale-toggle">
-          <span>Scale:</span>
-          <button class="perf-scale-btn active" id="perf-scale-log" data-scale="log">Log</button>
-          <button class="perf-scale-btn" id="perf-scale-linear" data-scale="linear">Linear</button>
+        <div class="perf-toggle-group">
+          <div class="perf-chart-type-toggle">
+            <span>View:</span>
+            <button class="perf-chart-type-btn active" id="perf-type-line" data-type="line">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 10 4.5 5 8 7.5 13 2"/></svg>
+              Line
+            </button>
+            <button class="perf-chart-type-btn" id="perf-type-bar" data-type="bar">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="2.5" height="5"/><rect x="5.5" y="4" width="2.5" height="9"/><rect x="10" y="1" width="2.5" height="12"/></svg>
+              Bar
+            </button>
+          </div>
+          <div class="perf-scale-toggle">
+            <span>Scale:</span>
+            <button class="perf-scale-btn active" id="perf-scale-log" data-scale="log">Log</button>
+            <button class="perf-scale-btn" id="perf-scale-linear" data-scale="linear">Linear</button>
+          </div>
         </div>
       </div>
 
