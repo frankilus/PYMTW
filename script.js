@@ -131,6 +131,7 @@
   const revealSelectors = [
     '.feature-card',
     '.resource-card',
+    '.faq-category',
     '.faq-item',
     '.cta-card',
     '.section-header',

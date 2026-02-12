@@ -1275,7 +1275,7 @@ a.resource-card {
 
 /* --- FAQ Section --- */
 .faq-list {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -1331,7 +1331,7 @@ a.resource-card {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 300px;
+  max-height: 800px;
 }
 
 .faq-answer p {
@@ -1339,6 +1339,26 @@ a.resource-card {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.8;
+}
+
+/* --- FAQ Category Headers --- */
+.faq-category {
+  margin-top: 48px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(247, 147, 26, 0.15);
+}
+
+.faq-category:first-child {
+  margin-top: 0;
+}
+
+.faq-category h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  letter-spacing: 0.3px;
 }
 
 /* --- CTA Section --- */
@@ -1629,6 +1649,14 @@ a.resource-card {
     padding-left: 20px;
     background: none;
     color: var(--text-primary);
+  }
+
+  .faq-category {
+    margin-top: 36px;
+  }
+
+  .faq-category h3 {
+    font-size: 1.05rem;
   }
 
   .features-grid {
