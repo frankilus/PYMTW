@@ -352,13 +352,17 @@
             ctx.textBaseline = 'top';
             yPos = bar.y + 6;
           } else {
-            // Above the bar for positive returns
-            ctx.fillStyle = dataset.borderColor[index] || dataset.borderColor;
-            ctx.textBaseline = 'bottom';
-            yPos = bar.y - 6;
-            // Clamp to chart area so label doesn't go off-canvas
-            if (yPos < chartArea.top + 14) {
-              yPos = chartArea.top + 14;
+            var naturalY = bar.y - 6;
+            if (naturalY < chartArea.top + 14) {
+              // Bar is too tall — draw label inside the bar top
+              ctx.fillStyle = '#000';
+              ctx.textBaseline = 'top';
+              yPos = bar.y + 8;
+            } else {
+              // Normal — draw label above the bar
+              ctx.fillStyle = dataset.borderColor[index] || dataset.borderColor;
+              ctx.textBaseline = 'bottom';
+              yPos = naturalY;
             }
           }
 
