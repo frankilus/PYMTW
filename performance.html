@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Performance Compared | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="performance.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">&#8383;</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#8383;</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+        <li><a href="index.html#getting-started">Get Started</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#learn">Learn</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="whitepaper.html">Whitepaper</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="performance.html" class="nav-active">Performance</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="perf-hero">
+    <div class="container">
+      <div class="perf-hero-badge">Bitcoin vs Traditional Assets</div>
+      <h1 class="perf-hero-title">Performance <span class="gradient-text">Compared</span></h1>
+      <p class="perf-hero-subtitle">See how Bitcoin stacks up against every major asset class over the past decade. The data speaks for itself.</p>
+      <div class="perf-hero-stats">
+        <div class="perf-hero-stat">
+          <div class="perf-hero-stat-value" id="perf-hero-total-return">--</div>
+          <div class="perf-hero-stat-label">BTC Total Return (since 2011)</div>
+        </div>
+        <div class="perf-hero-stat">
+          <div class="perf-hero-stat-value" id="perf-hero-best-year">--</div>
+          <div class="perf-hero-stat-label">Best Single Year</div>
+        </div>
+        <div class="perf-hero-stat">
+          <div class="perf-hero-stat-value" id="perf-hero-top-count">--</div>
+          <div class="perf-hero-stat-label">Years as #1 Performer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Growth Chart Section -->
+  <section class="perf-chart-section">
+    <div class="container">
+      <div class="perf-section-header reveal">
+        <div class="perf-section-tag">Growth of $100</div>
+        <h2 class="perf-section-title">How Would Your <span class="gradient-text">$100</span> Have Grown?</h2>
+        <p class="perf-section-subtitle">Compare the cumulative growth of a $100 investment across asset classes over time.</p>
+      </div>
+
+      <div class="perf-chart-controls reveal">
+        <div class="perf-time-pills" id="perf-time-pills">
+          <button class="perf-time-pill" data-period="1">1Y</button>
+          <button class="perf-time-pill" data-period="3">3Y</button>
+          <button class="perf-time-pill" data-period="5">5Y</button>
+          <button class="perf-time-pill" data-period="10">10Y</button>
+          <button class="perf-time-pill active" data-period="all">All</button>
+        </div>
+        <div class="perf-scale-toggle">
+          <span>Scale:</span>
+          <button class="perf-scale-btn active" id="perf-scale-log" data-scale="log">Log</button>
+          <button class="perf-scale-btn" id="perf-scale-linear" data-scale="linear">Linear</button>
+        </div>
+      </div>
+
+      <div class="perf-chart-wrap reveal">
+        <div class="perf-chart-canvas-wrap">
+          <canvas id="perf-growth-chart"></canvas>
+        </div>
+        <div class="perf-chart-note">Click legend items to toggle asset visibility &bull; Hover for exact values</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Dashboard -->
+  <section class="perf-kpi-section">
+    <div class="container">
+      <div class="perf-section-header reveal">
+        <div class="perf-section-tag">Key Metrics</div>
+        <h2 class="perf-section-title">Performance <span class="gradient-text">Dashboard</span></h2>
+        <p class="perf-section-subtitle">Key performance indicators for the selected time period.</p>
+      </div>
+      <div class="perf-kpi-grid" id="perf-kpi-grid">
+        <!-- KPI cards generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Annual Returns Heatmap -->
+  <section class="perf-heatmap-section">
+    <div class="container">
+      <div class="perf-section-header reveal">
+        <div class="perf-section-tag">Year by Year</div>
+        <h2 class="perf-section-title">Annual Returns <span class="gradient-text">Heatmap</span></h2>
+        <p class="perf-section-subtitle">Color-coded annual returns for every asset class since 2011.</p>
+      </div>
+      <div class="perf-heatmap-wrap reveal" id="perf-heatmap-wrap">
+        <!-- Heatmap table generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Insights -->
+  <section class="perf-insights-section">
+    <div class="container">
+      <div class="perf-section-header reveal">
+        <div class="perf-section-tag">Key Takeaways</div>
+        <h2 class="perf-section-title">What the Data <span class="gradient-text">Tells Us</span></h2>
+      </div>
+      <div class="perf-insights-grid" id="perf-insights-grid">
+        <!-- Insight cards generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology & Disclaimer -->
+  <section class="perf-methodology">
+    <div class="container">
+      <div class="perf-methodology-card reveal">
+        <div class="perf-methodology-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Methodology &amp; Disclaimer
+        </div>
+        <div class="perf-methodology-text">
+          <strong>Data:</strong> Annual returns are calculated from January 1 to December 31 closing prices for each year. Bitcoin data from 2011 onward. S&amp;P 500 and NASDAQ represent total return indices. Gold represents spot price (XAU/USD). Bonds represent the Bloomberg US Aggregate Bond Index. Real Estate represents the S&amp;P/Case-Shiller U.S. National Home Price Index.<br><br>
+          <strong>Disclaimer:</strong> Past performance does not guarantee future results. This page is for educational and informational purposes only and does not constitute financial advice. All investments carry risk. Always do your own research before making investment decisions.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="perf-cta">
+    <div class="container">
+      <div class="cta-card reveal">
+        <h2 class="section-title">Ready to Add Bitcoin to Your <span class="gradient-text">Strategy?</span></h2>
+        <p class="section-subtitle" style="margin-top: 12px;">Explore our tools and services to start your Bitcoin journey.</p>
+        <div class="perf-cta-buttons">
+          <a href="calculator.html" class="btn-primary btn-lg"><span>Net Worth Calculator</span></a>
+          <a href="services.html" class="btn-secondary btn-lg"><span>Bitcoin Services</span></a>
+        </div>
+        <p class="perf-cta-note">Not financial advice. Always do your own research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">&#8383;</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="whitepaper.html">The Whitepaper</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+            <li><a href="services.html">Bitcoin Services</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="performance.js"></script>
+</body>
+</html>
