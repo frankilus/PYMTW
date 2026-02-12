@@ -110,6 +110,16 @@
       toggle.classList.remove('active');
       links.classList.remove('active');
       document.body.style.overflow = '';
+      document.querySelectorAll('.nav-dropdown').forEach(dd => dd.classList.remove('open'));
+    });
+  });
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        trigger.parentElement.classList.toggle('open');
+      }
     });
   });
 })();

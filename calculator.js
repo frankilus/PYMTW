@@ -22,6 +22,16 @@
     a.addEventListener('click', function () {
       toggle.classList.remove('active');
       links.classList.remove('active');
+      document.querySelectorAll('.nav-dropdown').forEach(function (dd) { dd.classList.remove('open'); });
+    });
+  });
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        trigger.parentElement.classList.toggle('open');
+      }
     });
   });
 })();
