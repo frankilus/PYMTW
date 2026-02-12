@@ -223,7 +223,7 @@
   var ASSET_ORDER = ['bitcoin', 'sp500', 'nasdaq', 'gold', 'bonds', 'realestate'];
 
   var chart = null;
-  var currentPeriod = 'all';
+  var currentPeriod = '10';
   var currentScale = 'log';
   var currentChartType = 'line';
 
@@ -792,8 +792,8 @@
   // ---- Initialize ----
   updateHeroStats();
   initControls();
-  renderChart('all');
-  renderKPIs('all');
+  renderChart('10');
+  renderKPIs('10');
   renderHeatmap();
   renderInsights();
 })();
