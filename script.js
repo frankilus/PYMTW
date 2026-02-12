@@ -271,17 +271,22 @@
 // ---- Bitcoin Quiz ----
 (function initQuiz() {
   const quizData = [
+    // === BEGINNER (weight: 1) ===
     {
       question: "What is the maximum number of bitcoin that will ever exist?",
       options: ["100 million", "21 million", "1 billion", "Unlimited"],
       correct: 1,
-      explanation: "Bitcoin has a hard cap of 21 million coins. This fixed supply is enforced by the protocol and is one of Bitcoin's most important properties, making it truly scarce digital money."
+      explanation: "Bitcoin has a hard cap of 21 million coins. This fixed supply is enforced by the protocol and is one of Bitcoin's most important properties, making it truly scarce digital money.",
+      difficulty: "beginner",
+      weight: 1
     },
     {
       question: "What is the smallest unit of bitcoin called?",
       options: ["Bit", "Micro", "Satoshi", "Wei"],
       correct: 2,
-      explanation: "A satoshi (or 'sat') is the smallest unit of bitcoin, equal to 0.00000001 BTC. It's named after Bitcoin's pseudonymous creator, Satoshi Nakamoto."
+      explanation: "A satoshi (or 'sat') is the smallest unit of bitcoin, equal to 0.00000001 BTC. It's named after Bitcoin's pseudonymous creator, Satoshi Nakamoto.",
+      difficulty: "beginner",
+      weight: 1
     },
     {
       question: "What does 'HODL' mean in the Bitcoin community?",
@@ -292,29 +297,9 @@
         "A mining technique"
       ],
       correct: 1,
-      explanation: "HODL originated from a misspelling of 'hold' in a 2013 Bitcoin forum post. It's now a mantra meaning to hold your bitcoin long-term rather than selling during price dips."
-    },
-    {
-      question: "What is a Bitcoin 'halving'?",
-      options: [
-        "When the bitcoin price drops by 50%",
-        "When transaction fees are cut in half",
-        "When the block reward for miners is cut in half",
-        "When half of all bitcoin is lost"
-      ],
-      correct: 2,
-      explanation: "Approximately every 4 years (210,000 blocks), the reward miners receive for creating new blocks is cut in half. This mechanism controls inflation and ensures bitcoin's supply approaches 21 million gradually."
-    },
-    {
-      question: "What does 'Not your keys, not your coins' mean?",
-      options: [
-        "You need a physical key to access bitcoin",
-        "If you don't control your private keys, you don't truly own your bitcoin",
-        "Keys are used to mine bitcoin",
-        "Only key holders can trade bitcoin"
-      ],
-      correct: 1,
-      explanation: "This phrase emphasizes the importance of self-custody. If your bitcoin is on an exchange, the exchange holds the private keys. Only by holding your own keys (in your own wallet) do you truly own and control your bitcoin."
+      explanation: "HODL originated from a misspelling of 'hold' in a 2013 Bitcoin forum post. It's now a mantra meaning to hold your bitcoin long-term rather than selling during price dips.",
+      difficulty: "beginner",
+      weight: 1
     },
     {
       question: "What is dollar-cost averaging (DCA)?",
@@ -325,13 +310,126 @@
         "Averaging your portfolio's dollar value"
       ],
       correct: 2,
-      explanation: "DCA means investing a fixed dollar amount at regular intervals (e.g., $50 every week) regardless of price. This strategy reduces the impact of volatility and removes the stress of trying to time the market."
+      explanation: "DCA means investing a fixed dollar amount at regular intervals (e.g., $50 every week) regardless of price. This strategy reduces the impact of volatility and removes the stress of trying to time the market.",
+      difficulty: "beginner",
+      weight: 1
+    },
+    // === INTERMEDIATE (weight: 2) ===
+    {
+      question: "What is a Bitcoin 'halving'?",
+      options: [
+        "When the bitcoin price drops by 50%",
+        "When transaction fees are cut in half",
+        "When the block reward for miners is cut in half",
+        "When half of all bitcoin is lost"
+      ],
+      correct: 2,
+      explanation: "Approximately every 4 years (210,000 blocks), the reward miners receive for creating new blocks is cut in half. This mechanism controls inflation and ensures bitcoin's supply approaches 21 million gradually.",
+      difficulty: "intermediate",
+      weight: 2
+    },
+    {
+      question: "What does 'Not your keys, not your coins' mean?",
+      options: [
+        "You need a physical key to access bitcoin",
+        "If you don't control your private keys, you don't truly own your bitcoin",
+        "Keys are used to mine bitcoin",
+        "Only key holders can trade bitcoin"
+      ],
+      correct: 1,
+      explanation: "This phrase emphasizes the importance of self-custody. If your bitcoin is on an exchange, the exchange holds the private keys. Only by holding your own keys (in your own wallet) do you truly own and control your bitcoin.",
+      difficulty: "intermediate",
+      weight: 2
+    },
+    {
+      question: "What is the Lightning Network?",
+      options: [
+        "A faster internet protocol for downloading bitcoin",
+        "A layer-2 payment protocol enabling fast, low-cost bitcoin transactions",
+        "A new cryptocurrency that competes with bitcoin",
+        "A mining pool that uses renewable energy"
+      ],
+      correct: 1,
+      explanation: "The Lightning Network is a second-layer protocol built on top of Bitcoin. It enables near-instant, low-fee transactions by creating payment channels between users, making bitcoin practical for everyday purchases.",
+      difficulty: "intermediate",
+      weight: 2
+    },
+    {
+      question: "What is a Bitcoin node?",
+      options: [
+        "A specialized mining computer",
+        "A computer that validates transactions and enforces the network's rules",
+        "A physical location where bitcoin is stored",
+        "A type of bitcoin wallet app"
+      ],
+      correct: 1,
+      explanation: "A Bitcoin node is a computer running Bitcoin software that independently validates every transaction and block against the protocol's rules. Nodes are what keep Bitcoin decentralized — anyone can run one to verify the network for themselves.",
+      difficulty: "intermediate",
+      weight: 2
+    },
+    // === ADVANCED (weight: 3) ===
+    {
+      question: "What is the 'mempool' in Bitcoin?",
+      options: [
+        "A special type of mining hardware memory",
+        "The waiting area for unconfirmed transactions before they are included in a block",
+        "A backup storage for old blockchain data",
+        "A pool of memory used by Bitcoin wallets"
+      ],
+      correct: 1,
+      explanation: "The mempool (memory pool) is where valid but unconfirmed transactions wait to be picked up by miners and included in the next block. Miners typically prioritize transactions with higher fees, which is why fees rise during congested periods.",
+      difficulty: "advanced",
+      weight: 3
+    },
+    {
+      question: "What is the significance of the Bitcoin Genesis Block?",
+      options: [
+        "It contained the largest bitcoin transaction ever",
+        "It was the first block mined by Satoshi Nakamoto and contains a message referencing bank bailouts",
+        "It established the price of bitcoin at $1",
+        "It was the first block mined using a GPU"
+      ],
+      correct: 1,
+      explanation: "The Genesis Block (Block 0), mined by Satoshi Nakamoto on January 3, 2009, contains the embedded message: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks.' This is widely seen as a statement about the failures of traditional finance that motivated Bitcoin's creation.",
+      difficulty: "advanced",
+      weight: 3
+    },
+    {
+      question: "What is a UTXO in Bitcoin?",
+      options: [
+        "A type of smart contract on the Bitcoin network",
+        "An Unspent Transaction Output — how Bitcoin tracks ownership of funds",
+        "A cryptographic algorithm used in mining",
+        "A protocol for transferring bitcoin between blockchains"
+      ],
+      correct: 1,
+      explanation: "UTXO stands for Unspent Transaction Output. Unlike a bank account with a balance, Bitcoin tracks ownership through individual 'coins' (UTXOs). When you spend bitcoin, you consume existing UTXOs and create new ones — similar to breaking a $20 bill to make a purchase.",
+      difficulty: "advanced",
+      weight: 3
+    },
+    {
+      question: "Why is Bitcoin's difficulty adjustment important?",
+      options: [
+        "It makes bitcoin harder to buy over time",
+        "It ensures blocks are mined roughly every 10 minutes regardless of total hashrate changes",
+        "It increases transaction fees during high demand",
+        "It limits the number of nodes that can join the network"
+      ],
+      correct: 1,
+      explanation: "Every 2,016 blocks (roughly two weeks), Bitcoin automatically adjusts the mining difficulty to target an average block time of 10 minutes. If miners join and blocks come too fast, difficulty rises; if miners leave, it drops. This self-regulating mechanism keeps Bitcoin's issuance schedule predictable.",
+      difficulty: "advanced",
+      weight: 3
     }
   ];
+
+  // Pre-calculate totals per difficulty
+  const totalByDifficulty = { beginner: 0, intermediate: 0, advanced: 0 };
+  quizData.forEach(q => { totalByDifficulty[q.difficulty]++; });
 
   let currentQuestion = 0;
   let score = 0;
   let answered = false;
+  const scoreByDifficulty = { beginner: 0, intermediate: 0, advanced: 0 };
 
   const questionEl = document.getElementById('quiz-question');
   const optionsEl = document.getElementById('quiz-options');
@@ -339,6 +437,8 @@
   const nextBtn = document.getElementById('quiz-next');
   const progressBar = document.getElementById('quiz-progress-bar');
   const scoreEl = document.getElementById('quiz-score');
+  const difficultyBadge = document.getElementById('quiz-difficulty-badge');
+  const counterEl = document.getElementById('quiz-counter');
 
   function loadQuestion() {
     answered = false;
@@ -349,6 +449,17 @@
     feedbackEl.className = 'quiz-feedback';
     feedbackEl.style.display = 'none';
     nextBtn.style.display = 'none';
+
+    // Update difficulty badge
+    if (difficultyBadge) {
+      difficultyBadge.textContent = q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1);
+      difficultyBadge.className = `quiz-difficulty-badge difficulty-${q.difficulty}`;
+    }
+
+    // Update question counter
+    if (counterEl) {
+      counterEl.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+    }
 
     q.options.forEach((opt, i) => {
       const btn = document.createElement('button');
@@ -370,12 +481,13 @@
     options[q.correct].classList.add('correct');
 
     if (index === q.correct) {
-      score++;
+      score += q.weight;
+      scoreByDifficulty[q.difficulty]++;
       feedbackEl.className = 'quiz-feedback show correct';
-      feedbackEl.textContent = '✓ Correct! ' + q.explanation;
+      feedbackEl.textContent = '\u2713 Correct! ' + q.explanation;
     } else {
       feedbackEl.className = 'quiz-feedback show incorrect';
-      feedbackEl.textContent = '✗ Not quite. ' + q.explanation;
+      feedbackEl.textContent = '\u2717 Not quite. ' + q.explanation;
     }
 
     if (currentQuestion < quizData.length - 1) {
@@ -393,22 +505,50 @@
     nextBtn.style.display = 'none';
     scoreEl.style.display = 'block';
 
-    const percentage = Math.round((score / quizData.length) * 100);
-    let message = '';
-    if (percentage === 100) {
-      message = "You're a Bitcoin expert! You're well prepared for your journey.";
-    } else if (percentage >= 70) {
-      message = "Great job! You have a solid understanding of Bitcoin basics.";
-    } else if (percentage >= 40) {
-      message = "Good start! Check out the resources above to keep learning.";
+    // Hide quiz meta during results
+    if (difficultyBadge) difficultyBadge.style.display = 'none';
+    if (counterEl) counterEl.style.display = 'none';
+
+    // Determine classification based on weighted score (max 24)
+    let classification, classColor, message;
+    if (score >= 17) {
+      classification = 'Advanced';
+      classColor = 'advanced';
+      message = "Impressive! You have a deep understanding of Bitcoin's technology and principles. You're well-equipped to navigate the Bitcoin ecosystem with confidence.";
+    } else if (score >= 9) {
+      classification = 'Intermediate';
+      classColor = 'intermediate';
+      message = "Solid knowledge! You understand the fundamentals and are building deeper expertise. Keep exploring \u2014 the advanced concepts will click as you continue learning.";
     } else {
-      message = "No worries — everyone starts somewhere. Explore the resources above!";
+      classification = 'Beginner';
+      classColor = 'beginner';
+      message = "Welcome to your Bitcoin journey! You're in the right place. Explore the resources on this page to build your foundation \u2014 every expert started exactly where you are now.";
     }
 
     scoreEl.innerHTML = `
-      <span class="score-big">${score}/${quizData.length}</span>
-      <h3>Quiz Complete!</h3>
-      <p>${message}</p>
+      <div class="score-classification ${classColor}">
+        <span class="classification-label">${classification}</span>
+      </div>
+      <h3>Bitcoin Knowledge Level</h3>
+      <p class="score-message">${message}</p>
+      <div class="score-breakdown">
+        <div class="breakdown-item">
+          <span class="breakdown-label">Beginner</span>
+          <span class="breakdown-value">${scoreByDifficulty.beginner}/${totalByDifficulty.beginner}</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="breakdown-label">Intermediate</span>
+          <span class="breakdown-value">${scoreByDifficulty.intermediate}/${totalByDifficulty.intermediate}</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="breakdown-label">Advanced</span>
+          <span class="breakdown-value">${scoreByDifficulty.advanced}/${totalByDifficulty.advanced}</span>
+        </div>
+      </div>
+      <div class="score-weighted">
+        <span class="weighted-label">Weighted Score</span>
+        <span class="weighted-value">${score}/24</span>
+      </div>
       <button class="btn btn-primary" onclick="location.reload()">
         <span>Try Again</span>
       </button>

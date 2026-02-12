@@ -1261,16 +1261,150 @@ a.resource-card {
   margin-bottom: 20px;
 }
 
-.score-big {
-  font-size: 4rem;
-  font-weight: 900;
+/* --- Quiz Meta (Difficulty Badge + Counter) --- */
+.quiz-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.quiz-difficulty-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.difficulty-beginner {
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+
+.difficulty-intermediate {
+  background: rgba(247, 147, 26, 0.12);
+  border: 1px solid rgba(247, 147, 26, 0.3);
+  color: var(--accent-orange);
+}
+
+.difficulty-advanced {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #a855f7;
+}
+
+.quiz-counter {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Quiz Results (Classification + Breakdown) --- */
+.score-classification {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.classification-label {
+  display: inline-block;
+  padding: 10px 32px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score-classification.beginner .classification-label {
+  background: rgba(74, 222, 128, 0.12);
+  border: 2px solid rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+}
+
+.score-classification.intermediate .classification-label {
+  background: rgba(247, 147, 26, 0.12);
+  border: 2px solid rgba(247, 147, 26, 0.4);
+  color: var(--accent-orange);
+}
+
+.score-classification.advanced .classification-label {
+  background: rgba(168, 85, 247, 0.12);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  color: #a855f7;
+}
+
+.score-message {
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.score-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.breakdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  min-width: 110px;
+}
+
+.breakdown-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.breakdown-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.score-weighted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 10px 0;
+}
+
+.weighted-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.weighted-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  display: block;
-  margin-bottom: 16px;
-  font-family: var(--font-display);
 }
 
 /* --- FAQ Section --- */
@@ -1672,7 +1806,28 @@ a.resource-card {
   }
 
   .quiz-container {
-    padding: 32px 24px;
+    padding: 28px 20px;
+  }
+
+  .quiz-question {
+    font-size: 1.1rem;
+  }
+
+  .score-breakdown {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .breakdown-item {
+    min-width: 200px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .classification-label {
+    font-size: 1.2rem;
+    padding: 8px 24px;
   }
 
   .cta-card {
@@ -1716,6 +1871,21 @@ a.resource-card {
 
   .steps-timeline::before {
     left: 28px;
+  }
+
+  .quiz-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .quiz-question {
+    font-size: 1rem;
+  }
+
+  .quiz-option {
+    padding: 12px 16px;
+    font-size: 0.9rem;
   }
 }
 
