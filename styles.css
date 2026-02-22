@@ -1539,6 +1539,10 @@ a.resource-card {
 .cta-actions {
   position: relative;
   margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .cta-note {
@@ -1569,6 +1573,33 @@ a.resource-card {
   margin-top: 16px;
   line-height: 1.7;
   max-width: 360px;
+}
+
+.footer-newsletter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(247, 147, 26, 0.1);
+  border: 1px solid rgba(247, 147, 26, 0.25);
+  color: var(--accent-orange);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-newsletter-link:hover {
+  background: rgba(247, 147, 26, 0.18);
+  border-color: rgba(247, 147, 26, 0.4);
+  transform: translateY(-1px);
+}
+
+.footer-newsletter-link svg {
+  flex-shrink: 0;
 }
 
 .footer-links h4 {
