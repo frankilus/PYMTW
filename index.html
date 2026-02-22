@@ -99,8 +99,12 @@
           <span>Start Your Journey</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#why-bitcoin" class="btn btn-secondary">
+        <a href="#why-bitcoin" class="btn btn-secondary btn-sm">
           <span>Why Bitcoin?</span>
+        </a>
+        <a href="#" class="btn btn-secondary btn-sm" id="hero-subscribe-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          <span>Subscribe</span>
         </a>
       </div>
       <div class="hero-stats">
@@ -1401,14 +1405,28 @@
             <span>Begin Your Journey</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
-            <span>Subscribe to the Newsletter</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-          </a>
           <a href="bitcoin-playbook.pdf" download class="btn btn-secondary btn-lg">
             <span>Download the Bitcoin Playbook</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           </a>
+        </div>
+        <div class="cta-newsletter-embed">
+          <p class="cta-newsletter-label">Subscribe to the Newsletter</p>
+          <form class="newsletter-form" id="newsletter-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post">
+            <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="referrer" value="">
+            <div class="newsletter-form-row">
+              <input type="email" name="form[email]" placeholder="Enter your email" required class="newsletter-email-input">
+              <button type="submit" class="newsletter-submit-btn">
+                <span>Subscribe</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <p class="newsletter-form-status" id="newsletter-form-status"></p>
+          </form>
         </div>
         <p class="cta-note">Remember: Don't invest more than you can afford to lose. Always do your own research.</p>
       </div>
@@ -1461,6 +1479,93 @@
     </div>
   </footer>
 
+  <!-- Subscribe Modal -->
+  <div class="subscribe-modal-overlay" id="subscribe-modal">
+    <div class="subscribe-modal">
+      <button class="subscribe-modal-close" id="subscribe-modal-close">&times;</button>
+      <div class="subscribe-modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+      </div>
+      <h3 class="subscribe-modal-title">Stay Ahead of the Curve</h3>
+      <p class="subscribe-modal-desc">Get our free weekly Bitcoin newsletter — market insights, on-chain analysis, and actionable signals.</p>
+      <form class="newsletter-form" id="modal-newsletter-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post">
+        <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+        <input type="hidden" name="utm_source" value="">
+        <input type="hidden" name="utm_medium" value="">
+        <input type="hidden" name="utm_campaign" value="">
+        <input type="hidden" name="referrer" value="">
+        <div class="newsletter-form-row">
+          <input type="email" name="form[email]" placeholder="Enter your email" required class="newsletter-email-input" id="modal-email-input">
+          <button type="submit" class="newsletter-submit-btn">
+            <span>Subscribe</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <p class="newsletter-form-status" id="modal-newsletter-status"></p>
+      </form>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script>
+  (function() {
+    // Newsletter form submissions (all forms on page)
+    document.querySelectorAll('.newsletter-form').forEach(function(form) {
+      var status = form.querySelector('.newsletter-form-status');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('.newsletter-submit-btn');
+        var btnSpan = btn.querySelector('span');
+        var origText = btnSpan.textContent;
+        btnSpan.textContent = 'Sending...';
+        btn.disabled = true;
+        if (status) { status.textContent = ''; status.className = 'newsletter-form-status'; }
+        var data = new FormData(form);
+        fetch(form.action, { method: 'POST', body: data })
+          .then(function(r) { return r.text(); })
+          .then(function() {
+            if (status) { status.textContent = 'You\'re in! Check your inbox to confirm.'; status.className = 'newsletter-form-status success'; }
+            form.reset();
+          })
+          .catch(function() {
+            if (status) { status.textContent = 'Something went wrong. Please try again.'; status.className = 'newsletter-form-status error'; }
+          })
+          .finally(function() {
+            btnSpan.textContent = origText;
+            btn.disabled = false;
+          });
+      });
+    });
+
+    // Subscribe modal
+    var modal = document.getElementById('subscribe-modal');
+    var openBtn = document.getElementById('hero-subscribe-btn');
+    var closeBtn = document.getElementById('subscribe-modal-close');
+    var emailInput = document.getElementById('modal-email-input');
+
+    if (openBtn && modal) {
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('active');
+        setTimeout(function() { emailInput.focus(); }, 300);
+      });
+    }
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', function() {
+        modal.classList.remove('active');
+      });
+    }
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+        }
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
