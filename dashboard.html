@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Pulse Dashboard | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen (shown while verifying auth) -->
+  <div class="dash-loading" id="dash-loading">
+    <div class="dash-loading-inner">
+      <div class="dash-loading-spinner"></div>
+      <p class="dash-loading-text">Verifying access...</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Content (hidden until auth verified) -->
+  <div id="dash-content" style="display: none;">
+
+    <!-- Live Bitcoin Price Bar -->
+    <div class="btc-price-bar" id="btc-price-bar">
+      <div class="btc-price-bar-inner">
+        <div class="btc-price-live-indicator">
+          <span class="btc-live-dot"></span>
+          <span class="btc-live-text">LIVE</span>
+        </div>
+        <div class="btc-price-main">
+          <span class="btc-price-icon">&#8383;</span>
+          <span class="btc-price-label">Bitcoin</span>
+          <span class="btc-price-value" id="btc-price-value">--</span>
+        </div>
+        <div class="btc-price-change" id="btc-price-change">
+          <span class="btc-change-arrow" id="btc-change-arrow"></span>
+          <span class="btc-change-value" id="btc-change-value">--%</span>
+        </div>
+        <div class="btc-price-divider"></div>
+        <div class="btc-price-stat">
+          <span class="btc-stat-label">Mkt Cap</span>
+          <span class="btc-stat-value" id="btc-market-cap">--</span>
+        </div>
+        <div class="btc-price-stat btc-stat-desktop">
+          <span class="btc-stat-label">24h Vol</span>
+          <span class="btc-stat-value" id="btc-volume">--</span>
+        </div>
+        <div class="btc-price-updated" id="btc-price-updated">
+          <span>Updated just now</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-icon">&#8383;</span>
+          <span class="logo-text">PYMTW</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-trigger" href="#">Learn <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+              <li><a href="index.html#getting-started">Get Started</a></li>
+              <li><a href="index.html#resources">Resources</a></li>
+              <li><a href="index.html#learn">Learn</a></li>
+              <li><a href="videos.html">Videos</a></li>
+              <li><a href="whitepaper.html">Whitepaper</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a class="nav-dropdown-trigger" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="calculator.html">Calculator</a></li>
+              <li><a href="performance.html">Performance</a></li>
+            </ul>
+          </li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a></li>
+          <!-- <li><a href="members.html" class="nav-active">Members</a></li> -->
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dash-header">
+      <div class="container">
+        <div class="dash-header-top">
+          <div>
+            <div class="dash-header-badge">Members Dashboard</div>
+            <h1 class="dash-header-title">Bitcoin <span class="gradient-text">Pulse</span></h1>
+          </div>
+          <div class="dash-header-user">
+            <span class="dash-user-email" id="dash-user-email"></span>
+            <button class="dash-logout-btn" id="dash-logout-btn">Sign Out</button>
+          </div>
+        </div>
+        <p class="dash-header-updated" id="dash-updated">Data loading...</p>
+      </div>
+    </section>
+
+    <!-- Signal Summary Bar -->
+    <section class="dash-signal-section">
+      <div class="container">
+        <div class="dash-signal-bar" id="dash-signal-bar">
+          <div class="dash-signal-main">
+            <span class="dash-signal-label">Overall Signal</span>
+            <span class="dash-signal-value" id="dash-signal-value">Loading...</span>
+          </div>
+          <div class="dash-signal-dots" id="dash-signal-dots">
+            <!-- Signal dots generated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Sentiment Section -->
+    <section class="dash-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Market Sentiment</div>
+          <h2 class="dash-section-title">How Is the Market <span class="gradient-text">Feeling?</span></h2>
+        </div>
+        <div class="dash-grid-2" id="dash-sentiment-grid">
+          <!-- Fear & Greed + BTC Dominance cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Network Health Section (NEW) -->
+    <section class="dash-section dash-section-alt" id="dash-network-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Network Health</div>
+          <h2 class="dash-section-title">How Strong Is the <span class="gradient-text">Network?</span></h2>
+        </div>
+        <div class="dash-grid-3" id="dash-network-grid">
+          <!-- Hash Rate, Difficulty, Fees, Mempool, Active Addresses, Lightning rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Cycle Position Section -->
+    <section class="dash-section" id="dash-cycle-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Cycle Position</div>
+          <h2 class="dash-section-title">Where Are We in the <span class="gradient-text">Cycle?</span></h2>
+        </div>
+        <div class="dash-cycle-chart-wrap" id="dash-cycle-chart-wrap">
+          <canvas id="dash-rainbow-chart"></canvas>
+        </div>
+        <div class="dash-grid-3" id="dash-cycle-grid">
+          <!-- Pi Cycle + Power Law + Cycle Summary cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- MSTR: mNAV Premium Dashboard (hidden by default, shown for MSTR) -->
+    <section class="dash-section dash-section-alt" id="dash-mstr-mnav-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Premium Analysis</div>
+          <h2 class="dash-section-title">What Are You <span class="gradient-text">Paying?</span></h2>
+        </div>
+        <div id="dash-mstr-price-input-wrap"></div>
+        <div class="dash-cycle-chart-wrap" id="dash-mnav-chart-wrap">
+          <canvas id="dash-mnav-chart"></canvas>
+        </div>
+        <div class="dash-grid-3" id="dash-mnav-grid"></div>
+      </div>
+    </section>
+
+    <!-- Technical Analysis Section -->
+    <section class="dash-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Technical Analysis</div>
+          <h2 class="dash-section-title">What Do the Charts <span class="gradient-text">Say?</span></h2>
+        </div>
+        <div class="dash-grid-3" id="dash-technical-grid">
+          <!-- RSI + Moving Averages + Volatility cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- On-Chain Metrics Section (Expanded) -->
+    <section class="dash-section dash-section-alt">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">On-Chain Metrics</div>
+          <h2 class="dash-section-title">What Does the Blockchain <span class="gradient-text">Tell Us?</span></h2>
+        </div>
+        <div class="dash-grid-3" id="dash-onchain-grid">
+          <!-- MVRV + NUPL + SOPR + Realized Price + Supply in Profit + Puell Multiple cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Historical Cycle Comparison -->
+    <section class="dash-section" id="dash-history-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Cycle History</div>
+          <h2 class="dash-section-title">How Does This Cycle <span class="gradient-text">Compare?</span></h2>
+        </div>
+        <div class="dash-cycle-compare-wrap">
+          <canvas id="dash-cycle-compare-chart"></canvas>
+        </div>
+        <div class="dash-cycle-compare-legend" id="dash-cycle-compare-legend"></div>
+      </div>
+    </section>
+
+    <!-- Bitcoin Adoption Section (NEW) -->
+    <section class="dash-section dash-section-alt" id="dash-adoption-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Bitcoin Adoption</div>
+          <h2 class="dash-section-title">Who's Buying <span class="gradient-text">Bitcoin?</span></h2>
+        </div>
+        <div class="dash-grid-2" id="dash-adoption-grid">
+          <!-- Corporate treasuries + ETF flows rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Macro Correlations -->
+    <section class="dash-section dash-section-alt" id="dash-macro-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Macro Environment</div>
+          <h2 class="dash-section-title">Bitcoin &amp; the <span class="gradient-text">Big Picture</span></h2>
+        </div>
+        <div class="dash-grid-2" id="dash-macro-grid">
+          <!-- 4 macro correlation cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Whale Activity Section (NEW) -->
+    <section class="dash-section" id="dash-whale-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Recent Blocks</div>
+          <h2 class="dash-section-title">Big Money <span class="gradient-text">Moves</span></h2>
+        </div>
+        <div id="dash-whale-feed">
+          <!-- Recent blocks + mining data rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- DCA Calculator -->
+    <section class="dash-section dash-section-alt" id="dash-dca-section">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Strategy Tool</div>
+          <h2 class="dash-section-title">Signal-Powered <span class="gradient-text">DCA Calculator</span></h2>
+        </div>
+        <div class="dash-dca-wrap" id="dash-dca-wrap">
+          <!-- Calculator form + results rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- MSTR: Performance vs BTC (hidden by default) -->
+    <section class="dash-section" id="dash-mstr-correlation-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Performance</div>
+          <h2 class="dash-section-title">How Does MSTR Track <span class="gradient-text">Bitcoin?</span></h2>
+        </div>
+        <div class="dash-cycle-compare-wrap" id="dash-mstr-btc-chart-wrap">
+          <canvas id="dash-mstr-btc-chart"></canvas>
+        </div>
+        <div class="dash-mstr-btc-stats" id="dash-mstr-btc-stats"></div>
+      </div>
+    </section>
+
+    <!-- MSTR: BTC per Share Evolution (hidden by default) -->
+    <section class="dash-section dash-section-alt" id="dash-mstr-btcpershare-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Accumulation</div>
+          <h2 class="dash-section-title">The <span class="gradient-text">BTC per Share</span> Story</h2>
+        </div>
+        <div class="dash-cycle-chart-wrap" id="dash-btcpershare-chart-wrap">
+          <canvas id="dash-btcpershare-chart"></canvas>
+        </div>
+        <div class="dash-grid-2" id="dash-btcpershare-stats"></div>
+      </div>
+    </section>
+
+    <!-- MSTR: Acquisition History (hidden by default) -->
+    <section class="dash-section" id="dash-mstr-acquisitions-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Purchase History</div>
+          <h2 class="dash-section-title">The Bitcoin <span class="gradient-text">War Chest</span></h2>
+        </div>
+        <div class="dash-leaderboard-wrap" id="dash-mstr-acquisitions-wrap"></div>
+      </div>
+    </section>
+
+    <!-- MSTR: Risk Dashboard (hidden by default) -->
+    <section class="dash-section dash-section-alt" id="dash-mstr-risk-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Risk Factors</div>
+          <h2 class="dash-section-title">Know the <span class="gradient-text">Risks</span></h2>
+        </div>
+        <div class="dash-grid-2" id="dash-mstr-risk-grid"></div>
+      </div>
+    </section>
+
+    <!-- MSTR: DCA Calculator (hidden by default) -->
+    <section class="dash-section" id="dash-mstr-dca-section" style="display:none;">
+      <div class="container">
+        <div class="dash-section-header reveal">
+          <div class="dash-section-tag">Strategy Tool</div>
+          <h2 class="dash-section-title">MSTR <span class="gradient-text">DCA Calculator</span></h2>
+        </div>
+        <div class="dash-dca-wrap" id="dash-mstr-dca-wrap"></div>
+      </div>
+    </section>
+
+    <!-- Methodology / Disclaimer -->
+    <section class="dash-section dash-section-alt">
+      <div class="container">
+        <div class="dash-methodology reveal">
+          <div class="dash-methodology-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Methodology &amp; Disclaimer
+          </div>
+          <div class="dash-methodology-text">
+            <strong>Data Sources:</strong> Fear &amp; Greed Index from Alternative.me. BTC price, dominance, and historical data from CoinGecko. On-chain metrics (MVRV Z-Score, NUPL, SOPR, Realized Price, Supply in Profit, Puell Multiple) from BGeometrics API with manual fallback values. Network data (mempool, fees, difficulty, Lightning) from Mempool.space. Corporate treasury data from CoinGecko and SEC filings. ETF flow data from public aggregators. M2 Money Supply and PMI from DBnomics (Federal Reserve, ISM). Cycle models use well-established regression coefficients. MSTR data from quarterly SEC filings.<br><br>
+            <strong>Signal Methodology:</strong> Each metric produces a signal (Accumulate, Hold, or Caution) based on established threshold zones. The overall signal is a weighted average of all individual metric signals, with cycle indicators (MVRV, NUPL, Rainbow) receiving the highest weight, followed by sentiment and technical indicators, then macro environment.<br><br>
+            <strong>Disclaimer:</strong> This dashboard is for educational and informational purposes only and does not constitute financial advice. Past performance does not guarantee future results. All investments carry risk. Always do your own research before making investment decisions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-icon">&#8383;</span>
+              <span class="logo-text">PYMTW</span>
+            </a>
+            <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+            <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="footer-newsletter-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+              Subscribe to our Newsletter
+            </a>
+          </div>
+          <div class="footer-links">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+              <li><a href="index.html#getting-started">Get Started</a></li>
+              <li><a href="index.html#resources">Resources</a></li>
+              <li><a href="index.html#learn">Learn</a></li>
+              <li><a href="videos.html">Video Library</a></li>
+              <li><a href="whitepaper.html">The Whitepaper</a></li>
+              <li><a href="calculator.html">Net Worth Calculator</a></li>
+              <li><a href="services.html">Bitcoin Services</a></li>
+              <li><a href="performance.html">Performance</a></li>
+              <li><a href="members.html">Members</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+              <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper</a></li>
+              <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+              <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+          <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- end #dash-content -->
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <!-- Chart.js for sparklines -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
