@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Bitcoin for Working Professionals — New Book by Frank Jerome | PYMTW</title>
+  <meta name="description" content="A practical guide for working professionals who want to protect their purchasing power with Bitcoin. 12 chapters covering inflation, buying safely, self-custody, taxes, and a 90-day action plan.">
+  <meta property="og:title" content="Bitcoin for Working Professionals — New Book by Frank Jerome">
+  <meta property="og:description" content="The practical Bitcoin guide for working professionals. Learn how to protect your purchasing power in an inflationary world.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pymtw.com/book">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="book.css">
+</head>
+<body>
+
+  <!-- Floating particles background -->
+  <canvas id="bk-particles"></canvas>
+
+  <!-- Minimal nav -->
+  <nav class="bk-nav">
+    <div class="bk-nav-inner">
+      <a href="/" class="bk-logo">
+        <span class="bk-logo-icon">&#8383;</span>
+        <span class="bk-logo-text">PYMTW</span>
+      </a>
+      <a href="/" class="bk-nav-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="bk-hero">
+    <div class="bk-hero-content">
+      <div class="bk-hero-badge">
+        <span class="bk-badge-dot"></span>
+        NEW BOOK
+      </div>
+      <h1 class="bk-hero-title">
+        Bitcoin for<br><span class="bk-gradient-text">Working Professionals</span>
+      </h1>
+      <p class="bk-hero-sub">
+        A practical guide to protecting your purchasing power in an inflationary world.
+        Written by a Wall Street professional who's been in Bitcoin since 2016.
+      </p>
+      <!-- TODO: Replace # with Amazon/purchase link when available -->
+      <a href="#chapters" class="bk-hero-cta">
+        <span>See What's Inside</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+      <div class="bk-hero-proof">
+        <div class="bk-proof-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <span>12 chapters, zero fluff</span>
+        </div>
+        <div class="bk-proof-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <span>Written for professionals, not traders</span>
+        </div>
+        <div class="bk-proof-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <span>First Edition — February 2026</span>
+        </div>
+      </div>
+    </div>
+    <div class="bk-hero-visual">
+      <div class="bk-book-wrapper">
+        <div class="bk-book">
+          <div class="bk-book-front">
+            <div class="bk-book-cover">
+              <div class="bk-book-tag">NEW</div>
+              <div class="bk-book-icon">&#8383;</div>
+              <div class="bk-book-title-text">BITCOIN FOR<br><strong>WORKING<br>PROFESSIONALS</strong></div>
+              <div class="bk-book-author">By Frank Jerome</div>
+              <div class="bk-book-footer">pymtw.com</div>
+            </div>
+          </div>
+          <div class="bk-book-spine"></div>
+          <div class="bk-book-back"></div>
+        </div>
+        <div class="bk-book-shadow"></div>
+      </div>
+      <div class="bk-float-badge bk-float-1">
+        <span class="bk-float-emoji">&#128176;</span>
+        <span>Purchasing Power</span>
+      </div>
+      <div class="bk-float-badge bk-float-2">
+        <span class="bk-float-emoji">&#128274;</span>
+        <span>Self-Custody</span>
+      </div>
+      <div class="bk-float-badge bk-float-3">
+        <span class="bk-float-emoji">&#128200;</span>
+        <span>90-Day Plan</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHO IT'S FOR ===== -->
+  <section class="bk-who">
+    <div class="bk-container">
+      <div class="bk-section-tag">Who This Book Is For</div>
+      <h2 class="bk-section-title">Written for Professionals<br>Who <span class="bk-gradient-text">Think Long-Term</span></h2>
+      <div class="bk-who-grid">
+        <div class="bk-who-card">
+          <div class="bk-who-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Working professionals</h3>
+          <p>Earning $80K-$200K+, saving responsibly, but watching purchasing power erode year after year.</p>
+        </div>
+        <div class="bk-who-card">
+          <div class="bk-who-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Bitcoin-curious savers</h3>
+          <p>Heard about Bitcoin but overwhelmed by the jargon, the hype, and the crypto-bro culture.</p>
+        </div>
+        <div class="bk-who-card">
+          <div class="bk-who-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Long-term wealth builders</h3>
+          <p>Not looking for overnight riches. Looking for a practical strategy that compounds over decades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTERS ===== -->
+  <section class="bk-chapters" id="chapters">
+    <div class="bk-container">
+      <div class="bk-section-tag">What's Inside</div>
+      <h2 class="bk-section-title">12 Chapters From Problem<br>to <span class="bk-gradient-text">Action Plan</span></h2>
+      <div class="bk-chapters-layout">
+        <div class="bk-part">
+          <div class="bk-part-label">Part 1 — The Case for Bitcoin</div>
+          <div class="bk-chapter-list">
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">01</span>
+              <div>
+                <h4>Your Money is Losing Value</h4>
+                <p>The salary illusion, real vs. official inflation, and why your savings account is a guaranteed loss.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">02</span>
+              <div>
+                <h4>Why Traditional Savings Fail</h4>
+                <p>Bonds, stocks, and real estate under the microscope. Why the old playbook doesn't work anymore.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">03</span>
+              <div>
+                <h4>What is Bitcoin? (The Simple Truth)</h4>
+                <p>No jargon. No hype. Just a clear explanation of what Bitcoin is and how it works.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">04</span>
+              <div>
+                <h4>How Bitcoin Protects Purchasing Power</h4>
+                <p>The math behind Bitcoin's scarcity, the halving cycle, and long-term purchasing power preservation.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">05</span>
+              <div>
+                <h4>Institutional Adoption</h4>
+                <p>From BlackRock to nation-states. Why the biggest players in finance are buying Bitcoin.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bk-part">
+          <div class="bk-part-label">Part 2 — Taking Action</div>
+          <div class="bk-chapter-list">
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">06</span>
+              <div>
+                <h4>How to Buy Bitcoin Safely</h4>
+                <p>Step-by-step setup for dollar-cost averaging on trusted platforms. No guesswork.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">07</span>
+              <div>
+                <h4>Storing Your Bitcoin</h4>
+                <p>Self-custody explained simply. Hardware wallets, seed phrases, and keeping your Bitcoin safe.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">08</span>
+              <div>
+                <h4>Taxes &amp; Compliance</h4>
+                <p>How Bitcoin is taxed, reporting requirements, and strategies to minimize your burden legally.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bk-part">
+          <div class="bk-part-label">Part 3 — The Wealth Plan</div>
+          <div class="bk-chapter-list">
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">09</span>
+              <div>
+                <h4>Bitcoin in Your Wealth Plan</h4>
+                <p>Portfolio allocation, risk management, and integrating Bitcoin alongside traditional assets.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">10</span>
+              <div>
+                <h4>The Psychology of Holding</h4>
+                <p>How to survive 30% drawdowns, ignore the noise, and think in 4-year cycles.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item">
+              <span class="bk-ch-num">11</span>
+              <div>
+                <h4>Common Objections Answered</h4>
+                <p>Every argument your friends and family will throw at you — and how to respond with data.</p>
+              </div>
+            </div>
+            <div class="bk-chapter-item bk-chapter-highlight">
+              <span class="bk-ch-num">12</span>
+              <div>
+                <h4>Your 90-Day Action Plan</h4>
+                <p>A concrete, week-by-week roadmap from "I've never bought Bitcoin" to "fully implemented strategy."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT THE AUTHOR ===== -->
+  <section class="bk-bio">
+    <div class="bk-container">
+      <div class="bk-bio-inner">
+        <div class="bk-bio-avatar">
+          <div class="bk-avatar-ring"></div>
+          <div class="bk-avatar-placeholder">FJ</div>
+        </div>
+        <div class="bk-bio-content">
+          <div class="bk-section-tag">About the Author</div>
+          <h2 class="bk-bio-name">Frank Jerome</h2>
+          <div class="bk-bio-text">
+            <p>Wall Street professional. MBA. Blockchain certified. In Bitcoin since 2016.</p>
+            <p>I've made every mistake in the book — altcoins that went to zero, lending platforms that collapsed, overleveraged positions that nearly wiped me out. Every warning in this book comes from personal experience.</p>
+            <p><strong>What I got right was simple: buy Bitcoin, hold Bitcoin, ignore everything else.</strong></p>
+            <p>This book is the guide I wish someone had given me on day one. No hype. No promises of overnight riches. Just data, math, and a practical strategy for protecting your purchasing power.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bk-cta">
+    <div class="bk-container">
+      <h2 class="bk-cta-title">Ready to Protect Your<br><span class="bk-gradient-text">Purchasing Power?</span></h2>
+      <p class="bk-cta-sub">Available now in paperback and Kindle.</p>
+      <div class="bk-cta-buttons">
+        <!-- TODO: Replace # with Amazon link when available -->
+        <a href="#" class="bk-buy-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>Buy on Amazon</span>
+        </a>
+        <a href="/playbook.html" class="bk-secondary-btn">
+          <span>Get the Free Playbook</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bk-footer">
+    <div class="bk-container">
+      <div class="bk-footer-inner">
+        <div class="bk-footer-brand">
+          <span class="bk-logo-icon">&#8383;</span>
+          <span class="bk-logo-text">PYMTW</span>
+        </div>
+        <div class="bk-footer-links">
+          <a href="/">Home</a>
+          <a href="/playbook.html">Free Playbook</a>
+          <a href="/book">Book</a>
+          <a href="/calculator.html">Calculator</a>
+          <a href="/performance.html">Performance</a>
+          <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a>
+        </div>
+        <div class="bk-footer-copy">&copy; 2026 Frank Jerome | pymtw.com</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="book.js"></script>
+</body>
+</html>

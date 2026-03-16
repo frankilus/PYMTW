@@ -1105,6 +1105,12 @@ a.resource-card {
   color: var(--accent-orange);
 }
 
+.resource-badge-new {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-alt));
+  color: #000;
+  font-weight: 700;
+}
+
 .resource-icon {
   font-size: 2.5rem;
   margin-bottom: 16px;
