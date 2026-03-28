@@ -1,0 +1,323 @@
+/* ============================================
+   Bitcoin DCA Calculator - Styles
+   ============================================ */
+
+/* --- DCA Hero --- */
+.dca-hero {
+  position: relative;
+  padding: 158px 24px 48px;
+  text-align: center;
+  z-index: 1;
+}
+
+.dca-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(247, 147, 26, 0.1);
+  border: 1px solid rgba(247, 147, 26, 0.25);
+  color: var(--accent-orange);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  animation: fadeInDown 0.8s ease;
+}
+
+.dca-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.dca-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* --- DCA Section --- */
+.dca-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 0 80px;
+}
+
+.dca-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* --- Cards --- */
+.dca-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.dca-card:nth-child(2) { animation-delay: 0.1s; }
+.dca-card:nth-child(3) { animation-delay: 0.2s; }
+
+.dca-card-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dca-card-title svg {
+  color: var(--accent-orange);
+}
+
+/* --- Form Grid --- */
+.dca-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.dca-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.dca-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dca-input-prefix {
+  position: absolute;
+  left: 14px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dca-input-wrap input[type="number"],
+.dca-input-wrap input[type="month"],
+.dca-input-wrap select {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-main);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  -moz-appearance: textfield;
+}
+
+.dca-input-wrap input[type="number"] {
+  padding-left: 32px;
+}
+
+.dca-input-wrap input::-webkit-outer-spin-button,
+.dca-input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dca-input-wrap input:focus,
+.dca-input-wrap select:focus {
+  outline: none;
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.15);
+}
+
+.dca-input-wrap select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%238b949e' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.dca-input-wrap select option {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* --- Calculate Button --- */
+.dca-btn {
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+  color: #000;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.dca-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(247, 147, 26, 0.3);
+}
+
+.dca-btn:active {
+  transform: translateY(0);
+}
+
+/* --- Results Grid --- */
+.dca-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dca-stat {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+
+.dca-stat-highlight {
+  border-color: rgba(247, 147, 26, 0.3);
+}
+
+.dca-stat-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.dca-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dca-stat-value.green { color: #3fb950; }
+.dca-stat-value.red { color: #f85149; }
+.dca-stat-value.btc-accent { color: var(--accent-orange); }
+
+.dca-stat-highlight .dca-stat-value {
+  color: var(--accent-orange);
+}
+
+/* --- Results Bottom Row --- */
+.dca-results-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dca-stat-inline {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dca-stat-inline .dca-stat-label {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+}
+
+.dca-stat-inline .dca-stat-value {
+  font-size: 1.1rem;
+}
+
+/* --- Chart --- */
+.dca-chart-wrap {
+  position: relative;
+  height: 360px;
+}
+
+/* --- Disclaimer --- */
+.dca-disclaimer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 32px;
+  opacity: 0.7;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .dca-hero {
+    padding: 140px 16px 32px;
+  }
+
+  .dca-card {
+    padding: 20px 18px;
+  }
+
+  .dca-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .dca-results-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .dca-results-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dca-stat-value {
+    font-size: 1.1rem;
+  }
+
+  .dca-chart-wrap {
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dca-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dca-stat-inline {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+}

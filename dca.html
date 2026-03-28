@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Bitcoin DCA Calculator | PYMTW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dca.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+  <!-- Live Bitcoin Price Bar -->
+  <div class="btc-price-bar" id="btc-price-bar">
+    <div class="btc-price-bar-inner">
+      <div class="btc-price-live-indicator">
+        <span class="btc-live-dot"></span>
+        <span class="btc-live-text">LIVE</span>
+      </div>
+      <div class="btc-price-main">
+        <span class="btc-price-icon">&#8383;</span>
+        <span class="btc-price-label">Bitcoin</span>
+        <span class="btc-price-value" id="btc-price-value">--</span>
+      </div>
+      <div class="btc-price-change" id="btc-price-change">
+        <span class="btc-change-arrow" id="btc-change-arrow"></span>
+        <span class="btc-change-value" id="btc-change-value">--%</span>
+      </div>
+      <div class="btc-price-divider"></div>
+      <div class="btc-price-stat">
+        <span class="btc-stat-label">Mkt Cap</span>
+        <span class="btc-stat-value" id="btc-market-cap">--</span>
+      </div>
+      <div class="btc-price-stat btc-stat-desktop">
+        <span class="btc-stat-label">24h Vol</span>
+        <span class="btc-stat-value" id="btc-volume">--</span>
+      </div>
+      <div class="btc-price-updated" id="btc-price-updated">
+        <span>Updated just now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#8383;</span>
+        <span class="logo-text">PYMTW</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown-trigger" href="#">Learn <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="whitepaper.html">Whitepaper</a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown-trigger nav-active" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="dca.html">DCA Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- DCA Hero -->
+  <section class="dca-hero">
+    <div class="container">
+      <div class="dca-hero-badge">Interactive Tool</div>
+      <h1 class="dca-hero-title">
+        Bitcoin <span class="gradient-text">DCA</span> Calculator
+      </h1>
+      <p class="dca-hero-subtitle">
+        Simulate dollar-cost averaging into Bitcoin using historical prices. See how consistent monthly investing would have performed over time.
+      </p>
+    </div>
+  </section>
+
+  <!-- DCA Calculator Section -->
+  <section class="dca-section">
+    <div class="container">
+      <div class="dca-layout">
+
+        <!-- Parameters Card -->
+        <div class="dca-card dca-params-card">
+          <h2 class="dca-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Parameters
+          </h2>
+          <div class="dca-form-grid">
+            <div class="dca-field">
+              <label for="initial">Initial Investment</label>
+              <div class="dca-input-wrap">
+                <span class="dca-input-prefix">$</span>
+                <input type="number" id="initial" value="1000" min="0" step="any" placeholder="0">
+              </div>
+            </div>
+            <div class="dca-field">
+              <label for="monthly">Monthly Contribution</label>
+              <div class="dca-input-wrap">
+                <span class="dca-input-prefix">$</span>
+                <input type="number" id="monthly" value="200" min="0" step="any" placeholder="0">
+              </div>
+            </div>
+            <div class="dca-field">
+              <label for="start-date">Start Date</label>
+              <div class="dca-input-wrap">
+                <input type="month" id="start-date" value="2020-01" min="2011-01" max="2026-03">
+              </div>
+            </div>
+            <div class="dca-field">
+              <label for="duration">Duration (years)</label>
+              <div class="dca-input-wrap">
+                <select id="duration">
+                  <option value="1">1 year</option>
+                  <option value="2">2 years</option>
+                  <option value="3" selected>3 years</option>
+                  <option value="4">4 years</option>
+                  <option value="5">5 years</option>
+                  <option value="6">6 years</option>
+                  <option value="7">7 years</option>
+                  <option value="8">8 years</option>
+                  <option value="10">10 years</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="dca-btn" id="calculate-btn">Calculate DCA Returns</button>
+        </div>
+
+        <!-- Results Card -->
+        <div class="dca-card dca-results-card" id="results-section">
+          <h2 class="dca-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Results
+          </h2>
+          <div class="dca-results-grid">
+            <div class="dca-stat">
+              <span class="dca-stat-label">Total Invested</span>
+              <span class="dca-stat-value" id="total-invested">$0</span>
+            </div>
+            <div class="dca-stat dca-stat-highlight">
+              <span class="dca-stat-label">Portfolio Value</span>
+              <span class="dca-stat-value" id="portfolio-value">$0</span>
+            </div>
+            <div class="dca-stat">
+              <span class="dca-stat-label">Return (ROI)</span>
+              <span class="dca-stat-value green" id="roi">+0%</span>
+            </div>
+            <div class="dca-stat">
+              <span class="dca-stat-label">BTC Accumulated</span>
+              <span class="dca-stat-value btc-accent" id="btc-total">0 BTC</span>
+            </div>
+          </div>
+          <div class="dca-results-row">
+            <div class="dca-stat-inline">
+              <span class="dca-stat-label">Avg. BTC Buy Price</span>
+              <span class="dca-stat-value" id="avg-price">$0</span>
+            </div>
+            <div class="dca-stat-inline">
+              <span class="dca-stat-label">vs. Lump Sum at Start</span>
+              <span class="dca-stat-value" id="vs-lump">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart Card -->
+        <div class="dca-card dca-chart-card" id="chart-section">
+          <h2 class="dca-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+            Portfolio Growth
+          </h2>
+          <div class="dca-chart-wrap">
+            <canvas id="growth-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <p class="dca-disclaimer">Uses monthly historical BTC/USD closing prices. Past performance does not guarantee future results.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">&#8383;</span>
+            <span class="logo-text">PYMTW</span>
+          </a>
+          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
+          <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="footer-newsletter-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+            Subscribe to our Newsletter
+          </a>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
+            <li><a href="index.html#getting-started">Get Started</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#learn">Learn</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="whitepaper.html">The Whitepaper</a></li>
+            <li><a href="calculator.html">Net Worth Calculator</a></li>
+            <li><a href="dca.html">DCA Calculator</a></li>
+            <li><a href="services.html">Bitcoin Services</a></li>
+            <li><a href="performance.html">Performance</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
+            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
+            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="dca.js"></script>
+</body>
+</html>
