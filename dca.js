@@ -73,7 +73,7 @@
   }
 
   // ── Main calculation ──
-  function calculate() {
+  function calculate(userTriggered) {
     var initial  = parseFloat(document.getElementById('initial').value) || 0;
     var monthly  = parseFloat(document.getElementById('monthly').value) || 0;
     var startVal = document.getElementById('start-date').value;
@@ -229,14 +229,16 @@
       }
     });
 
-    document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (userTriggered) {
+      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // ── Event listeners ──
-  document.getElementById('calculate-btn').addEventListener('click', calculate);
+  document.getElementById('calculate-btn').addEventListener('click', function () { calculate(true); });
 
-  // ── Run on load with defaults ──
-  window.addEventListener('DOMContentLoaded', calculate);
+  // ── Run on load with defaults (no scroll) ──
+  window.addEventListener('DOMContentLoaded', function () { calculate(false); });
 
   // ── Live BTC Price Bar (same as other pages) ──
   var btcPriceUpdateInterval;
