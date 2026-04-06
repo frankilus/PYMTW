@@ -1,0 +1,18 @@
+# PKB — Personal Knowledge Base Configuration
+# ──────────────────────────────────────────────
+
+# Where your knowledge files are stored
+# Default: ~/.pkb (override with --root flag or PKB_ROOT env var)
+
+# Web UI settings
+web:
+  host: 127.0.0.1
+  port: 8899
+
+# MCP Server settings
+mcp:
+  transport: stdio  # stdio | sse
+
+# Auto-sync schedule (see config/sync.yaml for connector-specific settings)
+sync:
+  auto_start: false  # Set to true to start sync on `pkb web`
