@@ -29,7 +29,7 @@
 16. Before enabling checkout (Stripe/Lemon Squeezy etc.), review merchant terms, refund handling, tax collection (sales tax/VAT on digital goods), and chargeback policy.
 
 ## F. Factual accuracy (see also "factual questions" in IMPLEMENTATION_SUMMARY.md)
-17. **Bitcoin-since year inconsistency (2016 vs 2017)** — must be corrected to a single confirmed year across `playbook.html`, `book/index.html`, and `about.html`. Do not publish a specific year until confirmed.
+17. **Bitcoin-since year — RESOLVED (2016).** Frank confirmed 2016; standardized across `playbook.html`, `book/index.html`, and `about.html`.
 18. Confirm Frank's credentials as stated (MBA, blockchain certification, "Wall Street professional") are accurate and not overstated.
 
 _No definitive legal conclusions are drawn in this document. Engage qualified counsel in the operating jurisdiction._

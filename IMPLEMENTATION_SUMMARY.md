@@ -59,7 +59,7 @@ A single positioning — _practical Bitcoin education for working professionals,
 See `LEGAL_REVIEW_ITEMS.md` — key: education vs. adviser boundary on private sessions; tax/estate framing; affiliate per-link labeling; policy pages need counsel; payments/tax at checkout; resolve the 2016/2017 fact.
 
 ## 8. Factual questions requiring Frank's confirmation
-1. **Bitcoin since 2016 or 2017?** (book says 2016 ×2; playbook says 2017). New copy is year-neutral until confirmed — then standardize all pages.
+1. **Bitcoin since 2016 or 2017? — RESOLVED: 2016.** Frank confirmed 2016. Standardized across `book/index.html`, `playbook.html`, and `about.html`; the year-neutral placeholder and TODO comment were removed.
 1b. **Book titles — RESOLVED:** Frank confirmed **two separate books** — _Bitcoin for Working Professionals_ (the live `/book` page) and _Digital Credit: How Bitcoin Is Reinventing Yield_ (no dedicated page yet). References reconciled: `/book` links now read "Bitcoin for Working Professionals"; About/Corporate bios credit both; Resources lists both. _Open follow-up:_ build a dedicated page for _Digital Credit_ if/when desired.
 2. Confirm credentials: MBA, blockchain certification, "Wall Street professional."
 3. Preferred public **contact email** (personal Gmail was not published; forms + newsletter reply used instead).
