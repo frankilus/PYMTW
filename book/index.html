@@ -15,6 +15,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="/pymtw.css">
+  <link rel="canonical" href="https://www.pymtw.com/book">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Book","name":"Bitcoin for Working Professionals","author":{"@type":"Person","name":"Frank W. Jerome"},"bookFormat":"https://schema.org/Paperback","numberOfPages":"","inLanguage":"en","publisher":{"@type":"Organization","name":"PYMTW"},"about":"A practical Bitcoin guide for working professionals: inflation, buying safely, self-custody, taxes, and a 90-day action plan.","url":"https://www.pymtw.com/book"}
+  </script>
+  <script src="/pymtw-config.js"></script>
 </head>
 <body>
 
@@ -262,6 +268,67 @@
     </div>
   </section>
 
+  <!-- ===== READER BONUS ===== -->
+  <section style="padding:72px 0;">
+    <div class="bk-container">
+      <div class="section-head"><span class="eyebrow">Reader bonus</span><h2 style="font-family:var(--font-display);font-size:clamp(1.7rem,4vw,2.4rem);">Buy the Book &amp; Receive the Professional Bitcoin Toolkit</h2><p>Every reader gets a free companion toolkit to turn the book's ideas into action. Submit your proof of purchase below and we'll send it over.</p></div>
+      <div class="card-grid cols-3">
+        <div class="p-card"><h3>Chapter worksheets</h3><p>Work through the key decisions from each chapter.</p></div>
+        <div class="p-card"><h3>90-day implementation tracker</h3><p>Follow the book's action plan, week by week.</p></div>
+        <div class="p-card"><h3>Security checklist</h3><p>Lock down custody and backups with a clear list.</p></div>
+        <div class="p-card"><h3>DCA planning worksheet</h3><p>Design a disciplined recurring-buy routine.</p></div>
+        <div class="p-card"><h3>Annual review template</h3><p>Keep your setup healthy as your holdings grow.</p></div>
+        <div class="p-card"><h3>Invitation to a reader webinar</h3><p>Join a live Q&amp;A session for readers.</p></div>
+      </div>
+      <div class="callout-security" style="margin-top:20px;">Some toolkit items are being finalized; you'll receive each as it's released, starting with what's ready today. These planning worksheets help you <strong>plan</strong> — never write your actual seed phrase or keys into any file.</div>
+
+      <!-- Proof of purchase -->
+      <div class="p-card" id="bonus" style="max-width:560px;margin:28px auto 0;">
+        <span class="tag-pill">Claim your bonus</span>
+        <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:12px 0 6px;">Submit your proof of purchase</h3>
+        <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:16px;">Enter your email and your order number (from Amazon or your retailer). We'll verify and email your toolkit.</p>
+        <form id="bonus-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate>
+          <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+          <input type="hidden" name="utm_source" value="book">
+          <input type="hidden" name="utm_medium" value="reader_bonus">
+          <div class="field"><label for="bn-email">Email</label><input id="bn-email" name="form[email]" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="bn-order">Order number</label><input id="bn-order" name="order_number" type="text" placeholder="e.g. 123-4567890-1234567"></div>
+          <button type="submit" class="bk-buy-btn" style="width:100%;justify-content:center;"><span>Send Me the Toolkit</span></button>
+          <p class="form-status" id="bn-status" role="status" aria-live="polite"></p>
+          <p class="form-hint">Automated verification is being connected; for now we review submissions manually. We never ask for seed phrases, keys, passwords, or account credentials.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BULK / ORGANIZATIONS ===== -->
+  <section style="padding:72px 0;background:var(--bg-secondary);">
+    <div class="bk-container">
+      <div class="section-head"><span class="eyebrow">For teams &amp; organizations</span><h2 style="font-family:var(--font-display);font-size:clamp(1.7rem,4vw,2.4rem);">Team book packs &amp; company book clubs</h2><p>Use the book as a starting point for company-wide Bitcoin literacy.</p></div>
+      <div class="card-grid cols-2">
+        <div class="p-card"><h3>Team book packs</h3><p>Discounted bulk copies for your team or department.</p></div>
+        <div class="p-card"><h3>Company book clubs</h3><p>A guided discussion of the book with your people.</p></div>
+        <div class="p-card"><h3>Professional association bundles</h3><p>Copies plus a member session for associations and alumni groups.</p></div>
+        <div class="p-card"><h3>Private author Q&amp;A + workshops</h3><p>Pair the book with a live Q&amp;A or a corporate workshop.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:26px;">
+        <a href="/corporate.html" class="bk-buy-btn"><span>Explore corporate &amp; bulk options</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KEEP LEARNING FUNNEL ===== -->
+  <section style="padding:64px 0;">
+    <div class="bk-container">
+      <div class="section-head"><span class="eyebrow">After the book</span><h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);">Put it into practice</h2></div>
+      <div class="card-grid cols-3">
+        <div class="p-card"><h3>Live workshops</h3><p>Small-group sessions on fundamentals and self-custody.</p><a href="/programs.html#workshops" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>See workshops</span></a></div>
+        <div class="p-card"><h3>Readiness Assessment</h3><p>Find your next step in two minutes — free.</p><a href="/assessment.html" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>Take the assessment</span></a></div>
+        <div class="p-card"><h3>Membership</h3><p>Ongoing education, briefings, and Q&amp;A.</p><a href="/programs.html#membership" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>See membership</span></a></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CTA ===== -->
   <section class="bk-cta">
     <div class="bk-container">
@@ -302,5 +369,14 @@
   </footer>
 
   <script src="book.js"></script>
+  <script>
+  (function(){var f=document.getElementById("bonus-form"),s=document.getElementById("bn-status");if(!f)return;
+    f.addEventListener("submit",function(e){e.preventDefault();var em=document.getElementById("bn-email");
+      if(!em.value||!/.+@.+\..+/.test(em.value)){s.textContent="Please enter a valid email.";s.className="form-status error";return;}
+      var b=f.querySelector('button[type="submit"] span'),o=b.textContent;b.textContent="Sending...";
+      fetch(f.action,{method:"POST",body:new FormData(f),mode:"no-cors"}).catch(function(){}).finally(function(){
+        if(window.pymtwTrack)window.pymtwTrack("book_bonus_claim",{source:"book"});
+        b.textContent=o;s.textContent="Thanks! We'll verify and email your toolkit shortly.";s.className="form-status success";f.reset();});});})();
+  </script>
 </body>
 </html>

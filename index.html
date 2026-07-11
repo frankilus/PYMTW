@@ -4,11 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <title>Put Your Money to Work in Bitcoin</title>
+  <title>PYMTW — Practical Bitcoin Education for Working Professionals</title>
+  <meta name="description" content="Build a responsible Bitcoin strategy without becoming a trader. Practical Bitcoin education, tools, and implementation support for working professionals — no hype, no price predictions.">
+  <link rel="canonical" href="https://www.pymtw.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Build a Responsible Bitcoin Strategy — Without Becoming a Trader">
+  <meta property="og:description" content="Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.">
+  <meta property="og:url" content="https://www.pymtw.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Put Your Money to Work (PYMTW)","alternateName":"PYMTW","url":"https://www.pymtw.com/","description":"Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.","founder":{"@type":"Person","name":"Frank W. Jerome"}}
+  </script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pymtw.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="pymtw-config.js"></script>
 </head>
 <body>
   <!-- Live Bitcoin Price Bar -->
@@ -53,32 +65,33 @@
         <span class="logo-text">PYMTW</span>
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#">Home</a></li>
-        <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger" href="#">Learn <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="#why-bitcoin">Why Bitcoin</a></li>
-            <li><a href="#getting-started">Get Started</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#learn">Learn</a></li>
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="whitepaper.html">Whitepaper</a></li>
-            <li><a href="/book">Book</a></li>
-          </ul>
-        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="start-here.html">Start Here</a></li>
         <li class="nav-dropdown">
           <a class="nav-dropdown-trigger" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
           <ul class="nav-dropdown-menu">
-            <li><a href="calculator.html">Net Worth Calculator</a></li>
-            <li><a href="performance.html">Performance</a></li>
+            <li><a href="assessment.html">Bitcoin Readiness Assessment</a></li>
             <li><a href="dca.html">DCA Calculator</a></li>
+            <li><a href="calculator.html">Net-Worth Calculator</a></li>
+            <li><a href="performance.html">Performance Comparison</a></li>
+            <li><a href="resources.html">Resource Library</a></li>
           </ul>
         </li>
-        <li><a href="playbook.html" class="nav-playbook-link">Free Playbook</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown-trigger" href="#">Programs <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="programs.html">Programs Overview</a></li>
+            <li><a href="programs.html#workshops">Live Workshops</a></li>
+            <li><a href="programs.html#private">Private Education</a></li>
+            <li><a href="programs.html#self-custody">Self-Custody Education</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="corporate.html">Corporate Education</a></li>
+          </ul>
+        </li>
+        <li><a href="/book">Book</a></li>
         <li><a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a></li>
-        <!-- <li><a href="members.html">Members</a></li> -->
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -89,32 +102,24 @@
   <!-- Hero Section -->
   <header class="hero" id="hero">
     <div class="hero-content">
-      <div class="hero-badge">The Future of Money</div>
+      <div class="hero-badge">Practical Bitcoin education · No hype</div>
       <h1 class="hero-title">
-        <span class="hero-initial">P</span>ut <span class="hero-initial">Y</span>our <span class="hero-initial">M</span>oney<br>
-        <span class="hero-initial">T</span>o <span class="hero-initial">W</span>ork <span class="gradient-text">in Bitcoin</span>
+        Build a Responsible<br>Bitcoin Strategy—<span class="gradient-text">Without Becoming a Trader.</span>
       </h1>
       <p class="hero-subtitle">
-        Your journey into the world's most powerful decentralized currency starts here.
-        Learn, invest, and grow your wealth with confidence.
+        Practical Bitcoin education, tools, and implementation support for working professionals who want to
+        understand Bitcoin, protect their purchasing power, and secure their holdings with confidence.
       </p>
       <div class="hero-actions">
-        <a href="#getting-started" class="btn btn-primary">
-          <span>Start Your Journey</span>
+        <a href="assessment.html" class="btn btn-primary">
+          <span>Take the Bitcoin Readiness Assessment</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#why-bitcoin" class="btn btn-secondary btn-sm">
-          <span>Why Bitcoin?</span>
-        </a>
-        <a href="/playbook.html" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <span>Download Free Playbook</span>
-        </a>
-        <a href="#" class="btn btn-secondary btn-sm" id="hero-subscribe-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-          <span>Subscribe</span>
+        <a href="programs.html" class="btn btn-secondary btn-sm">
+          <span>Explore Programs</span>
         </a>
       </div>
+      <p class="hero-credibility">Practical education. Long-term thinking. No hype.</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-number" data-target="21000000" data-suffix="">21M</span>
@@ -184,6 +189,70 @@
     </div>
   </div>
 
+
+  <!-- Trust strip -->
+  <div class="trust-bar" style="border:none;background:transparent;">
+    <div class="trust-bar-inner">
+      <span class="trust-bar-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Never asks for your seed phrase or keys</span></span>
+      <span class="trust-bar-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Never takes custody of your funds</span></span>
+      <span class="trust-bar-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Never executes trades on your behalf</span></span>
+      <span class="trust-bar-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Education — not investment advice</span></span>
+    </div>
+  </div>
+
+  <!-- Readiness Assessment band -->
+  <section class="section" id="assessment-band" style="padding-top:56px;padding-bottom:16px;">
+    <div class="container">
+      <div class="p-card" style="text-align:center;padding:44px 32px;background:linear-gradient(160deg,var(--bg-card),var(--bg-secondary));">
+        <span class="eyebrow">Start with clarity</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:12px;">What is your Bitcoin readiness level?</h2>
+        <p class="muted" style="max-width:600px;margin:0 auto 24px;">Answer 10 quick questions to find out whether you're a Beginner, an Accumulator, or a Security Builder — and get one clear, practical next step. Free, and calibrated for professionals.</p>
+        <a href="assessment.html" class="btn btn-primary"><span>Take the free assessment</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three visitor pathways -->
+  <section class="section" id="pathways" style="padding-top:32px;">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Choose your path</span><h2>Wherever you are, there's a next step</h2><p>PYMTW meets working professionals at three common starting points.</p></div>
+      <div class="card-grid cols-3">
+        <div class="p-card pathway-card">
+          <div class="p-card-icon">🌱</div>
+          <span class="pathway-tag">Path 1 · Beginner</span>
+          <h3>Bitcoin Beginner</h3>
+          <ul>
+            <li>Curious, with little or no Bitcoin yet</li>
+            <li>Feeling a bit overwhelmed</li>
+            <li>Wants a simple starting point</li>
+          </ul>
+          <a href="start-here.html" class="btn btn-primary btn-sm btn-block">Start Learning</a>
+        </div>
+        <div class="p-card pathway-card">
+          <div class="p-card-icon">📈</div>
+          <span class="pathway-tag">Path 2 · Accumulator</span>
+          <h3>Bitcoin Accumulator</h3>
+          <ul>
+            <li>Already owns some Bitcoin</li>
+            <li>Wants a disciplined recurring-buy process</li>
+            <li>Wants better organization &amp; planning</li>
+          </ul>
+          <a href="dca.html" class="btn btn-primary btn-sm btn-block">Build Your Bitcoin Plan</a>
+        </div>
+        <div class="p-card pathway-card">
+          <div class="p-card-icon">🔒</div>
+          <span class="pathway-tag">Path 3 · Security</span>
+          <h3>Bitcoin Security Builder</h3>
+          <ul>
+            <li>Holds Bitcoin, often on an exchange</li>
+            <li>Considering self-custody</li>
+            <li>Wants backup, recovery &amp; inheritance</li>
+          </ul>
+          <a href="security-promise.html" class="btn btn-primary btn-sm btn-block">Improve Your Security</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Why Bitcoin Section -->
   <section class="section why-bitcoin" id="why-bitcoin">
@@ -265,6 +334,7 @@
 
               <!-- BOOKS Panel -->
               <div class="edu-panel" id="edu-books">
+                <p class="muted" style="font-size:0.78rem;margin:0 0 10px;">As an Amazon Associate, PYMTW earns from qualifying purchases through these book links, at no additional cost to you. <a href="legal.html#affiliate" style="color:var(--accent-orange);">Details</a>.</p>
                 <a href="https://amzn.to/4afPZrx" target="_blank" rel="noopener" class="edu-item">
                   <div class="edu-item-icon">📖</div>
                   <div class="edu-item-info">
@@ -1170,6 +1240,67 @@
     </div>
   </section>
 
+  <!-- Featured Programs & Products -->
+  <section class="section" id="featured-programs">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Programs &amp; products</span><h2>A clear path from curious to confident</h2><p>Start free. Go deeper only when it helps. Every step stands on its own — and none of it involves trading or hype.</p></div>
+      <div class="card-grid cols-3">
+        <div class="p-card">
+          <span class="tag-pill">Free</span>
+          <h3 style="margin-top:12px;">Assessment &amp; Playbook</h3>
+          <p>Find your readiness level, download the free Bitcoin Playbook, and join the newsletter.</p>
+          <a href="assessment.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">Take the assessment</a>
+        </div>
+        <div class="p-card">
+          <span class="tag-pill">$29</span>
+          <h3 style="margin-top:12px;">Professional Starter Kit</h3>
+          <p>Nine templates and checklists to plan your buying, custody, records, and inheritance.</p>
+          <a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">See the kit</a>
+        </div>
+        <div class="p-card">
+          <span class="tag-pill">Live · $79+</span>
+          <h3 style="margin-top:12px;">Workshops &amp; Private Education</h3>
+          <p>Small-group workshops and outcome-based 1:1 sessions on fundamentals, accumulation, and self-custody.</p>
+          <a href="programs.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">Explore programs</a>
+        </div>
+      </div>
+      <div class="p-card mt-md" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:space-between;">
+        <div style="flex:1;min-width:260px;">
+          <span class="eyebrow">The book</span>
+          <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:6px;">Bitcoin for Working Professionals</h3>
+          <p class="muted">By Frank W. Jerome. A practical guide to protecting your purchasing power — 12 chapters from problem to a 90-day action plan, plus a free reader toolkit.</p>
+        </div>
+        <a href="/book" class="btn btn-primary">Get the book</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <!--
+    NOTE: These are LABELED PLACEHOLDERS, not real testimonials. Do not publish fabricated quotes.
+    To add a real testimonial, replace a .testi-card block with:
+      <div class="testi-card">
+        <p class="testi-quote">Real quote here — prefer clarity/confidence/security over profit claims.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar" aria-hidden="true">AB</div>
+          <div><div class="testi-name">Real Name / First name + initial</div><div class="testi-role">Role, with permission</div></div>
+        </div>
+      </div>
+    Remove the "is-sample" class and the <span class="sample-tag">Sample</span> when using real content.
+    When real testimonials exist, delete this comment and the sample note below.
+  -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">In their words</span><h2>What learners value most</h2><p>We're gathering feedback from early learners. Real testimonials will appear here — we don't publish invented ones.</p></div>
+      <div class="testi-grid">
+        <div class="testi-card is-sample"><span class="sample-tag">Sample</span><p class="testi-quote">Space reserved for a learner's words about finally understanding Bitcoin without the hype.</p><div class="testi-meta"><div class="testi-avatar" aria-hidden="true">—</div><div><div class="testi-name">Your testimonial here</div><div class="testi-role">On clarity &amp; confidence</div></div></div></div>
+        <div class="testi-card is-sample"><span class="sample-tag">Sample</span><p class="testi-quote">Space reserved for a learner's words about building a calm, disciplined buying process.</p><div class="testi-meta"><div class="testi-avatar" aria-hidden="true">—</div><div><div class="testi-name">Your testimonial here</div><div class="testi-role">On process &amp; organization</div></div></div></div>
+        <div class="testi-card is-sample"><span class="sample-tag">Sample</span><p class="testi-quote">Space reserved for a learner's words about feeling secure with self-custody and family planning.</p><div class="testi-meta"><div class="testi-avatar" aria-hidden="true">—</div><div><div class="testi-name">Your testimonial here</div><div class="testi-role">On security preparation</div></div></div></div>
+      </div>
+      <p class="text-center mt-md" style="font-size:0.9rem;"><span class="muted">Been through a PYMTW program?</span> <a href="about.html#contact" style="color:var(--accent-orange);font-weight:600;">Share your experience →</a></p>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section class="section faq" id="faq">
     <div class="container">
@@ -1470,33 +1601,42 @@
           </a>
         </div>
         <div class="footer-links">
-          <h4>Navigate</h4>
+          <h4>Learn</h4>
           <ul>
-            <li><a href="#why-bitcoin">Why Bitcoin</a></li>
-            <li><a href="#getting-started">Get Started</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#learn">Learn</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="start-here.html">Start Here</a></li>
+            <li><a href="assessment.html">Readiness Assessment</a></li>
+            <li><a href="resources.html">Resource Library</a></li>
             <li><a href="whitepaper.html">The Whitepaper</a></li>
-            <li><a href="services.html">Bitcoin Services</a></li>
-            <li><a href="calculator.html">Net Worth Calculator</a></li>
-            <li><a href="dca.html">DCA Calculator</a></li>
-            <li><a href="performance.html">Performance</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="/book">The Book</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Resources</h4>
+          <h4>Programs</h4>
           <ul>
-            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
-            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
-            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
+            <li><a href="programs.html#workshops">Live Workshops</a></li>
+            <li><a href="programs.html#private">Private Education</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="starter-kit.html">Starter Kit</a></li>
+            <li><a href="corporate.html">Corporate &amp; Speaking</a></li>
+            <li><a href="services.html">All Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Trust</h4>
+          <ul>
+            <li><a href="security-promise.html">Security Promise</a></li>
+            <li><a href="legal.html#disclaimer">Educational Disclaimer</a></li>
+            <li><a href="legal.html#privacy">Privacy Policy</a></li>
+            <li><a href="legal.html#affiliate">Affiliate Disclosure</a></li>
+            <li><a href="legal.html#terms">Terms &amp; Policies</a></li>
+            <li><a href="about.html">About</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
-        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
+        <p><strong>Educational disclaimer:</strong> PYMTW provides general educational information about Bitcoin, technology, custody, and financial concepts. Nothing on this website constitutes individualized investment, tax, legal, accounting, or financial advice. Bitcoin is volatile and can decline substantially in value. Past performance does not predict future results. We never ask for your seed phrase, private keys, passwords, or account credentials.</p>
+        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin (PYMTW). All rights reserved. Founder &amp; educator: Frank W. Jerome.</p>
       </div>
     </div>
   </footer>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Bitcoin Readiness Assessment — Find Your Starting Point | PYMTW</title>
+  <meta name="description" content="Answer 10 quick questions to discover your Bitcoin Readiness Level — Beginner, Accumulator, or Security Builder — and get a clear, practical next step. Free. No hype.">
+  <link rel="canonical" href="https://www.pymtw.com/assessment.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="What Is Your Bitcoin Readiness Level?">
+  <meta property="og:description" content="A free 10-question assessment for working professionals. Get a personalized learning path — Beginner, Accumulator, or Security Builder.">
+  <meta property="og:url" content="https://www.pymtw.com/assessment.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pymtw.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="pymtw-config.js"></script>
+</head>
+<body class="pymtw-page" data-page="assessment">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main" class="pymtw-main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>Bitcoin Readiness Assessment</nav>
+        <span class="eyebrow">Free · 2 minutes · 10 questions</span>
+        <h1>What Is Your Bitcoin Readiness Level?</h1>
+        <p class="lead">Working professionals arrive at Bitcoin from different starting points. This short assessment identifies where you are today and gives you one clear, practical next step — no hype, no jargon, no pressure.</p>
+      </div>
+    </section>
+
+    <section class="pymtw-section" style="padding-top:8px;">
+      <div class="container">
+        <div class="assess-wrap">
+
+          <!-- QUIZ -->
+          <div class="assess-quiz" id="assess-quiz">
+            <div class="assess-progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="assess-progress-bar" id="assess-bar"></div>
+            </div>
+            <p class="assess-counter" id="assess-counter"></p>
+            <div class="assess-card">
+              <h2 class="assess-q" id="assess-q"></h2>
+              <div class="assess-options" id="assess-options" role="group" aria-label="Answer choices"></div>
+              <div class="assess-nav">
+                <button class="btn btn-secondary btn-sm" id="assess-back" type="button">Back</button>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMAIL GATE -->
+          <div class="assess-gate" id="assess-gate">
+            <div class="assess-card">
+              <span class="tag-pill">Your result is ready</span>
+              <h2 class="assess-q" style="margin-top:14px;">Where should we send your personalized Bitcoin plan?</h2>
+              <p class="muted" style="margin-bottom:20px;">Enter your email to unlock your readiness profile, your three recommended next steps, and a matching free resource. You'll also get our practical Bitcoin newsletter (unsubscribe anytime).</p>
+              <form id="assess-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate>
+                <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+                <input type="hidden" name="utm_source" value="assessment">
+                <input type="hidden" name="utm_medium" value="lead_magnet">
+                <input type="hidden" name="utm_campaign" value="readiness_assessment">
+                <div class="field">
+                  <label for="assess-name">First name <span class="muted">(optional)</span></label>
+                  <input type="text" id="assess-name" name="first_name" autocomplete="given-name" placeholder="Alex">
+                </div>
+                <div class="field">
+                  <label for="assess-email">Email address</label>
+                  <input type="email" id="assess-email" name="form[email]" required autocomplete="email" placeholder="you@example.com" aria-describedby="assess-form-status">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  <span>Show My Result</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <p class="form-status" id="assess-form-status" role="status" aria-live="polite"></p>
+                <p class="form-hint">We never ask for seed phrases, private keys, passwords, or account credentials. See our <a href="legal.html#privacy">Privacy Policy</a>.</p>
+              </form>
+            </div>
+          </div>
+
+          <!-- RESULT -->
+          <div class="assess-result" id="assess-result" tabindex="-1">
+            <div class="assess-card">
+              <span class="result-badge" id="result-badge"></span>
+              <h2 class="assess-q" id="result-title" style="margin-bottom:12px;"></h2>
+              <p id="result-desc" style="color:var(--text-secondary);margin-bottom:24px;"></p>
+
+              <h3 style="font-family:var(--font-display);margin-bottom:14px;">Your three next steps</h3>
+              <div class="steps" id="result-steps" style="margin-bottom:28px;"></div>
+
+              <div class="card-grid cols-2" style="margin-bottom:24px;">
+                <div class="p-card" id="result-free">
+                  <span class="tag-pill">Free resource</span>
+                  <h3 style="margin-top:12px;" id="result-free-title"></h3>
+                  <p id="result-free-desc"></p>
+                  <a class="btn btn-secondary btn-sm" id="result-free-cta" href="#" style="margin-top:8px;">Get it</a>
+                </div>
+                <div class="p-card featured" id="result-paid" style="border-color:var(--border-color);">
+                  <span class="tag-pill">Recommended next step</span>
+                  <h3 style="margin-top:12px;" id="result-paid-title"></h3>
+                  <p id="result-paid-desc"></p>
+                  <a class="btn btn-primary btn-sm" id="result-paid-cta" href="#" style="margin-top:8px;">Learn more</a>
+                </div>
+              </div>
+
+              <div class="disclosure">
+                <strong>This result is educational, not advice.</strong> Your readiness profile is a general learning guide based on your answers. It is not individualized investment, tax, or legal advice, and it does not recommend how much Bitcoin (if any) you should buy or hold. Bitcoin is volatile and can decline substantially in value.
+              </div>
+
+              <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="programs.html" class="btn btn-secondary btn-sm">Explore Programs</a>
+                <button class="btn btn-secondary btn-sm" id="assess-retake" type="button">Retake the assessment</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="pymtw-section alt">
+      <div class="container" style="max-width:820px;">
+        <div class="section-head"><h2>Why this matters</h2></div>
+        <p class="text-center muted" style="max-width:640px;margin:0 auto;">Most Bitcoin content is written for traders or for people who already agree with it. PYMTW meets you where you are: understanding first, then a disciplined process, then custody and security you can actually maintain over decades. The assessment simply helps us point you at the right starting line.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="pymtw.js"></script>
+  <script>
+  (function () {
+    // ---------- Question bank ----------
+    // Each option adds points to one or more profiles: b=Beginner, a=Accumulator, s=Security
+    var QUESTIONS = [
+      { q: "Do you currently own any Bitcoin?", opts: [
+        { t: "No — not yet", p: { b: 2 } },
+        { t: "A small amount, on an app or exchange", p: { a: 1, s: 1 } },
+        { t: "Yes, a meaningful amount", p: { a: 1, s: 1 } } ] },
+      { q: "How would you rate your understanding of Bitcoin?", opts: [
+        { t: "I'm just starting out", p: { b: 2 } },
+        { t: "I understand the basics", p: { a: 1 } },
+        { t: "I'm fairly knowledgeable", p: { a: 1, s: 1 } } ] },
+      { q: "Where is most of your Bitcoin held today?", opts: [
+        { t: "I don't own any yet", p: { b: 2 } },
+        { t: "On an exchange or app (Coinbase, Cash App, etc.)", p: { s: 2 } },
+        { t: "In my own wallet or hardware wallet", p: { s: 1, a: 1 } } ] },
+      { q: "What is your primary goal right now?", opts: [
+        { t: "Understand whether Bitcoin makes sense for me", p: { b: 2 } },
+        { t: "Build a disciplined, recurring buying process", p: { a: 2 } },
+        { t: "Protect and secure the Bitcoin I already hold", p: { s: 2 } } ] },
+      { q: "Do you use recurring or automatic purchases (dollar-cost averaging)?", opts: [
+        { t: "No", p: { b: 1, a: 1 } },
+        { t: "Occasionally, and manually", p: { a: 1 } },
+        { t: "Yes, it's automated", p: { a: 1, s: 1 } } ] },
+      { q: "Have you set up self-custody with a hardware wallet?", opts: [
+        { t: "No, and I'm not sure how", p: { b: 1, s: 1 } },
+        { t: "I've been considering it", p: { s: 2 } },
+        { t: "Yes, I use one", p: { s: 1 } } ] },
+      { q: "Do you have a documented backup and recovery plan for your wallet?", opts: [
+        { t: "No", p: { s: 2 } },
+        { t: "Somewhat — it's in my head", p: { s: 1 } },
+        { t: "Yes, and I've tested it", p: { a: 1 } } ] },
+      { q: "Does someone you trust know how to access your Bitcoin in an emergency?", opts: [
+        { t: "No", p: { s: 2 } },
+        { t: "Sort of", p: { s: 1 } },
+        { t: "Yes, and it's documented", p: { a: 1 } } ] },
+      { q: "What concerns you most?", opts: [
+        { t: "Not understanding it, or making a beginner mistake", p: { b: 2 } },
+        { t: "Buying at the wrong time and volatility", p: { a: 2 } },
+        { t: "Losing access, getting hacked, or inheritance", p: { s: 2 } } ] },
+      { q: "What kind of help are you looking for?", opts: [
+        { t: "Learn the fundamentals from a trusted source", p: { b: 2 } },
+        { t: "A plan and structure to accumulate responsibly", p: { a: 2 } },
+        { t: "Help setting up security and custody", p: { s: 2 } } ] }
+    ];
+
+    var PROFILES = {
+      b: {
+        key: "beginner", label: "Bitcoin Beginner", badge: "🌱 Bitcoin Beginner",
+        title: "You're a Bitcoin Beginner",
+        desc: "You're curious and doing the responsible thing — learning before you leap. Your priority is a clear, jargon-free understanding of what Bitcoin is, how it differs from the rest of crypto, and how to make a first move safely and without overcommitting.",
+        steps: [
+          { h: "Learn the fundamentals in plain English", p: "Start with the Free Bitcoin Playbook and the Start Here guide to build a solid mental model." },
+          { h: "Understand safe buying", p: "Learn how reputable platforms and recurring purchases work before you buy anything." },
+          { h: "Avoid the common beginner mistakes", p: "Know the handful of errors new buyers make — and how to sidestep them." } ],
+        free: { title: "Free Bitcoin Playbook", desc: "A calm, practical starting guide for professionals — no hype, no price predictions.", cta: "Download the Playbook", href: "playbook.html" },
+        paid: { title: "Workshop: Bitcoin for Busy Professionals", desc: "A 75-minute live session that takes you from curious to confident with a 30-day action plan.", cta: "See the workshop", href: "workshop-professionals.html" }
+      },
+      a: {
+        key: "accumulator", label: "Bitcoin Accumulator", badge: "📈 Bitcoin Accumulator",
+        title: "You're a Bitcoin Accumulator",
+        desc: "You already own Bitcoin and understand the basics. Your edge now comes from process, not prediction: a disciplined recurring-buy routine, a healthy relationship with volatility, and clean recordkeeping you can maintain for years.",
+        steps: [
+          { h: "Formalize a recurring-buy process", p: "Turn ad-hoc buying into a documented, automatic routine you won't second-guess." },
+          { h: "Build recordkeeping habits", p: "Track cost basis and purchases now to save yourself pain later." },
+          { h: "Model your plan", p: "Use the DCA Calculator to understand historical behavior and set realistic expectations." } ],
+        free: { title: "DCA Calculator", desc: "Explore how a disciplined recurring-buy approach has behaved historically — with clear volatility reminders.", cta: "Open the DCA Calculator", href: "dca.html" },
+        paid: { title: "Bitcoin Implementation Intensive", desc: "Two private sessions plus worksheets to build and document your accumulation and recordkeeping process.", cta: "See the Intensive", href: "programs.html#private" }
+      },
+      s: {
+        key: "security", label: "Bitcoin Security Builder", badge: "🔒 Bitcoin Security Builder",
+        title: "You're a Bitcoin Security Builder",
+        desc: "You hold Bitcoin — possibly on an exchange — and you're ready to take custody and security seriously. Your priorities are self-custody done calmly, reliable backups, tested recovery, and a plan for family access and inheritance.",
+        steps: [
+          { h: "Understand custody options", p: "Learn the trade-offs between exchange custody, self-custody, and collaborative custody." },
+          { h: "Prepare hardware-wallet & backup basics", p: "Get the concepts and checklists right before moving significant funds." },
+          { h: "Plan family access & inheritance", p: "Make sure the right person can recover your Bitcoin in an emergency." } ],
+        free: { title: "Security Promise & self-custody basics", desc: "Read our security principles and the fundamentals of protecting your keys.", cta: "Read the Security Promise", href: "security-promise.html" },
+        paid: { title: "Workshop: Self-Custody Without the Fear", desc: "A 90-minute live session on custody, backups, test transactions, and inheritance — calmly explained.", cta: "See the workshop", href: "workshop-self-custody.html" }
+      }
+    };
+
+    // ---------- State ----------
+    var answers = new Array(QUESTIONS.length).fill(null);
+    var current = 0;
+    var quiz = document.getElementById("assess-quiz");
+    var gate = document.getElementById("assess-gate");
+    var result = document.getElementById("assess-result");
+    var bar = document.getElementById("assess-bar");
+    var counter = document.getElementById("assess-counter");
+    var qEl = document.getElementById("assess-q");
+    var optsEl = document.getElementById("assess-options");
+    var backBtn = document.getElementById("assess-back");
+    var progressEl = document.querySelector(".assess-progress");
+
+    function render() {
+      var Q = QUESTIONS[current];
+      qEl.textContent = Q.q;
+      var pct = Math.round((current) / QUESTIONS.length * 100);
+      bar.style.width = pct + "%";
+      progressEl.setAttribute("aria-valuenow", String(pct));
+      counter.textContent = "Question " + (current + 1) + " of " + QUESTIONS.length;
+      backBtn.style.visibility = current === 0 ? "hidden" : "visible";
+      optsEl.innerHTML = "";
+      Q.opts.forEach(function (opt, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "assess-option" + (answers[current] === i ? " selected" : "");
+        b.innerHTML = '<span class="dot" aria-hidden="true"></span><span>' + opt.t + "</span>";
+        b.addEventListener("click", function () { choose(i); });
+        optsEl.appendChild(b);
+      });
+    }
+
+    function choose(i) {
+      answers[current] = i;
+      if (current === 0) window.pymtwTrack && window.pymtwTrack("assessment_started", {});
+      if (current < QUESTIONS.length - 1) {
+        current++;
+        render();
+      } else {
+        showGate();
+      }
+    }
+
+    backBtn.addEventListener("click", function () {
+      if (current > 0) { current--; render(); }
+    });
+
+    function score() {
+      var totals = { b: 0, a: 0, s: 0 };
+      answers.forEach(function (ans, qi) {
+        if (ans === null) return;
+        var p = QUESTIONS[qi].opts[ans].p;
+        Object.keys(p).forEach(function (k) { totals[k] += p[k]; });
+      });
+      // Highest wins; tie-break priority s > a > b (more actionable/higher-value guidance)
+      var order = ["s", "a", "b"];
+      var best = order[0];
+      order.forEach(function (k) { if (totals[k] > totals[best]) best = k; });
+      return best;
+    }
+
+    function showGate() {
+      bar.style.width = "100%";
+      progressEl.setAttribute("aria-valuenow", "100");
+      quiz.style.display = "none";
+      gate.classList.add("active");
+      gate.style.display = "block";
+      window.pymtwTrack && window.pymtwTrack("assessment_completed", { profile: PROFILES[score()].key });
+      document.getElementById("assess-email").focus();
+    }
+
+    function showResult() {
+      var p = PROFILES[score()];
+      document.getElementById("result-badge").textContent = p.badge;
+      document.getElementById("result-title").textContent = p.title;
+      document.getElementById("result-desc").textContent = p.desc;
+      var stepsEl = document.getElementById("result-steps");
+      stepsEl.innerHTML = "";
+      p.steps.forEach(function (s) {
+        var d = document.createElement("div");
+        d.className = "step";
+        d.innerHTML = "<div><h4>" + s.h + "</h4><p>" + s.p + "</p></div>";
+        stepsEl.appendChild(d);
+      });
+      document.getElementById("result-free-title").textContent = p.free.title;
+      document.getElementById("result-free-desc").textContent = p.free.desc;
+      var fc = document.getElementById("result-free-cta");
+      fc.textContent = p.free.cta; fc.href = p.free.href;
+      document.getElementById("result-paid-title").textContent = p.paid.title;
+      document.getElementById("result-paid-desc").textContent = p.paid.desc;
+      var pc = document.getElementById("result-paid-cta");
+      pc.textContent = p.paid.cta; pc.href = p.paid.href;
+
+      gate.style.display = "none";
+      result.classList.add("active");
+      result.style.display = "block";
+      result.focus();
+      try { localStorage.setItem("pymtw_profile", p.key); } catch (e) {}
+      window.pymtwTrack && window.pymtwTrack("assessment_result_viewed", { profile: p.key });
+    }
+
+    // Email gate submit -> subscribe (best effort) -> reveal result
+    var form = document.getElementById("assess-form");
+    var status = document.getElementById("assess-form-status");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = document.getElementById("assess-email");
+      if (!email.value || !/.+@.+\..+/.test(email.value)) {
+        status.textContent = "Please enter a valid email address.";
+        status.className = "form-status error";
+        email.focus();
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"] span');
+      var orig = btn.textContent;
+      btn.textContent = "Unlocking...";
+      status.textContent = ""; status.className = "form-status";
+      var data = new FormData(form);
+      // Only email + name + utm are sent. No assessment answers or financial data.
+      fetch(form.action, { method: "POST", body: data, mode: "no-cors" })
+        .catch(function () {})
+        .finally(function () {
+          window.pymtwTrack && window.pymtwTrack("newsletter_signup", { source: "assessment" });
+          btn.textContent = orig;
+          showResult();
+        });
+    });
+
+    document.getElementById("assess-retake").addEventListener("click", function () {
+      answers = new Array(QUESTIONS.length).fill(null);
+      current = 0;
+      result.style.display = "none"; result.classList.remove("active");
+      gate.style.display = "none"; gate.classList.remove("active");
+      quiz.style.display = "block";
+      render();
+      window.scrollTo({ top: quiz.offsetTop - 120, behavior: "smooth" });
+    });
+
+    render();
+  })();
+  </script>
+</body>
+</html>

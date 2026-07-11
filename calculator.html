@@ -7,9 +7,11 @@
   <title>Bitcoin Net Worth Calculator | PYMTW</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="calculator.css">
+  <link rel="stylesheet" href="pymtw.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="pymtw-config.js"></script>
 </head>
 <body>
   <!-- Live Bitcoin Price Bar -->
@@ -52,30 +54,32 @@
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
+        <li><a href="start-here.html">Start Here</a></li>
         <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger" href="#">Learn <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <a class="nav-dropdown-trigger" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
           <ul class="nav-dropdown-menu">
-            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
-            <li><a href="index.html#getting-started">Get Started</a></li>
-            <li><a href="index.html#resources">Resources</a></li>
-            <li><a href="index.html#learn">Learn</a></li>
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="whitepaper.html">Whitepaper</a></li>
-            <li><a href="/book">Book</a></li>
-          </ul>
-        </li>
-        <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger nav-active" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="calculator.html">Net Worth Calculator</a></li>
-            <li><a href="performance.html">Performance</a></li>
+            <li><a href="assessment.html">Bitcoin Readiness Assessment</a></li>
             <li><a href="dca.html">DCA Calculator</a></li>
+            <li><a href="calculator.html">Net-Worth Calculator</a></li>
+            <li><a href="performance.html">Performance Comparison</a></li>
+            <li><a href="resources.html">Resource Library</a></li>
           </ul>
         </li>
-        <li><a href="services.html">Services</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown-trigger" href="#">Programs <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="programs.html">Programs Overview</a></li>
+            <li><a href="programs.html#workshops">Live Workshops</a></li>
+            <li><a href="programs.html#private">Private Education</a></li>
+            <li><a href="programs.html#self-custody">Self-Custody Education</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="corporate.html">Corporate Education</a></li>
+          </ul>
+        </li>
+        <li><a href="/book">Book</a></li>
         <li><a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a></li>
-        <!-- <li><a href="members.html">Members</a></li> -->
-        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -99,6 +103,9 @@
   <!-- Calculator Section -->
   <section class="calc-section">
     <div class="container">
+      <div class="callout-security" style="margin-bottom:22px;">
+        <strong>Your privacy:</strong> this calculator runs entirely in your browser. The values you enter are used only to compute results on your device &mdash; they are <strong>not transmitted to PYMTW, not stored, and never sent to analytics</strong>. Live Bitcoin prices are fetched from public APIs and don't include your figures. Please never enter account numbers, passwords, or account-identifying information &mdash; it's never required. See our <a href="legal.html#calculators">Calculator Privacy policy</a>.
+      </div>
       <div class="calc-layout">
 
         <!-- Left Column: Inputs -->
@@ -476,6 +483,19 @@
           * Projections are hypothetical and for entertainment purposes only. They assume all other asset values remain constant. This is not financial advice.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Educational next steps -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Where to go next</span><h2>Turn numbers into a plan</h2><p>This tool is for perspective, not allocation advice. Pick the path that fits where you are.</p></div>
+      <div class="card-grid cols-3">
+        <div class="p-card"><div class="p-card-icon">🌱</div><h3>Learn Bitcoin basics</h3><p>New to Bitcoin? Start with the fundamentals, calmly explained.</p><a href="start-here.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">Start Here</a></div>
+        <div class="p-card"><div class="p-card-icon">📈</div><h3>Build a recurring-buy process</h3><p>Design a disciplined, automatic accumulation routine.</p><a href="dca.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">Open DCA Calculator</a></div>
+        <div class="p-card"><div class="p-card-icon">🔒</div><h3>Improve Bitcoin security</h3><p>Protect what you own — custody, backups, and inheritance.</p><a href="security-promise.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">Security basics</a></div>
+      </div>
+      <div class="disclosure mt-md"><strong>Educational only.</strong> This calculator does not generate investment, allocation, or financial-planning recommendations. Bitcoin is volatile and can decline substantially in value.</div>
     </div>
   </section>
 
