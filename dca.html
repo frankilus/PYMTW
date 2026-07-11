@@ -6,12 +6,14 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>Bitcoin DCA Calculator | PYMTW</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pymtw.css">
   <link rel="stylesheet" href="dca.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="pymtw-config.js"></script>
 </head>
 <body>
   <!-- Live Bitcoin Price Bar -->
@@ -54,29 +56,32 @@
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
+        <li><a href="start-here.html">Start Here</a></li>
         <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger" href="#">Learn <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <a class="nav-dropdown-trigger" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
           <ul class="nav-dropdown-menu">
-            <li><a href="index.html#why-bitcoin">Why Bitcoin</a></li>
-            <li><a href="index.html#getting-started">Get Started</a></li>
-            <li><a href="index.html#resources">Resources</a></li>
-            <li><a href="index.html#learn">Learn</a></li>
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="whitepaper.html">Whitepaper</a></li>
-          </ul>
-        </li>
-        <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger nav-active" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="calculator.html">Net Worth Calculator</a></li>
-            <li><a href="performance.html">Performance</a></li>
+            <li><a href="assessment.html">Bitcoin Readiness Assessment</a></li>
             <li><a href="dca.html">DCA Calculator</a></li>
+            <li><a href="calculator.html">Net-Worth Calculator</a></li>
+            <li><a href="performance.html">Performance Comparison</a></li>
+            <li><a href="resources.html">Resource Library</a></li>
           </ul>
         </li>
-        <li><a href="services.html">Services</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown-trigger" href="#">Programs <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="programs.html">Programs Overview</a></li>
+            <li><a href="programs.html#workshops">Live Workshops</a></li>
+            <li><a href="programs.html#private">Private Education</a></li>
+            <li><a href="programs.html#self-custody">Self-Custody Education</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="corporate.html">Corporate Education</a></li>
+          </ul>
+        </li>
+        <li><a href="/book">Book</a></li>
         <li><a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener">Newsletter</a></li>
-        <li><a href="members.html">Members</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -201,6 +206,27 @@
       </div>
 
       <p class="dca-disclaimer">Uses monthly historical BTC/USD closing prices. Past performance does not guarantee future results.</p>
+
+      <!-- Educational interpretation & reminders -->
+      <div style="max-width:900px;margin:28px auto 0;display:grid;gap:16px;">
+        <div class="disclosure">
+          <strong>How to read this.</strong> Dollar-cost averaging spreads purchases over time so no single entry price defines your outcome. The <em>average buy price</em> above shows the discipline effect; the growth chart shows how bumpy the ride was along the way. Use this to build a realistic mental model &mdash; not to predict returns.
+        </div>
+        <div class="callout-security">
+          <strong>Volatility &amp; drawdown reminder.</strong> Bitcoin has repeatedly fallen 50%&ndash;80% from its highs and taken years to recover. Any period you select could have included long, deep drawdowns. <strong>Historical results are hypothetical and do not predict future performance.</strong> Only you can decide what, if anything, fits your situation.
+        </div>
+        <div class="callout-security">
+          <strong>Your privacy:</strong> this calculator runs entirely in your browser. The amounts and dates you enter are not transmitted to PYMTW, not stored, and never sent to analytics. Only public Bitcoin price data is fetched. <a href="legal.html#calculators">Calculator Privacy policy</a>.
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div style="max-width:900px;margin:24px auto 0;">
+        <div class="card-grid cols-2">
+          <div class="p-card"><span class="tag-pill">Free</span><h3 style="margin-top:12px;">Get a DCA planning worksheet</h3><p>Turn this into a documented, automatic routine you'll actually stick to.</p><a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">See the Starter Kit</a></div>
+          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live</span><h3 style="margin-top:12px;">Workshop: Bitcoin for Busy Professionals</h3><p>Build a calm, disciplined process with a 30-day action plan.</p><a href="workshop-professionals.html" class="btn btn-primary btn-sm btn-block" style="margin-top:12px;">See the workshop</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
