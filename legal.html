@@ -34,7 +34,7 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>Disclosures &amp; Policies</nav>
         <span class="eyebrow">Transparency</span>
         <h1>Disclosures, Privacy &amp; Policies</h1>
-        <p class="lead">Plain-language policies for a Bitcoin education business. Last updated: <span id="legal-date">2026</span>.</p>
+        <p class="lead">Plain-language policies for a Bitcoin education business. Last updated: <span id="legal-date">July 11, 2026</span>.</p>
       </div>
     </section>
 
@@ -84,7 +84,12 @@
         <h2 id="affiliate">Affiliate Disclosure</h2>
         <p>Some links to books, wallets, exchanges, custody services, and tools may be affiliate links. <strong>PYMTW may earn a commission when you purchase through certain links, at no additional cost to you. Compensation does not determine which products are recommended.</strong></p>
         <p>We recommend products based on their merits for responsible, long-term Bitcoin holders. Where a recommendation is compensated, we aim to disclose it near the link. If any relationship changes, we update this page. We do not recommend low-quality products because they offer compensation.</p>
-        <p class="muted" style="font-size:0.85rem;"><em>Note for the site owner:</em> confirm which current outbound links are affiliate relationships and label them; see <code>LEGAL_REVIEW_ITEMS.md</code>.</p>
+        <p>Specifically: <strong>book links on this site that point to Amazon (shortened "amzn.to" links) may be affiliate links</strong>, and PYMTW may earn a commission on purchases made through them at no additional cost to you. Links to wallets, exchanges, custody services, and other tools currently go directly to each provider and are not compensated. If any relationship changes, we will label compensated links near the link and update this disclosure.</p>
+        <!-- OWNER TODO (not rendered): the amzn.to short links on index.html were created with
+             Amazon's link shortener and may carry an Associates tag — confirm whether an Amazon
+             Associates account is active. If yes, keep the disclosure; if no, links can be stated
+             as uncompensated. When any new affiliate relationship is added, label each compensated
+             link near the link and refresh the "Last updated" date. Tracking: LEGAL_REVIEW_ITEMS.md #11. -->
 
         <h2 id="refunds">Refunds, Cancellations &amp; Rescheduling</h2>
         <h3>Live workshops</h3>
@@ -97,8 +102,28 @@
         <p>Membership is billed monthly or annually and can be cancelled anytime; cancellation stops future billing and takes effect at the end of the current billing period. We do not prorate partial periods.</p>
 
         <h2 id="terms">Terms of Service</h2>
-        <p>By using this website and PYMTW's programs, you agree that: (1) all content and programs are educational and provided "as is" without warranties; (2) you are responsible for your own financial, tax, and legal decisions and for the security of your own keys, accounts, and funds; (3) PYMTW is not liable for losses arising from your use of information provided; and (4) you will not share seed phrases, keys, or credentials with PYMTW.</p>
-        <p>These terms, and the policies above, may be updated as the business grows and as formal policies are finalized with qualified counsel. Continued use constitutes acceptance of the current version.</p>
+        <h3>Educational nature</h3>
+        <p>All PYMTW content, tools, and programs are educational. You are solely responsible for your own financial, tax, and legal decisions and for the security of your own keys, accounts, and funds. You agree never to share seed phrases, private keys, passwords, or authentication codes with PYMTW — we will never ask for them.</p>
+        <h3>Eligibility</h3>
+        <p>This website and PYMTW's programs are intended for adults. You must be at least 18 years old (or the age of majority where you live) to purchase a program or subscribe.</p>
+        <h3>Intellectual property &amp; license</h3>
+        <p>All site content, templates, worksheets, recordings, and program materials are owned by PYMTW and protected by copyright. When you purchase a digital product or program, you receive a <strong>personal, non-exclusive, non-transferable license</strong> to use the materials for your own education and household. You may not resell, redistribute, publish, or share purchased materials, or use them to provide services to others, without written permission.</p>
+        <h3>Purchases</h3>
+        <p>When online checkout is available, you will be asked to affirmatively accept these Terms and the applicable <a href="#refunds">refund policy</a> before completing a purchase; that acceptance forms the agreement for the purchase. Prices are as displayed at the time of purchase. Live sessions may be recorded; by registering you consent to the session being recorded and shared with registrants.</p>
+        <h3>Disclaimer of warranties</h3>
+        <p>The website, tools, content, and programs are provided <strong>"as is" and "as available," without warranties of any kind</strong>, express or implied, including warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. PYMTW does not warrant that the site or tools will be uninterrupted or error-free.</p>
+        <h3>Limitation of liability</h3>
+        <p><strong>To the maximum extent permitted by law</strong>, PYMTW and its founder shall not be liable for any indirect, incidental, special, consequential, or exemplary damages — including lost profits, lost or inaccessible funds or digital assets, or investment losses — arising from your use of this website, its tools, or any program or content, even if advised of the possibility of such damages. To the maximum extent permitted by law, PYMTW's total aggregate liability for any claim shall not exceed <strong>the amount you paid to PYMTW for the specific product or program giving rise to the claim</strong> (or $100 if you paid nothing). Some jurisdictions do not allow certain exclusions or limitations; in those jurisdictions, liability is limited to the fullest extent permitted.</p>
+        <h3>Changes to these terms</h3>
+        <p>We may update these terms and policies as the business grows and as formal policies are finalized with qualified counsel. When we make material changes, we will update the "Last updated" date at the top of this page and provide notice on this page and/or by email to subscribers before or when the changes take effect. Your continued use after the effective date constitutes acceptance of the updated version.</p>
+        <!-- OWNER TODO (not rendered) — Governing law & disputes clause. Uncomment and complete
+             once the legal entity and preferred state are confirmed with counsel:
+        <h3>Governing law &amp; disputes</h3>
+        <p>These terms are entered into with [ENTITY NAME, e.g., "PYMTW LLC"], and are governed by the
+        laws of the State of [STATE], without regard to conflict-of-law principles. Any dispute shall
+        be resolved in the state or federal courts located in [COUNTY, STATE] (or by binding
+        arbitration, if counsel recommends), and each party waives participation in any class action.</p>
+        -->
 
         <div class="disclosure mt-lg"><strong>Questions?</strong> Reach us via the <a href="about.html#contact">contact page</a>. For scam reports involving someone impersonating PYMTW, see our <a href="security-promise.html">Security Promise</a>.</div>
       </div>
@@ -107,6 +132,6 @@
 
   <div id="site-footer"></div>
   <script src="pymtw.js"></script>
-  <script>document.getElementById("legal-date").textContent = new Date().getFullYear();</script>
+  <!-- Note: the "Last updated" date is intentionally fixed. Update it manually whenever policy text changes. -->
 </body>
 </html>
