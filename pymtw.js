@@ -33,7 +33,7 @@
       ]
     },
     { label: "Book", href: "/book" },
-    { label: "Newsletter", href: "https://pymtw.beehiiv.com", external: true },
+    { label: "Newsletter", href: "newsletter.html" },
     { label: "About", href: "about.html" }
   ];
 
@@ -107,7 +107,7 @@
       '<div class="footer-brand">' +
       '<a href="index.html" class="nav-logo"><span class="logo-icon">₿</span><span class="logo-text">PYMTW</span></a>' +
       "<p>Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.</p>" +
-      '<a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="footer-newsletter-link">' +
+      '<a href="newsletter.html" class="footer-newsletter-link">' +
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>' +
       " Get the free newsletter</a></div>" +
       '<div class="footer-links"><h4>Learn</h4><ul>' +

@@ -221,6 +221,35 @@ body.pymtw-page .navbar.scrolled { background: transparent; border-bottom: none;
 .spec-table th { font-family: var(--font-display); color: var(--text-primary); background: var(--bg-secondary); }
 .spec-table td { color: var(--text-secondary); }
 
+/* --- Newsletter signup --- */
+.signup-card {
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+  padding: 26px; box-shadow: 0 24px 60px -28px var(--glow-orange);
+}
+.signup-row { display: flex; gap: 10px; }
+.signup-row input {
+  flex: 1; min-width: 0; padding: 15px 16px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle); background: var(--bg-secondary);
+  color: var(--text-primary); font-family: inherit; font-size: 1rem;
+}
+.signup-row input:focus { outline: 2px solid var(--accent-orange); outline-offset: 1px; border-color: var(--accent-orange); }
+.signup-row .btn { flex-shrink: 0; white-space: nowrap; }
+@media (max-width: 540px) { .signup-row { flex-direction: column; } .signup-row .btn { width: 100%; justify-content: center; } }
+.signup-fineprint { font-size: 0.8rem; color: var(--text-muted); margin-top: 12px; }
+.signup-fineprint a { color: var(--accent-orange); }
+
+/* Newsletter perks list */
+.perk-list { display: grid; gap: 20px; }
+.perk { display: flex; gap: 16px; align-items: flex-start; }
+.perk-ico {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  background: rgba(247, 147, 26, 0.12); color: var(--accent-orange);
+}
+.perk h3 { font-family: var(--font-display); font-size: 1.08rem; margin-bottom: 3px; }
+.perk p { color: var(--text-secondary); font-size: 0.94rem; }
+
 /* --- Testimonials (reusable) --- */
 .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
