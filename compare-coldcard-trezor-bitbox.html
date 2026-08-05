@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <title>Coldcard vs. Trezor vs. BitBox (2026): Which Hardware Wallet? | PYMTW</title>
-  <meta name="description" content="An honest, criteria-first comparison of three popular Bitcoin hardware wallets &mdash; Coldcard, Trezor, and BitBox &mdash; for long-term self-custody. No fabricated specs.">
+  <title>Coldcard vs. Trezor vs. BitBox (2026): What the Coldcard Breach Changes | PYMTW</title>
+  <meta name="description" content="A July 2026 firmware flaw made Coldcard-generated seeds guessable. Here's what happened, who is affected, what to do about it, and an honest comparison of the alternatives.">
   <link rel="canonical" href="https://www.pymtw.com/compare-coldcard-trezor-bitbox.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Coldcard vs. Trezor vs. BitBox: Which Hardware Wallet?">
-  <meta property="og:description" content="An honest, criteria-first comparison of three popular Bitcoin hardware wallets &mdash; Coldcard, Trezor, and BitBox &mdash; for long-term self-custody. No fabricated specs.">
+  <meta property="og:title" content="Coldcard vs. Trezor vs. BitBox: What the 2026 Coldcard Breach Changes">
+  <meta property="og:description" content="A July 2026 firmware flaw made Coldcard-generated seeds guessable. What happened, who is affected, what to do, and how the alternatives compare.">
   <meta property="og:url" content="https://www.pymtw.com/compare-coldcard-trezor-bitbox.html">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"Coldcard vs. Trezor vs. BitBox: Which Hardware Wallet?","author":{"@type":"Person","name":"Frank W. Jerome"},"publisher":{"@type":"Organization","name":"PYMTW"},"description":"An honest, criteria-first comparison of three popular Bitcoin hardware wallets &mdash; Coldcard, Trezor, and BitBox &mdash; for long-term self-custody. No fabricated specs.","dateModified":"2026-07-10"}
+  {"@context":"https://schema.org","@type":"Article","headline":"Coldcard vs. Trezor vs. BitBox: What the 2026 Coldcard Breach Changes","author":{"@type":"Person","name":"Frank W. Jerome"},"publisher":{"@type":"Organization","name":"PYMTW"},"description":"A July 2026 firmware flaw made Coldcard-generated seeds guessable. What happened, who is affected, what to do, and how the alternatives compare.","dateModified":"2026-08-04"}
   </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pymtw.css">
@@ -29,40 +29,58 @@
     <section class="page-hero" style="padding-bottom:8px;">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span>Coldcard vs Trezor vs BitBox</nav>
-        <span class="eyebrow">Guide · Last updated July 2026</span>
+        <span class="eyebrow">Guide &middot; Updated August 2026</span>
         <h1>Coldcard vs. Trezor vs. BitBox</h1>
-        <p class="lead">Three respected hardware wallets, three different philosophies. This guide compares them on the criteria that matter for long-term self-custody so you can pick the right fit &mdash; not a fake "winner."</p>
+        <p class="lead">This guide used to compare three devices on equal footing. In late July 2026 that changed: a long-standing Coldcard firmware flaw made seeds generated on affected devices guessable, and funds were stolen. Here's what happened, what to do if it affects you, and how the remaining options compare.</p>
       </div>
     </section>
 
     <section class="pymtw-section" style="padding-top:8px;">
       <div class="container" style="max-width:900px;">
+
+        <div class="callout-security" style="margin-bottom:24px;border-color:#ff5252;">
+          <strong>If you own a Coldcard, read this first.</strong>
+          Coldcard firmware 4.0.1 (released March 2021) contained a build error that sharply reduced the randomness used to generate wallet seeds. Seeds created on affected devices between <strong>March 2021 and the patched firmware released July 31, 2026</strong> can be brute-forced. Affected models reportedly include the Mk3, Mk4, Q and Mk5. More than 1,300 BTC was drained from thousands of addresses beginning 30 July 2026.
+          <br><br>
+          Coinkite has shipped fixed firmware and published a security advisory. If your seed was generated on an affected device, the guidance is to <strong>move your funds to a newly generated seed on an unaffected device</strong> &mdash; unless you supplemented the device's entropy from an independent source, or your wallet is protected by a strong BIP&#8209;39 passphrase.
+          <br><br>
+          <strong>Check <a href="https://coldcard.com/" target="_blank" rel="noopener">coldcard.com</a> for the official advisory and current firmware before acting.</strong> Treat this page as a starting point, not the authoritative source. PYMTW will never ask for your seed phrase.
+        </div>
+
         <div class="disclosure" style="margin-bottom:24px;"><strong>How we compare and affiliate note.</strong> This is educational, not investment advice or a recommendation to use any specific product. We don't crown a single "best" &mdash; we give you criteria and honest trade-offs. Some links may become affiliate links; <strong>PYMTW may earn a commission at no additional cost to you, and compensation does not determine what we list</strong> (<a href="legal.html#affiliate">disclosure</a>). Details change often &mdash; <strong>confirm current pricing and features on the provider's site</strong>.</div>
 
         <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:8px;">Who this is for</h2>
-        <p class="muted" style="margin-bottom:24px;">Holders ready for self-custody who've narrowed it to these three popular, reputable devices and want to understand the real trade-offs.</p>
+        <p class="muted" style="margin-bottom:24px;">Holders choosing a hardware wallet in the wake of the Coldcard disclosure &mdash; and existing Coldcard owners deciding what to do next.</p>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">The criteria that matter</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">What the breach actually teaches</h2>
+        <p class="muted" style="margin-bottom:14px;">The failure wasn't a broken chip or a clever physical attack. It was a software build error that quietly weakened seed generation and went unnoticed for more than five years. That points at three specific things worth weighing in any device you consider.</p>
         <div class="card-grid cols-2" style="margin-bottom:28px;">
-          <div class="p-card"><h3>Bitcoin-only vs. multi-asset</h3><p>A Bitcoin-only device reduces attack surface and complexity; multi-asset adds flexibility you may not need.</p></div>
-          <div class="p-card"><h3>Open-source firmware</h3><p>All three offer open-source elements &mdash; a plus for transparency and longevity.</p></div>
-          <div class="p-card"><h3>Air-gap capability</h3><p>Signing without a live USB connection (via microSD/QR) appeals to security-focused users.</p></div>
-          <div class="p-card"><h3>Usability and setup</h3><p>A clear screen and simple flow means fewer costly mistakes during setup and recovery.</p></div>
-          <div class="p-card"><h3>Backup and recovery model</h3><p>Standard seed phrases keep you portable; understand each device's passphrase and backup options.</p></div>
-          <div class="p-card"><h3>Price and availability</h3><p>Confirm current models and pricing directly with the manufacturer in your region.</p></div>
+          <div class="p-card"><h3>Multiple independent entropy sources</h3><p>If a device mixes randomness from several unrelated sources, one degraded source can't by itself produce a guessable seed. Single-source designs have no such margin.</p></div>
+          <div class="p-card"><h3>Reproducible builds</h3><p>Open source only helps if the shipped binary provably matches the published source. Reproducible builds &mdash; independently verified &mdash; are what catch a build error like this one.</p></div>
+          <div class="p-card"><h3>Independent security audits</h3><p>External review by a firm with no stake in the outcome, published openly, with the vendor's remediation response attached.</p></div>
+          <div class="p-card"><h3>A passphrase is real protection</h3><p>Coldcard wallets guarded by a strong BIP&#8209;39 passphrase were reportedly not drained. A passphrase is a genuine second line of defence, not a nicety.</p></div>
         </div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">The three compared</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">The devices compared</h2>
         <p class="muted" style="margin-bottom:14px;font-size:0.9rem;">Qualitative positioning &mdash; not exact specs or prices. Always confirm current details with the provider.</p>
         <div class="spec-table-wrap" style="margin-bottom:20px;">
           <table class="spec-table">
-            <thead><tr><th>Device</th><th>Focus</th><th>Open-source</th><th>Air-gap</th><th>Best for</th></tr></thead>
+            <thead><tr><th>Device</th><th>Focus</th><th>Air-gap</th><th>Entropy sources</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td>Coldcard</td><td>Bitcoin-only, advanced</td><td>Yes (firmware)</td><td>Yes (microSD)</td><td>Security-focused, technical holders</td></tr>
-              <tr><td>Trezor</td><td>Multi-asset and Bitcoin</td><td>Yes</td><td>No (USB)</td><td>Beginners to intermediate; open-source fans</td></tr>
-              <tr><td>BitBox02</td><td>Simple; Bitcoin-only edition</td><td>Yes</td><td>Backup via microSD</td><td>Beginners wanting simplicity</td></tr>
+              <tr><td>Foundation Passport</td><td>Bitcoin-only</td><td>Yes (QR, no USB data)</td><td>Three, incl. open-source avalanche noise circuit</td><td>Unaffected</td></tr>
+              <tr><td>BitBox02</td><td>Bitcoin-only edition available</td><td>No (USB); microSD backup</td><td>Five, mixed</td><td>Unaffected</td></tr>
+              <tr><td>Trezor</td><td>Multi-asset and Bitcoin</td><td>No (USB)</td><td>Device RNG + host entropy</td><td>Unaffected</td></tr>
+              <tr><td>Coldcard</td><td>Bitcoin-only, advanced</td><td>Yes (microSD)</td><td>Reduced by 2021&ndash;2026 firmware bug</td><td><strong>Seeds from Mar 2021 &ndash; Jul 2026 affected</strong></td></tr>
             </tbody>
           </table>
+        </div>
+
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">Where each one fits</h2>
+        <div class="card-grid cols-2" style="margin-bottom:28px;">
+          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Air-gapped</span><h3 style="margin-top:12px;">Foundation Passport</h3><p>Bitcoin-only and fully air-gapped &mdash; it signs over QR codes and has no USB data path at all. Seeds are generated from three independent sources, one of which is an open-source avalanche noise circuit built from ordinary components you can inspect on the board rather than a black-box chip. Open source under GPLv3 with reproducible builds and an independent Keylabs audit. Assembled in the USA with a published supply chain.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>Trade-off:</strong> higher price, and the QR workflow takes a little getting used to.</p></div>
+          <div class="p-card"><span class="tag-pill">Swiss</span><h3 style="margin-top:12px;">BitBox02</h3><p>Draws on five independent randomness sources and splits secrets across a dual-chip design, so an attacker needs several pieces rather than one. Open source with reproducible builds independently verified by WalletScrutiny, audited by Census Labs, with an active bug bounty. The Bitcoin-only edition keeps the attack surface small.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>Trade-off:</strong> connects over USB rather than air-gapped, and one of its entropy sources is the host computer (mixed with the others, not relied on alone).</p></div>
+          <div class="p-card"><span class="tag-pill">Beginner-friendly</span><h3 style="margin-top:12px;">Trezor</h3><p>The original hardware wallet, with a long track record, open-source firmware and the gentlest setup of the three. A reasonable entry point if the alternative is leaving coins on an exchange.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>Trade-off:</strong> models differ meaningfully in their hardware protections &mdash; check what the specific model you're buying does and doesn't include before you rely on it for a large balance.</p></div>
+          <div class="p-card"><span class="tag-pill">Affected</span><h3 style="margin-top:12px;">Coldcard</h3><p>Long regarded as a leading Bitcoin-only air-gapped device, and Coinkite responded to the disclosure within days with patched firmware. But any seed generated on an affected device between March 2021 and July 2026 should be treated as compromised and migrated.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>If you own one:</strong> follow the official advisory at <a href="https://coldcard.com/" target="_blank" rel="noopener">coldcard.com</a> before anything else.</p></div>
         </div>
 
         <div class="callout-security" style="margin-bottom:28px;"><strong>Security first.</strong> Buy hardware only from the manufacturer, generate your own seed on the device, write it down offline, and never type it into a computer or share it &mdash; including with PYMTW. Learn the workflow in our <a href="workshop-self-custody.html">Self-Custody workshop</a>.</div>
@@ -70,20 +88,22 @@
         <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">Advantages and limitations of self-custody</h2>
         <div class="card-grid cols-2" style="margin-bottom:28px;">
           <div class="p-card"><h3>Advantages</h3><ul class="check-list" style="margin-top:12px;"><li>You hold your own keys &mdash; no counterparty</li><li>Offline storage resists remote attacks</li><li>Standard seeds keep you portable across devices</li></ul></div>
-          <div class="p-card"><h3>Limitations</h3><ul class="x-list" style="margin-top:12px;"><li>You are responsible for backups and recovery</li><li>Mistakes can be permanent</li><li>A little learning is required up front</li></ul></div>
+          <div class="p-card"><h3>Limitations</h3><ul class="x-list" style="margin-top:12px;"><li>You are responsible for backups and recovery</li><li>Mistakes can be permanent</li><li>Vendors can ship bugs &mdash; verification and passphrases matter</li></ul></div>
         </div>
 
         <div class="card-grid cols-2" style="margin-bottom:24px;">
-          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live workshop</span><h3 style="margin-top:12px;">Self-Custody Without the Fear</h3><p>Set up any of these devices calmly and correctly.</p><a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" style="margin-top:10px;">See the workshop</a></div>
+          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live workshop</span><h3 style="margin-top:12px;">Self-Custody Without the Fear</h3><p>Set up any of these devices calmly and correctly &mdash; including passphrases and migrating an existing seed.</p><a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" style="margin-top:10px;">See the workshop</a></div>
           <div class="p-card"><span class="tag-pill">Free checklist</span><h3 style="margin-top:12px;">Hardware-wallet prep checklist</h3><p>Everything to have ready before setup.</p><a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:10px;">Get the Starter Kit</a></div>
         </div>
 
         <div class="faq-list" style="margin-bottom:8px;">
-          <details class="faq-item"><summary>Which one is the best?</summary><div class="faq-body">The best is the reputable device you'll set up correctly and maintain. Bitcoin-only + air-gap (Coldcard, or Foundation Passport) suits maximalists; Trezor and BitBox are friendlier for newcomers.</div></details>
+          <details class="faq-item"><summary>I have a Coldcard. Am I definitely affected?</summary><div class="faq-body">Not necessarily &mdash; it depends on when and how your seed was generated. Seeds created on affected firmware between March 2021 and the July 2026 patch are at risk. Wallets protected by a strong BIP&#8209;39 passphrase, or where entropy was supplemented from an independent source, were reportedly not drained. Check the official advisory at <a href="https://coldcard.com/" target="_blank" rel="noopener">coldcard.com</a> to confirm your situation rather than guessing.</div></details>
+          <details class="faq-item"><summary>Does updating the firmware fix my existing wallet?</summary><div class="faq-body">No. Patched firmware fixes seed generation going forward. It cannot change a seed that was already generated weakly. If your seed came from an affected device, you need to generate a new seed and move your funds to it.</div></details>
+          <details class="faq-item"><summary>Which one should I buy now?</summary><div class="faq-body">The best device is the reputable one you'll set up correctly and maintain. If you want Bitcoin-only and air-gapped, Foundation Passport is the closest fit. If you'd rather have simpler USB setup with strong verification, BitBox02. Trezor remains a sensible entry point over leaving coins on an exchange. Whichever you pick, add a passphrase.</div></details>
           <details class="faq-item"><summary>Where should I buy?</summary><div class="faq-body">Only from the manufacturer directly &mdash; never a third-party marketplace &mdash; to avoid tampered devices.</div></details>
           <details class="faq-item"><summary>Is this financial advice?</summary><div class="faq-body">No. It's educational. See our <a href="legal.html#disclaimer">Educational Disclaimer</a>.</div></details>
         </div>
-        <p class="muted" style="font-size:0.82rem;">Last updated: July 2026. Confirm current details with each provider before relying on this guide.</p>
+        <p class="muted" style="font-size:0.82rem;">Last updated: 4 August 2026. Reporting on the Coldcard incident was still developing at the time of writing and loss figures were revised upward more than once. Confirm current details with each provider, and with Coinkite's official advisory, before relying on this guide.</p>
       </div>
     </section>
   </main>
