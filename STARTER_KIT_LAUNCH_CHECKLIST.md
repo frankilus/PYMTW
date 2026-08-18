@@ -4,7 +4,7 @@ Goal: turn `starter-kit.html` from an interest-capture page into the first live 
 
 ## Product Files
 
-- [ ] Create the nine promised assets:
+- [x] Create the nine promised assets:
   - Personal Bitcoin Policy
   - DCA Planning Worksheet
   - Exchange Comparison Checklist
@@ -14,10 +14,16 @@ Goal: turn `starter-kit.html` from an interest-capture page into the first live 
   - Annual Security Review
   - Bitcoin Recordkeeping Template
   - 90-Day Implementation Calendar
-- [ ] Export polished PDF versions.
-- [ ] Export editable Word/Google Docs-ready versions where useful.
-- [ ] Export spreadsheet files for recordkeeping and calendar assets.
-- [ ] Add a `Read This First` safety note that says never to type seed phrases, private keys, passwords, authentication codes, API keys, or account credentials into any PYMTW file.
+- [x] Export polished PDF versions.
+- [x] Export editable Word/Google Docs-ready versions where useful.
+- [x] Export spreadsheet files for recordkeeping and calendar assets.
+- [x] Add a `Read This First` safety note that says never to type seed phrases, private keys, passwords, authentication codes, API keys, or account credentials into any PYMTW file.
+
+Generated bundle:
+
+`/Users/agentjerome/Documents/PYMTW/starter_kit_work/PYMTW_Professional_Starter_Kit_v1.zip`
+
+Note: do not commit the paid product ZIP to this public website repository. Upload it to the selected checkout/delivery platform instead.
 
 ## Checkout
 
@@ -50,4 +56,3 @@ Goal: turn `starter-kit.html` from an interest-capture page into the first live 
 - [ ] Confirm redirect to `thank-you.html?source=starter-kit`.
 - [ ] Confirm `checkout_completed` fires after redirect.
 - [ ] Confirm buyer receives all files and no email asks for sensitive information.
-
