@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Thank You | PYMTW</title>
+  <meta name="description" content="Thank you for your PYMTW purchase or registration. Access your next steps and preparation materials.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.pymtw.com/thank-you.html">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pymtw.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="pymtw-config.js"></script>
+</head>
+<body class="pymtw-page" data-page="thank-you">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main" class="pymtw-main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Next steps</span>
+        <h1>You're in.</h1>
+        <p class="lead">Check your inbox for your receipt and delivery details. If you registered for a live session, your confirmation email will include preparation notes and scheduling instructions.</p>
+        <div class="page-hero-actions">
+          <a href="programs.html" class="btn btn-secondary btn-sm"><span>Explore Programs</span></a>
+          <a href="newsletter.html" class="btn btn-ghost btn-sm"><span>Read the Newsletter</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pymtw-section alt">
+      <div class="container">
+        <div class="card-grid cols-3">
+          <div class="p-card">
+            <h3>Starter Kit buyers</h3>
+            <p>Your download email should include the PDF, editable documents, spreadsheet templates, and the read-this-first safety note.</p>
+          </div>
+          <div class="p-card">
+            <h3>Workshop registrants</h3>
+            <p>Watch for the prep email, calendar details, and worksheet link. PYMTW will never ask for seed phrases, private keys, passwords, or account credentials.</p>
+          </div>
+          <div class="p-card">
+            <h3>Private education clients</h3>
+            <p>Complete the intake form before scheduling so your session can focus on education, process, and the questions that matter most.</p>
+          </div>
+        </div>
+        <div class="callout-security mt-md">
+          <strong>Security reminder:</strong> PYMTW provides education and implementation support. We do not take custody, execute transactions, control accounts, or ask for seed phrases, private keys, passwords, authentication codes, or remote access.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="pymtw.js"></script>
+  <script>
+    window.pymtwTrack && window.pymtwTrack("checkout_completed", {
+      source: new URLSearchParams(window.location.search).get("source") || "checkout_redirect"
+    });
+  </script>
+</body>
+</html>

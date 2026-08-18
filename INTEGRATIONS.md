@@ -50,7 +50,7 @@ checkout: {
 
 **To wire a button:** add `data-checkout="<key>"` to the relevant CTA (e.g. the Starter Kit "Get the Kit" button, workshop "Request a Seat", membership "Join"). Keys already reserved in config: `starter-kit`, `workshop-professionals`, `workshop-self-custody`, `workshop-family`, `clarity`, `intensive`, `self-custody-readiness`, `membership-monthly`, `membership-annual`.
 
-**Recommended flow:** Select → pay (checkout link) → intake form → schedule (§3) → preparation email → attend → follow-up. Use Stripe/Lemon Squeezy's post-purchase redirect to a simple `thank-you.html` that fires `checkout_completed` and links to scheduling.
+**Recommended flow:** Select → pay (checkout link) → intake form → schedule (§3) → preparation email → attend → follow-up. Use Stripe/Lemon Squeezy's post-purchase redirect to `thank-you.html?source=<checkout-key>`, which fires `checkout_completed` without sending any financial values.
 
 > Do **not** hard-code prices in checkout that contradict the pages. Keep the page price and the payment-link price in sync.
 
@@ -90,7 +90,7 @@ Additional lists to tag: Book Reader (`book`, `digital_credit`), Workshop Attend
 ## Go-live checklist
 - [ ] Set `ga4Id`; confirm events appear in GA4 DebugView (and **no** financial values).
 - [ ] Create checkout links; paste into `checkout`; add `data-checkout` to the CTAs.
-- [ ] Add a `thank-you.html` firing `checkout_completed`.
+- [x] Add a `thank-you.html` firing `checkout_completed`.
 - [ ] Set `calendlyUrl`; connect post-purchase scheduling.
 - [ ] Build Beehiiv automations + the 3 sequences; map custom fields.
 - [ ] Re-test every form end-to-end.

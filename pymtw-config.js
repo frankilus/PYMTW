@@ -19,6 +19,7 @@
     // Direct-checkout URLs (Stripe Payment Link, Lemon Squeezy, Gumroad, etc.).
     // Any <a data-checkout="KEY"> is upgraded to this URL when set; until then
     // the link keeps its existing href (e.g. the waitlist form).
+    // Recommended post-purchase redirect: https://www.pymtw.com/thank-you.html?source=KEY
     checkout: {
       "starter-kit": "",            // $29 Bitcoin Professional Starter Kit
       "workshop-professionals": "", // $79
@@ -100,7 +101,8 @@
         window.pymtwTrack(a.getAttribute("data-track"), {
           label: a.getAttribute("data-track-label") || (a.textContent || "").trim().slice(0, 60)
         });
-      } else if (a.hasAttribute("data-checkout") && a.getAttribute("data-checkout-live")) {
+      }
+      if (a.hasAttribute("data-checkout") && a.getAttribute("data-checkout-live")) {
         window.pymtwTrack("checkout_started", { product: a.getAttribute("data-checkout") });
       }
     });
