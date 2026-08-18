@@ -21,7 +21,7 @@ Goal: turn `starter-kit.html` from an interest-capture page into the first live 
 
 Generated bundle:
 
-`/Users/agentjerome/Documents/PYMTW/starter_kit_work/PYMTW_Professional_Starter_Kit_v1.zip`
+`/Users/agentjerome/Documents/PYMTW/starter_kit_work/PYMTW_Professional_Starter_Kit_v1.0.zip`
 
 Note: do not commit the paid product ZIP to this public website repository. Upload it to the selected checkout/delivery platform instead.
 
