@@ -1,6 +1,9 @@
 /* "What help do you need?" router: weighted keyword matching, runs locally (no AI service). */
 (function () {
 var ALL = PT_CATS.flatMap(function (c) { return c.tools; });
+var CHECKUP = { slug: 'checkup', icon: '🩺', name: '2-minute money checkup', desc: 'Quick questions that surface the blind spots you didn’t know you had.', time: '2 min', live: true,
+  kw: ['where do i start', 'where to start', 'where should i start', 'am i on track', 'on track', 'checkup', 'check up', 'check-up', 'blind spot', 'blind spots', 'what am i missing', 'missing anything', 'financial health', 'money health', 'get my finances', 'finances in order', 'get organized', 'overwhelmed', 'beginner', 'not sure', 'everything', 'big picture', 'overall'] };
+ALL.push(CHECKUP);
 var I = { // line icons, 24x24
  'subscription-leak-finder':'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
  'credit-card-optimizer':'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/>',
