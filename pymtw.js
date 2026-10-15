@@ -14,6 +14,7 @@
     {
       label: "Tools",
       children: [
+        { label: "All Free Tools", href: "/tools/" },
         { label: "Bitcoin Readiness Assessment", href: "assessment.html" },
         { label: "DCA Calculator", href: "dca.html" },
         { label: "Net-Worth Calculator", href: "calculator.html" },
