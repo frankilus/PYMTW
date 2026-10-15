@@ -7,6 +7,9 @@ ALL.push(CHECKUP);
 var GUIDE_JOB = { slug: 'guides/lost-my-job', icon: '📘', name: 'Guide: Just lost your job?', desc: 'What to do this week, this month and this year: unemployment, COBRA vs. Marketplace, your 401(k).', time: '5 min read', live: true, boost: 2,
   kw: ['lost my job', 'just lost', 'laid off', 'layoff', 'fired', 'let go', 'job loss', 'lost job', 'terminated', 'unemployed', 'what do i do now', 'cobra', 'unemployment'] };
 ALL.push(GUIDE_JOB);
+var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
+  kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
+ALL.push(GUIDE_HOME);
 var I = { // line icons, 24x24
  'subscription-leak-finder':'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
  'credit-card-optimizer':'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/>',
