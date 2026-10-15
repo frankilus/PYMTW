@@ -17,11 +17,11 @@ form._v_debts = function () { var d = debts(); if (!d.length) return 'Add at lea
 PT.wizard(form, function (v) {
   var ds = debts(), av = PT.calc.debt(ds, v.extra, 'avalanche'), sb = PT.calc.debt(ds, v.extra, 'snowball'), mins = PT.calc.debt(ds, 0, 'avalanche');
   var out = PT.$('#out'), now = new Date();
-  if (av.stuck) { PT.renderResult(out, { label: 'Debt-free date', big: 'Not yet', sentence: 'At these payments the interest grows faster than you pay it down, so the balance never reaches zero.', next: 'Raise the extra payment until the chart slopes down, or call your highest-rate lender and ask for a lower rate or a hardship plan.' }); return; }
+  if (av.stuck) { PT.renderResult(out, { share: ['debt-payoff-planner', {stuck:true}], label: 'Debt-free date', big: 'Not yet', sentence: 'At these payments the interest grows faster than you pay it down, so the balance never reaches zero.', next: 'Raise the extra payment until the chart slopes down, or call your highest-rate lender and ask for a lower rate or a hardship plan.' }); return; }
   var best = av.interest <= sb.interest ? 'avalanche' : 'snowball', b = best === 'avalanche' ? av : sb;
   var date = PT.addMonths(now, b.months), saved = Math.abs(sb.interest - av.interest), vsMin = mins.stuck ? null : mins.interest - b.interest;
   var first = b.debts.slice().sort(function (x, y) { return x.paidOff - y.paidOff; });
-  PT.renderResult(out, {
+  PT.renderResult(out, { share: ['debt-payoff-planner', {date: PT.monthName(date, true)}],
     label: 'You could be debt-free by', big: PT.monthName(date, true),
     sentence: 'Paying ' + PT.money(b.budget) + ' a month with the <b>' + best + '</b> method clears ' + PT.money(ds.reduce(function (a, d) { return a + d.balance; }, 0)) + ' in ' + PT.duration(b.months) + (saved >= 1 ? ' and saves ' + PT.money(saved) + ' in interest compared with the ' + (best === 'avalanche' ? 'snowball' : 'avalanche') + ' method' : ' (both methods pay your debts in the same order here)') + (vsMin != null ? ', or ' + PT.money(vsMin) + ' compared with paying only the minimums' : '') + '.',
     stats: [['Avalanche interest', PT.money(av.interest)], ['Snowball interest', PT.money(sb.interest)], ['Minimums only', mins.stuck ? 'Never' : PT.duration(mins.months)]],

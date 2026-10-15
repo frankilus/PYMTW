@@ -6,7 +6,7 @@ PT.wizard(PT.$('#wiz'), function (v) {
   for (var y = 1; y <= v.years; y++) { roth = (roth + v.contrib) * (1 + v.ret); trad = (trad + v.contrib / (1 - now)) * (1 + v.ret); pts.push([y, roth, trad * (1 - v.taxLater)]); }
   var tradNet = trad * (1 - v.taxLater), win = roth >= tradNet ? 'Roth' : 'Traditional', diff = Math.abs(roth - tradNet);
   var same = diff < 1;
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['roth-vs-traditional', {winner: win, tie: same}],
     label: 'Better for you', big: same ? 'It’s a tie' : win,
     sentence: same ? 'Your tax rate now and in retirement are the same, so both accounts leave you the same amount. Pick on flexibility.' : 'Because your tax rate now (' + PT.pct(now) + ') is ' + (win === 'Roth' ? 'lower' : 'higher') + ' than the ' + PT.pct(v.taxLater) + ' you expect in retirement, a <b>' + win + '</b> account leaves you about <b>' + PT.money(diff) + '</b> more to spend after tax over ' + v.years + ' years.',
     stats: [['Roth, after tax', PT.money(roth)], ['Traditional, after tax', PT.money(tradNet)], ['Breakeven retirement rate', PT.pct(now)]],

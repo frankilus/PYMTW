@@ -19,7 +19,7 @@ PT.wizard(form, function (v) {
   var ranked = PT.ARCHETYPES.map(function (c) { return { c: c, s: PT.scoreCard(c, spend) }; }).sort(function (a, b) { return b.s.net - a.s.net; });
   var best = ranked[0], flat = ranked.filter(function (r) { return r.c.id === 'flat2'; })[0];
   var payFull = v.payFull === 'yes';
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['credit-card-optimizer', {card: best.c.name.toLowerCase()}],
     label: payFull ? 'Best card type for you' : 'Before rewards', big: payFull ? best.c.name : 'Pay it off first',
     sentence: payFull ? 'On ' + PT.money(total) + ' of yearly spending, a <b>' + best.c.name.toLowerCase() + '</b> card would earn about <b>' + PT.money(best.s.net) + ' a year</b> after fees' + (best.c.id !== 'flat2' ? ', ' + PT.money(best.s.net - flat.s.net) + ' more than a simple flat 2% card.' : '. That’s the simplest card to beat.')
       : 'If you carry a balance, interest at a typical 20%+ APR usually costs more than any card earns in rewards. The best card for you right now is the one with the lowest rate.',

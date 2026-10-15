@@ -9,9 +9,9 @@ PT.wizard(form, function () {
   var span = t.length ? (Math.max.apply(null, t.map(function (x) { return x.date; })) - Math.min.apply(null, t.map(function (x) { return x.date; }))) / 864e5 : 0;
   var ups = subs.filter(function (s) { return s.priceUp; });
   var out = PT.$('#out');
-  if (!subs.length) { PT.renderResult(out, { label: 'Recurring charges found', big: '0', sentence: 'We didn’t find charges that repeat on a regular schedule in ' + t.length + ' transactions. Try a longer export (3 months or more) or a card statement.', next: 'Most subscriptions are billed to credit cards. Try exporting your card’s statement too.' }); return; }
+  if (!subs.length) { PT.renderResult(out, { share: ['subscription-leak-finder', {count: 0}], label: 'Recurring charges found', big: '0', sentence: 'We didn’t find charges that repeat on a regular schedule in ' + t.length + ' transactions. Try a longer export (3 months or more) or a card statement.', next: 'Most subscriptions are billed to credit cards. Try exporting your card’s statement too.' }); return; }
   var top = subs[0];
-  PT.renderResult(out, {
+  PT.renderResult(out, { share: ['subscription-leak-finder', {count: subs.length}],
     label: 'Your recurring charges cost', big: PT.money(annual) + '<span style="font-size:.4em;color:var(--ink-3);letter-spacing:-.02em"> /year</span>',
     sentence: 'We found <b>' + subs.length + ' recurring charges</b> in ' + t.length + ' transactions over about ' + Math.round(span / 30.4) + ' months, totalling <b>' + PT.money(monthly) + ' a month</b>.' + (ups.length ? ' ' + ups.length + (ups.length === 1 ? ' went' : ' went') + ' up in price while you were subscribed.' : ''),
     stats: [['Per month', PT.money(monthly)], ['Per year', PT.money(annual)], ['Biggest', PT.esc(top.name)]],

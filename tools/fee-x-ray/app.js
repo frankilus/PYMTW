@@ -14,7 +14,7 @@ form._v_funds = function () { if (!funds().length) return 'Add at least one fund
 PT.wizard(form, function (v) {
   var fs = funds(), total = fs.reduce(function (a, f) { return a + f.bal; }, 0), wer = fs.reduce(function (a, f) { return a + f.bal * f.er; }, 0) / total, fee = wer + v.advisor;
   var r = PT.calc.fees(total, v.monthly, v.ret, fee, v.years), low = PT.calc.fees(total, v.monthly, v.ret, 0.0005, v.years);
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['fee-x-ray', {cost: r.cost}],
     label: 'Fees could cost you', big: PT.money(r.cost),
     sentence: 'You pay about <b>' + PT.pct(fee, 2) + ' a year</b> (' + PT.money(total * fee) + ' this year). Over ' + v.years + ' years that adds up to ' + PT.money(r.cost) + ', or ' + PT.pct(r.cost / r.noFee, 0) + ' of what your money could have grown to. A portfolio of 0.05% index funds would keep about ' + PT.money(low.withFee - r.withFee) + ' more of it.',
     stats: [['Weighted expense ratio', PT.pct(wer, 2)], ['Advisor fee', PT.pct(v.advisor, 2)], ['Fees this year', PT.money(total * fee)]],

@@ -2,7 +2,7 @@
 PT.wizard(PT.$('#wiz'), function (v) {
   var t = +v.target, r = PT.calc.emergency(v.cash, v.essentials, t, v.save), now = new Date();
   var done = r.gap === 0;
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['emergency-fund-runway', {covered: r.covered}],
     label: 'Your savings cover', big: isFinite(r.covered) ? r.covered.toFixed(1).replace(/\.0$/, '') + ' months' : '—',
     sentence: done ? 'You’ve reached your ' + t + '-month target of ' + PT.money(r.target) + '. Nice work.' : 'Your ' + t + '-month target is ' + PT.money(r.target) + '. You’re ' + PT.money(r.gap) + ' short' + (isFinite(r.monthsToGoal) ? ', and saving ' + PT.money(v.save) + ' a month gets you there by <b>' + PT.monthName(PT.addMonths(now, r.monthsToGoal), true) + '</b>.' : '. Even a small monthly amount will start closing the gap.'),
     stats: [['Target', PT.money(r.target)], ['Gap', PT.money(r.gap)], ['Time to goal', done ? 'Done' : PT.duration(r.monthsToGoal)]],

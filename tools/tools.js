@@ -284,6 +284,31 @@ PT.scoreCard = function (card, spendByCat) {
   return { gross: gross, net: gross - card.fee, effective: total ? (gross - card.fee) / total : 0 };
 };
 
+
+/* ---------- Sharing (privacy: only the headline result, never inputs) ---------- */
+var TOOL_NAMES = { 'debt-payoff-planner': 'Debt payoff planner', 'severance-runway': 'Severance & job-loss runway', 'rent-vs-buy': 'Rent vs. buy reality check', 'emergency-fund-runway': 'Emergency fund runway',
+  'roth-vs-traditional': 'Roth vs. traditional', 'fee-x-ray': 'Fee x-ray', 'bitcoin-dca-backtester': 'Bitcoin DCA backtester', 'subscription-leak-finder': 'Subscription leak finder', 'credit-card-optimizer': 'Credit card optimizer', 'checkup': '2-minute money checkup' };
+var plural = function (n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); };
+var oneDp = function (x) { return (Math.round(x * 10) / 10).toFixed(1).replace(/\.0$/, ''); };
+/* Each builder receives only result values (never balances, incomes, CSV rows or merchant names). */
+PT.SHARE = {
+  'debt-payoff-planner': function (s) { return s.stuck ? 'I made a plan to get out of debt' : 'Debt-free by ' + s.date; },
+  'severance-runway': function (s) { return isFinite(s.months) ? oneDp(s.months) + ' months of runway' : 'My runway is covered'; },
+  'rent-vs-buy': function (s) { return s.breakeven ? 'Buying pays off in year ' + s.breakeven : 'Renting wins for my timeline'; },
+  'emergency-fund-runway': function (s) { return 'My safety net covers ' + oneDp(s.covered) + ' months'; },
+  'roth-vs-traditional': function (s) { return s.tie ? 'Roth vs. traditional: a tie for me' : s.winner + ' wins for me'; },
+  'fee-x-ray': function (s) { return 'Fees could cost me ' + PT.short(s.cost); },
+  'bitcoin-dca-backtester': function (s) { return 'Bitcoin DCA backtest: ' + (s.gainPct >= 0 ? '+' : '') + Math.round(s.gainPct * 100) + '%'; },
+  'subscription-leak-finder': function (s) { return 'I found ' + plural(s.count, 'recurring charge') + ' to review'; },
+  'credit-card-optimizer': function (s) { return 'My best card type: ' + s.card; },
+  'checkup': function (s) { return s.count ? 'I found my top ' + Math.min(5, s.count) + ' money ' + (Math.min(5, s.count) === 1 ? 'blind spot' : 'blind spots') : 'My money checkup: no blind spots found'; }
+};
+PT.shareCopy = function (slug, s) {
+  var headline = PT.SHARE[slug](s), url = 'https://pymtw.com/tools/' + slug + '/';
+  return { headline: headline, tool: TOOL_NAMES[slug], url: url, text: headline + '. Figured out in 60 seconds with the free ' + TOOL_NAMES[slug] + ' from PYMTW Tools.' };
+};
+PT.xIntent = function (c) { return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(c.text) + '&url=' + encodeURIComponent(c.url); };
+
 /* ---------- Browser-only UI ---------- */
 if (typeof document !== 'undefined') {
   PT.$ = function (s, el) { return (el || document).querySelector(s); };
@@ -334,9 +359,57 @@ if (typeof document !== 'undefined') {
       '<p class="sentence">' + o.sentence + '</p>' +
       (o.stats ? '<div class="stats">' + o.stats.map(function (s) { return '<div class="stat"><small>' + s[0] + '</small><b>' + s[1] + '</b></div>'; }).join('') + '</div>' : '') +
       (o.chart ? '<div class="chart" id="chart"></div>' : '') + (o.extra || '') +
+      (o.share ? '<div class="share-host"></div>' : '') +
       '<div class="next"><div><div class="k">Your next step</div><p>' + o.next + '</p></div>' + (o.nextLink ? '<a href="' + o.nextLink[1] + '">' + o.nextLink[0] + '</a>' : '') + '</div>' +
       '<p class="again"><button class="linkbtn" type="button" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">↺ Change my answers</button></p>';
+    if (o.share) PT.shareButton(el.querySelector('.share-host'), o.share[0], o.share[1]);
   };
+
+
+  /* Share image: 1200x630 canvas */
+  PT.drawShareImage = function (c) {
+    var cv = document.createElement('canvas'); cv.width = 1200; cv.height = 630; var x = cv.getContext('2d'), F = '-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+    var g = x.createLinearGradient(0, 0, 1200, 630); g.addColorStop(0, '#0a7c55'); g.addColorStop(1, '#06573c'); x.fillStyle = g; x.fillRect(0, 0, 1200, 630);
+    x.globalAlpha = .09; x.fillStyle = '#fff'; x.beginPath(); x.arc(1080, 90, 260, 0, 7); x.fill(); x.beginPath(); x.arc(1150, 600, 180, 0, 7); x.fill(); x.globalAlpha = 1;
+    var rr = function (X, Y, w, h, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); };
+    x.fillStyle = '#fff'; rr(80, 72, 52, 52, 15); x.fill(); x.fillStyle = '#0a7c55'; x.font = '800 28px ' + F; x.textAlign = 'center'; x.fillText('P', 106, 108);
+    x.textAlign = 'left'; x.fillStyle = '#fff'; x.font = '700 30px ' + F; x.fillText('PYMTW', 150, 109); var w1 = x.measureText('PYMTW ').width; x.globalAlpha = .7; x.font = '500 30px ' + F; x.fillText('Tools', 150 + w1, 109); x.globalAlpha = 1;
+    x.font = '700 22px ' + F; var tag = c.tool.toUpperCase(); x.globalAlpha = .75; x.fillText(tag, 80, 228); x.globalAlpha = 1;
+    // headline: wrap and fit
+    var size = 92, lines; do { x.font = '800 ' + size + 'px ' + F; lines = wrap(x, c.headline, 1040); size -= 4; } while ((lines.length > 3 || lines.length * size * 1.08 > 300) && size > 40);
+    size += 4; x.font = '800 ' + size + 'px ' + F; lines.forEach(function (l, i) { x.fillText(l, 78, 300 + i * size * 1.06 + size * .55); });
+    x.fillStyle = 'rgba(255,255,255,.18)'; x.fillRect(80, 528, 1040, 2);
+    x.fillStyle = '#fff'; x.font = '700 28px ' + F; x.fillText('pymtw.com/tools', 80, 578);
+    x.globalAlpha = .75; x.font = '500 24px ' + F; x.textAlign = 'right'; x.fillText('Free · Private · No signup', 1120, 578); x.globalAlpha = 1; x.textAlign = 'left';
+    return cv;
+  };
+  function wrap(x, t, w) { var words = t.split(' '), lines = [], l = ''; words.forEach(function (wd) { var test = l ? l + ' ' + wd : wd; if (x.measureText(test).width > w && l) { lines.push(l); l = wd; } else l = test; }); if (l) lines.push(l); return lines; }
+
+  /* Share UI: one button that opens native share when available, plus fallbacks. */
+  PT.shareButton = function (host, slug, summary) {
+    var c = PT.shareCopy(slug, summary), cv = PT.drawShareImage(c), id = 'sh' + Math.random().toString(36).slice(2, 7);
+    host.innerHTML = '<div class="share-box"><div class="share-row"><button type="button" class="btn accent" data-share>↗ Share my result</button><span class="share-note">Shares only “' + PT.esc(c.headline) + '”. None of your numbers or files.</span></div>' +
+      '<div class="share-sheet" hidden><img alt="Share image preview" class="share-img"><div class="share-opts"><button type="button" class="btn ghost" data-copy>Copy link</button><a class="btn ghost" data-x target="_blank" rel="noopener">Post on X</a><button type="button" class="btn ghost" data-dl>Download image</button></div><p class="share-msg" aria-live="polite"></p></div></div>';
+    var sheet = host.querySelector('.share-sheet'), msg = host.querySelector('.share-msg');
+    host.querySelector('.share-img').src = cv.toDataURL('image/png');
+    host.querySelector('[data-x]').href = PT.xIntent(c);
+    host.querySelector('[data-copy]').onclick = function () {
+      var done = function () { msg.textContent = '✓ Link copied'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(c.text + ' ' + c.url).then(done, function () { fallbackCopy(c.text + ' ' + c.url); done(); }); else { fallbackCopy(c.text + ' ' + c.url); done(); }
+    };
+    host.querySelector('[data-dl]').onclick = function () { var a = document.createElement('a'); a.download = 'pymtw-' + slug + '.png'; a.href = cv.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); msg.textContent = '✓ Image saved'; };
+    host.querySelector('[data-share]').onclick = function () {
+      sheet.hidden = false;
+      if (!navigator.share) return;
+      cv.toBlob(function (b) {
+        var data = { title: c.headline, text: c.text, url: c.url };
+        try { var f = new File([b], 'pymtw-' + slug + '.png', { type: 'image/png' }); if (navigator.canShare && navigator.canShare({ files: [f] })) data.files = [f]; } catch (e) {}
+        navigator.share(data).catch(function () {});
+      }, 'image/png');
+    };
+    PT._lastShare = { copy: c, canvas: cv };
+  };
+  function fallbackCopy(t) { var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); }
 
   /* SVG line/area chart. series: [{name, color, points:[[x,y]], area, dash}] */
   PT.lineChart = function (el, o) {

@@ -124,3 +124,14 @@ footer .legal{border-top:1px solid var(--line);margin-top:32px;padding-top:20px;
   .next a{width:100%;text-align:center}
 }
 @media print{nav,.wizard,footer,.next a{display:none}}
+
+/* Share */
+.share-box{margin-top:20px;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;background:#fff}
+.share-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.share-note{font-size:14px;color:var(--ink-3);flex:1;min-width:200px}
+.share-sheet{margin-top:18px}
+.share-img{display:block;width:100%;border-radius:16px;box-shadow:0 24px 50px -30px rgba(0,0,0,.45)}
+.share-opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.share-opts .btn{height:46px;font-size:15px}
+.share-msg{font-size:14px;color:var(--accent);font-weight:600;margin-top:10px;min-height:1em}
+@media (max-width:640px){.share-row .btn{width:100%}.share-opts .btn{flex:1 1 45%}}

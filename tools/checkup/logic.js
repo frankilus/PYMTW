@@ -85,7 +85,7 @@ function evaluate(a) {
     a.credit === 'both' ? 'Temporarily lift the freeze only when you apply for credit.' : 'Get your free reports at AnnualCreditReport.com (now available weekly) and place a freeze with all three bureaus: Equifax, Experian and TransUnion.', { href: 'https://www.annualcreditreport.com/', label: 'AnnualCreditReport.com', ext: true });
   // 13 Life events
   var ev = (a.events || []).filter(function (e) { return e !== 'none'; }), E = {
-    job: ['Job change ahead', 'Know your runway, your 401(k) options, and your health coverage choices before your last day.', LINK('severance-runway', 'Severance runway')],
+    job: ['Job change ahead', 'Know your runway, your 401(k) options, and your health coverage choices before your last day.', { href: '../guides/lost-my-job/', label: 'Lost-my-job guide' }],
     baby: ['Baby on the way', 'Update beneficiaries, review life and disability coverage, and plan your leave budget.', SOON],
     home: ['Buying a home', 'Compare the full cost of owning with renting, and keep your emergency fund separate from your down payment.', LINK('rent-vs-buy', 'Rent vs. buy')],
     marriage: ['Getting married', 'Talk about money early, update beneficiaries afterward, and compare your workplace benefits.', SOON],

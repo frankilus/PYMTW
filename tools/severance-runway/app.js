@@ -4,7 +4,7 @@ PT.wizard(form, function (v) {
   var r = PT.calc.runway(v), out = PT.$('#out'), now = new Date(), inf = !isFinite(r.months);
   var end = inf ? null : PT.addMonths(now, Math.floor(r.months));
   var cut = PT.calc.runway(Object.assign({}, v, { expenses: v.expenses * 0.85 }));
-  PT.renderResult(out, {
+  PT.renderResult(out, { share: ['severance-runway', {months: r.months}],
     label: 'Your runway', big: inf ? 'Covered' : (r.months >= 120 ? '10+ years' : (Math.floor(r.months * 10) / 10).toFixed(1).replace(/\.0$/, '') + ' months'),
     sentence: inf ? 'Your income after the job covers your expenses, so your savings aren’t shrinking.' : 'At ' + PT.money(v.expenses) + ' a month, your cash, severance and benefits last until about <b>' + PT.monthName(end, true) + '</b>' + (isFinite(cut.months) ? ', and cutting spending by 15% would stretch that to ' + cut.months.toFixed(1).replace(/\.0$/, '') + ' months.' : '.'),
     stats: [['Cash + severance', PT.money(r.start)], ['Benefits (est.)', PT.money(r.uiTotal)], ['Net monthly burn', PT.money(r.burn)]],

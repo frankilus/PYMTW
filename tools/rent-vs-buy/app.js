@@ -1,7 +1,7 @@
 (function () {
 PT.wizard(PT.$('#wiz'), function (v) {
   var r = PT.calc.rentVsBuy(v), last = r.years[r.years.length - 1], f = r.first, adv = last.buyerNW - last.renterNW;
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['rent-vs-buy', {breakeven: r.breakeven}],
     label: 'Buying pays off after', big: r.breakeven ? r.breakeven + (r.breakeven === 1 ? ' year' : ' years') : 'Not within ' + v.years + ' yrs',
     sentence: r.breakeven ? 'If you stay ' + v.years + ' years, buying leaves you about <b>' + PT.money(Math.abs(adv)) + ' ' + (adv >= 0 ? 'ahead' : 'behind') + '</b> of renting and investing the difference. Owning costs about ' + PT.money(f.ownMonthly) + ' a month in year one, compared with ' + PT.money(v.rent) + ' in rent.'
       : 'Over ' + v.years + ' years, renting and investing the difference comes out about <b>' + PT.money(Math.abs(adv)) + ' ahead</b>. Owning costs about ' + PT.money(f.ownMonthly) + ' a month in year one, compared with ' + PT.money(v.rent) + ' in rent.',

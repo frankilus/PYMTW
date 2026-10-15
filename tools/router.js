@@ -4,6 +4,9 @@ var ALL = PT_CATS.flatMap(function (c) { return c.tools; });
 var CHECKUP = { slug: 'checkup', icon: '🩺', name: '2-minute money checkup', desc: 'Quick questions that surface the blind spots you didn’t know you had.', time: '2 min', live: true,
   kw: ['where do i start', 'where to start', 'where should i start', 'am i on track', 'on track', 'checkup', 'check up', 'check-up', 'blind spot', 'blind spots', 'what am i missing', 'missing anything', 'financial health', 'money health', 'get my finances', 'finances in order', 'get organized', 'overwhelmed', 'beginner', 'not sure', 'everything', 'big picture', 'overall'] };
 ALL.push(CHECKUP);
+var GUIDE_JOB = { slug: 'guides/lost-my-job', icon: '📘', name: 'Guide: Just lost your job?', desc: 'What to do this week, this month and this year: unemployment, COBRA vs. Marketplace, your 401(k).', time: '5 min read', live: true, boost: 2,
+  kw: ['lost my job', 'just lost', 'laid off', 'layoff', 'fired', 'let go', 'job loss', 'lost job', 'terminated', 'unemployed', 'what do i do now', 'cobra', 'unemployment'] };
+ALL.push(GUIDE_JOB);
 var I = { // line icons, 24x24
  'subscription-leak-finder':'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
  'credit-card-optimizer':'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/>',
@@ -49,8 +52,8 @@ var ex = 0, q = document.getElementById('q');
 setInterval(function () { if (!q.value && document.activeElement !== q) { ex = (ex + 1) % examples.length; q.placeholder = examples[ex]; } }, 2800);
 function route(text) {
   var s = ' ' + text.toLowerCase().replace(/[^a-z0-9()\- ]/g, ' ').replace(/\s+/g, ' ') + ' ';
-  return ALL.map(function (t) { return { t: t, score: t.kw.reduce(function (a, k) { return a + (s.indexOf(k) > -1 ? k.split(' ').length * 2 + (k.length > 6 ? 1 : 0) : 0); }, 0) + (t.live ? 0.5 : 0) }; })
-    .filter(function (r) { return r.score > 0.5; }).sort(function (a, b) { return b.score - a.score; });
+  return ALL.map(function (t) { var kw = t.kw.reduce(function (a, k) { return a + (s.indexOf(k) > -1 ? k.split(' ').length * 2 + (k.length > 6 ? 1 : 0) : 0); }, 0); return { t: t, kw: kw, score: kw + (t.live ? 0.5 : 0) + (kw ? (t.boost || 0) : 0) }; })
+    .filter(function (r) { return r.kw > 0; }).sort(function (a, b) { return b.score - a.score; });
 }
 window.PT_route = route;
 var answer = document.getElementById('answer');

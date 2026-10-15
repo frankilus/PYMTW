@@ -9,7 +9,7 @@ PT.wizard(form, function (v) {
   if (e < s) { var t = s; s = e; e = t; }
   var b = PT.calc.dca(D.btc, s, e, v.amount), spxOK = s >= D.spxRange[0], x = spxOK ? PT.calc.dca(D.spx, s, e, v.amount) : null;
   var gain = b.value / b.invested - 1;
-  PT.renderResult(PT.$('#out'), {
+  PT.renderResult(PT.$('#out'), { share: ['bitcoin-dca-backtester', {gainPct: gain}],
     label: 'Your ' + PT.money(b.invested) + ' would be worth', big: PT.money(b.value),
     sentence: 'Buying ' + PT.money(v.amount) + ' of bitcoin every month from ' + lbl(s) + ' to ' + lbl(e) + ' would have turned ' + PT.money(b.invested) + ' into <b>' + PT.money(b.value) + '</b> (' + (gain >= 0 ? '+' : '') + PT.pct(gain, 0) + ')' + (x ? ', compared with ' + PT.money(x.value) + ' in the S&amp;P 500 price index.' : '. The S&amp;P 500 comparison needs a start date of November 2016 or later.'),
     stats: [['Bitcoin bought', b.units.toFixed(4) + ' BTC'], ['Average cost', PT.money(b.avgCost)], ['Lump sum on day one', PT.money(b.lumpValue)]],
