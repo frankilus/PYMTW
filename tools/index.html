@@ -20,10 +20,16 @@
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="logo" href="./"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <a class="logo" href="./" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a class="hide-sm" href="#tools">All tools</a><a class="hide-sm" href="#promise">How it works</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
 <style>
+.brandline{font-size:clamp(15px,2.1vw,19px);font-weight:600;letter-spacing:.02em;color:var(--ink-3);margin:0 0 22px;white-space:nowrap}
+.brandline b{color:var(--accent);font-weight:800;letter-spacing:0}
+.brandline i{font-style:normal;display:inline-block;white-space:pre;animation:unfold .7s cubic-bezier(.2,.7,.2,1) both}
+.brandline i:nth-of-type(1){animation-delay:.35s}.brandline i:nth-of-type(2){animation-delay:.45s}.brandline i:nth-of-type(3){animation-delay:.55s}.brandline i:nth-of-type(4){animation-delay:.65s}.brandline i:nth-of-type(5){animation-delay:.75s}
+@keyframes unfold{from{opacity:0;transform:translateX(-6px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+@media (prefers-reduced-motion:reduce){.brandline i{animation:none}}
 .hero{padding:104px 0 64px;text-align:center}
 .hero h1{font-size:clamp(40px,7vw,84px);line-height:1.02;max-width:900px;margin:0 auto}
 .hero .sub{max-width:620px;margin:24px auto 0}
@@ -165,9 +171,10 @@ footer{margin-top:40px}
 .privacy-note{font-size:13px;color:var(--ink-3);line-height:1.55;margin:0 0 14px;max-width:52ch}.privacy-note a{color:var(--accent)}
 </style>
 <header class="hero"><div class="wrap">
+  <p class="brandline" aria-label="PYMTW: Put Your Money To Work"><span aria-hidden="true"><b>P</b><i>ut </i><b>Y</b><i>our </i><b>M</b><i>oney </i><b>T</b><i>o </i><b>W</b><i>ork</i></span></p>
   <div class="eyebrow">Free · Private · No signup</div>
   <h1>Your money,<br>figured out in <em style="white-space:nowrap">60 seconds.</em></h1>
-  <p class="sub">Simple personal finance tools from Put Your Money to Work. Tell us what’s going on and get a clear answer.</p>
+  <p class="sub">Free tools that put your money to work. Tell us what’s going on and get a clear answer.</p>
   <form class="ask" id="askForm" autocomplete="off">
     <label for="q">What help do you need?</label>
     <div class="ask-box"><input id="q" type="text" placeholder="I just lost my job" aria-label="What help do you need?"><button class="go" type="submit">Find my tool →</button></div>
