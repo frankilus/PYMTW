@@ -45,6 +45,7 @@ function report() {
     '<div class="rp-actions"><button class="btn ghost" id="redo">↺ Change my answers</button><button class="btn ghost" id="forget">Forget my answers</button><a class="btn" href="../">Browse all tools</a></div>';
   r.classList.add('show'); window.scrollTo(0, 0);
   PT.shareButton(document.getElementById('ckshare'), 'checkup', { count: todo.length });
+  PT.track('checkup-completed', 'Checkup completed');
   $('#redo').onclick = function () { i = 0; r.classList.remove('show'); $('#quiz').style.display = ''; render(); };
   $('#forget').onclick = function () { try { localStorage.removeItem(KEY); } catch (e) {} a = {}; remember.checked = false; i = 0; r.classList.remove('show'); $('#quiz').style.display = ''; render(); var m = document.getElementById('forgot'); m.style.display = 'block'; };
 }

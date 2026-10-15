@@ -162,6 +162,7 @@ footer{margin-top:40px}
 @media (max-width:640px){.checkup-cta{flex-wrap:wrap}.checkup-cta .cgo{width:100%;text-align:center}}
 .feat2{grid-template-columns:1fr 1fr;margin-top:-62px}.feat2 .fc:first-child{grid-column:auto;min-height:400px}.feat2 .fc{min-height:400px}.flags-mini{display:grid;gap:8px}.flags-mini div{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600}.flags-mini i{width:10px;height:10px;border-radius:50%;flex:none}
 @media (max-width:640px){.feat2{margin-top:-40px}.feat2 .fc:first-child{flex:0 0 84%}}
+.privacy-note{font-size:13px;color:var(--ink-3);line-height:1.55;margin:0 0 14px;max-width:52ch}.privacy-note a{color:var(--accent)}
 </style>
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Free · Private · No signup</div>
@@ -182,7 +183,7 @@ footer{margin-top:40px}
   </form>
   <a class="checkup-cta" href="checkup/"><span class="ci">🩺</span><span class="ct"><b>Not sure where to start?</b><span>Take the 2-minute money checkup and find your blind spots.</span></span><span class="cgo">Start →</span></a>
   <div class="answer" id="answer" aria-live="polite"></div>
-  <div class="trust"><span>No signup</span><span>No ads</span><span>Your data never leaves your browser</span></div>
+  <div class="trust"><span>No signup</span><span>No cookies</span><span>Your numbers never leave your device</span></div>
 </div></header>
 <section class="library" id="tools"><div class="wrap">
   <div class="section-head"><div><div class="kicker">The library</div><h2>Twelve tools. Zero jargon.</h2><p>Start with the favorites, or just ask above.</p></div></div>
@@ -204,10 +205,13 @@ footer{margin-top:40px}
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
     <div class="links"><a href="./">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
   </div>
-  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. Calculations run in your browser and nothing is sent to a server. No signup, no ads, no tracking cookies. © 2026 Put Your Money to Work.</div>
+  <p class="privacy-note">We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts (no personal data). <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>.</p>
+  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. No signup. Your numbers never leave your device. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
 </div></footer>
 <script src="tools.js"></script>
 <script src="catalog.js"></script>
 <script src="router.js"></script>
+<script data-goatcounter="https://pymtw.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

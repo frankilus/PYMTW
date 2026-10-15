@@ -1,4 +1,4 @@
-/* PYMTW Tools - shared logic. Everything runs in your browser; nothing is sent anywhere. */
+/* PYMTW Tools - shared logic. Your numbers stay in the browser. Anonymous page visits are counted with GoatCounter (no cookies, no personal data). */
 (function (root) {
 'use strict';
 var PT = {};
@@ -30,6 +30,18 @@ PT.duration = function (months) {
   return p.join(', ');
 };
 PT.esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+
+/* Anonymous event tracking (GoatCounter). Path is event/<tool>/<name> only — never inputs or typed text. */
+PT.toolSlug = function () {
+  var m = (location.pathname || '').match(/\/tools\/(.+?)\/?$/);
+  return m ? m[1].replace(/\/$/, '') : 'tools';
+};
+PT.track = function (name, title) {
+  if (!window.goatcounter || typeof goatcounter.count !== 'function') return;
+  var slug = PT.toolSlug() || 'tools';
+  try { goatcounter.count({ path: 'event/' + slug + '/' + name, title: title || name, event: true }); } catch (e) {}
+};
+
 
 /* ---------- Calculators (pure functions, unit-tested) ---------- */
 var C = PT.calc = {};
@@ -337,7 +349,7 @@ if (typeof document !== 'undefined') {
     back.addEventListener('click', function () { if (i) { i--; show(); } });
     form.addEventListener('submit', function (e) { e.preventDefault(); next.click(); });
     form.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'file') { e.preventDefault(); next.click(); } });
-    function finish() { var r = PT.$('.results'); onDone(PT.values(form)); r.classList.add('show'); r.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    function finish() { var r = PT.$('.results'); onDone(PT.values(form)); r.classList.add('show'); r.scrollIntoView({ behavior: 'smooth', block: 'start' }); PT.track('results-shown', 'Results shown'); }
     show();
     return { finish: finish, go: function (n) { i = n; show(); } };
   };
@@ -401,6 +413,7 @@ if (typeof document !== 'undefined') {
     };
     host.querySelector('[data-dl]').onclick = function () { var a = document.createElement('a'); a.download = 'pymtw-' + slug + '.png'; a.href = cv.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); msg.textContent = '✓ Image saved'; };
     host.querySelector('[data-share]').onclick = function () {
+      PT.track('share-click', 'Share clicked');
       sheet.hidden = false;
       if (!navigator.share) return;
       cv.toBlob(function (b) {

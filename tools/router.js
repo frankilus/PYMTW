@@ -73,6 +73,7 @@ function ask(text) {
     answer.classList.add('show'); return;
   }
   var best = hits[0].t, others = hits.slice(1, 3).map(function (h) { return h.t; });
+  if (window.goatcounter && typeof goatcounter.count === 'function') { try { goatcounter.count({ path: 'event/' + best.slug + '/router-query-matched', title: 'Router → ' + best.name, event: true }); } catch (e) {} }
   answer.innerHTML = '<div class="k">Best tool for you</div><div class="best"><div><h3>' + best.icon + ' ' + best.name + '</h3><p>' + best.desc + '</p></div><a class="open" href="' + best.slug + '/">' + (best.live ? 'Start · ' + best.time : 'Preview · coming soon') + '</a></div>' +
     (others.length ? '<div class="also">Also helpful:' + others.map(function (o) { return '<a href="' + o.slug + '/">' + o.name + '</a>'; }).join(' ·') + '</div>' : '');
   answer.classList.add('show');
