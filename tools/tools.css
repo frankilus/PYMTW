@@ -135,3 +135,22 @@ footer .legal{border-top:1px solid var(--line);margin-top:32px;padding-top:20px;
 .share-opts .btn{height:46px;font-size:15px}
 .share-msg{font-size:14px;color:var(--accent);font-weight:600;margin-top:10px;min-height:1em}
 @media (max-width:640px){.share-row .btn{width:100%}.share-opts .btn{flex:1 1 45%}}
+
+/* Newsletter (beehiiv) */
+.newsletter{padding:72px 0;background:var(--bg);border-top:1px solid var(--line)}
+.newsletter-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;background:linear-gradient(160deg,var(--accent-soft) 0%,#fff 55%);border:1px solid #d7ebe2;border-radius:28px;padding:40px 44px;box-shadow:0 24px 50px -36px rgba(10,124,85,.35)}
+.newsletter-copy .kicker{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.newsletter-copy h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.035em;line-height:1.1;font-weight:700;max-width:18ch}
+.newsletter-sub{margin-top:12px;font-size:17px;color:var(--ink-2)}
+.newsletter-archive{margin-top:16px;font-size:14px}
+.newsletter-archive a{color:var(--accent);font-weight:600}
+.newsletter-archive a:hover{text-decoration:underline}
+.newsletter-form{min-height:120px;display:flex;align-items:center;justify-content:center}
+.newsletter-form iframe,.newsletter-form [data-beehiiv-form],.newsletter-form > div{width:100%!important;max-width:100%}
+footer .privacy-note{font-size:13px;color:var(--ink-3);line-height:1.55;margin:0 0 14px;max-width:64ch}
+footer .privacy-note a{color:var(--accent)}
+@media (max-width:760px){
+  .newsletter{padding:48px 0}
+  .newsletter-inner{grid-template-columns:1fr;gap:24px;padding:28px 22px;border-radius:22px}
+}
+@media print{.newsletter{display:none}}

@@ -42,6 +42,30 @@ PT.track = function (name, title) {
   try { goatcounter.count({ path: 'event/' + slug + '/' + name, title: title || name, event: true }); } catch (e) {}
 };
 
+/* Fire once when the newsletter section scrolls into view. */
+(function () {
+  function watch() {
+    var el = document.getElementById('newsletter');
+    if (!el || !('IntersectionObserver' in window)) return;
+    var seen = false;
+    var io = new IntersectionObserver(function (entries) {
+      if (seen) return;
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          seen = true;
+          PT.track('newsletter-section-view', 'Newsletter section viewed');
+          io.disconnect();
+          break;
+        }
+      }
+    }, { threshold: 0.35 });
+    io.observe(el);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+  else watch();
+})();
+
+
 
 /* ---------- Calculators (pure functions, unit-tested) ---------- */
 var C = PT.calc = {};
