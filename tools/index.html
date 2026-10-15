@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PYMTW Tools: your money, figured out in 60 seconds</title>
+<meta name="description" content="Free, simple, private personal finance tools from Put Your Money to Work. No ads, no signup. Everything runs in your browser.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="tools.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="./"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <div class="nav-links"><a class="hide-sm" href="#tools">All tools</a><a class="hide-sm" href="#promise">How it works</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
+</div></nav>
+<style>
+.hero{padding:104px 0 64px;text-align:center}
+.hero h1{font-size:clamp(40px,7vw,84px);line-height:1.02;max-width:900px;margin:0 auto}
+.hero .sub{max-width:620px;margin:24px auto 0}
+.eyebrow{margin-bottom:28px}
+.ask{max-width:760px;margin:56px auto 0;position:relative}
+  .ask label{display:block;text-align:left;font-size:15px;font-weight:600;color:var(--ink-2);margin:0 0 12px 6px}
+  .ask-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:10px 10px 10px 26px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 50px -20px rgba(0,0,0,.18);transition:border-color .2s,box-shadow .2s}
+  .ask-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft),0 18px 50px -20px rgba(0,0,0,.18)}
+  .ask-box input{flex:1;border:0;outline:0;font:inherit;font-size:clamp(18px,2.2vw,22px);padding:16px 0;color:var(--ink);background:transparent;min-width:0;letter-spacing:-.01em}
+  .ask-box input::placeholder{color:#a3a3aa}
+  .go{flex:none;border:0;cursor:pointer;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:16px;height:56px;padding:0 26px;border-radius:16px;transition:transform .15s,background .2s}
+  .go:hover{background:var(--accent)} .go:active{transform:scale(.97)}
+
+  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--ink-2);font:inherit;font-size:15px;padding:10px 18px;border-radius:999px;cursor:pointer;transition:all .15s}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .trust{margin-top:30px;font-size:13px;color:var(--ink-3);display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
+  .trust span::before{content:"✓";color:var(--accent);font-weight:700;margin-right:6px}
+
+  /* Router answer */
+  .answer{max-width:760px;margin:26px auto 0;text-align:left;display:none;background:var(--bg-2);border-radius:var(--radius);padding:26px 28px;animation:rise .35s ease}
+  .answer.show{display:block}
+  .answer .k{font-size:13px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .answer .best{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:10px;flex-wrap:wrap}
+  .answer h3{font-size:24px;letter-spacing:-.02em}
+  .answer p{color:var(--ink-2);margin-top:4px}
+  .answer .open{background:var(--accent);color:#fff;font-weight:600;padding:12px 22px;border-radius:14px;white-space:nowrap}
+  .answer .also{margin-top:16px;font-size:14px;color:var(--ink-3)}
+  .answer .also a{color:var(--accent);font-weight:600;margin-left:6px}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* Library */
+  .library{padding:72px 0 40px}
+  .section-head{text-align:center;margin-bottom:56px}
+  h2{font-size:clamp(34px,4.6vw,56px);letter-spacing:-.035em;line-height:1.05;font-weight:700}
+  .section-head p{color:var(--ink-3);font-size:19px;margin-top:14px}
+  .cat{margin-bottom:56px}
+  .cat-title{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:14px;row-gap:2px;margin-bottom:18px;padding-left:4px}
+  .cat-title h3{font-size:24px;letter-spacing:-.02em}
+  .cat-title span{font-size:14px;color:var(--ink-3)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tool{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:168px;background:var(--bg-2);border-radius:var(--radius);padding:26px;border:2px solid transparent;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
+  .tool:hover{transform:translateY(-3px);background:#fff;box-shadow:0 20px 40px -24px rgba(0,0,0,.25);border-color:var(--line)}
+  .tool .icon{font-size:24px;line-height:1}
+  .tool h4{font-size:19px;letter-spacing:-.015em;margin-top:18px}
+  .tool p{font-size:15px;color:var(--ink-3);margin-top:6px}
+  .tool .arrow{position:absolute;top:24px;right:24px;color:var(--ink-3);transition:transform .2s,color .2s}
+  .tool:hover .arrow{transform:translateX(3px);color:var(--accent)}
+  .tool.match{border-color:var(--accent);background:#fff;box-shadow:0 0 0 6px var(--accent-soft)}
+  .tool.match::after{content:"Best match";position:absolute;bottom:24px;right:24px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
+  .tool.dim{opacity:.38}
+  .time{font-size:12px;color:var(--ink-3);margin-top:14px;font-weight:500}
+
+  
+.tool .soon-tag{font-size:12px;font-weight:700;color:var(--ink-3);background:var(--line);padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:2px}
+.promise{padding:56px 0 24px}
+.promise .row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:1px solid var(--line);padding-top:48px}
+.promise h5{font-size:20px;letter-spacing:-.015em}
+.promise p{color:var(--ink-3);margin-top:8px;font-size:16px}
+footer{margin-top:40px}
+@media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){
+ .hero{padding:56px 0 40px}.ask{margin-top:36px}
+ .ask-box{flex-direction:column;align-items:stretch;padding:8px;gap:8px}.ask-box input{padding:16px}.go{width:100%}
+ .chip{font-size:14px;padding:9px 15px}.grid{grid-template-columns:1fr;gap:12px}.tool{min-height:0;padding:22px}
+ .library{padding:40px 0 8px}.section-head{margin-bottom:36px}.cat{margin-bottom:36px}.promise .row{grid-template-columns:1fr;gap:28px}
+}
+</style>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free · Private · No signup</div>
+  <h1>Your money,<br>figured out in <em style="white-space:nowrap">60 seconds.</em></h1>
+  <p class="sub">Simple personal finance tools from Put Your Money to Work. Tell us what’s going on and get a clear answer.</p>
+  <form class="ask" id="askForm" autocomplete="off">
+    <label for="q">What help do you need?</label>
+    <div class="ask-box"><input id="q" type="text" placeholder="I just lost my job" aria-label="What help do you need?"><button class="go" type="submit">Find my tool →</button></div>
+    <div class="chips">
+      <button type="button" class="chip" data-q="Get out of debt">Get out of debt</button>
+      <button type="button" class="chip" data-q="I just lost my job">I just lost my job</button>
+      <button type="button" class="chip" data-q="Should I buy a home?">Should I buy a home?</button>
+      <button type="button" class="chip" data-q="Find wasted subscriptions">Find wasted subscriptions</button>
+      <button type="button" class="chip" data-q="Roth or traditional?">Roth or traditional?</button>
+      <button type="button" class="chip" data-q="What if I DCA'd into bitcoin?">What if I’d DCA’d bitcoin?</button>
+    </div>
+  </form>
+  <div class="answer" id="answer" aria-live="polite"></div>
+  <div class="trust"><span>No signup</span><span>No ads</span><span>Your data never leaves your browser</span></div>
+</div></header>
+<section class="library" id="tools"><div class="wrap">
+  <div class="section-head"><h2>Twelve tools. Zero jargon.</h2><p>Pick one, or just ask above.</p></div>
+  <div id="library"></div>
+</div></section>
+<section class="promise" id="promise"><div class="wrap"><div class="row">
+  <div><h5>Ask, don’t search.</h5><p>Describe your situation in your own words. We point you to the right tool instantly.</p></div>
+  <div><h5>Private by design.</h5><p>Every calculation runs on your device. Statements you load are read in your browser and never uploaded.</p></div>
+  <div><h5>Answers, not homework.</h5><p>Every tool ends with one plain-English sentence and one next step.</p></div>
+</div></div></section>
+
+<footer><div class="wrap">
+  <div class="top">
+    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
+    <div class="links"><a href="./">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
+  </div>
+  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. Calculations run in your browser and nothing is sent to a server. No signup, no ads, no tracking cookies. © 2026 Put Your Money to Work.</div>
+</div></footer>
+<script src="tools.js"></script>
+<script src="catalog.js"></script>
+<script src="router.js"></script>
+</body>
+</html>
