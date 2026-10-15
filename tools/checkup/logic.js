@@ -49,7 +49,7 @@ function evaluate(a) {
     else { var gap = TARGET[a.age] - BANDS.indexOf(a.ret); st = gap <= 0 ? 'green' : gap === 1 ? 'amber' : 'red'; }
     add('ret', st, 'Retirement savings',
       a.ret === 'unsure' ? 'Knowing roughly where you stand is the first step to knowing whether you’re on track.' : st === 'green' ? 'You’re at or above Fidelity’s rule-of-thumb savings milestone for your age.' : 'You’re below Fidelity’s rule-of-thumb savings milestone for your age. Time and steady contributions can still make a big difference.',
-      a.ret === 'unsure' ? 'Add up your retirement balances and compare them with your yearly income.' : st === 'green' ? 'Keep contributing, and check that your fees are low.' : 'Try to raise your contribution by 1% of pay, and again each time you get a raise.', LINK('roth-vs-traditional', 'Roth vs. traditional'));
+      a.ret === 'unsure' ? 'Add up your retirement balances and compare them with your yearly income.' : st === 'green' ? 'Keep contributing, and check that your fees are low.' : 'Try to raise your contribution by 1% of pay, and again each time you get a raise.', LINK('money-timeline', 'Money timeline'));
   }
   // 5 Tax-advantaged accounts
   if (a.taxadv) add('taxadv', a.taxadv === 'no' ? 'red' : a.taxadv === 'yes' ? 'green' : 'amber', 'Tax-advantaged accounts',

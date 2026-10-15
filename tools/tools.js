@@ -287,7 +287,7 @@ PT.scoreCard = function (card, spendByCat) {
 
 /* ---------- Sharing (privacy: only the headline result, never inputs) ---------- */
 var TOOL_NAMES = { 'debt-payoff-planner': 'Debt payoff planner', 'severance-runway': 'Severance & job-loss runway', 'rent-vs-buy': 'Rent vs. buy reality check', 'emergency-fund-runway': 'Emergency fund runway',
-  'roth-vs-traditional': 'Roth vs. traditional', 'fee-x-ray': 'Fee x-ray', 'bitcoin-dca-backtester': 'Bitcoin DCA backtester', 'subscription-leak-finder': 'Subscription leak finder', 'credit-card-optimizer': 'Credit card optimizer', 'checkup': '2-minute money checkup' };
+  'roth-vs-traditional': 'Roth vs. traditional', 'fee-x-ray': 'Fee x-ray', 'bitcoin-dca-backtester': 'Bitcoin DCA backtester', 'subscription-leak-finder': 'Subscription leak finder', 'credit-card-optimizer': 'Credit card optimizer', 'checkup': '2-minute money checkup', 'before-you-sign': 'Before you sign', 'money-timeline': 'Money timeline' };
 var plural = function (n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); };
 var oneDp = function (x) { return (Math.round(x * 10) / 10).toFixed(1).replace(/\.0$/, ''); };
 /* Each builder receives only result values (never balances, incomes, CSV rows or merchant names). */
@@ -301,6 +301,8 @@ PT.SHARE = {
   'bitcoin-dca-backtester': function (s) { return 'Bitcoin DCA backtest: ' + (s.gainPct >= 0 ? '+' : '') + Math.round(s.gainPct * 100) + '%'; },
   'subscription-leak-finder': function (s) { return 'I found ' + plural(s.count, 'recurring charge') + ' to review'; },
   'credit-card-optimizer': function (s) { return 'My best card type: ' + s.card; },
+  'before-you-sign': function (s) { var k = ['car loan', 'personal loan', 'card offer', 'car lease', 'apartment lease', 'pay-later plan'].indexOf(s.kind) > -1 ? s.kind : 'deal', n = Math.max(0, Math.round(+s.flags || 0)); return 'I checked my ' + k + ' before signing: ' + (n ? n + (n === 1 ? ' thing' : ' things') + ' to ask about' : 'no red flags'); },
+  'money-timeline': function (s) { var L = ['emergency fund', 'debt-free', 'home down payment', 'college fund', 'retirement target']; return L.indexOf(s.first) > -1 && /^\d{4}$/.test(String(s.year)) ? 'My money timeline: ' + s.first + ' by ' + s.year : 'I mapped my money timeline'; },
   'checkup': function (s) { return s.count ? 'I found my top ' + Math.min(5, s.count) + ' money ' + (Math.min(5, s.count) === 1 ? 'blind spot' : 'blind spots') : 'My money checkup: no blind spots found'; }
 };
 PT.shareCopy = function (slug, s) {

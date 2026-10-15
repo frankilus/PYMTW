@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before you sign | PYMTW Tools</title>
+<meta name="description" content="See the true cost of a loan, card offer, lease or buy-now-pay-later plan, and the red flags to ask about first.">
+<link rel="canonical" href="https://pymtw.com/tools/before-you-sign/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Before you sign | PYMTW Tools">
+<meta property="og:description" content="See the true cost of a loan, card offer, lease or buy-now-pay-later plan, and the red flags to ask about first.">
+<meta property="og:url" content="https://pymtw.com/tools/before-you-sign/">
+<meta property="og:site_name" content="PYMTW Tools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Before you sign | PYMTW Tools">
+<meta name="twitter:description" content="See the true cost of a loan, card offer, lease or buy-now-pay-later plan, and the red flags to ask about first.">
+<meta name="theme-color" content="#0a7c55">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../tools.css">
+<style>
+fieldset.step{min-width:0}.row2{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:640px){.row2{grid-template-columns:minmax(0,1fr)}}.field span{white-space:normal}
+.dealtypes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dealtypes label{cursor:pointer}.dealtypes input{position:absolute;opacity:0;pointer-events:none}
+.dealtypes span{display:flex;flex-direction:column;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:18px;font-weight:600;font-size:16px;min-height:104px;transition:all .15s}
+.dealtypes i{font-style:normal;font-size:26px}
+.dealtypes input:checked+span{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.paste{width:100%;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;font:inherit;font-size:16px;resize:vertical;background:#fff}
+.paste:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.chk{display:flex;align-items:center;gap:10px;font-size:16px;margin:6px 0 14px 4px;cursor:pointer}.chk input{width:20px;height:20px;accent-color:var(--accent)}
+.auto{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px;margin-left:6px}
+.flag{display:grid;grid-template-columns:auto 1fr;gap:14px;background:#fff;border:1px solid #e3e3e8;border-left:5px solid var(--s);border-radius:18px;padding:18px 20px;margin-top:10px}
+.flag .d{width:12px;height:12px;border-radius:50%;background:var(--s);margin-top:7px}
+.flag h4{font-size:17px;letter-spacing:-.015em}.flag p{color:var(--ink-2);font-size:15px;margin-top:4px}.flag a{color:var(--accent);font-weight:600;font-size:13px}
+.flag.red{--s:#d23b3b}.flag.amber{--s:#d98a00}.flag.green{--s:#0a7c55}
+.qs{counter-reset:q;list-style:none}.qs li{counter-increment:q;position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--line);color:var(--ink-2)}.qs li:last-child{border:0}
+.qs li::before{content:counter(q);position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:13px;display:grid;place-items:center}
+.srcs{font-size:13px;color:var(--ink-3);line-height:1.8}.srcs a{color:var(--accent)}
+@media (max-width:640px){.dealtypes{grid-template-columns:1fr 1fr}.dealtypes span{min-height:92px;padding:14px}}
+</style></head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="../"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
+</div></nav>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">✍️ New · Debt</div><h1>Before you sign, <em>see the real cost.</em></h1><p class="sub">Enter the key terms of a loan, card offer, lease or pay-later plan. We show the true total and flag the things people miss.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header>
+<main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div>
+<fieldset class="step"><legend>What are you about to sign?</legend><p class="hint">Pick the closest match.</p><div class="dealtypes"><label><input type="radio" name="dtype" value="car" checked><span><i>🚗</i>Car loan</span></label><label><input type="radio" name="dtype" value="personal"><span><i>💵</i>Personal loan</span></label><label><input type="radio" name="dtype" value="card"><span><i>💳</i>Credit card or balance transfer</span></label><label><input type="radio" name="dtype" value="carlease"><span><i>🔑</i>Car lease</span></label><label><input type="radio" name="dtype" value="aptlease"><span><i>🏢</i>Apartment lease</span></label><label><input type="radio" name="dtype" value="bnpl"><span><i>🛍️</i>Buy now, pay later</span></label></div></fieldset>
+<fieldset class="step"><legend>Have the offer text? Paste it here.</legend><p class="hint">Optional. We look for APR, term, amount, fees and promo dates, and you confirm everything on the next step. The text stays on your device.</p>
+<textarea id="paste" rows="6" class="paste" placeholder="e.g. 0% intro APR for 15 months on balance transfers, then 24.99% variable APR. Balance transfer fee of 3%..."></textarea>
+<p style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button type="button" class="btn ghost" id="find" style="height:44px">Find the terms</button><span id="found" class="hint" style="margin:0"></span></p></fieldset>
+<fieldset class="step" data-validate="terms"><legend id="tlegend">Confirm the key terms</legend><p class="hint" id="thint">Check every number against the actual offer.</p><div id="fields"></div></fieldset>
+<p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main>
+<section class="results" id="results"><div class="narrow" id="out"></div></section>
+<div class="narrow"><div class="card" style="margin-top:28px"><h3>Coming later</h3><p class="hint" style="margin:0">Severance agreements. Because they involve legal releases, we’re holding this one for now. Until then, the <a style="color:var(--accent);font-weight:600" href="../guides/lost-my-job/">lost-my-job guide</a> covers what to check.</p></div><p class="note"><strong>Educational only, not financial or legal advice.</strong> This tool estimates costs from the terms you enter and flags common issues that consumer agencies warn about. It doesn’t review contracts and can’t catch everything. Read every page before you sign, and ask a professional about anything unclear. Everything runs in your browser. Pasted text is never uploaded.</p></div><footer><div class="wrap">
+  <div class="top">
+    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
+    <div class="links"><a href="../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
+  </div>
+  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. Calculations run in your browser and nothing is sent to a server. No signup, no ads, no tracking cookies. © 2026 Put Your Money to Work.</div>
+</div></footer>
+<script src="../tools.js"></script>
+<script src="deal.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
