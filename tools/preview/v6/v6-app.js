@@ -95,3 +95,9 @@
   }
   if (monthly && chart) { [monthly, years, rate].forEach(function (el) { el.addEventListener('input', function () { if (!raf) raf = requestAnimationFrame(draw); }); }); draw(); }
 })(typeof window !== 'undefined' ? window : globalThis);
+/* v6: subtle scroll reveal; skipped entirely when reduced motion is requested or IO is missing. */
+(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var els=[].slice.call(document.querySelectorAll('.reveal')).filter(function(e){return e.getBoundingClientRect().top>innerHeight});
+if(!els.length)return;document.documentElement.classList.add('reveal-on');
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(function(e){if(els.indexOf(e)<0)e.classList.add('in');io.observe(e);});})();
