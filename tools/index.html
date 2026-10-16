@@ -229,7 +229,7 @@ footer{margin-top:40px}
 .tool.match{border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
 .tool.match::after{content:"Best match";position:absolute;top:30px;right:70px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
 .grid.wide .tool{flex-direction:row;align-items:center;gap:24px;min-height:150px}
-.grid.wide .tool .body{flex:1}.grid.wide .tool h4{margin-top:0}.grid.wide .tool .ex{margin-top:10px;padding-top:0;justify-content:flex-start}
+.tool.ext h4 a,.tool.ext .ex a{color:inherit;text-decoration:none}.tool.ext h4 a::before{content:"";position:absolute;inset:0}.tool.ext .ex a{position:relative;z-index:1}.tool.ext .ex a:hover{text-decoration:underline}.grid.wide .tool .body{flex:1}.grid.wide .tool h4{margin-top:0}.grid.wide .tool .ex{margin-top:10px;padding-top:0;justify-content:flex-start}
 @media (max-width:1000px){.feat{grid-template-columns:1fr 1fr}.feat .fc:first-child{grid-column:1/-1;min-height:360px}}
 @media (max-width:640px){
  .feat{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px 56px;padding:4px 24px 18px;scrollbar-width:none}

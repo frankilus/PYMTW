@@ -57,6 +57,15 @@ lib.innerHTML = PT_CATS.map(function (c) {
   return '<div class="cat"><div class="cat-title"><h3>' + c.name + '</h3><span>' + c.note + '</span></div><div class="grid n' + Math.min(n, 3) + (n === 1 ? ' wide' : '') + '">' +
   c.tools.map(function (t) { var x = X[t.slug], tg = t.live ? TAG[t.slug] : ['soon', 'Coming soon'];
     return '<a class="tool' + (t.live ? '' : ' is-soon') + '" id="tool-' + t.slug + '" href="' + t.slug + '/" style="--t:' + x[1] + ';--c:' + x[2] + '"><div class="top"><div class="ic">' + svg(t.slug) + '</div>' + (tg ? '<span class="badge ' + tg[0] + '">' + tg[1] + '</span>' : '') + '</div><div class="body"><h4>' + t.name + '</h4><p>' + t.desc + '</p><div class="ex">' + x[0] + (t.live ? '<em>' + t.time + '</em>' : '') + '</div></div><span class="arrow">→</span></a>'; }).join('') + '</div></div>'; }).join('');
+/* Outbound sister-project card in the Bitcoin section (not part of the tool catalog). */
+(function () {
+  var bt = document.getElementById('tool-bitcoin-dca-backtester'); if (!bt) return;
+  var g = bt.parentNode; g.className = g.className.replace(/\bn\d\b/, 'n3');
+  var d = document.createElement('div');
+  d.className = 'tool ext'; d.id = 'tool-stackcost'; d.style.cssText = '--t:#fff1e0;--c:#d9730d';
+  d.innerHTML = '<div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 16v-4M10 16V8M14 16v-6M18 16V5"/></svg></div><span class="badge soon">External site</span></div><div class="body"><h4><a href="https://stackcost-pink.vercel.app" target="_blank" rel="noopener">StackCost</a></h4><p>See the real all-in cost to DCA Bitcoin by platform (fees, spread, withdrawal).</p><div class="ex"><a href="https://stackcost-pink.vercel.app/compare" target="_blank" rel="noopener">Compare platforms →</a></div></div><span class="arrow" aria-hidden="true">↗</span>';
+  bt.insertAdjacentElement('afterend', d);
+})();
 var examples = ['I just lost my job', 'Is this car loan a good deal?', 'When can I afford a house?', 'Am I paying too much in fees?', 'How do I get out of credit card debt?', 'Should I buy a home or keep renting?', 'Which credit card should I get?', 'Roth or traditional IRA?'];
 var ex = 0, q = document.getElementById('q');
 setInterval(function () { if (!q.value && document.activeElement !== q) { ex = (ex + 1) % examples.length; q.placeholder = examples[ex]; } }, 2800);
