@@ -145,12 +145,13 @@ footer .legal{border-top:1px solid var(--line);margin-top:32px;padding-top:20px;
 .newsletter-archive{margin-top:16px;font-size:14px}
 .newsletter-archive a{color:var(--accent);font-weight:600}
 .newsletter-archive a:hover{text-decoration:underline}
-.newsletter-form{min-height:120px;display:flex;align-items:center;justify-content:center}
+.newsletter-form{min-height:363px;display:flex;align-items:center;justify-content:center}
 .newsletter-form iframe,.newsletter-form [data-beehiiv-form],.newsletter-form > div{width:100%!important;max-width:100%}
 footer .privacy-note{font-size:13px;color:var(--ink-3);line-height:1.55;margin:0 0 14px;max-width:64ch}
 footer .privacy-note a{color:var(--accent)}
 @media (max-width:760px){
   .newsletter{padding:48px 0}
+  .newsletter-form{min-height:447px}
   .newsletter-inner{grid-template-columns:1fr;gap:24px;padding:28px 22px;border-radius:22px}
 }
 @media print{.newsletter{display:none}}

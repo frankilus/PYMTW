@@ -358,7 +358,6 @@
         <p class="newsletter-archive"><a href="https://pymtwtools.beehiiv.com" target="_blank" rel="noopener">Browse the archive ↗</a></p>
       </div>
       <div class="newsletter-form">
-        <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="e52526c9-fd98-4fde-bda0-ee1a61507c09"></script>
       </div>
     </div>
   </div>
@@ -384,7 +383,16 @@
   upd();
 })();
 </script>
-<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+<script>
+/* Lazy-load the beehiiv signup form when the newsletter section nears the viewport. */
+(function(){var box=document.querySelector('.newsletter-form'),done=false;if(!box)return;
+function load(){if(done)return;done=true;
+ var s=document.createElement('script');s.async=true;s.src='https://subscribe-forms.beehiiv.com/v3/loader.js';s.setAttribute('data-beehiiv-form','e52526c9-fd98-4fde-bda0-ee1a61507c09');box.appendChild(s);
+ var a=document.createElement('script');a.async=true;a.src='https://subscribe-forms.beehiiv.com/attribution.js';document.body.appendChild(a);}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e.some(function(x){return x.isIntersecting})){io.disconnect();load();}},{rootMargin:'300px 0px'});io.observe(box);}
+else{['scroll','pointerdown','keydown','touchstart'].forEach(function(t){addEventListener(t,load,{once:true,passive:true})});
+ (window.requestIdleCallback||function(f){setTimeout(f,1)})(function(){setTimeout(load,4000)});}})();
+</script>
 <script data-goatcounter="https://pymtw.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
