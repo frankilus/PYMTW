@@ -3,28 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fee x-ray | PYMTW Tools</title>
-<meta name="description" content="Reveal what your fund and advisor fees cost you over 30 years.">
+<!-- seo:head -->
+<title>Investment Fee Calculator: What Expense Ratios Cost You</title>
+<meta name="description" content="Enter your funds, expense ratios and any advisor fee to see how much fees could cost you over the years you choose. Free and private.">
 <link rel="canonical" href="https://pymtw.com/tools/fee-x-ray/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Fee x-ray | PYMTW Tools">
-<meta property="og:description" content="Reveal what your fund and advisor fees cost you over 30 years.">
-<meta property="og:url" content="https://pymtw.com/tools/fee-x-ray/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fee x-ray | PYMTW Tools">
-<meta name="twitter:description" content="Reveal what your fund and advisor fees cost you over 30 years.">
+<meta property="og:title" content="Investment Fee Calculator: What Expense Ratios Cost You">
+<meta property="og:description" content="Enter your funds, expense ratios and any advisor fee to see how much fees could cost you over the years you choose. Free and private.">
+<meta property="og:url" content="https://pymtw.com/tools/fee-x-ray/">
+<meta property="og:image" content="https://pymtw.com/tools/og/retirement.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Retirement &amp; investing">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investment Fee Calculator: What Expense Ratios Cost You">
+<meta name="twitter:description" content="Enter your funds, expense ratios and any advisor fee to see how much fees could cost you over the years you choose. Free and private.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/retirement.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Retirement &amp; investing">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Fee x-ray",
+     "item": "https://pymtw.com/tools/fee-x-ray/"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Fee x-ray",
+   "url": "https://pymtw.com/tools/fee-x-ray/",
+   "description": "Enter your funds, expense ratios and any advisor fee to see how much fees could cost you over the years you choose. Free and private.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Put Your Money to Work",
+    "url": "https://pymtw.com/"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is an expense ratio?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It is the annual fee a fund charges, shown as a percentage of the money you have invested. It is taken out of the fund’s returns, so you never see a bill."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where do I find my fund’s expense ratio?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "On the fund’s fact sheet or prospectus, or on your brokerage or 401(k) provider’s website."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is a 1% advisory fee a lot?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It can be. Because it is charged on your whole balance every year, the dollar cost grows with your account. Use this tool to see what it would cost on your numbers and weigh that against the service you get."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do fees really matter if returns are good?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Fees are subtracted whether returns are good or bad, and the money lost to fees also stops compounding for you."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="tool-hero"><div class="narrow"><div class="eyebrow">🩻 Retirement & investing</div><h1>What are your fees <em>really costing you?</em></h1><p class="sub">Enter your funds and their expense ratios (on each fund’s fact sheet). Add any advisor fee.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" data-validate="funds"><legend>What funds do you own?</legend><p class="hint">Look up each fund’s expense ratio on its fact sheet or your provider’s website.</p><div class="scroll"><table class="tbl" id="funds"><thead><tr><th>Fund</th><th class="n">Balance</th><th class="n">Expense ratio %</th><th></th></tr></thead><tbody></tbody></table></div><p style="margin-top:12px"><button type="button" class="linkbtn" id="add">+ Add a fund</button></p></fieldset><fieldset class="step" ><legend>Do you pay an advisor or wrap fee?</legend><p class="hint">Usually a percentage of assets per year (AUM fee). Enter 0 if none.</p><label class="field"><span>Advisory fee per year</span><div class="inp"><b></b><input name="advisor" inputmode="decimal" value="1" required data-pct ><b>%</b></div></label></fieldset><fieldset class="step" ><legend>What’s your plan from here?</legend><div class="row3"><label class="field"><span>Added each month</span><div class="inp"><b>$</b><input name="monthly" inputmode="decimal" value="500" required ></div></label><label class="field"><span>Years</span><div class="inp"><b></b><input name="years" inputmode="decimal" value="30" required ><b>years</b></div></label><label class="field"><span>Return before fees</span><div class="inp"><b></b><input name="ret" inputmode="decimal" value="7" required data-pct ><b>%</b></div></label></div></fieldset>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">🩻 Retirement & investing</div><h1>What are your fees <em>really costing you?</em></h1><p class="sub">Enter your funds and their expense ratios (on each fund’s fact sheet). Add any advisor fee.</p><p class="direct-answer">Investment fees are charged every year as a percentage of your balance, so their cost compounds and can add up to a large share of your growth over decades. Enter your funds, expense ratios and any advisor fee to see the estimated dollar cost.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" data-validate="funds"><legend>What funds do you own?</legend><p class="hint">Look up each fund’s expense ratio on its fact sheet or your provider’s website.</p><div class="scroll"><table class="tbl" id="funds"><thead><tr><th>Fund</th><th class="n">Balance</th><th class="n">Expense ratio %</th><th></th></tr></thead><tbody></tbody></table></div><p style="margin-top:12px"><button type="button" class="linkbtn" id="add">+ Add a fund</button></p></fieldset><fieldset class="step" ><legend>Do you pay an advisor or wrap fee?</legend><p class="hint">Usually a percentage of assets per year (AUM fee). Enter 0 if none.</p><label class="field"><span>Advisory fee per year</span><div class="inp"><b></b><input name="advisor" inputmode="decimal" value="1" required data-pct ><b>%</b></div></label></fieldset><fieldset class="step" ><legend>What’s your plan from here?</legend><div class="row3"><label class="field"><span>Added each month</span><div class="inp"><b>$</b><input name="monthly" inputmode="decimal" value="500" required ></div></label><label class="field"><span>Years</span><div class="inp"><b></b><input name="years" inputmode="decimal" value="30" required ><b>years</b></div></label><label class="field"><span>Return before fees</span><div class="inp"><b></b><input name="ret" inputmode="decimal" value="7" required data-pct ><b>%</b></div></label></div></fieldset>
 <p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main><section class="results" id="results"><div class="narrow" id="out"></div></section><div class="narrow"><p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. Everything is calculated in your browser, and nothing you type or upload leaves your device.</p></div>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>What is an expense ratio?</h3><p>It is the annual fee a fund charges, shown as a percentage of the money you have invested. It is taken out of the fund’s returns, so you never see a bill.</p></div><div class="qa"><h3>Where do I find my fund’s expense ratio?</h3><p>On the fund’s fact sheet or prospectus, or on your brokerage or 401(k) provider’s website.</p></div><div class="qa"><h3>Is a 1% advisory fee a lot?</h3><p>It can be. Because it is charged on your whole balance every year, the dollar cost grows with your account. Use this tool to see what it would cost on your numbers and weigh that against the service you get.</p></div><div class="qa"><h3>Do fees really matter if returns are good?</h3><p>Yes. Fees are subtracted whether returns are good or bad, and the money lost to fees also stops compounding for you.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../roth-vs-traditional/"><b>Roth vs. traditional</b><span>Which account wins for you, now and in retirement.</span></a></li><li><a href="../explain-my-401k/"><b>Explain my 401(k)</b><span>See what you own, what it costs, and whether you’re on track.</span></a></li><li><a href="../bitcoin-dca-backtester/"><b>Bitcoin DCA backtester</b><span>See what buying a little every month would have actually done, vs. the S&amp;P 500.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

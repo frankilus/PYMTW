@@ -3,28 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Severance & job-loss runway | PYMTW Tools</title>
-<meta name="description" content="Lost your job? See how many months you can last and what to do first.">
+<!-- seo:head -->
+<title>Job Loss Runway Calculator: How Long Will My Savings Last?</title>
+<meta name="description" content="Lost your job? Enter savings, severance, unemployment and expenses to see how many months you can last, plus what to do this week.">
 <link rel="canonical" href="https://pymtw.com/tools/severance-runway/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Severance &amp; job-loss runway | PYMTW Tools">
-<meta property="og:description" content="Lost your job? See how many months you can last and what to do first.">
-<meta property="og:url" content="https://pymtw.com/tools/severance-runway/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Severance &amp; job-loss runway | PYMTW Tools">
-<meta name="twitter:description" content="Lost your job? See how many months you can last and what to do first.">
+<meta property="og:title" content="Job Loss Runway Calculator: How Long Will My Savings Last?">
+<meta property="og:description" content="Lost your job? Enter savings, severance, unemployment and expenses to see how many months you can last, plus what to do this week.">
+<meta property="og:url" content="https://pymtw.com/tools/severance-runway/">
+<meta property="og:image" content="https://pymtw.com/tools/og/life.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Life changes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Job Loss Runway Calculator: How Long Will My Savings Last?">
+<meta name="twitter:description" content="Lost your job? Enter savings, severance, unemployment and expenses to see how many months you can last, plus what to do this week.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/life.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Life changes">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Severance & job-loss runway",
+     "item": "https://pymtw.com/tools/severance-runway/"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Severance & job-loss runway",
+   "url": "https://pymtw.com/tools/severance-runway/",
+   "description": "Lost your job? Enter savings, severance, unemployment and expenses to see how many months you can last, plus what to do this week.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Put Your Money to Work",
+    "url": "https://pymtw.com/"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How long will my savings last if I lose my job?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Divide the money you can draw on by what you spend each month. Counting severance and unemployment benefits, and trimming expenses, can extend that number."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I count unemployment benefits in my runway?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If you are likely eligible, yes, but amounts and duration depend on your state. File as soon as you can and use your state’s estimate rather than a guess."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What should I do first after losing my job?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "File for unemployment, check your final paycheck and severance terms, and sort out health coverage. Our Just lost your job guide walks through each step."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="tool-hero"><div class="narrow"><div class="eyebrow">🧭 Life changes</div><h1>How long can you <em>last?</em></h1><p class="sub">Lost your job or worried you might? See your runway in months and what to do this week.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>How much cash do you have?</legend><p class="hint">Checking, savings, money market. Leave out retirement accounts.</p><label class="field"><span>Cash savings</span><div class="inp"><b>$</b><input name="cash" inputmode="decimal" value="18000" required ></div></label></fieldset><fieldset class="step" ><legend>Did you get severance?</legend><p class="hint">Use the after-tax amount if you know it. Enter 0 if none.</p><label class="field"><span>Severance (after tax)</span><div class="inp"><b>$</b><input name="severance" inputmode="decimal" value="12000" required ></div></label></fieldset><fieldset class="step" ><legend>Do you expect unemployment benefits?</legend><p class="hint">Check your state’s estimate. Benefits and length vary by state, and many states pay for about 26 weeks.</p><div class="row2"><label class="field"><span>Weekly benefit</span><div class="inp"><b>$</b><input name="uiWeekly" inputmode="decimal" value="450" required ></div></label><label class="field"><span>For how many weeks</span><div class="inp"><b></b><input name="uiWeeks" inputmode="decimal" value="26" required ><b>weeks</b></div></label></div></fieldset><fieldset class="step" ><legend>Any other income each month?</legend><p class="hint">A partner’s pay, side work, rental income. Enter 0 if none.</p><label class="field"><span>Other monthly income</span><div class="inp"><b>$</b><input name="otherMonthly" inputmode="decimal" value="0" required ></div></label></fieldset><fieldset class="step" ><legend>What do you spend each month?</legend><p class="hint">Rent or mortgage, food, utilities, insurance, minimum debt payments. Include health insurance if you plan to keep coverage.</p><label class="field"><span>Monthly expenses</span><div class="inp"><b>$</b><input name="expenses" inputmode="decimal" value="5200" required ></div></label></fieldset>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">🧭 Life changes</div><h1>How long can you <em>last?</em></h1><p class="sub">Lost your job or worried you might? See your runway in months and what to do this week.</p><p class="direct-answer">Your runway after a job loss is roughly your cash plus severance and expected unemployment benefits, divided by your monthly expenses. Enter your numbers here to see how many months you can last and what to prioritize this week.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>How much cash do you have?</legend><p class="hint">Checking, savings, money market. Leave out retirement accounts.</p><label class="field"><span>Cash savings</span><div class="inp"><b>$</b><input name="cash" inputmode="decimal" value="18000" required ></div></label></fieldset><fieldset class="step" ><legend>Did you get severance?</legend><p class="hint">Use the after-tax amount if you know it. Enter 0 if none.</p><label class="field"><span>Severance (after tax)</span><div class="inp"><b>$</b><input name="severance" inputmode="decimal" value="12000" required ></div></label></fieldset><fieldset class="step" ><legend>Do you expect unemployment benefits?</legend><p class="hint">Check your state’s estimate. Benefits and length vary by state, and many states pay for about 26 weeks.</p><div class="row2"><label class="field"><span>Weekly benefit</span><div class="inp"><b>$</b><input name="uiWeekly" inputmode="decimal" value="450" required ></div></label><label class="field"><span>For how many weeks</span><div class="inp"><b></b><input name="uiWeeks" inputmode="decimal" value="26" required ><b>weeks</b></div></label></div></fieldset><fieldset class="step" ><legend>Any other income each month?</legend><p class="hint">A partner’s pay, side work, rental income. Enter 0 if none.</p><label class="field"><span>Other monthly income</span><div class="inp"><b>$</b><input name="otherMonthly" inputmode="decimal" value="0" required ></div></label></fieldset><fieldset class="step" ><legend>What do you spend each month?</legend><p class="hint">Rent or mortgage, food, utilities, insurance, minimum debt payments. Include health insurance if you plan to keep coverage.</p><label class="field"><span>Monthly expenses</span><div class="inp"><b>$</b><input name="expenses" inputmode="decimal" value="5200" required ></div></label></fieldset>
 <p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main><section class="results" id="results"><div class="narrow" id="out"></div></section><div class="narrow"><p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. Everything is calculated in your browser, and nothing you type or upload leaves your device.</p></div>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>How long will my savings last if I lose my job?</h3><p>Divide the money you can draw on by what you spend each month. Counting severance and unemployment benefits, and trimming expenses, can extend that number.</p></div><div class="qa"><h3>Should I count unemployment benefits in my runway?</h3><p>If you are likely eligible, yes, but amounts and duration depend on your state. File as soon as you can and use your state’s estimate rather than a guess.</p></div><div class="qa"><h3>What should I do first after losing my job?</h3><p>File for unemployment, check your final paycheck and severance terms, and sort out health coverage. Our Just lost your job guide walks through each step.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../guides/lost-my-job/"><b>Just lost your job? What to do</b><span>What to do this week, this month and this year after a job loss.</span></a></li><li><a href="../emergency-fund-runway/"><b>Emergency fund runway</b><span>How long your savings would last, and how much is enough.</span></a></li><li><a href="../debt-payoff-planner/"><b>Debt payoff planner</b><span>Your debt-free date, and the fastest order to pay things off.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

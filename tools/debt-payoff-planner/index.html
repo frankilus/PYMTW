@@ -3,28 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Debt payoff planner | PYMTW Tools</title>
-<meta name="description" content="Your debt-free date, and the fastest order to pay things off.">
+<!-- seo:head -->
+<title>Debt Payoff Calculator: Avalanche vs. Snowball Methods</title>
+<meta name="description" content="List your debts and compare the avalanche and snowball payoff methods: see your debt-free date and total interest for each. Free and private.">
 <link rel="canonical" href="https://pymtw.com/tools/debt-payoff-planner/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Debt payoff planner | PYMTW Tools">
-<meta property="og:description" content="Your debt-free date, and the fastest order to pay things off.">
-<meta property="og:url" content="https://pymtw.com/tools/debt-payoff-planner/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debt payoff planner | PYMTW Tools">
-<meta name="twitter:description" content="Your debt-free date, and the fastest order to pay things off.">
+<meta property="og:title" content="Debt Payoff Calculator: Avalanche vs. Snowball Methods">
+<meta property="og:description" content="List your debts and compare the avalanche and snowball payoff methods: see your debt-free date and total interest for each. Free and private.">
+<meta property="og:url" content="https://pymtw.com/tools/debt-payoff-planner/">
+<meta property="og:image" content="https://pymtw.com/tools/og/debt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Debt">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Debt Payoff Calculator: Avalanche vs. Snowball Methods">
+<meta name="twitter:description" content="List your debts and compare the avalanche and snowball payoff methods: see your debt-free date and total interest for each. Free and private.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/debt.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Debt">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Debt payoff planner",
+     "item": "https://pymtw.com/tools/debt-payoff-planner/"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Debt payoff planner",
+   "url": "https://pymtw.com/tools/debt-payoff-planner/",
+   "description": "List your debts and compare the avalanche and snowball payoff methods: see your debt-free date and total interest for each. Free and private.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Put Your Money to Work",
+    "url": "https://pymtw.com/"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is the avalanche or snowball method better?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Avalanche usually saves the most interest because it targets the highest rate first. Snowball can be easier to stick with because small balances disappear sooner. The best method is the one you will keep doing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is my debt-free date calculated?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The planner applies your monthly payment to your listed balances and rates month by month until every balance is paid. It assumes rates and payments stay the same."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I pay off debt or save first?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Many people keep a small emergency cushion while paying down high-interest debt, so a surprise bill does not go back on a card. The right balance depends on your rates and job security."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does paying extra really make a difference?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Usually yes. Extra payments go straight to principal, which reduces future interest and can move your debt-free date noticeably. Enter different payment amounts to see the effect."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="tool-hero"><div class="narrow"><div class="eyebrow">📉 Debt</div><h1>When will you be <em>debt-free?</em></h1><p class="sub">List what you owe. We’ll compare the two proven payoff methods and show your debt-free date.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" data-validate="debts"><legend>What do you owe?</legend><p class="hint">Add each card or loan. Balance, interest rate (APR), and the minimum monthly payment.</p><div class="scroll"><table class="tbl" id="debts"><thead><tr><th>Name</th><th class="n">Balance</th><th class="n">APR %</th><th class="n">Minimum</th><th></th></tr></thead><tbody></tbody></table></div><p style="margin-top:12px"><button type="button" class="linkbtn" id="add">+ Add another debt</button></p></fieldset><fieldset class="step" ><legend>How much extra can you pay each month?</legend><p class="hint">Anything above your minimums. Even $50 makes a real difference.</p><label class="field"><span>Extra per month</span><div class="inp"><b>$</b><input name="extra" inputmode="decimal" value="300" required ></div></label></fieldset>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">📉 Debt</div><h1>When will you be <em>debt-free?</em></h1><p class="sub">List what you owe. We’ll compare the two proven payoff methods and show your debt-free date.</p><p class="direct-answer">To get out of debt fastest, pay the minimum on everything and put any extra toward one debt at a time: the highest interest rate first (avalanche) usually costs the least, while the smallest balance first (snowball) gives quicker wins. This planner shows your debt-free date under both.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" data-validate="debts"><legend>What do you owe?</legend><p class="hint">Add each card or loan. Balance, interest rate (APR), and the minimum monthly payment.</p><div class="scroll"><table class="tbl" id="debts"><thead><tr><th>Name</th><th class="n">Balance</th><th class="n">APR %</th><th class="n">Minimum</th><th></th></tr></thead><tbody></tbody></table></div><p style="margin-top:12px"><button type="button" class="linkbtn" id="add">+ Add another debt</button></p></fieldset><fieldset class="step" ><legend>How much extra can you pay each month?</legend><p class="hint">Anything above your minimums. Even $50 makes a real difference.</p><label class="field"><span>Extra per month</span><div class="inp"><b>$</b><input name="extra" inputmode="decimal" value="300" required ></div></label></fieldset>
 <p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main><section class="results" id="results"><div class="narrow" id="out"></div></section><div class="narrow"><p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. Everything is calculated in your browser, and nothing you type or upload leaves your device.</p></div>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>Is the avalanche or snowball method better?</h3><p>Avalanche usually saves the most interest because it targets the highest rate first. Snowball can be easier to stick with because small balances disappear sooner. The best method is the one you will keep doing.</p></div><div class="qa"><h3>How is my debt-free date calculated?</h3><p>The planner applies your monthly payment to your listed balances and rates month by month until every balance is paid. It assumes rates and payments stay the same.</p></div><div class="qa"><h3>Should I pay off debt or save first?</h3><p>Many people keep a small emergency cushion while paying down high-interest debt, so a surprise bill does not go back on a card. The right balance depends on your rates and job security.</p></div><div class="qa"><h3>Does paying extra really make a difference?</h3><p>Usually yes. Extra payments go straight to principal, which reduces future interest and can move your debt-free date noticeably. Enter different payment amounts to see the effect.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../before-you-sign/"><b>Before you sign</b><span>True cost and red flags for a loan, card offer, lease or pay-later plan.</span></a></li><li><a href="../credit-card-optimizer/"><b>Credit card optimizer</b><span>Find the type of card that pays you the most for how you actually spend.</span></a></li><li><a href="../money-timeline/"><b>Money timeline</b><span>See when you’ll hit each goal on one timeline, and what moves the dates.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

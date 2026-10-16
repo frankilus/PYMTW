@@ -3,28 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emergency fund runway | PYMTW Tools</title>
-<meta name="description" content="How long your savings would last, and how much is enough.">
+<!-- seo:head -->
+<title>Emergency Fund Calculator: How Long Will Savings Last?</title>
+<meta name="description" content="See how many months your savings would cover your essential expenses, how much emergency fund is enough for you, and how to reach your target.">
 <link rel="canonical" href="https://pymtw.com/tools/emergency-fund-runway/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Emergency fund runway | PYMTW Tools">
-<meta property="og:description" content="How long your savings would last, and how much is enough.">
-<meta property="og:url" content="https://pymtw.com/tools/emergency-fund-runway/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Emergency fund runway | PYMTW Tools">
-<meta name="twitter:description" content="How long your savings would last, and how much is enough.">
+<meta property="og:title" content="Emergency Fund Calculator: How Long Will Savings Last?">
+<meta property="og:description" content="See how many months your savings would cover your essential expenses, how much emergency fund is enough for you, and how to reach your target.">
+<meta property="og:url" content="https://pymtw.com/tools/emergency-fund-runway/">
+<meta property="og:image" content="https://pymtw.com/tools/og/life.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Life changes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emergency Fund Calculator: How Long Will Savings Last?">
+<meta name="twitter:description" content="See how many months your savings would cover your essential expenses, how much emergency fund is enough for you, and how to reach your target.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/life.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Life changes">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Emergency fund runway",
+     "item": "https://pymtw.com/tools/emergency-fund-runway/"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Emergency fund runway",
+   "url": "https://pymtw.com/tools/emergency-fund-runway/",
+   "description": "See how many months your savings would cover your essential expenses, how much emergency fund is enough for you, and how to reach your target.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Put Your Money to Work",
+    "url": "https://pymtw.com/"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How much should I have in an emergency fund?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A widely used rule of thumb is three to six months of essential expenses. People with variable income, one earner in the household or less stable jobs often aim higher."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I count all my expenses or just essentials?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For runway, essentials are what matter: housing, food, utilities, insurance, transportation and minimum debt payments. You would likely cut extras in an emergency."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where should I keep my emergency fund?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Somewhere safe and easy to reach, such as an insured high-yield savings account, rather than invested in assets that can drop in value right when you need them."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="tool-hero"><div class="narrow"><div class="eyebrow">🛟 Life changes</div><h1>Is your safety net <em>big enough?</em></h1><p class="sub">See how many months your savings would cover, and how to reach your target.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>How much cash could you reach in a week?</legend><p class="hint">Checking and savings. Leave out investments and retirement accounts.</p><label class="field"><span>Emergency cash</span><div class="inp"><b>$</b><input name="cash" inputmode="decimal" value="8000" required ></div></label></fieldset><fieldset class="step" ><legend>What are your essential monthly costs?</legend><p class="hint">Only the must-pays: housing, food, utilities, insurance, transport, minimum debt payments.</p><label class="field"><span>Essentials per month</span><div class="inp"><b>$</b><input name="essentials" inputmode="decimal" value="3500" required ></div></label></fieldset><fieldset class="step" ><legend>How secure is your income?</legend><p class="hint">Less stable income needs a bigger cushion.</p><div class="seg"><label><input type="radio" name="target" value="3" ><span>Very stable · 3 months</span></label><label><input type="radio" name="target" value="6" checked><span>Typical · 6 months</span></label><label><input type="radio" name="target" value="9" ><span>Variable or one income · 9 months</span></label></div></fieldset><fieldset class="step" ><legend>How much can you set aside each month?</legend><label class="field"><span>Monthly savings</span><div class="inp"><b>$</b><input name="save" inputmode="decimal" value="400" required ></div></label></fieldset>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">🛟 Life changes</div><h1>Is your safety net <em>big enough?</em></h1><p class="sub">See how many months your savings would cover, and how to reach your target.</p><p class="direct-answer">Your emergency fund runway is your savings divided by your essential monthly expenses. A common rule of thumb is three to six months of expenses, more if your income is irregular; this tool shows your current runway and a plan to reach your target.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>How much cash could you reach in a week?</legend><p class="hint">Checking and savings. Leave out investments and retirement accounts.</p><label class="field"><span>Emergency cash</span><div class="inp"><b>$</b><input name="cash" inputmode="decimal" value="8000" required ></div></label></fieldset><fieldset class="step" ><legend>What are your essential monthly costs?</legend><p class="hint">Only the must-pays: housing, food, utilities, insurance, transport, minimum debt payments.</p><label class="field"><span>Essentials per month</span><div class="inp"><b>$</b><input name="essentials" inputmode="decimal" value="3500" required ></div></label></fieldset><fieldset class="step" ><legend>How secure is your income?</legend><p class="hint">Less stable income needs a bigger cushion.</p><div class="seg"><label><input type="radio" name="target" value="3" ><span>Very stable · 3 months</span></label><label><input type="radio" name="target" value="6" checked><span>Typical · 6 months</span></label><label><input type="radio" name="target" value="9" ><span>Variable or one income · 9 months</span></label></div></fieldset><fieldset class="step" ><legend>How much can you set aside each month?</legend><label class="field"><span>Monthly savings</span><div class="inp"><b>$</b><input name="save" inputmode="decimal" value="400" required ></div></label></fieldset>
 <p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main><section class="results" id="results"><div class="narrow" id="out"></div></section><div class="narrow"><p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. Everything is calculated in your browser, and nothing you type or upload leaves your device.</p></div>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>How much should I have in an emergency fund?</h3><p>A widely used rule of thumb is three to six months of essential expenses. People with variable income, one earner in the household or less stable jobs often aim higher.</p></div><div class="qa"><h3>Should I count all my expenses or just essentials?</h3><p>For runway, essentials are what matter: housing, food, utilities, insurance, transportation and minimum debt payments. You would likely cut extras in an emergency.</p></div><div class="qa"><h3>Where should I keep my emergency fund?</h3><p>Somewhere safe and easy to reach, such as an insured high-yield savings account, rather than invested in assets that can drop in value right when you need them.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../severance-runway/"><b>Severance &amp; job-loss runway</b><span>Lost your job? See how many months you can last and what to do first.</span></a></li><li><a href="../guides/lost-my-job/"><b>Just lost your job? What to do</b><span>What to do this week, this month and this year after a job loss.</span></a></li><li><a href="../money-timeline/"><b>Money timeline</b><span>See when you’ll hit each goal on one timeline, and what moves the dates.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

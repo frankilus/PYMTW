@@ -3,30 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bitcoin tax-lot cleanup | PYMTW Tools</title>
-<meta name="description" content="Merge exchange exports into clean cost basis, ready for tax time.">
+<!-- seo:head -->
+<title>Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)</title>
+<meta name="description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
 <link rel="canonical" href="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bitcoin tax-lot cleanup | PYMTW Tools">
-<meta property="og:description" content="Merge exchange exports into clean cost basis, ready for tax time.">
-<meta property="og:url" content="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bitcoin tax-lot cleanup | PYMTW Tools">
-<meta name="twitter:description" content="Merge exchange exports into clean cost basis, ready for tax time.">
+<meta property="og:title" content="Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)">
+<meta property="og:description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
+<meta property="og:url" content="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/">
+<meta property="og:image" content="https://pymtw.com/tools/og/bitcoin.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Bitcoin">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)">
+<meta name="twitter:description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/bitcoin.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Bitcoin">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Bitcoin tax-lot cleanup",
+     "item": "https://pymtw.com/tools/bitcoin-tax-lot-cleanup/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is cost basis for bitcoin?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It is generally what you paid to acquire the bitcoin, including certain fees. Your gain or loss when you sell is the sale proceeds minus that basis."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why do I need my records from every exchange?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If you moved coins between exchanges or wallets, one platform may not know what you originally paid. Combining records helps keep the original basis attached to each lot."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is this tax advice?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Crypto tax rules can be complex and change over time. Confirm your situation with a tax professional or official IRS guidance."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="soon"><div class="narrow"><div class="icon">🧮</div><div class="eyebrow" style="margin-top:20px">Coming soon</div><h1>Bitcoin tax-lot cleanup</h1><p class="sub">Merge CSV exports from several exchanges into one clean list of tax lots, with cost basis under FIFO, HIFO or specific ID, and an 8949-style export for your tax preparer.</p>
+<header class="soon"><div class="narrow"><div class="icon">🧮</div><div class="eyebrow" style="margin-top:20px">Coming soon</div><h1>Bitcoin tax-lot cleanup</h1><p class="sub">Merge CSV exports from several exchanges into one clean list of tax lots, with cost basis under FIFO, HIFO or specific ID, and an 8949-style export for your tax preparer.</p><p class="direct-answer">Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell. This tool, coming soon, will merge exchange exports into one clean record you can review with your tax software or preparer.</p>
 <ul><li>Combines buys, sells, and transfers between your own wallets</li><li>Flags missing cost basis and duplicate transfers</li><li>Runs entirely in your browser because this data is sensitive</li></ul>
 <p style="margin-top:36px"><a class="btn" href="../">Browse the tools that work today →</a></p><p class="hint" style="margin-top:18px">Meanwhile, try the <a style="color:var(--accent);font-weight:600" href="../bitcoin-dca-backtester/">Bitcoin DCA backtester</a>.</p>
 <p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. When this tool launches, everything will be calculated in your browser, and nothing you type or upload leaves your device.</p></div></header>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>What is cost basis for bitcoin?</h3><p>It is generally what you paid to acquire the bitcoin, including certain fees. Your gain or loss when you sell is the sale proceeds minus that basis.</p></div><div class="qa"><h3>Why do I need my records from every exchange?</h3><p>If you moved coins between exchanges or wallets, one platform may not know what you originally paid. Combining records helps keep the original basis attached to each lot.</p></div><div class="qa"><h3>Is this tax advice?</h3><p>No. Crypto tax rules can be complex and change over time. Confirm your situation with a tax professional or official IRS guidance.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../bitcoin-dca-backtester/"><b>Bitcoin DCA backtester</b><span>See what buying a little every month would have actually done, vs. the S&amp;P 500.</span></a></li><li><a href="../fee-x-ray/"><b>Fee x-ray</b><span>Reveal what your fund and advisor fees cost you over 30 years.</span></a></li><li><a href="../checkup/"><b>2-minute money checkup</b><span>Two minutes of questions, then a prioritized list of money blind spots.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

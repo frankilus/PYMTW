@@ -3,28 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rent vs. buy reality check | PYMTW Tools</title>
-<meta name="description" content="The true cost of owning vs. renting, with no realtor math.">
+<!-- seo:head -->
+<title>Rent vs. Buy Calculator: True Cost of Owning a Home</title>
+<meta name="description" content="Compare renting and buying with taxes, maintenance, insurance, PMI, appreciation and what your down payment could earn elsewhere. Free.">
 <link rel="canonical" href="https://pymtw.com/tools/rent-vs-buy/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Rent vs. buy reality check | PYMTW Tools">
-<meta property="og:description" content="The true cost of owning vs. renting, with no realtor math.">
-<meta property="og:url" content="https://pymtw.com/tools/rent-vs-buy/">
 <meta property="og:site_name" content="PYMTW Tools">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rent vs. buy reality check | PYMTW Tools">
-<meta name="twitter:description" content="The true cost of owning vs. renting, with no realtor math.">
+<meta property="og:title" content="Rent vs. Buy Calculator: True Cost of Owning a Home">
+<meta property="og:description" content="Compare renting and buying with taxes, maintenance, insurance, PMI, appreciation and what your down payment could earn elsewhere. Free.">
+<meta property="og:url" content="https://pymtw.com/tools/rent-vs-buy/">
+<meta property="og:image" content="https://pymtw.com/tools/og/life.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Life changes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rent vs. Buy Calculator: True Cost of Owning a Home">
+<meta name="twitter:description" content="Compare renting and buying with taxes, maintenance, insurance, PMI, appreciation and what your down payment could earn elsewhere. Free.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/life.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Life changes">
+<!-- /seo:head -->
 <meta name="theme-color" content="#0a7c55">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../tools.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "PYMTW",
+     "item": "https://pymtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Tools",
+     "item": "https://pymtw.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Rent vs. buy reality check",
+     "item": "https://pymtw.com/tools/rent-vs-buy/"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Rent vs. buy reality check",
+   "url": "https://pymtw.com/tools/rent-vs-buy/",
+   "description": "Compare renting and buying with taxes, maintenance, insurance, PMI, appreciation and what your down payment could earn elsewhere. Free.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Put Your Money to Work",
+    "url": "https://pymtw.com/"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is it cheaper to rent or buy a home?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends. Buying tends to make more sense the longer you stay, because upfront costs are spread over more years. Renting can win over shorter stays or where prices are high relative to rents."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What costs of owning do people forget?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Property tax, homeowners insurance, maintenance and repairs, HOA dues, PMI if you put down less than 20% on a conventional loan, and closing costs when you buy and sell."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does the calculator include investment returns?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Money used for a down payment could otherwise be invested. Including that opportunity cost makes the comparison fair to renting."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How long do I need to stay for buying to make sense?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "There is no single answer. Try different time horizons here; the point where buying pulls ahead depends on your prices, rates and assumptions."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
-<header class="tool-hero"><div class="narrow"><div class="eyebrow">🏠 Life changes</div><h1>Rent or buy? <em>Do the real math.</em></h1><p class="sub">Taxes, maintenance, insurance, PMI, appreciation, and what your down payment could earn elsewhere.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>What does the home cost?</legend><div class="row2"><label class="field"><span>Home price</span><div class="inp"><b>$</b><input name="price" inputmode="decimal" value="450000" required ></div></label><label class="field"><span>Down payment</span><div class="inp"><b></b><input name="downPct" inputmode="decimal" value="10" required data-pct ><b>%</b></div></label></div><div class="row2"><label class="field"><span>Mortgage rate</span><div class="inp"><b></b><input name="rate" inputmode="decimal" value="6.5" required data-pct ><b>%</b></div></label><label class="field"><span>Loan term</span><div class="inp"><b></b><input name="termYears" inputmode="decimal" value="30" required ><b>years</b></div></label></div></fieldset><fieldset class="step" ><legend>What are the ongoing costs of owning?</legend><p class="hint">Typical figures are pre-filled. Change them to match your area.</p><div class="row2"><label class="field"><span>Property tax (per year)</span><div class="inp"><b></b><input name="taxPct" inputmode="decimal" value="1.1" required data-pct ><b>%</b></div></label><label class="field"><span>Home insurance (per year)</span><div class="inp"><b>$</b><input name="insurance" inputmode="decimal" value="1800" required ></div></label></div><div class="row2"><label class="field"><span>Maintenance (per year)</span><div class="inp"><b></b><input name="maintPct" inputmode="decimal" value="1" required data-pct ><b>%</b></div></label><label class="field"><span>PMI if under 20% down</span><div class="inp"><b></b><input name="pmiPct" inputmode="decimal" value="0.6" required data-pct ><b>%</b></div></label></div></fieldset><fieldset class="step" ><legend>What would you pay to rent a similar place?</legend><div class="row2"><label class="field"><span>Monthly rent</span><div class="inp"><b>$</b><input name="rent" inputmode="decimal" value="2500" required ></div></label><label class="field"><span>Rent increase per year</span><div class="inp"><b></b><input name="rentGrowth" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label></div></fieldset><fieldset class="step" ><legend>What are your assumptions?</legend><p class="hint">Opportunity cost: as a renter, the down payment and any monthly savings get invested instead.</p><div class="row2"><label class="field"><span>Home value growth per year</span><div class="inp"><b></b><input name="appreciation" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label><label class="field"><span>Investment return per year</span><div class="inp"><b></b><input name="investReturn" inputmode="decimal" value="6" required data-pct ><b>%</b></div></label></div><div class="row2"><label class="field"><span>Buying closing costs</span><div class="inp"><b></b><input name="closingPct" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label><label class="field"><span>Selling costs</span><div class="inp"><b></b><input name="sellPct" inputmode="decimal" value="6" required data-pct ><b>%</b></div></label></div><label class="field"><span>How long would you stay?</span><div class="inp"><b></b><input name="years" inputmode="decimal" value="10" required ><b>years</b></div></label></fieldset>
+<header class="tool-hero"><div class="narrow"><div class="eyebrow">🏠 Life changes</div><h1>Rent or buy? <em>Do the real math.</em></h1><p class="sub">Taxes, maintenance, insurance, PMI, appreciation, and what your down payment could earn elsewhere.</p><p class="direct-answer">Whether buying beats renting depends on how long you stay, the full cost of owning (property tax, insurance, maintenance, PMI and closing costs) and what your down payment could earn if invested. This calculator compares both paths over time with your numbers.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>What does the home cost?</legend><div class="row2"><label class="field"><span>Home price</span><div class="inp"><b>$</b><input name="price" inputmode="decimal" value="450000" required ></div></label><label class="field"><span>Down payment</span><div class="inp"><b></b><input name="downPct" inputmode="decimal" value="10" required data-pct ><b>%</b></div></label></div><div class="row2"><label class="field"><span>Mortgage rate</span><div class="inp"><b></b><input name="rate" inputmode="decimal" value="6.5" required data-pct ><b>%</b></div></label><label class="field"><span>Loan term</span><div class="inp"><b></b><input name="termYears" inputmode="decimal" value="30" required ><b>years</b></div></label></div></fieldset><fieldset class="step" ><legend>What are the ongoing costs of owning?</legend><p class="hint">Typical figures are pre-filled. Change them to match your area.</p><div class="row2"><label class="field"><span>Property tax (per year)</span><div class="inp"><b></b><input name="taxPct" inputmode="decimal" value="1.1" required data-pct ><b>%</b></div></label><label class="field"><span>Home insurance (per year)</span><div class="inp"><b>$</b><input name="insurance" inputmode="decimal" value="1800" required ></div></label></div><div class="row2"><label class="field"><span>Maintenance (per year)</span><div class="inp"><b></b><input name="maintPct" inputmode="decimal" value="1" required data-pct ><b>%</b></div></label><label class="field"><span>PMI if under 20% down</span><div class="inp"><b></b><input name="pmiPct" inputmode="decimal" value="0.6" required data-pct ><b>%</b></div></label></div></fieldset><fieldset class="step" ><legend>What would you pay to rent a similar place?</legend><div class="row2"><label class="field"><span>Monthly rent</span><div class="inp"><b>$</b><input name="rent" inputmode="decimal" value="2500" required ></div></label><label class="field"><span>Rent increase per year</span><div class="inp"><b></b><input name="rentGrowth" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label></div></fieldset><fieldset class="step" ><legend>What are your assumptions?</legend><p class="hint">Opportunity cost: as a renter, the down payment and any monthly savings get invested instead.</p><div class="row2"><label class="field"><span>Home value growth per year</span><div class="inp"><b></b><input name="appreciation" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label><label class="field"><span>Investment return per year</span><div class="inp"><b></b><input name="investReturn" inputmode="decimal" value="6" required data-pct ><b>%</b></div></label></div><div class="row2"><label class="field"><span>Buying closing costs</span><div class="inp"><b></b><input name="closingPct" inputmode="decimal" value="3" required data-pct ><b>%</b></div></label><label class="field"><span>Selling costs</span><div class="inp"><b></b><input name="sellPct" inputmode="decimal" value="6" required data-pct ><b>%</b></div></label></div><label class="field"><span>How long would you stay?</span><div class="inp"><b></b><input name="years" inputmode="decimal" value="10" required ><b>years</b></div></label></fieldset>
 <p class="err" role="alert"></p><div class="nav-btns"><button type="button" class="btn ghost" data-back>← Back</button><span class="stepcount"></span><button type="button" class="btn accent" data-next>Next →</button></div></form></main><section class="results" id="results"><div class="narrow" id="out"></div></section><div class="narrow"><p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. Everything is calculated in your browser, and nothing you type or upload leaves your device.</p></div>
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>Is it cheaper to rent or buy a home?</h3><p>It depends. Buying tends to make more sense the longer you stay, because upfront costs are spread over more years. Renting can win over shorter stays or where prices are high relative to rents.</p></div><div class="qa"><h3>What costs of owning do people forget?</h3><p>Property tax, homeowners insurance, maintenance and repairs, HOA dues, PMI if you put down less than 20% on a conventional loan, and closing costs when you buy and sell.</p></div><div class="qa"><h3>Why does the calculator include investment returns?</h3><p>Money used for a down payment could otherwise be invested. Including that opportunity cost makes the comparison fair to renting.</p></div><div class="qa"><h3>How long do I need to stay for buying to make sense?</h3><p>There is no single answer. Try different time horizons here; the point where buying pulls ahead depends on your prices, rates and assumptions.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../guides/first-home/"><b>Buying your first home: the checklist</b><span>The real upfront cash, PMI, pre-approval, inspections and year-one costs.</span></a></li><li><a href="../before-you-sign/"><b>Before you sign</b><span>True cost and red flags for a loan, card offer, lease or pay-later plan.</span></a></li><li><a href="../money-timeline/"><b>Money timeline</b><span>See when you’ll hit each goal on one timeline, and what moves the dates.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
 <footer><div class="wrap">
   <div class="top">
     <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>

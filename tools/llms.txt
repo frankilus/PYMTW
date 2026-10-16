@@ -1,0 +1,49 @@
+# PYMTW Tools
+
+> Free, private, plain-English personal finance calculators and guides from Put Your Money to Work (pymtw.com). Every calculation runs in the visitor's browser; there is no signup, no ads, and entered numbers or uploaded files are not sent to a server. Educational only, not financial, tax or legal advice.
+
+Pages marked "coming soon" describe tools that are not yet functional.
+
+## Start here
+
+- [PYMTW Tools](https://pymtw.com/tools/): PYMTW Tools is a free set of plain-English personal finance calculators and guides from Put Your Money to Work.
+- [2-minute money checkup](https://pymtw.com/tools/checkup/): The money checkup is a short quiz that finds common gaps in your finances, such as a thin emergency fund or high-interest debt, and gives you a prioritized list of what to look at first.
+
+## Guides
+
+- [Just lost your job? What to do](https://pymtw.com/tools/guides/lost-my-job/): After losing your job, file for unemployment right away, work out how many months your money will last, review your severance and final paycheck, and choose health coverage (COBRA or a Marketplace plan) within the 60-day window.
+- [Buying your first home: the checklist](https://pymtw.com/tools/guides/first-home/): Before buying your first home, budget for more than the down payment: closing costs typically run 2%–5% of the price, plus moving costs and a cash cushion.
+
+## Spending
+
+- [Subscription leak finder](https://pymtw.com/tools/subscription-leak-finder/): To find subscriptions you forgot about, load a bank or credit card CSV export here: the tool spots charges that repeat on a schedule and totals what they cost you.
+- [Credit card optimizer](https://pymtw.com/tools/credit-card-optimizer/): The best rewards card is the type that earns the most on how you actually spend, after its annual fee.
+- [Paycheck decoder](https://pymtw.com/tools/paycheck-decoder/) (coming soon): A pay stub shows your gross pay, then subtracts taxes (federal and state withholding plus FICA for Social Security and Medicare) and deductions such as benefits and retirement contributions to arrive at take-home pay.
+
+## Debt
+
+- [Debt payoff planner](https://pymtw.com/tools/debt-payoff-planner/): To get out of debt fastest, pay the minimum on everything and put any extra toward one debt at a time: the highest interest rate first (avalanche) usually costs the least, while the smallest balance first (snowball) gives quicker wins.
+- [Before you sign](https://pymtw.com/tools/before-you-sign/): The true cost of a loan is everything you will pay over its life, including interest and fees, not just the monthly payment.
+
+## Planning & life changes
+
+- [Money timeline](https://pymtw.com/tools/money-timeline/): The money timeline estimates when you will reach each financial goal, such as an emergency fund, a down payment or paying off debt, based on what you save each month.
+- [Severance & job-loss runway](https://pymtw.com/tools/severance-runway/): Your runway after a job loss is roughly your cash plus severance and expected unemployment benefits, divided by your monthly expenses.
+- [Rent vs. buy reality check](https://pymtw.com/tools/rent-vs-buy/): Whether buying beats renting depends on how long you stay, the full cost of owning (property tax, insurance, maintenance, PMI and closing costs) and what your down payment could earn if invested.
+- [Emergency fund runway](https://pymtw.com/tools/emergency-fund-runway/): Your emergency fund runway is your savings divided by your essential monthly expenses.
+
+## Retirement & investing
+
+- [Fee x-ray](https://pymtw.com/tools/fee-x-ray/): Investment fees are charged every year as a percentage of your balance, so their cost compounds and can add up to a large share of your growth over decades.
+- [Roth vs. traditional](https://pymtw.com/tools/roth-vs-traditional/): A Roth account is taxed now and withdrawn tax-free later, while a traditional account gives a tax break now and is taxed when you withdraw.
+- [Explain my 401(k)](https://pymtw.com/tools/explain-my-401k/) (coming soon): To understand your 401(k), check three things: what funds you hold, what they cost (each fund’s expense ratio plus any plan fees) and whether your contribution rate is on track for your goals.
+
+## Bitcoin
+
+- [Bitcoin DCA backtester](https://pymtw.com/tools/bitcoin-dca-backtester/): Dollar-cost averaging (DCA) means buying a fixed dollar amount on a regular schedule regardless of price.
+- [Bitcoin tax-lot cleanup](https://pymtw.com/tools/bitcoin-tax-lot-cleanup/) (coming soon): Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell.
+
+## Optional
+
+- [Sitemap](https://pymtw.com/tools/sitemap.xml): every tools page with last-modified dates.
+- [pymtw.com](https://pymtw.com/): the main Put Your Money to Work site, with education on Bitcoin and personal finance.
