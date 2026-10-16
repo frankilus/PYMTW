@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PYMTW Tools v3 preview (orange) — Put Your Money to Work</title>
+<meta name="description" content="Preview of a redesigned PYMTW Tools homepage. Free, private money tools. No signup.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://pymtw.com/tools/">
+<meta name="theme-color" content="#E8682A">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../v3.css">
+<link rel="preload" as="image" href="../img/coastline-sunset.webp" imagesrcset="../img/coastline-sunset-800.webp 800w, ../img/coastline-sunset.webp 1400w" imagesizes="(max-width:640px) 100vw, min(1120px, 100vw)">
+
+<style>:root{--accent:#E8682A;--accent-soft:#FCEDE4;}</style>
+</head>
+<body>
+<div class="preview-banner">Preview · v3 orange · <a href="../../">Back to live tools</a></div>
+<nav class="v3-nav" aria-label="Primary"><div class="wrap">
+  <a class="logo" href="../../" aria-label="PYMTW Tools"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <div class="nav-links">
+    <a class="hide-sm" href="#tools">Tools</a>
+    <a class="hide-sm" href="#situations">Guides</a>
+    <a class="hide-sm" href="#newsletter">Resources</a>
+    <a href="https://pymtw.com/about.html">About</a>
+  </div>
+  <span class="nav-privacy" title="Privacy-first"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>Privacy first</span></span>
+</div></nav>
+
+<header class="v3-hero"><div class="wrap">
+  <div class="v3-hero-grid">
+    <div>
+      <p class="kicker">Put your money to work</p>
+      <h1>Your money, figured out in <em>60 seconds.</em></h1>
+    </div>
+    <p class="hero-aside"><strong>Practical tools. Clear answers. A brighter tomorrow.</strong> Free, privacy-first financial tools to help you make smarter decisions today — and build the life you want tomorrow. No signup required.</p>
+  </div>
+
+  <form class="ask" id="askForm" autocomplete="off" role="search">
+    <div class="ask-box">
+      <input id="q" type="text" placeholder="What money decision are you facing?" aria-label="What money decision are you facing?">
+      <button class="go" type="submit" aria-label="Find my tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="chips">
+      <button type="button" class="chip" data-q="Should I pay off my debt?">Should I pay off my debt?</button>
+      <button type="button" class="chip" data-q="Can I afford a home?">Can I afford a home?</button>
+      <button type="button" class="chip" data-q="Roth or traditional IRA?">Roth or traditional IRA?</button>
+    </div>
+  </form>
+  <div class="answer" id="answer" aria-live="polite"></div>
+
+  <figure class="hero-photo">
+    <img src="../img/coastline-sunset.webp" srcset="../img/coastline-sunset-800.webp 800w, ../img/coastline-sunset.webp 1400w" sizes="(max-width:640px) 100vw, min(1120px, calc(100vw - 48px))" width="1400" height="583" alt="Coastline at sunset with seagulls over the water" decoding="async" fetchpriority="high">
+    <div class="overlay" aria-hidden="true"></div>
+    <figcaption class="caption">
+      <h2>Clarity today. A brighter tomorrow.</h2>
+      <p class="mini">Put your money to work</p>
+    </figcaption>
+  </figure>
+
+  <div class="trust" aria-label="Why people trust PYMTW Tools">
+    <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><b>No signup</b><span>Just open and use.</span></div></div>
+    <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6z"/></svg></div><div><b>Privacy-first</b><span>Calculations run in your browser.</span></div></div>
+    <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M12 10v11M3 14h18M12 10c-2.5 0-4-1.8-4-3.5S9.5 3 12 5.5 16 3 16 6.5 13.5 10 12 10z"/></svg></div><div><b>100% free</b><span>Always will be.</span></div></div>
+  </div>
+</div></header>
+
+<section class="situations" id="situations"><div class="wrap">
+  <div class="section-head">
+    <p class="kicker">Start here</p>
+    <h2>Where are you right now?</h2>
+    <p>Pick the situation that fits — we’ll point you to the right tools.</p>
+  </div>
+  <div class="sit-grid">
+    <div class="sit">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c4 0 6 3 9 7s5 6 9 7"/><path d="M17 19h4v-4"/></svg></div>
+      <h3>I want out of debt</h3>
+      <ul>
+        <li><a href="../../debt-payoff-planner/">Debt payoff planner</a></li>
+        <li><a href="../../before-you-sign/">Before you sign</a></li>
+        <li><a href="../../credit-card-optimizer/">Credit card optimizer</a></li>
+      </ul>
+    </div>
+    <div class="sit">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg></div>
+      <h3>I’m thinking about a home</h3>
+      <ul>
+        <li><a href="../../rent-vs-buy/">Rent vs. buy</a></li>
+        <li><a href="../../guides/first-home/">First-home guide</a></li>
+        <li><a href="../../money-timeline/">Money timeline</a></li>
+      </ul>
+    </div>
+    <div class="sit">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m9 9-3.4-3.4M15 9l3.4-3.4M9 15l-3.4 3.4M15 15l3.4 3.4"/></svg></div>
+      <h3>I’m saving for later</h3>
+      <ul>
+        <li><a href="../../emergency-fund-runway/">Emergency fund</a></li>
+        <li><a href="../../roth-vs-traditional/">Roth vs. traditional</a></li>
+        <li><a href="../../fee-x-ray/">Fee x-ray</a></li>
+      </ul>
+    </div>
+    <div class="sit">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M9 5h5a3 3 0 0 1 0 6H9h6a3 3 0 0 1 0 6H9M11 3v2M11 19v2M7 5h2M7 19h2"/></svg></div>
+      <h3>I’m curious about Bitcoin</h3>
+      <ul>
+        <li><a href="../../bitcoin-dca-backtester/">DCA backtester</a></li>
+        <li><a href="https://stackcost-pink.vercel.app" target="_blank" rel="noopener">StackCost ↗</a></li>
+        <li><a href="../../bitcoin-tax-lot-cleanup/">Tax-lot cleanup</a></li>
+      </ul>
+    </div>
+    <div class="sit">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></div>
+      <h3>I lost my job</h3>
+      <ul>
+        <li><a href="../../severance-runway/">Severance runway</a></li>
+        <li><a href="../../guides/lost-my-job/">Job-loss guide</a></li>
+        <li><a href="../../emergency-fund-runway/">Emergency fund</a></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="library" id="tools"><div class="wrap">
+  <div class="section-head">
+    <p class="kicker">The library</p>
+    <h2>All tools &amp; guides</h2>
+    <p>From everyday questions to life’s biggest moments — plain English, no signup.</p>
+  </div>
+  <div class="tool-grid">
+<a class="tool" id="tool-debt-payoff-planner" href="../../debt-payoff-planner/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c4 0 6 3 9 7s5 6 9 7"/><path d="M17 19h4v-4"/></svg></div>
+      <h4>Debt payoff planner</h4>
+      <p>Your debt-free date, and the fastest order to pay things off.</p>
+      <div class="meta">Start · 60 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-before-you-sign" href="../../before-you-sign/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h4"/><path d="m15 17 1.5 1.5L19 16"/></svg></div><span class="badge new">New</span>
+      <h4>Before you sign</h4>
+      <p>True cost and red flags for a loan, card offer, lease or pay-later plan.</p>
+      <div class="meta">2 min</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-subscription-leak-finder" href="../../subscription-leak-finder/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/></svg></div>
+      <h4>Subscription leak finder</h4>
+      <p>Upload a bank CSV. See every recurring charge you forgot about.</p>
+      <div class="meta">30 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-credit-card-optimizer" href="../../credit-card-optimizer/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/></svg></div>
+      <h4>Credit card optimizer</h4>
+      <p>Find the type of card that pays you the most for how you actually spend.</p>
+      <div class="meta">45 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool is-soon" id="tool-paycheck-decoder" href="../../paycheck-decoder/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></div><span class="badge soon">Soon</span>
+      <h4>Paycheck decoder</h4>
+      <p>Every line on your pay stub, explained in plain English.</p>
+      <div class="meta">Coming soon</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-money-timeline" href="../../money-timeline/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><circle cx="6" cy="12" r="2.2"/><circle cx="13" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/><path d="M6 9.8V5M13 14.2V19M19 9.8V6"/></svg></div><span class="badge new">New</span>
+      <h4>Money timeline</h4>
+      <p>See when you’ll hit each goal on one timeline, and what moves the dates.</p>
+      <div class="meta">3 min</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-severance-runway" href="../../severance-runway/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></div><span class="badge new">New</span>
+      <h4>Severance & job-loss runway</h4>
+      <p>Lost your job? See how many months you can last and what to do first.</p>
+      <div class="meta">60 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-rent-vs-buy" href="../../rent-vs-buy/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg></div>
+      <h4>Rent vs. buy reality check</h4>
+      <p>The true cost of owning vs. renting, with no realtor math.</p>
+      <div class="meta">60 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-emergency-fund-runway" href="../../emergency-fund-runway/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m9 9-3.4-3.4M15 9l3.4-3.4M9 15l-3.4 3.4M15 15l3.4 3.4"/></svg></div>
+      <h4>Emergency fund runway</h4>
+      <p>How long your savings would last, and how much is enough.</p>
+      <div class="meta">30 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool is-soon" id="tool-explain-my-401k" href="../../explain-my-401k/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><span class="badge soon">Soon</span>
+      <h4>Explain my 401(k)</h4>
+      <p>See what you own, what it costs, and whether you’re on track.</p>
+      <div class="meta">Coming soon</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-fee-x-ray" href="../../fee-x-ray/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M11 8v6M8.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div><span class="badge new">New</span>
+      <h4>Fee x-ray</h4>
+      <p>Reveal what your fund and advisor fees cost you over 30 years.</p>
+      <div class="meta">30 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-roth-vs-traditional" href="../../roth-vs-traditional/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 20h14M4 8h16M4 8l-2.5 6a3 3 0 0 0 5 0zM20 8l-2.5 6a3 3 0 0 0 5 0z"/></svg></div>
+      <h4>Roth vs. traditional</h4>
+      <p>Which account wins for you, now and in retirement.</p>
+      <div class="meta">45 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-bitcoin-dca-backtester" href="../../bitcoin-dca-backtester/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M9 5h5a3 3 0 0 1 0 6H9h6a3 3 0 0 1 0 6H9M11 3v2M11 19v2M7 5h2M7 19h2"/></svg></div><span class="badge new">New</span>
+      <h4>Bitcoin DCA backtester</h4>
+      <p>See what buying a little every month would have actually done, vs. the S&amp;P 500.</p>
+      <div class="meta">20 sec</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool is-soon" id="tool-bitcoin-tax-lot-cleanup" href="../../bitcoin-tax-lot-cleanup/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M8 18h8"/></svg></div><span class="badge soon">Soon</span>
+      <h4>Bitcoin tax-lot cleanup</h4>
+      <p>Merge exchange exports into clean cost basis, ready for tax time.</p>
+      <div class="meta">Coming soon</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-checkup" href="../../checkup/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <h4>2-minute money checkup</h4>
+      <p>Quick questions that surface the blind spots you didn’t know you had.</p>
+      <div class="meta">2 min</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-guides-lost-my-job" href="../../guides/lost-my-job/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 8h6M9 12h4"/></svg></div><span class="badge new">New</span>
+      <h4>Guide: Just lost your job?</h4>
+      <p>Unemployment, COBRA vs. Marketplace, your 401(k), and budget triage — with every rule linked to an official source.</p>
+      <div class="meta">5 min read</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<a class="tool" id="tool-guides-first-home" href="../../guides/first-home/">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg></div><span class="badge new">New</span>
+      <h4>Guide: Buying your first home</h4>
+      <p>The real upfront cash, affordability, rates and PMI, pre-approval, inspections and year-one costs.</p>
+      <div class="meta">6 min read</div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+<div class="tool ext" id="tool-stackcost">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 16v-4M10 16V8M14 16v-6M18 16V5"/></svg></div><span class="badge soon">External site</span>
+      <h4><a href="https://stackcost-pink.vercel.app" target="_blank" rel="noopener">StackCost</a></h4>
+      <p>See the real all-in cost to DCA Bitcoin by platform (fees, spread, withdrawal).</p>
+      <div class="meta"><a href="https://stackcost-pink.vercel.app/compare" target="_blank" rel="noopener">Compare platforms →</a></div>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="newsletter" id="newsletter" aria-label="Newsletter signup">
+  <div class="wrap">
+    <div class="newsletter-inner">
+      <div class="newsletter-copy">
+        <div class="kicker">Newsletter</div>
+        <h2>One genuinely useful money idea per issue</h2>
+        <p class="newsletter-sub">Free. No spam. Unsubscribe anytime.</p>
+        <p class="newsletter-archive"><a href="https://pymtwtools.beehiiv.com" target="_blank" rel="noopener">Browse the archive ↗</a></p>
+      </div>
+      <div class="newsletter-form"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="v3-footer"><div class="wrap">
+  <p class="quote">Financial clarity isn’t a luxury. It’s a brighter tomorrow.</p>
+  <div class="top">
+    <div class="brand">
+      <strong>PYMTW Tools</strong>
+      Built by <a href="https://pymtw.com/">Put Your Money to Work</a>.
+      <div class="tag">Put your money to work</div>
+    </div>
+    <div class="links">
+      <a href="../../">All tools</a>
+      <a href="https://pymtw.com/">pymtw.com</a>
+      <a href="https://pymtw.com/legal.html">Legal</a>
+      <a href="https://pymtw.com/about.html">About</a>
+    </div>
+  </div>
+  <p class="photo-credit">Hero photo: <a href="https://unsplash.com/photos/seagulls-flying-over-the-beach-during-daytime-4VDL5dbWZ0g" target="_blank" rel="noopener">Frank McKenna</a> / Unsplash.</p>
+  <p class="privacy-note">We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts (no personal data). <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>. The newsletter signup form is run by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">beehiiv</a>; the email address you enter is sent to beehiiv. Calculator numbers still never leave your device.</p>
+  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. This is a design preview (noindex). © 2026 Put Your Money to Work.</div>
+</div></footer>
+
+<script src="../../catalog.js"></script>
+<script src="../v3-app.js"></script>
+<script>
+/* Lazy-load the beehiiv signup form when the newsletter section nears the viewport. */
+(function(){var box=document.querySelector('.newsletter-form'),done=false;if(!box)return;
+function load(){if(done)return;done=true;
+ var s=document.createElement('script');s.async=true;s.src='https://subscribe-forms.beehiiv.com/v3/loader.js';s.setAttribute('data-beehiiv-form','e52526c9-fd98-4fde-bda0-ee1a61507c09');box.appendChild(s);
+ var a=document.createElement('script');a.async=true;a.src='https://subscribe-forms.beehiiv.com/attribution.js';document.body.appendChild(a);}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e.some(function(x){return x.isIntersecting})){io.disconnect();load();}},{rootMargin:'300px 0px'});io.observe(box);}
+else{['scroll','pointerdown','keydown','touchstart'].forEach(function(t){addEventListener(t,load,{once:true,passive:true})});
+ (window.requestIdleCallback||function(f){setTimeout(f,1)})(function(){setTimeout(load,4000)});}})();
+</script>
+<script data-goatcounter="https://pymtw.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
