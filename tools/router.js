@@ -10,6 +10,9 @@ ALL.push(GUIDE_JOB);
 var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
   kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
 ALL.push(GUIDE_HOME);
+var GUIDE_CAR = { slug: 'guides/true-cost-of-a-car', icon: '🚗', name: 'Guide: The true cost of owning a car', desc: 'Where AAA’s $12,863 a year goes, a 5-year cost calculator, and what to ask before you sign.', time: '7 min read', live: true, boost: 1,
+  kw: ['true cost of a car', 'cost of owning a car', 'cost to own a car', 'owning a car', 'own a car', 'buy a car', 'buying a car', 'new car', 'used car', 'new or used', 'car insurance', 'afford a car', 'car can i afford', 'car budget', 'car cost', 'cost per mile', 'depreciation', 'lease or buy', '20/4/10', '20 4 10'] };
+ALL.push(GUIDE_CAR);
 var I = { // line icons, 24x24
  'subscription-leak-finder':'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
  'credit-card-optimizer':'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/>',

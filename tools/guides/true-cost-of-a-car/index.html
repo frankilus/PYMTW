@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- seo:head -->
+<title>True Cost of Owning a Car in 2026: Calculator &amp; Breakdown</title>
+<meta name="description" content="AAA puts the average cost to own a new car at $12,863 a year. See where the money goes, run your own 5-year cost, and know what to ask before you sign.">
+<link rel="canonical" href="https://pymtw.com/tools/guides/true-cost-of-a-car/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PYMTW Tools">
+<meta property="og:title" content="True Cost of Owning a Car in 2026: Calculator &amp; Breakdown">
+<meta property="og:description" content="AAA puts the average cost to own a new car at $12,863 a year. See where the money goes, run your own 5-year cost, and know what to ask before you sign.">
+<meta property="og:url" content="https://pymtw.com/tools/guides/true-cost-of-a-car/">
+<meta property="og:image" content="https://pymtw.com/tools/og/guides.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PYMTW Tools: Guides">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="True Cost of Owning a Car in 2026: Calculator &amp; Breakdown">
+<meta name="twitter:description" content="AAA puts the average cost to own a new car at $12,863 a year. See where the money goes, run your own 5-year cost, and know what to ask before you sign.">
+<meta name="twitter:image" content="https://pymtw.com/tools/og/guides.png">
+<meta name="twitter:image:alt" content="PYMTW Tools: Guides">
+<!-- /seo:head -->
+<meta name="theme-color" content="#0a7c55">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../tools.css">
+<style>
+.g-hero{padding:72px 0 24px}
+.g-hero h1{font-size:clamp(38px,6.4vw,72px)}
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.toc a{display:block;background:var(--bg-2);border-radius:20px;padding:18px 20px;transition:transform .25s,background .25s}
+.toc a:hover{transform:translateY(-3px);background:var(--accent-soft)}
+.toc small{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.toc b{display:block;font-size:18px;letter-spacing:-.015em;margin-top:4px}
+.phase{padding:64px 0 8px;scroll-margin-top:70px}
+.phase-head{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:8px}
+.phase-head .when{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:5px 12px;border-radius:999px;white-space:nowrap}
+.phase-head h2{font-size:clamp(28px,4vw,42px)}
+.item{display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:26px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .num{width:44px;height:44px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:18px}
+.item h3{font-size:22px;letter-spacing:-.02em;line-height:1.25}
+.item p{color:var(--ink-2);margin-top:8px;font-size:17px;line-height:1.6}
+.item ul{margin:12px 0 0 0;padding-left:20px;color:var(--ink-2);font-size:16px;line-height:1.65}
+.item li{margin:4px 0}
+.src{font-size:13px;color:var(--ink-3);margin-top:10px}
+.src a,.item p a,.item li a{color:var(--accent);font-weight:600}
+sup.ref{font-size:11px;line-height:0;margin-left:1px}sup.ref+sup.ref:before{content:",";color:var(--ink-3)}sup.ref a{color:var(--accent);font-weight:700}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.vs div{border:1px solid var(--line);border-radius:18px;padding:18px}
+.vs h4{font-size:17px;margin-bottom:6px}
+.vs ul{margin:0;padding-left:18px;font-size:15px}
+.toolcard{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:#fff;border-radius:20px;padding:20px 22px;margin-top:18px;transition:transform .25s}
+.toolcard:hover{transform:translateY(-3px)}
+.toolcard small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9fe3c6;font-weight:700}
+.toolcard b{display:block;font-size:19px;letter-spacing:-.015em;margin-top:2px}
+.toolcard span.go{background:#fff;color:var(--ink);font-weight:700;padding:10px 16px;border-radius:12px;white-space:nowrap}
+.toolcard.light{background:var(--accent-soft);color:var(--ink)}.toolcard.light small{color:var(--accent)}.toolcard.light span.go{background:var(--accent);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.card{background:var(--bg-2);border-radius:18px;padding:18px;margin-top:0}
+.card small{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.card b{display:block;font-size:22px;letter-spacing:-.02em;margin-top:4px}
+.card p{font-size:14px!important;margin-top:6px!important}
+.card i.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:1px}
+/* stacked bars */
+.stack{display:flex;height:22px;border-radius:999px;overflow:hidden;background:var(--bg-2);margin-top:18px}
+.stack span{display:block;height:100%;min-width:2px;transition:flex-grow .35s ease}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:14px;color:var(--ink-2)}
+.legend span{white-space:nowrap}.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}
+.legend b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.c-dep{background:#0a7c55}.c-ins{background:#34b386}.c-fuel{background:#9fdcc2}.c-mnt{background:#f2b33d}.c-fin{background:#d9730d}.c-fee{background:#6e6e75}.c-oth{background:#c4c4cc}
+.permile{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.permile div{background:var(--bg-2);border-radius:16px;padding:14px 16px}
+.permile b{display:block;font-size:24px;letter-spacing:-.02em}.permile span{font-size:13px;color:var(--ink-3)}
+/* calculator */
+.calc{background:var(--bg-2);border-radius:var(--radius);padding:26px;margin-top:18px}
+.calc .row4{display:grid;gap:12px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.calc .field{margin-bottom:12px}.calc .field>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.calc .inp input,.calc .inp select{width:100%;font-size:18px;padding:12px 6px}
+.calc .seg{margin:0 0 16px}
+.calc details{margin:4px 0 6px}.calc summary{cursor:pointer;font-weight:600;color:var(--accent);font-size:15px;margin:0 0 12px 4px}
+.out{background:#fff;border-radius:18px;padding:20px 22px;margin-top:8px}
+.out .lead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.out .lead .big{font-size:52px}
+.out .lead p{color:var(--ink-2);font-size:15px;max-width:360px}
+.out .stats{margin-top:16px;grid-template-columns:repeat(4,1fr)}
+.out .stat{background:var(--bg-2)}
+.out .stat b{font-size:22px}
+.out ul.says{list-style:none;padding:0;margin:16px 0 0;font-size:15px;color:var(--ink-2);line-height:1.55}
+.out ul.says li{padding:8px 0 8px 28px;position:relative;border-top:1px solid var(--line)}
+.out ul.says li:before{content:attr(data-i);position:absolute;left:0;top:8px;font-weight:700}
+.out ul.says li.good:before{color:var(--accent)}.out ul.says li.warn:before{color:var(--warn)}.out ul.says li.info:before{color:var(--ink-3)}
+.defaults,.item p.defaults{font-size:13px;color:var(--ink-3);margin:14px 4px 0;line-height:1.6}
+.defaults a{color:var(--accent);font-weight:600}
+table.tiers{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px;font-variant-numeric:tabular-nums}
+table.tiers th,table.tiers td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+table.tiers th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+table.tiers td:nth-child(n+2),table.tiers th:nth-child(n+2){text-align:right}
+.rule{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.rule div{background:var(--accent-soft);border-radius:18px;padding:18px}
+.rule b{display:block;font-size:34px;letter-spacing:-.03em;color:var(--accent)}
+.rule span{font-size:14px;color:var(--ink-2)}
+.ask{counter-reset:q;list-style:none;padding:0!important;margin-top:16px!important}
+.ask li{counter-increment:q;position:relative;padding:12px 0 12px 44px!important;border-bottom:1px solid var(--line);margin:0!important}
+.ask li:before{content:counter(q);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+.ask li b{color:var(--ink)}
+.sources{margin-top:56px}
+.sources ol{padding-left:20px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.sources li{scroll-margin-top:80px}
+.sources a{color:var(--accent);word-break:break-word}
+.sharebar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.sharebar .hint{margin:0}
+@media (max-width:760px){.toc{grid-template-columns:1fr}.vs{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.calc .row4{grid-template-columns:1fr 1fr}.out .stats{grid-template-columns:1fr 1fr}.rule{grid-template-columns:1fr}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}.permile{grid-template-columns:1fr 1fr 1fr}.permile b{font-size:20px}.g-hero{padding:44px 0 8px}.item{grid-template-columns:1fr;gap:10px}.phase{padding-top:44px}.phase-head{flex-direction:column;gap:10px}.toolcard{flex-wrap:wrap}.toolcard span.go{width:100%;text-align:center}.calc{padding:18px}.out{padding:18px}.out .lead .big{font-size:42px}table.tiers{font-size:13px}table.tiers th,table.tiers td{padding:8px 4px}}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "PYMTW", "item": "https://pymtw.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pymtw.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "The true cost of owning a car", "item": "https://pymtw.com/tools/guides/true-cost-of-a-car/"}
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "The true cost of owning a car: it’s more than the payment",
+   "description": "AAA puts the average cost to own a new car at $12,863 a year. See where the money goes, run your own 5-year cost, and know what to ask before you sign.",
+   "url": "https://pymtw.com/tools/guides/true-cost-of-a-car/",
+   "mainEntityOfPage": "https://pymtw.com/tools/guides/true-cost-of-a-car/",
+   "image": "https://pymtw.com/tools/og/guides.png",
+   "datePublished": "2026-10-16",
+   "dateModified": "2026-10-16",
+   "inLanguage": "en-US",
+   "isAccessibleForFree": true,
+   "author": {"@type": "Organization", "name": "Put Your Money to Work", "url": "https://pymtw.com/"},
+   "publisher": {"@type": "Organization", "name": "Put Your Money to Work", "url": "https://pymtw.com/"},
+   "about": ["Car ownership costs", "Auto loans", "Depreciation"],
+   "citation": [
+    "https://newsroom.aaa.com/2026/09/aaa-new-vehicle-ownership-costs-hit-12863-annually/",
+    "https://newsroom.aaa.com/wp-content/uploads/2026/09/AAA_YDC-Fact-Sheet_2026.pdf",
+    "https://www.coxautoinc.com/insights/sept-2026-atp-report/",
+    "https://www.experian.com/blogs/ask-experian/auto-loan-rates-financing/",
+    "https://www.edmunds.com/press/new-car-financing-records-pile-up-in-q3-as-buyers-borrow-more-and-stretch-loans-longer-according-to-edmunds.html",
+    "https://www.consumerfinance.gov/ask-cfpb/what-things-can-i-negotiate-when-shopping-for-a-car-or-auto-loan-en-2132/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {"@type": "Question", "name": "How much does it cost to own a car per year?", "acceptedAnswer": {"@type": "Answer", "text": "AAA’s 2026 Your Driving Costs study puts the average cost to own and operate a new vehicle at $12,863 a year, or $1,071.92 a month, assuming five years of ownership and 15,000 miles a year. Your cost depends on the car, your loan, how far you drive and where you live."}},
+    {"@type": "Question", "name": "What is the biggest cost of owning a new car?", "acceptedAnswer": {"@type": "Answer", "text": "Depreciation, the value the car loses. AAA estimates it at $4,422 a year on average for a new vehicle in 2026, more than insurance, fuel or finance charges."}},
+    {"@type": "Question", "name": "How much does it cost per mile to drive a car?", "acceptedAnswer": {"@type": "Answer", "text": "AAA’s 2026 average for a new vehicle is about 86 cents a mile at 15,000 miles a year, $1.10 at 10,000 miles and 74 cents at 20,000 miles, because fixed costs like depreciation and insurance are spread over more miles. The IRS business mileage rate (76 cents a mile from July 1, 2026) is a tax deduction rate, not an estimate of your own costs."}},
+    {"@type": "Question", "name": "Is a longer car loan a bad idea?", "acceptedAnswer": {"@type": "Answer", "text": "A longer loan lowers the monthly payment but usually means more total interest, and the CFPB notes it can leave you owing more than the car is worth for longer. Compare loans by total cost, not just the payment."}},
+    {"@type": "Question", "name": "Do I have to buy GAP insurance or an extended warranty to get a car loan?", "acceptedAnswer": {"@type": "Answer", "text": "Generally no. The CFPB says extended warranties, GAP insurance and credit insurance are usually optional. If a dealer says one is required, ask where the contract says so."}},
+    {"@type": "Question", "name": "What is the 20/4/10 rule for buying a car?", "acceptedAnswer": {"@type": "Answer", "text": "It is a common rule of thumb, not a law or lender requirement: put at least 20% down, finance for no more than four years, and keep monthly car costs under about 10% of your gross income."}}
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="../../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <div class="nav-links"><a href="../../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
+</div></nav>
+
+<header class="g-hero"><div class="narrow">
+  <div class="eyebrow">🚗 True-cost guide</div>
+  <h1>The true cost of owning a car. <em>It’s more than the payment.</em></h1>
+  <p class="sub">Where the money really goes, a calculator for your own numbers, and the questions to ask before you sign. Every figure links to its source.</p><p class="direct-answer">Owning and operating a new car costs an average of $12,863 a year, or $1,071.92 a month, according to AAA’s 2026 Your Driving Costs study, which assumes five years and 15,000 miles a year.<sup class="ref"><a href="#src-1">1</a></sup> The biggest piece is depreciation at $4,422 a year, followed by fuel, insurance, maintenance, finance charges, and taxes and fees. Your number depends on the price, your loan, how far you drive and where you live.</p>
+  <nav class="toc" aria-label="Guide sections" style="position:static;background:none;backdrop-filter:none;border:0">
+    <a href="#breakdown"><small>The real number</small><b>Where $12,863 a year goes</b></a>
+    <a href="#calc"><small>Your numbers</small><b>5-year cost calculator</b></a>
+    <a href="#loan"><small>Before you sign</small><b>Rates, long loans and the dealer</b></a>
+  </nav>
+</div></header>
+
+<main class="narrow">
+  <section class="phase" id="breakdown">
+    <div class="phase-head"><span class="when">The real number</span><h2>Depreciation is the biggest bill.</h2></div>
+<div class="item"><div class="num">1</div><div>
+      <h3>Where the average $12,863 a year goes</h3>
+      <p>AAA averages 34 top-selling 2026 models across seven vehicle types, owned for five years and 75,000 miles.<sup class="ref"><a href="#src-1">1</a></sup> Here is its weighted average, split into its six cost categories.<sup class="ref"><a href="#src-3">3</a></sup></p>
+      <div class="stack" role="img" aria-label="AAA 2026 average yearly cost: depreciation $4,422, fuel about $2,598, insurance $2,098, maintenance about $1,760, finance charges $1,184, taxes and fees $802">
+        <span class="c-dep" style="flex-grow:4422"></span><span class="c-fuel" style="flex-grow:2598"></span><span class="c-ins" style="flex-grow:2098"></span><span class="c-mnt" style="flex-grow:1760"></span><span class="c-fin" style="flex-grow:1184"></span><span class="c-fee" style="flex-grow:802"></span>
+      </div>
+      <div class="cards">
+        <div class="card"><small><i class="sw c-dep"></i>Depreciation</small><b>$4,422/yr</b><p>The single largest cost: what the car loses between purchase and its estimated trade-in value after five years.</p></div>
+        <div class="card"><small><i class="sw c-fuel"></i>Fuel</small><b>≈ $2,598/yr</b><p>17.32¢ a mile. AAA priced regular gas at $4.152 a gallon (12 months ending May 2026) and home charging at 18¢ per kWh.</p></div>
+        <div class="card"><small><i class="sw c-ins"></i>Insurance</small><b>$2,098/yr</b><p>Full coverage for a driver under 65 with 6+ years of experience and no accidents, living in a city or suburb. Get your own quote.</p></div>
+        <div class="card"><small><i class="sw c-mnt"></i>Maintenance, repair &amp; tires</small><b>≈ $1,760/yr</b><p>11.73¢ a mile, including scheduled service, wear items, one set of tires and a comprehensive extended warranty.</p></div>
+        <div class="card"><small><i class="sw c-fin"></i>Finance charges</small><b>$1,184/yr</b><p>Interest on a 5-year loan with 15% down at the national average rate, with taxes and first-year registration financed.</p></div>
+        <div class="card"><small><i class="sw c-fee"></i>License, registration &amp; taxes</small><b>$802/yr</b><p>Taxes and fees paid at purchase plus yearly registration, averaged nationally. Your state’s taxes and fees may differ.</p></div>
+      </div>
+      <p class="src">Fuel and maintenance are AAA’s per-mile figures × 15,000 miles, so the parts add up to within a dollar of AAA’s $12,863 total. Sources: AAA Your Driving Costs 2026 news release, fact sheet and brochure.<sup class="ref"><a href="#src-1">1</a></sup><sup class="ref"><a href="#src-2">2</a></sup><sup class="ref"><a href="#src-3">3</a></sup></p>
+    </div></div>
+<div class="item"><div class="num">2</div><div>
+      <h3>Per mile, the type of car and the price matter most</h3>
+      <p>Most ownership costs are fixed, so the fewer miles you drive, the more each mile costs. AAA’s 2026 average for a new vehicle:<sup class="ref"><a href="#src-2">2</a></sup></p>
+      <div class="permile"><div><b>$1.10</b><span>per mile at 10,000 mi/yr</span></div><div><b>86¢</b><span>per mile at 15,000 mi/yr</span></div><div><b>74¢</b><span>per mile at 20,000 mi/yr</span></div></div>
+      <ul>
+        <li><strong>Vehicle type is a big lever.</strong> AAA found half-ton pickups cost $1.10 a mile, 48 cents more than small sedans, which adds an average of $7,191 a year.<sup class="ref"><a href="#src-1">1</a></sup></li>
+        <li><strong>Real prices run higher than AAA’s sample.</strong> The average MSRP of the cars in AAA’s study is $39,376,<sup class="ref"><a href="#src-2">2</a></sup> but the average new vehicle actually sold for $50,562 in September 2026, before taxes and fees, according to Kelley Blue Book.<sup class="ref"><a href="#src-4">4</a></sup> A pricier car means more depreciation, interest and tax.</li>
+        <li><strong>Used is cheaper up front.</strong> The average used-vehicle listing price was $27,235 in September 2026 (Cox Automotive/vAuto).<sup class="ref"><a href="#src-5">5</a></sup> Used loans usually carry higher rates, so compare the whole cost (step 3).</li>
+        <li><strong>EV, hybrid or gas?</strong> AAA found EV charging cost about 66%–70% less than gas, but higher depreciation, fees and finance costs often outweighed the savings. Hybrids were the most consistently lower-cost alternative to gas in its comparison.<sup class="ref"><a href="#src-1">1</a></sup></li>
+      </ul>
+    </div></div>
+<div class="item"><div class="num">3</div><div>
+      <h3>What the averages leave out</h3>
+      <p>National averages can’t see your street, your state or the dealer’s finance office. Budget separately for:</p>
+      <ul>
+        <li><strong>Parking and tolls.</strong> Not in AAA’s six categories. Add yours in the calculator under “More inputs.”</li>
+        <li><strong>Sales tax at purchase.</strong> AAA spreads purchase taxes and fees across five years, but you pay them up front or finance them, and they depend on where you register the car.<sup class="ref"><a href="#src-2">2</a></sup></li>
+        <li><strong>Dealer add-ons.</strong> GAP insurance, window etching, and extended warranties or service contracts are extras you buy and finance with the car. The FTC says it’s OK to say no, and it’s never OK for a dealer to charge you for add-ons without your consent.<sup class="ref"><a href="#src-16">16</a></sup></li>
+        <li><strong>GAP insurance.</strong> It covers the difference between what you owe and what your insurer pays if the car is totaled or stolen. The CFPB says prices vary widely, your own insurer may sell it, and financing it adds interest.<sup class="ref"><a href="#src-13">13</a></sup></li>
+        <li><strong>Rolled-in old debt.</strong> If you owe more on your trade-in than it’s worth, rolling that balance into the new loan makes the new loan more expensive.<sup class="ref"><a href="#src-12">12</a></sup></li>
+        <li><strong>Repairs after the warranty.</strong> AAA’s maintenance figure is for a new car and includes a comprehensive extended warranty.<sup class="ref"><a href="#src-2">2</a></sup> Experian notes that long-term ownership can lead to higher repair costs.<sup class="ref"><a href="#src-6">6</a></sup></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="phase" id="calc">
+    <div class="phase-head"><span class="when">Your numbers</span><h2>Run your own 5-year cost.</h2></div>
+<div class="item"><div class="num">4</div><div>
+      <h3>The 5-year cost calculator</h3>
+      <p>The starting numbers are editable examples based on recent national averages (listed under the calculator). Swap in your own quote, rate and insurance price. It uses the same approach as AAA: depreciation, finance charges, fuel, insurance, maintenance, and taxes and fees over five years.</p>
+      <form class="calc" id="car-calc" onsubmit="return false" aria-label="Car cost calculator">
+        <div class="seg" role="radiogroup" aria-label="Example numbers for">
+          <label><input type="radio" name="mode" value="new" checked><span>New car example</span></label>
+          <label><input type="radio" name="mode" value="used"><span>Used car example</span></label>
+        </div>
+        <div class="row4">
+          <label class="field"><span>Price</span><div class="inp"><b>$</b><input id="k-price" inputmode="decimal" value="50562"></div></label>
+          <label class="field"><span>Down payment</span><div class="inp"><b>$</b><input id="k-down" inputmode="decimal" value="5554"></div></label>
+          <label class="field"><span>APR</span><div class="inp"><input id="k-apr" inputmode="decimal" value="6.35"><b>%</b></div></label>
+          <label class="field"><span>Loan term</span><div class="inp"><select id="k-term"><option value="36">36 mo</option><option value="48">48 mo</option><option value="60">60 mo</option><option value="72" selected>72 mo</option><option value="84">84 mo</option></select></div></label>
+          <label class="field"><span>Miles per year</span><div class="inp"><input id="k-miles" inputmode="decimal" value="15000"></div></label>
+          <label class="field"><span>Fuel economy</span><div class="inp"><input id="k-mpg" inputmode="decimal" value="25.5"><b>mpg</b></div></label>
+          <label class="field"><span>Gas price</span><div class="inp"><b>$</b><input id="k-gas" inputmode="decimal" value="4.33"><b>/gal</b></div></label>
+          <label class="field"><span>Insurance/yr</span><div class="inp"><b>$</b><input id="k-ins" inputmode="decimal" value="2098"></div></label>
+        </div>
+        <details>
+          <summary>More inputs: resale value, maintenance, fees, parking, income</summary>
+          <div class="row4">
+            <label class="field"><span>Value kept at 5 yrs</span><div class="inp"><input id="k-resale" inputmode="decimal" value="44"><b>%</b></div></label>
+            <label class="field"><span>Maintenance</span><div class="inp"><input id="k-maint" inputmode="decimal" value="11.7"><b>¢/mi</b></div></label>
+            <label class="field"><span>Taxes &amp; fees/yr</span><div class="inp"><b>$</b><input id="k-fees" inputmode="decimal" value="802"></div></label>
+            <label class="field"><span>Parking, tolls/mo</span><div class="inp"><b>$</b><input id="k-other" inputmode="decimal" value="0"></div></label>
+            <label class="field"><span>Gross income/yr</span><div class="inp"><b>$</b><input id="k-income" inputmode="decimal" value="" placeholder="optional"></div></label>
+          </div>
+        </details>
+        <div class="out" aria-live="polite">
+          <div class="lead"><div class="big" id="o-tco">—</div><p id="o-lead">Estimated 5-year cost of owning this car.</p></div>
+          <div class="stack" id="o-stack" role="img" aria-label="5-year cost by category"></div>
+          <div class="legend" id="o-legend"></div>
+          <div class="stats">
+            <div class="stat"><small>Monthly payment</small><b id="o-pay">—</b></div>
+            <div class="stat"><small>Total interest (whole loan)</small><b id="o-int">—</b></div>
+            <div class="stat"><small>Cost per mile</small><b id="o-mile">—</b></div>
+            <div class="stat"><small>All-in per month</small><b id="o-month">—</b></div>
+          </div>
+          <ul class="says" id="o-says"></ul>
+        </div>
+        <p class="defaults" id="k-defaults"></p>
+      </form>
+      <a class="toolcard" href="../../before-you-sign/"><div><small>Full tool · 2 min</small><b>Got a real offer? Check it for red flags</b></div><span class="go">Open →</span></a>
+    </div></div>
+  </section>
+
+  <section class="phase" id="loan">
+    <div class="phase-head"><span class="when">Before you sign</span><h2>What you don’t know you don’t know.</h2></div>
+<div class="item"><div class="num">5</div><div>
+      <h3>Your credit score can double your rate</h3>
+      <p>Lenders use risk-based pricing: different borrowers get different rates based on how likely the lender thinks they are to repay.<sup class="ref"><a href="#src-15">15</a></sup> Experian’s data for the second quarter of 2026 shows how wide the gap is:<sup class="ref"><a href="#src-6">6</a></sup></p>
+      <table class="tiers">
+        <thead><tr><th>Credit score (VantageScore 4.0)</th><th>New car APR</th><th>Used car APR</th></tr></thead>
+        <tbody>
+          <tr><td>Super prime (781–850)</td><td>4.41%</td><td>6.29%</td></tr>
+          <tr><td>Prime (661–780)</td><td>6.15%</td><td>8.81%</td></tr>
+          <tr><td>Near prime (601–660)</td><td>9.71%</td><td>13.93%</td></tr>
+          <tr><td>Subprime (501–600)</td><td>13.52%</td><td>19.10%</td></tr>
+          <tr><td>Deep subprime (300–500)</td><td>16.11%</td><td>21.62%</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>Type your tier’s rate into the calculator above. It also shows what one extra percentage point would cost on your loan.</li>
+        <li>Get preapproved by a bank or credit union before the dealership. The CFPB says showing those offers can get you competitive quotes, and the first quote may not be the lowest rate you qualify for.<sup class="ref"><a href="#src-11">11</a></sup></li>
+      </ul>
+      <a class="toolcard light" href="../../debt-payoff-planner/"><div><small>Full tool · 60 sec</small><b>Pay down other debt first to qualify for better rates</b></div><span class="go">Open →</span></a>
+    </div></div>
+<div class="item"><div class="num">6</div><div>
+      <h3>Long loans: a lower payment, more interest, and a car worth less than you owe</h3>
+      <p>The CFPB says a longer loan can reduce your monthly payment, but you’ll pay more interest and risk negative equity (owing more than the car is worth) for longer.<sup class="ref"><a href="#src-11">11</a></sup> Long loans are now common:</p>
+      <ul>
+        <li>A record 25.5% of financed new-vehicle purchases in Q3 2026 had terms of 84 months or longer. The average new-car buyer financed $44,664 at 7.0% APR and is on track to pay $9,938 in interest (Edmunds).<sup class="ref"><a href="#src-7">7</a></sup></li>
+        <li>In Q2 2026, 29.6% of trade-ins toward new vehicles had negative equity, averaging $6,884. Buyers who rolled it in averaged $944 a month and a projected $16,270 in interest (Edmunds).<sup class="ref"><a href="#src-8">8</a></sup></li>
+        <li>Before trading in, get your loan’s payoff amount (it can differ from the balance on your statement) and compare it with the car’s trade-in value.<sup class="ref"><a href="#src-12">12</a></sup> The calculator above compares what you’d still owe at year five with the car’s estimated value.</li>
+      </ul>
+    </div></div>
+<div class="item"><div class="num">7</div><div>
+      <h3>The 20/4/10 rule: a common rule of thumb, not a law</h3>
+      <p>You will often see this guideline for keeping a car affordable. No regulator or lender requires it, and most buyers today fall outside it: the average new-car loan runs about 70 months.<sup class="ref"><a href="#src-7">7</a></sup> Treat it as a gut check, not a requirement.</p>
+      <div class="rule">
+        <div><b>20%</b><span>down, so you start with some equity.</span></div>
+        <div><b>4 years</b><span>or less on the loan.</span></div>
+        <div><b>10%</b><span>or less of gross income on monthly car costs. Some versions count only the payment; the calculator uses payment plus running costs.</span></div>
+      </div>
+    </div></div>
+<div class="item"><div class="num">8</div><div>
+      <h3>Buying vs. leasing: lower payment, different trade-offs</h3>
+      <p>With a lease you pay for the car’s depreciation over the lease term instead of its full value, which is why payments are usually lower. In Q2 2026, 23.75% of new vehicles were leased, and the average lease payment was $617 versus $765 for a new-car loan (Experian).<sup class="ref"><a href="#src-6">6</a></sup></p>
+      <div class="vs">
+        <div><h4>Buying</h4><ul><li>You own the car and build equity once it’s worth more than you owe.</li><li>No mileage limits. After payoff, no payment at all.</li><li>Older cars can need more repairs.</li></ul></div>
+        <div><h4>Leasing</h4><ul><li>Lower monthly payment and a newer car every few years.</li><li>No equity, mileage limits and restrictions on modifications.</li><li>Read the fine print for end-of-lease charges.</li></ul></div>
+      </div>
+      <p class="src">Source: Experian, Auto loan rates and financing (pros and cons of financing vs. leasing).<sup class="ref"><a href="#src-6">6</a></sup></p>
+    </div></div>
+<div class="item"><div class="num">9</div><div>
+      <h3>Questions to ask at the dealer</h3>
+      <p>Your bargaining power is greatest before you’re on the lot.<sup class="ref"><a href="#src-16">16</a></sup> Bring these:</p>
+      <ol class="ask">
+        <li><b>“What’s the out-the-door price, in writing?”</b> That is the total before financing, including taxes and fees, so you can compare dealers apples to apples.<sup class="ref"><a href="#src-16">16</a></sup></li>
+        <li><b>“Can we settle price, trade-in and financing separately?”</b> AAA advises keeping the vehicle price, finance rate and trade-in value as separate negotiations.<sup class="ref"><a href="#src-1">1</a></sup></li>
+        <li><b>“Can you beat my preapproval?”</b> Show the rate your bank or credit union offered.<sup class="ref"><a href="#src-11">11</a></sup></li>
+        <li><b>“What’s the APR, the term and the total of all payments?”</b> The CFPB defines total cost as principal, interest and any down payment or trade-in over the life of the loan. Compare that, not just the monthly payment.<sup class="ref"><a href="#src-15">15</a></sup></li>
+        <li><b>“Which add-ons are in this contract, and are any required?”</b> Extended warranties, GAP and credit insurance are generally optional. If you’re told one is required, ask where the contract says so. You can also cancel an optional add-on during the loan.<sup class="ref"><a href="#src-14">14</a></sup></li>
+        <li><b>“Is there a prepayment penalty?”</b> If there is, you can negotiate to have it removed.<sup class="ref"><a href="#src-11">11</a></sup></li>
+        <li><b>“What incentives apply to this car?”</b> Kelley Blue Book estimated the average incentive at $3,359 (6.6% of the average transaction price) in September 2026.<sup class="ref"><a href="#src-4">4</a></sup></li>
+      </ol>
+      <a class="toolcard light" href="../../before-you-sign/"><div><small>Full tool · 2 min</small><b>Before you sign: paste the offer, see the true rate and red flags</b></div><span class="go">Open →</span></a>
+      <a class="toolcard" href="../../emergency-fund-runway/"><div><small>Full tool · 30 sec</small><b>Keep a cushion for repairs: check your emergency fund</b></div><span class="go">Open →</span></a>
+    </div></div>
+    <div class="sharebar"><button type="button" class="btn accent" id="sh-native">↗ Share this guide</button><button type="button" class="btn ghost" id="sh-copy">Copy link</button><a class="btn ghost" id="sh-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=The%20true%20cost%20of%20owning%20a%20car%3A%20it%E2%80%99s%20more%20than%20the%20payment&amp;url=https%3A%2F%2Fpymtw.com%2Ftools%2Fguides%2Ftrue-cost-of-a-car%2F">Post on X</a><p class="hint" id="sh-msg" aria-live="polite"></p></div>
+  </section>
+
+  <section class="sources">
+    <h2 style="font-size:24px">Sources</h2>
+    <ol>
+      <li id="src-1"><a href="https://newsroom.aaa.com/2026/09/aaa-new-vehicle-ownership-costs-hit-12863-annually/" target="_blank" rel="noopener">AAA: New Vehicle Ownership Costs Hit $12,863 Annually</a> (Your Driving Costs 2026 news release, Sept. 15, 2026)</li>
+      <li id="src-2"><a href="https://newsroom.aaa.com/wp-content/uploads/2026/09/AAA_YDC-Fact-Sheet_2026.pdf" target="_blank" rel="noopener">AAA: Your Driving Costs 2026 fact sheet (PDF)</a></li>
+      <li id="src-3"><a href="https://newsroom.aaa.com/wp-content/uploads/2026/09/8-YDC-Brochure_2026-1.pdf" target="_blank" rel="noopener">AAA: Your Driving Costs 2026 brochure, 2026 weighted average table (PDF)</a></li>
+      <li id="src-4"><a href="https://www.coxautoinc.com/insights/sept-2026-atp-report/" target="_blank" rel="noopener">Kelley Blue Book / Cox Automotive: September 2026 average transaction price report</a> (Oct. 13, 2026)</li>
+      <li id="src-5"><a href="https://www.coxautoinc.com/market-snapshot/" target="_blank" rel="noopener">Cox Automotive: Auto Market Snapshot, average used listing price, September 2026 (vAuto)</a></li>
+      <li id="src-6"><a href="https://www.experian.com/blogs/ask-experian/auto-loan-rates-financing/" target="_blank" rel="noopener">Experian: Auto loan rates and financing for 2026</a> (State of the Automotive Finance Market, Q2 2026 data)</li>
+      <li id="src-7"><a href="https://www.edmunds.com/press/new-car-financing-records-pile-up-in-q3-as-buyers-borrow-more-and-stretch-loans-longer-according-to-edmunds.html" target="_blank" rel="noopener">Edmunds: New-car financing records pile up in Q3</a> (Oct. 1, 2026)</li>
+      <li id="src-8"><a href="https://www.edmunds.com/press/q2-new-vehicle-purchases-with-negative-equity-trade-ins-hit-record-monthly-payments-and-interest-costs-edmunds-reports.html" target="_blank" rel="noopener">Edmunds: Q2 new-vehicle purchases with negative equity trade-ins</a> (July 16, 2026)</li>
+      <li id="src-9"><a href="https://www.eia.gov/petroleum/gasdiesel/" target="_blank" rel="noopener">U.S. EIA: Gasoline and Diesel Fuel Update</a> (U.S. regular, week of Oct. 12, 2026; released Oct. 14, 2026)</li>
+      <li id="src-10"><a href="https://www.epa.gov/automotive-trends/highlights-automotive-trends-report" target="_blank" rel="noopener">U.S. EPA: Highlights of the Automotive Trends Report</a> (2025 report, model year 2024 data)</li>
+      <li id="src-11"><a href="https://www.consumerfinance.gov/ask-cfpb/what-things-can-i-negotiate-when-shopping-for-a-car-or-auto-loan-en-2132/" target="_blank" rel="noopener">CFPB: What things can I negotiate when shopping for a car or auto loan?</a></li>
+      <li id="src-12"><a href="https://www.consumerfinance.gov/ask-cfpb/should-i-trade-in-my-car-if-its-not-paid-off-en-2045/" target="_blank" rel="noopener">CFPB: Should I trade in my car if it’s not paid off?</a></li>
+      <li id="src-13"><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-guaranteed-asset-protection-gap-insurance-en-797/" target="_blank" rel="noopener">CFPB: What is Guaranteed Asset Protection (GAP) insurance?</a></li>
+      <li id="src-14"><a href="https://www.consumerfinance.gov/ask-cfpb/am-i-required-to-purchase-an-extended-warranty-or-guaranteed-asset-protection-gap-insurance-from-a-lender-or-dealer-to-get-an-auto-loan-en-807/" target="_blank" rel="noopener">CFPB: Am I required to buy an extended warranty, GAP or credit insurance to get an auto loan?</a></li>
+      <li id="src-15"><a href="https://www.consumerfinance.gov/consumer-tools/auto-loans/answers/key-terms/" target="_blank" rel="noopener">CFPB: Auto loan key terms</a></li>
+      <li id="src-16"><a href="https://consumer.ftc.gov/consumer-alerts/2022/07/buying-car-or-truck-0" target="_blank" rel="noopener">FTC: Buying a car or truck?</a> (consumer alert, July 18, 2022)</li>
+      <li id="src-17"><a href="https://www.irs.gov/tax-professionals/standard-mileage-rates" target="_blank" rel="noopener">IRS: Standard mileage rates</a> (2026)</li>
+    </ol>
+    <p class="hint">Sources checked October 16, 2026. Prices, rates and costs change, and many vary by state, lender, vehicle and driver.</p>
+  </section>
+
+  <p class="note"><strong>Educational only, not financial, tax, or legal advice.</strong> This guide summarizes national averages and general U.S. consumer guidance. Your loan contract, insurance quote and state taxes control your real costs. Resale values are estimates and can change with the used-car market. The calculator runs in your browser, and the numbers you type never leave your device.</p>
+</main>
+
+
+<!-- seo:body -->
+<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
+<div class="faq"><h2>Common questions</h2><div class="qa"><h3>How much does it cost to own a car per year?</h3><p>AAA’s 2026 Your Driving Costs study puts the average cost to own and operate a new vehicle at $12,863 a year, or $1,071.92 a month, assuming five years of ownership and 15,000 miles a year. Your cost depends on the car, your loan, how far you drive and where you live.</p></div><div class="qa"><h3>What is the biggest cost of owning a new car?</h3><p>Depreciation, the value the car loses. AAA estimates it at $4,422 a year on average for a new vehicle in 2026, more than insurance, fuel or finance charges.</p></div><div class="qa"><h3>How much does it cost per mile to drive a car?</h3><p>AAA’s 2026 average for a new vehicle is about 86 cents a mile at 15,000 miles a year, $1.10 at 10,000 miles and 74 cents at 20,000 miles, because fixed costs like depreciation and insurance are spread over more miles. The IRS business mileage rate (76 cents a mile from July 1, 2026) is a tax deduction rate, not an estimate of your own costs.</p></div><div class="qa"><h3>Is a longer car loan a bad idea?</h3><p>A longer loan lowers the monthly payment but usually means more total interest, and the CFPB notes it can leave you owing more than the car is worth for longer. Compare loans by total cost, not just the payment.</p></div><div class="qa"><h3>Do I have to buy GAP insurance or an extended warranty to get a car loan?</h3><p>Generally no. The CFPB says extended warranties, GAP insurance and credit insurance are usually optional. If a dealer says one is required, ask where the contract says so.</p></div><div class="qa"><h3>What is the 20/4/10 rule for buying a car?</h3><p>It is a common rule of thumb, not a law or lender requirement: put at least 20% down, finance for no more than four years, and keep monthly car costs under about 10% of your gross income.</p></div></div>
+<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../../before-you-sign/"><b>Before you sign</b><span>True cost and red flags for a loan, card offer, lease or pay-later plan.</span></a></li><li><a href="../../debt-payoff-planner/"><b>Debt payoff planner</b><span>Your debt-free date, and the fastest order to pay things off.</span></a></li><li><a href="../../money-timeline/"><b>Money timeline</b><span>See when you’ll hit each goal on one timeline, and what moves the dates.</span></a></li></ul></nav>
+</div></section>
+<!-- /seo:body -->
+<section class="newsletter" id="newsletter" aria-label="Newsletter signup">
+  <div class="wrap">
+    <div class="newsletter-inner">
+      <div class="newsletter-copy">
+        <div class="kicker">Newsletter</div>
+        <h2>One genuinely useful money idea per issue</h2>
+        <p class="newsletter-sub">Free. No spam. Unsubscribe anytime.</p>
+        <p class="newsletter-archive"><a href="https://pymtwtools.beehiiv.com" target="_blank" rel="noopener">Browse the archive ↗</a></p>
+      </div>
+      <div class="newsletter-form">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="top">
+    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
+    <div class="links"><a href="../../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
+  </div>
+  <p class="privacy-note">The newsletter signup form is run by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">beehiiv</a>; the email address you enter is sent to beehiiv. Calculator numbers still never leave your device. We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts.</p>
+  <div class="legal">Educational content only, not financial, tax, or legal advice. No cookies. Calculator numbers never leave your device. If you sign up for the newsletter, your email is sent to beehiiv, which runs the form. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
+</div></footer>
+<script src="../../tools.js"></script>
+<script src="calc.js"></script>
+<script>
+(function () {
+  var $id = function (id) { return document.getElementById(id); };
+  var num = function (id) { return parseFloat(String($id(id).value).replace(/[,$%¢\s]/g, '')) || 0; };
+  var $ = function (n) { return (n < 0 ? '−$' : '$') + Math.round(Math.abs(n)).toLocaleString('en-US'); };
+  var S = function (n) { return '<sup class="ref"><a href="#src-' + n + '">' + n + '</a></sup>'; };
+  var PRESET = {
+    new: { 'k-price': 50562, 'k-down': 5554, 'k-apr': 6.35, 'k-term': 72,
+      note: 'Example numbers, all editable: price = average new-vehicle transaction price, Sept. 2026 (Kelley Blue Book)' + S(4) + '; down payment = average new-car down payment, Q3 2026 (Edmunds)' + S(7) + '; APR = average new-car loan rate, Q2 2026 (Experian)' + S(6) + '; 72 months is the standard term closest to the ~70-month averages reported by Experian and Edmunds.' + S(6) + S(7) },
+    used: { 'k-price': 27235, 'k-down': 3865, 'k-apr': 11.19, 'k-term': 72,
+      note: 'Example numbers, all editable: price = average used-vehicle listing price, Sept. 2026 (Cox Automotive/vAuto)' + S(5) + '; down payment = average used-car down payment, Q3 2026 (Edmunds)' + S(7) + '; APR = average used-car loan rate, Q2 2026 (Experian)' + S(6) + '; 72 months is the standard term closest to the ~68–70-month used averages.' + S(6) + S(7) + ' The 44% value-kept default is AAA’s new-car figure. For a used car, look up the model’s expected value in 5 years and enter your own.' }
+  };
+  var COMMON = ' Also: 15,000 miles a year and maintenance of 11.7¢ a mile, taxes and fees of $802 a year and insurance of $2,098 a year are AAA 2026 averages' + S(2) + S(3) + '; 44% value kept after 5 years is AAA’s $4,422 a year of depreciation on a $39,376 average MSRP' + S(2) + '; 25.5 mpg is EPA’s model year 2024 average without EVs and plug-in hybrids (27.2 mpg minus 1.7)' + S(10) + '; $4.33 a gallon is EIA’s U.S. regular price for the week of Oct. 12, 2026.' + S(9);
+  var COLORS = { depreciation: 'c-dep', insurance: 'c-ins', fuel: 'c-fuel', maintenance: 'c-mnt', finance: 'c-fin', fees: 'c-fee', other: 'c-oth' };
+  var mode = 'new';
+  function preset(m) {
+    mode = m; var p = PRESET[m];
+    Object.keys(p).forEach(function (k) { if (k !== 'note') $id(k).value = p[k]; });
+    run();
+  }
+  function run() {
+    var r = PT_CAR.tco({ price: num('k-price'), down: num('k-down'), apr: num('k-apr') / 100, term: +$id('k-term').value,
+      miles: num('k-miles'), mpg: num('k-mpg'), gas: num('k-gas'), insurance: num('k-ins'), maint: num('k-maint') / 100,
+      fees: num('k-fees'), resale: num('k-resale') / 100, other: num('k-other'), income: num('k-income') });
+    $id('o-tco').textContent = $(r.total);
+    $id('o-lead').textContent = 'Estimated 5-year cost of owning this car, about ' + $(r.perYear) + ' a year. That is the sum of the parts below, not your loan payments.';
+    var parts = r.parts.filter(function (p) { return p.amount > 0.5; });
+    $id('o-stack').innerHTML = parts.map(function (p) { return '<span class="' + COLORS[p.key] + '" style="flex-grow:' + Math.round(p.amount) + '" title="' + p.label + '"></span>'; }).join('');
+    $id('o-stack').setAttribute('aria-label', '5-year cost by category: ' + parts.map(function (p) { return p.label + ' ' + $(p.amount); }).join(', '));
+    $id('o-legend').innerHTML = parts.map(function (p) { return '<span><i class="' + COLORS[p.key] + '"></i>' + p.label + ' <b>' + $(p.amount) + '</b></span>'; }).join('');
+    $id('o-pay').textContent = r.loan > 0 ? $(r.payment) + '/mo' : 'No loan';
+    $id('o-int').textContent = $(r.totalInterest);
+    $id('o-mile').textContent = r.perMile ? (r.perMile < 1 ? Math.round(r.perMile * 100) + '¢' : '$' + r.perMile.toFixed(2)) : '—';
+    $id('o-month').textContent = $(r.perMonth);
+    var t = +$id('k-term').value, says = [];
+    if (r.loan > 0) {
+      says.push(['info', '+', 'At an APR one point higher, this loan would cost ' + $(r.extraInterestPlus1) + ' more in interest (' + $(r.paymentPlus1 - r.payment) + ' a month more).']);
+      if (t > 60) {
+        if (r.equity5 < 0) says.push(['warn', '!', 'At year 5 you would still owe about ' + $(r.balance5) + ' on a car worth about ' + $(r.value5) + ': ' + $(-r.equity5) + ' underwater if you sell or trade it then.']);
+        else says.push(['info', '•', 'At year 5 you would still owe about ' + $(r.balance5) + ', and the car might be worth about ' + $(r.value5) + '. Interest paid after year 5 is not in the 5-year total.']);
+      }
+    }
+    var ru = r.rule, ok = [ru.down20, ru.term4];
+    var msg = '20/4/10 check (rule of thumb): ' + (ru.down20 ? '20%+ down ✓' : 'under 20% down ✗') + ' · ' + (ru.term4 ? '4 years or less ✓' : 'longer than 4 years ✗') + ' · ';
+    if (ru.income10 === null) msg += 'add your income under “More inputs” for the 10% test.';
+    else { msg += (ru.income10 ? 'car costs ' : 'car costs ') + Math.round(ru.shareOfIncome * 100) + '% of gross income ' + (ru.income10 ? '✓' : '✗') + ' (payment plus running costs, ' + $(r.monthlyCarCost) + '/mo).'; ok.push(ru.income10); }
+    says.push([ok.every(Boolean) ? 'good' : 'info', ok.every(Boolean) ? '✓' : '•', msg]);
+    $id('o-says').innerHTML = says.map(function (s) { return '<li class="' + s[0] + '" data-i="' + s[1] + '">' + s[2] + '</li>'; }).join('');
+    $id('k-defaults').innerHTML = PRESET[mode].note + COMMON;
+  }
+  PT.$$('#car-calc input[name="mode"]').forEach(function (el) { el.addEventListener('change', function () { preset(el.value); }); });
+  PT.$$('#car-calc input:not([name="mode"]), #car-calc select').forEach(function (el) { el.addEventListener('input', run); el.addEventListener('change', run); });
+  run();
+  var url = 'https://pymtw.com/tools/guides/true-cost-of-a-car/', msgEl = $id('sh-msg'), nb = $id('sh-native');
+  if (!navigator.share) nb.hidden = true;
+  nb.onclick = function () { navigator.share({ title: document.title, url: url }).catch(function () {}); };
+  $id('sh-copy').onclick = function () {
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () { msgEl.textContent = 'Link copied.'; }, function () { msgEl.textContent = url; });
+  };
+})();
+</script>
+<script>
+/* Lazy-load the beehiiv signup form when the newsletter section nears the viewport. */
+(function(){var box=document.querySelector('.newsletter-form'),done=false;if(!box)return;
+function load(){if(done)return;done=true;
+ var s=document.createElement('script');s.async=true;s.src='https://subscribe-forms.beehiiv.com/v3/loader.js';s.setAttribute('data-beehiiv-form','e52526c9-fd98-4fde-bda0-ee1a61507c09');box.appendChild(s);
+ var a=document.createElement('script');a.async=true;a.src='https://subscribe-forms.beehiiv.com/attribution.js';document.body.appendChild(a);}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e.some(function(x){return x.isIntersecting})){io.disconnect();load();}},{rootMargin:'300px 0px'});io.observe(box);}
+else{['scroll','pointerdown','keydown','touchstart'].forEach(function(t){addEventListener(t,load,{once:true,passive:true})});
+ (window.requestIdleCallback||function(f){setTimeout(f,1)})(function(){setTimeout(load,4000)});}})();
+</script>
+<script data-goatcounter="https://pymtw.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
