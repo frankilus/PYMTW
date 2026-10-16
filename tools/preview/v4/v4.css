@@ -1,0 +1,63 @@
+/* v4 preview overrides on top of ../v3.css (Version A + interactive simulator). */
+:root{--accent:#E8682A;--accent-soft:#FCEDE4;--bg:#F7F2EA;--navy:#0F1B2D;--navy-2:#18263B}
+.v4-hero h1 em{font-style:normal}
+.hero-aside .aside-head{font-family:var(--font-serif);font-size:24px;line-height:1.2;color:var(--ink);margin:0 0 12px}
+.hero-aside p{margin:0}
+.chips{align-items:center}
+.chips-label{font-size:13px;font-weight:600;color:var(--ink-2);margin-right:4px}
+.hero-photo{position:relative}
+.hero-photo .photo-quote{position:absolute;right:32px;bottom:32px;margin:0;max-width:300px;color:#fff;font-family:var(--font-serif);font-style:italic;font-size:20px;line-height:1.35;text-align:right;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+/* simulator */
+.v4-sim{padding:8px 0 24px}
+.sim-card{background:var(--navy);color:#E9EEF5;border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;font-variant-numeric:tabular-nums}
+.sim-card .kicker{color:#F59A6B;margin-bottom:10px}
+.sim-card h2{font-family:var(--font-serif);font-weight:500;font-size:32px;line-height:1.15;margin:0 0 8px;color:#fff}
+.sim-sub{margin:0 0 22px;color:#A9B4C4;font-size:14px}
+.sim-field{margin-bottom:18px}
+.sim-row{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;margin-bottom:8px}
+.sim-row label{color:#C9D2DE}
+.sim-row output{font-family:var(--font-sans);font-weight:700;color:#fff;font-size:16px}
+.sim-card input[type=range]{width:100%;accent-color:var(--accent);height:28px;margin:0;background:transparent}
+.sim-card input[type=range]:focus-visible{outline:2px solid #F59A6B;outline-offset:3px;border-radius:4px}
+.sim-link{display:inline-block;margin-top:6px;color:#F59A6B;font-weight:700;font-size:15px}
+.sim-link:hover{text-decoration:underline}
+.sim-viz{display:flex;flex-direction:column;min-width:0}
+.sim-big{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.sim-big span{font-size:13px;color:#A9B4C4;text-transform:uppercase;letter-spacing:.08em}
+.sim-big strong{font-family:var(--font-sans);font-size:30px;color:#fff;background:var(--navy-2);padding:4px 12px;border-radius:10px}
+.sim-chart{width:100%;height:190px;display:block;border-bottom:1px solid #33435A}
+.bar-growth{fill:var(--accent)}
+.bar-contrib{fill:#F7C9AE;opacity:.55}
+.sim-axis{display:flex;justify-content:space-between;font-size:12px;color:#8C99AB;margin:6px 0 18px}
+.sim-out{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0}
+.sim-out div{background:var(--navy-2);border-radius:12px;padding:12px 14px}
+.sim-out dt{font-size:12px;color:#A9B4C4;margin-bottom:4px}
+.sim-out dd{margin:0;font-family:var(--font-sans);font-weight:700;font-size:20px;color:#fff}
+.sim-out div:last-child dd{color:#F59A6B}
+.sim-note{font-size:13px;color:var(--ink-2);margin:12px 4px 0}
+.v4-trust .trust{margin-top:16px}
+/* library, Version A compact tiles */
+.v4-lib-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.v4-lib-head .section-head{margin-bottom:0}
+.view-all{color:var(--accent);font-weight:700;font-size:14px;white-space:nowrap;margin-bottom:6px}
+.v4-library .tool-grid{grid-template-columns:repeat(4,1fr);margin-top:28px}
+.v4-library .tool .ic{color:var(--accent);background:transparent;border:1.5px solid var(--accent-soft)}
+.more-head{font-family:var(--font-serif);font-weight:500;font-size:22px;margin:44px 0 0}
+.v4-stackcost{padding:0 0 56px}
+.tool-grid.one{display:grid;grid-template-columns:minmax(0,560px)}
+@media (max-width:1100px){.v4-library .tool-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){.sim-card{grid-template-columns:1fr;gap:28px}.v4-library .tool-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .hero-photo .photo-quote{display:none}
+  .sim-card{padding:22px 18px;border-radius:18px}
+  .sim-card h2{font-size:26px}
+  .sim-big strong{font-size:24px}
+  .sim-chart{height:150px}
+  .sim-out{grid-template-columns:1fr}
+  .sim-out div{display:flex;justify-content:space-between;align-items:baseline}
+  .sim-out dd{font-size:18px}
+  .v4-lib-head{flex-direction:column;align-items:flex-start}
+  .v4-library .tool-grid{grid-template-columns:1fr}
+}
+.v4-hero .hero-photo .caption{max-width:min(520px,70%);right:auto}
+.v4-hero .hero-photo .caption h2{max-width:none;font-size:clamp(32px,4.6vw,56px)}
