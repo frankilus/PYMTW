@@ -1,8 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fffaf4">
+
+
+
+
+
+
+
+
 <!-- seo:head -->
 <title>Free Personal Finance Calculators &amp; Money Tools | PYMTW</title>
 <meta name="description" content="Free, private money tools: debt payoff, rent vs. buy, Roth vs. traditional, emergency fund, fees and Bitcoin DCA. No signup; runs in your browser.">
@@ -23,9 +32,7 @@
 <meta name="twitter:image" content="https://pymtw.com/tools/og/home.png">
 <meta name="twitter:image:alt" content="PYMTW Tools: free, private money tools">
 <!-- /seo:head -->
-<meta name="theme-color" content="#0a7c55">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="tools.css">
+
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -98,240 +105,106 @@
  ]
 }
 </script>
-</head>
+<link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="v7/home.css"></head>
 <body>
-<nav><div class="wrap">
-  <a class="logo" href="./" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
-  <div class="nav-links"><a class="hide-sm" href="#tools">All tools</a><a class="hide-sm" href="#promise">How it works</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
-</div></nav>
-<style>
-.brandline{font-size:clamp(15px,2.1vw,19px);font-weight:600;letter-spacing:.02em;color:var(--ink-3);margin:0 0 22px;white-space:nowrap}
-.brandline b{color:var(--accent);font-weight:800;letter-spacing:0}
-.brandline i{font-style:normal;display:inline-block;white-space:pre;animation:unfold .7s cubic-bezier(.2,.7,.2,1) both}
-.brandline i:nth-of-type(1){animation-delay:.35s}.brandline i:nth-of-type(2){animation-delay:.45s}.brandline i:nth-of-type(3){animation-delay:.55s}.brandline i:nth-of-type(4){animation-delay:.65s}.brandline i:nth-of-type(5){animation-delay:.75s}
-@keyframes unfold{from{opacity:0;transform:translateX(-6px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
-@media (prefers-reduced-motion:reduce){.brandline i{animation:none}}
-.hero{padding:104px 0 64px;text-align:center}
-.hero h1{font-size:clamp(40px,7vw,84px);line-height:1.02;max-width:900px;margin:0 auto}
-.hero .sub{max-width:620px;margin:24px auto 0}
-.eyebrow{margin-bottom:28px}
-.ask{max-width:760px;margin:56px auto 0;position:relative}
-  .ask label{display:block;text-align:left;font-size:15px;font-weight:600;color:var(--ink-2);margin:0 0 12px 6px}
-  .ask-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:10px 10px 10px 26px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 50px -20px rgba(0,0,0,.18);transition:border-color .2s,box-shadow .2s}
-  .ask-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft),0 18px 50px -20px rgba(0,0,0,.18)}
-  .ask-box input{flex:1;border:0;outline:0;font:inherit;font-size:clamp(18px,2.2vw,22px);padding:16px 0;color:var(--ink);background:transparent;min-width:0;letter-spacing:-.01em}
-  .ask-box input::placeholder{color:#a3a3aa}
-  .go{flex:none;border:0;cursor:pointer;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:16px;height:56px;padding:0 26px;border-radius:16px;transition:transform .15s,background .2s}
-  .go:hover{background:var(--accent)} .go:active{transform:scale(.97)}
 
-  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
-  .chip{border:1px solid var(--line);background:#fff;color:var(--ink-2);font:inherit;font-size:15px;padding:10px 18px;border-radius:999px;cursor:pointer;transition:all .15s}
-  .chip:hover{border-color:var(--ink);color:var(--ink)}
-  .trust{margin-top:30px;font-size:13px;color:var(--ink-3);display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
-  .trust span::before{content:"✓";color:var(--accent);font-weight:700;margin-right:6px}
-
-  /* Router answer */
-  .answer{max-width:760px;margin:26px auto 0;text-align:left;display:none;background:var(--bg-2);border-radius:var(--radius);padding:26px 28px;animation:rise .35s ease}
-  .answer.show{display:block}
-  .answer .k{font-size:13px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
-  .answer .best{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:10px;flex-wrap:wrap}
-  .answer h3{font-size:24px;letter-spacing:-.02em}
-  .answer p{color:var(--ink-2);margin-top:4px}
-  .answer .open{background:var(--accent);color:#fff;font-weight:600;padding:12px 22px;border-radius:14px;white-space:nowrap}
-  .answer .also{margin-top:16px;font-size:14px;color:var(--ink-3)}
-  .answer .also a{color:var(--accent);font-weight:600;margin-left:6px}
-  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-  /* Library */
-  .library{padding:72px 0 40px}
-  .section-head{text-align:center;margin-bottom:56px}
-  h2{font-size:clamp(34px,4.6vw,56px);letter-spacing:-.035em;line-height:1.05;font-weight:700}
-  .section-head p{color:var(--ink-3);font-size:19px;margin-top:14px}
-  .cat{margin-bottom:56px}
-  .cat-title{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:14px;row-gap:2px;margin-bottom:18px;padding-left:4px}
-  .cat-title h3{font-size:24px;letter-spacing:-.02em}
-  .cat-title span{font-size:14px;color:var(--ink-3)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .tool{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:168px;background:var(--bg-2);border-radius:var(--radius);padding:26px;border:2px solid transparent;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
-  .tool:hover{transform:translateY(-3px);background:#fff;box-shadow:0 20px 40px -24px rgba(0,0,0,.25);border-color:var(--line)}
-  .tool .icon{font-size:24px;line-height:1}
-  .tool h4{font-size:19px;letter-spacing:-.015em;margin-top:18px}
-  .tool p{font-size:15px;color:var(--ink-3);margin-top:6px}
-  .tool .arrow{position:absolute;top:24px;right:24px;color:var(--ink-3);transition:transform .2s,color .2s}
-  .tool:hover .arrow{transform:translateX(3px);color:var(--accent)}
-  .tool.match{border-color:var(--accent);background:#fff;box-shadow:0 0 0 6px var(--accent-soft)}
-  .tool.match::after{content:"Best match";position:absolute;bottom:24px;right:24px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
-  .tool.dim{opacity:.38}
-  .time{font-size:12px;color:var(--ink-3);margin-top:14px;font-weight:500}
-
-  
-.tool .soon-tag{font-size:12px;font-weight:700;color:var(--ink-3);background:var(--line);padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:2px}
-.promise{padding:56px 0 24px}
-.promise .row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:1px solid var(--line);padding-top:48px}
-.promise h5{font-size:20px;letter-spacing:-.015em}
-.promise p{color:var(--ink-3);margin-top:8px;font-size:16px}
-footer{margin-top:40px}
-@media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:640px){
- .hero{padding:56px 0 40px}.ask{margin-top:36px}
- .ask-box{flex-direction:column;align-items:stretch;padding:8px;gap:8px}.ask-box input{padding:16px}.go{width:100%}
- .chip{font-size:14px;padding:9px 15px}.grid{grid-template-columns:1fr;gap:12px}.tool{min-height:0;padding:22px}
- .library{padding:40px 0 8px}.section-head{margin-bottom:36px}.cat{margin-bottom:36px}.promise .row{grid-template-columns:1fr;gap:28px}
-}
-
-/* ---------- v2 library ---------- */
-.library{padding:40px 0 24px}
-.section-head{text-align:left;margin-bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
-.section-head p{margin-top:8px}
-.kicker{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.feat{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px;margin-bottom:80px}
-.fc{position:relative;display:flex;flex-direction:column;border-radius:28px;padding:30px;min-height:440px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.fc:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 40px 70px -40px rgba(0,0,0,.45)}
-.fc .tag{align-self:flex-start;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;letter-spacing:.02em}
-.fc h3{font-size:30px;letter-spacing:-.03em;line-height:1.1;margin-top:16px;max-width:360px}
-.fc p.d{font-size:16px;margin-top:8px;max-width:340px;opacity:.78}
-.fc .viz{margin-top:auto;padding-top:24px}
-.fc .cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:600;font-size:15px}
-.fc .cta i{font-style:normal;transition:transform .25s}.fc:hover .cta i{transform:translateX(4px)}
-.fc.dark{background:#0b0b0c;color:#fff}
-.fc.green{background:var(--accent);color:#fff}
-.fc.light{background:#f3f1ea;color:var(--ink)}
-.fc.light .tag{background:var(--ink);color:#fff}
-.vz-big{font-size:46px;font-weight:700;letter-spacing:-.045em;line-height:1}
-.vz-sub{font-size:13px;opacity:.7;margin-top:6px}
-.runbar{display:flex;gap:4px;margin-top:16px}.runbar span{flex:1;height:44px;border-radius:8px;background:rgba(255,255,255,.95)}
-.runbar span.ui{background:rgba(255,255,255,.55)}.runbar span.off{background:rgba(255,255,255,.15)}
-.runlbl{display:flex;justify-content:space-between;font-size:12px;opacity:.75;margin-top:8px}
-.rcpt{background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 20px 40px -24px rgba(0,0,0,.3);font-size:14px}
-.rcpt div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #e4e2da}
-.rcpt div b{font-variant-numeric:tabular-nums}
-.rcpt .tot{border:0;padding-top:10px;font-weight:700;font-size:16px}.rcpt .tot b{color:var(--accent)}
-.rcpt .up{color:#b4541a;font-size:11px;font-weight:700;margin-left:6px}
-.cat{margin-bottom:64px}
-.cat-title{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:18px;padding:0 2px;border-bottom:1px solid var(--line);padding-bottom:14px}
-.cat-title h3{font-size:28px;letter-spacing:-.03em}
-.cat-title span{font-size:15px;color:var(--ink-3)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid.n1{grid-template-columns:1fr}.grid.n2{grid-template-columns:repeat(2,1fr)}
-.tool{position:relative;display:flex;flex-direction:column;min-height:236px;background:#fff;border:1px solid #e3e3e8;border-radius:24px;padding:26px;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;opacity:1}
-.tool:hover{transform:translateY(-4px);box-shadow:0 28px 50px -30px rgba(0,0,0,.35);border-color:#d0d0d6;background:#fff}
-.tool .ic{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--t,#e7f4ee);color:var(--c,#0a7c55)}
-.tool .ic svg{width:26px;height:26px}
-.tool h4{font-size:21px;letter-spacing:-.02em;margin-top:20px;color:var(--ink)}
-.tool p{font-size:15px;color:var(--ink-2);margin-top:6px}
-.tool .ex{margin-top:auto;padding-top:18px;font-size:14px;font-weight:600;color:var(--accent);display:flex;justify-content:space-between;align-items:center;gap:10px}
-.tool .ex em{font-style:normal;color:var(--ink-3);font-weight:500}
-.tool .arrow{position:absolute;top:26px;right:26px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--bg-2);color:var(--ink);transition:background .25s,color .25s,transform .25s}
-.tool:hover .arrow{background:var(--accent);color:#fff;transform:translateX(2px)}
-.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:3px;letter-spacing:.02em}
-.badge.new{background:var(--accent);color:#fff}.badge.hot{background:#0b0b0c;color:#fff}.badge.soon{background:#ececf0;color:var(--ink-2)}.badge.ext{background:#fff1e0;color:#d9730d}
-.tool .top{display:flex;align-items:center;gap:12px}.badge{margin-left:0}.tool .ex em{white-space:nowrap}.grid.wide .tool .top .badge{display:none}
-.tool.match{border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
-.tool.match::after{content:"Best match";position:absolute;top:30px;right:70px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
-.grid.wide .tool{flex-direction:row;align-items:center;gap:24px;min-height:150px}
-.tool.ext h4 a,.tool.ext .ex a{color:inherit;text-decoration:none}.tool.ext h4 a::before{content:"";position:absolute;inset:0}.tool.ext .ex a{position:relative;z-index:1}.tool.ext .ex a:hover{text-decoration:underline}.grid.wide .tool .body{flex:1}.grid.wide .tool h4{margin-top:0}.grid.wide .tool .ex{margin-top:10px;padding-top:0;justify-content:flex-start}
-@media (max-width:1000px){.feat{grid-template-columns:1fr 1fr}.feat .fc:first-child{grid-column:1/-1;min-height:360px}}
-@media (max-width:640px){
- .feat{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px 56px;padding:4px 24px 18px;scrollbar-width:none}
- .feat::-webkit-scrollbar,.grid::-webkit-scrollbar{display:none}
- .feat .fc,.feat .fc:first-child{flex:0 0 84%;scroll-snap-align:center;min-height:430px}
- .grid,.grid.n2{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -24px;padding:4px 24px 14px;scrollbar-width:none}
- .grid .tool{flex:0 0 80%;scroll-snap-align:start;min-height:230px}
- .grid.n1 .tool,.grid.wide .tool{flex:1 0 100%}
- .grid.wide .tool{flex-direction:column;align-items:flex-start}
- .cat{margin-bottom:44px}.cat-title h3{font-size:24px}.fc h3{font-size:27px}
-}
-.checkup-cta{display:flex;align-items:center;gap:16px;max-width:760px;margin:22px auto 0;text-align:left;background:var(--accent);color:#fff;border-radius:22px;padding:16px 16px 16px 20px;box-shadow:0 20px 40px -24px rgba(10,124,85,.7);transition:transform .25s,box-shadow .25s}
-.checkup-cta:hover{transform:translateY(-3px);box-shadow:0 28px 50px -24px rgba(10,124,85,.8)}
-.checkup-cta .ci{flex:none;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:24px}
-.checkup-cta .ct{flex:1;display:flex;flex-direction:column}.checkup-cta .ct b{font-size:18px;letter-spacing:-.015em}.checkup-cta .ct span{font-size:15px;opacity:.85}
-.checkup-cta .cgo{flex:none;background:#fff;color:var(--accent);font-weight:700;padding:12px 18px;border-radius:14px}
-@media (max-width:640px){.checkup-cta{flex-wrap:wrap}.checkup-cta .cgo{width:100%;text-align:center}}
-.feat2{grid-template-columns:1fr 1fr;margin-top:-62px}.feat2 .fc:first-child{grid-column:auto;min-height:400px}.feat2 .fc{min-height:400px}.flags-mini{display:grid;gap:8px}.flags-mini div{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600}.flags-mini i{width:10px;height:10px;border-radius:50%;flex:none}
-@media (max-width:640px){.feat2{margin-top:-40px}.feat2 .fc:first-child{flex:0 0 84%}}
-.privacy-note{font-size:13px;color:var(--ink-3);line-height:1.55;margin:0 0 14px;max-width:52ch}.privacy-note a{color:var(--accent)}
-</style>
-<header class="hero"><div class="wrap">
-  <p class="brandline" aria-label="PYMTW: Put Your Money To Work"><span aria-hidden="true"><b>P</b><i>ut </i><b>Y</b><i>our </i><b>M</b><i>oney </i><b>T</b><i>o </i><b>W</b><i>ork</i></span></p>
-  <div class="eyebrow">Free · Private · No signup</div>
-  <h1>Your money,<br>figured out in <em style="white-space:nowrap">60 seconds.</em></h1>
-  <p class="sub">Free tools that put your money to work. Tell us what’s going on and get a clear answer.</p><p class="direct-answer">PYMTW Tools is a free set of plain-English personal finance calculators and guides from Put Your Money to Work. Describe your situation or pick a tool; every calculation runs in your browser, with no signup and nothing uploaded.</p>
-  <form class="ask" id="askForm" autocomplete="off">
-    <label for="q">What help do you need?</label>
-    <div class="ask-box"><input id="q" type="text" placeholder="I just lost my job" aria-label="What help do you need?"><button class="go" type="submit">Find my tool →</button></div>
-    <div class="chips">
-      <button type="button" class="chip" data-q="Get out of debt">Get out of debt</button>
-      <button type="button" class="chip" data-q="I just lost my job">I just lost my job</button>
-      <button type="button" class="chip" data-q="Should I buy a home?">Should I buy a home?</button>
-      <button type="button" class="chip" data-q="Is this car loan a good deal?">Is this loan a good deal?</button>
-      <button type="button" class="chip" data-q="Find wasted subscriptions">Find wasted subscriptions</button>
-      <button type="button" class="chip" data-q="Roth or traditional?">Roth or traditional?</button>
-      <button type="button" class="chip" data-q="What if I DCA'd into bitcoin?">What if I’d DCA’d bitcoin?</button>
-    </div>
-  </form>
-  <a class="checkup-cta" href="checkup/"><span class="ci">🩺</span><span class="ct"><b>Not sure where to start?</b><span>Take the 2-minute money checkup and find your blind spots.</span></span><span class="cgo">Start →</span></a>
-  <div class="answer" id="answer" aria-live="polite"></div>
-  <div class="trust"><span>No signup</span><span>No cookies</span><span>Your numbers never leave your device</span></div>
+<header class="header" id="top"><div class="shell header-inner">
+  <a class="logo" href="#top" aria-label="PYMTW Tools home">PYMTW<span class="logo-underline"></span></a>
+  <nav class="nav" aria-label="Main navigation" id="main-nav">
+    <a href="#how">How it works</a><a href="#moments">Find a tool</a><a href="#guides">Life guides</a><a href="#behind">About</a><a href="#newsletter">Newsletter</a>
+  </nav>
+  <div class="header-right"><span class="private"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Privacy first</span><a class="header-link" href="#checkup">Start here <span aria-hidden="true">↗</span></a><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
 </div></header>
-<section class="library" id="tools"><div class="wrap">
-  <div class="section-head"><div><div class="kicker">The library</div><h2>Twelve tools. Zero jargon.</h2><p>Start with the favorites, or just ask above.</p></div></div>
-  <div class="feat" id="feat"></div>
-  <div class="feat feat2" id="feat2" aria-label="New tools"></div>
-  <div class="cat" id="guides"><div class="cat-title"><h3>Guides</h3><span>Plain-English plans for big life moments.</span></div>
-  <div class="grid n3"><a class="tool" id="tool-guides-lost-my-job" href="guides/lost-my-job/" style="--t:#e7f4ee;--c:#0a7c55"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 8h6M9 12h4"/></svg></div><span class="badge new">New guide</span></div><div class="body"><h4>Just lost your job? What to do this week, this month, this year.</h4><p>Unemployment, COBRA vs. Marketplace, your 401(k), your final paycheck, and budget triage, with every rule linked to an official source.</p><div class="ex">This week · This month · This year<em>5 min read</em></div></div><span class="arrow">→</span></a><a class="tool" id="tool-guides-first-home" href="guides/first-home/" style="--t:#e7f4ee;--c:#0a7c55"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></svg></div><span class="badge new">New guide</span></div><div class="body"><h4>Buying your first home? The checklist nobody hands you.</h4><p>The real upfront cash, affordability, rates and PMI, pre-approval, inspections, escrow and year-one costs, with every number linked to an official source.</p><div class="ex">Before you shop · Getting the loan · Offer to keys<em>6 min read</em></div></div><span class="arrow">→</span></a><a class="tool" id="tool-guides-true-cost-of-a-car" href="guides/true-cost-of-a-car/" style="--t:#e7f4ee;--c:#0a7c55"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14M3.5 16v-3.2a2 2 0 0 1 .6-1.4L6 9.5l1.6-3.2A2 2 0 0 1 9.4 5h5.2a2 2 0 0 1 1.8 1.3L18 9.5l1.9 1.9a2 2 0 0 1 .6 1.4V16"/><path d="M6 9.5h12"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg></div><span class="badge new">New guide</span></div><div class="body"><h4>The true cost of owning a car. It’s more than the payment.</h4><p>Where AAA’s $12,863 a year goes, a 5-year cost calculator, credit-score rates, long-loan risks and what to ask at the dealer, with every number sourced.</p><div class="ex">The real number · Your numbers · Before you sign<em>7 min read</em></div></div><span class="arrow">→</span></a></div>
-  <p class="hint" style="margin-top:12px;padding-left:2px">Coming next: new baby, caring for a parent.</p></div>
-  <div id="library"></div>
-</div></section>
-<section class="promise" id="promise"><div class="wrap"><div class="row">
-  <div><h5>Ask, don’t search.</h5><p>Describe your situation in your own words. We point you to the right tool instantly.</p></div>
-  <div><h5>Private by design.</h5><p>Every calculation runs on your device. Statements you load are read in your browser and never uploaded.</p></div>
-  <div><h5>Answers, not homework.</h5><p>Every tool ends with one plain-English sentence and one next step.</p></div>
-</div></div></section>
+<main>
+  <section class="opening shell" aria-labelledby="opening-title">
+    <p class="eyebrow opening-eyebrow"><span class="small-sun" aria-hidden="true">✳</span> PUT YOUR MONEY TO WORK</p>
+    <h1 id="opening-title">What's on your<br><em>money mind?</em></h1>
+    <p class="opening-subtitle">Big decision, small question, or somewhere in between. Start with what's happening in your life.</p>
+    <form id="finder-form" class="finder" role="search">
+      <label class="sr-only" for="finder-input">Describe your money question</label>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+      <input id="finder-input" type="search" autocomplete="off" placeholder="Tell us what you're figuring out…" required>
+      <button type="submit" aria-label="Find a helpful tool"><span class="button-desktop">Find my next step</span><span class="button-mobile">→</span></button>
+    </form>
+    <div class="prompt-row" aria-label="Example money questions"><span class="prompt-label">Try one</span>
+      <button type="button" class="prompt" data-query="I just lost my job">I just lost my job</button>
+      <button type="button" class="prompt" data-query="Can I afford a home?">Can I afford a home?</button>
+      <button type="button" class="prompt" data-query="Where do I start?">Where do I start?</button>
+    </div>
+    <div class="finder-results" id="finder-results" aria-live="polite" hidden></div>
+    <p class="opening-promise"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>No judgment. No account needed for the tools. Just a place to begin.</p>
+  </section>
 
+  <section class="photo-moment shell" aria-labelledby="photo-title">
+    <div class="photo-copy"><span class="section-kicker">A MORE HUMAN WAY TO TALK ABOUT MONEY</span><h2 id="photo-title">Life moves.<br><em>We'll help you find<br>your footing.</em></h2><p>Plain-English questions, useful numbers, and practical guides for whatever comes next.</p><a class="inline-link" href="#moments">Explore life's moments <span aria-hidden="true">↗</span></a></div>
+    <div class="photo-pane"><img src="v7/image-1.webp" width="1448" height="1086" alt="Sunlit desk with black coffee mug, notebook, laptop and plant" fetchpriority="high"><div class="photo-caption"><span class="photo-caption-line"></span>CLARITY FOR REAL LIFE</div></div>
+  </section>
 
+  <section class="example-section" id="example" aria-labelledby="example-title"><div class="shell example-layout">
+    <div class="example-intro"><p class="eyebrow">A USEFUL ANSWER, RIGHT AWAY</p><h2 id="example-title">What could your<br><em>savings cover?</em></h2><p>Here's a simple example. Change the numbers to see how long your savings might last if your income stops.</p><p class="example-micro">An illustration, not a prediction. This estimate doesn't account for taxes, unexpected costs, or changes in spending.</p><a href="/tools/emergency-fund-runway/" rel="noopener" class="inline-link">Explore the full emergency fund tool <span aria-hidden="true">↗</span></a></div>
+    <div class="example-widget">
+      <div class="widget-top"><div><span class="widget-overline">EXAMPLE SCENARIO</span><h3>A little more breathing room.</h3></div><span class="widget-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span></div>
+      <div class="big-answer"><div class="answer-number"><output id="runway-output">4</output><span>months</span></div><p>Estimated time your savings could cover the gap</p></div>
+      <div class="sample-inputs"><div class="sample-field"><div class="sample-top"><label for="savings">Savings available</label><output id="savings-value">$12,000</output></div><input type="range" id="savings" min="1000" max="50000" step="500" value="12000"><div class="range-ends"><span>$1,000</span><span>$50,000</span></div></div><div class="sample-field"><div class="sample-top"><label for="expenses">Monthly essentials</label><output id="expenses-value">$3,000</output></div><input type="range" id="expenses" min="1000" max="10000" step="250" value="3000"><div class="range-ends"><span>$1,000</span><span>$10,000</span></div></div></div>
+      <details class="method-disclosure"><summary>How is this calculated? <span>+</span></summary><p>Available savings ÷ essential monthly spending. For this illustration, monthly income is assumed to be $0. Example: $12,000 ÷ $3,000 = 4 months. The model is calculated locally using the original PYMTW emergency fund calculation.</p></details>
+    </div>
+  </div></section>
+
+  <section class="moment-section shell" id="moments" aria-labelledby="moments-title"><div class="moments-head"><p class="eyebrow">FIND YOUR STARTING POINT</p><h2 id="moments-title">Start where <em>life has you.</em></h2><p>You don't have to know the financial term. Just choose what's on your mind.</p></div>
+    <div class="moments-grid" role="group" aria-label="Choose your current money situation">
+      <button type="button" class="moment-card" data-moment="starting"><span class="moment-index">01</span><span class="moment-title">Starting out.</span><span class="moment-desc">Getting organized, understanding money, and building habits.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" class="moment-card" data-moment="purchase"><span class="moment-index">02</span><span class="moment-title">A big purchase.</span><span class="moment-desc">Thinking about a home, loan, or important commitment.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" class="moment-card" data-moment="unexpected"><span class="moment-index">03</span><span class="moment-title">Something changed.</span><span class="moment-desc">A job loss, money worries, or a debt you want to tackle.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" class="moment-card" data-moment="ahead"><span class="moment-index">04</span><span class="moment-title">Planning ahead.</span><span class="moment-desc">Looking further out, growing savings, or preparing for retirement.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
+    </div>
+    <div id="tools" class="tools-head"><div><p class="eyebrow">A TOOL FOR THAT</p><h3 id="tool-list-title">Helpful tools for wherever you are.</h3><p id="tool-list-desc">Explore the tools and find a useful next step.</p></div><button type="button" id="show-all" class="all-link" hidden>Show all tools ↗</button></div>
+    <div class="tool-grid" id="tools-grid" aria-live="polite"></div>
+    <p class="tools-explainer">Tool names and availability are drawn from the PYMTW source catalog. Some tools are still planned. Example results are clearly labeled illustrations and are not personalized financial advice.</p>
+  </section>
+
+  <section class="guide-section" id="guides" aria-labelledby="guides-title"><div class="shell"><div class="guide-header"><div><p class="eyebrow">WHEN LIFE GETS COMPLICATED</p><h2 id="guides-title">Guidance for life's<br><em>big moments.</em></h2></div><p>Sometimes the next step isn't a calculator. It's knowing what matters first.</p></div>
+  <div class="guide-grid"><a class="guide-card" href="/tools/guides/lost-my-job/" rel="noopener"><div class="guide-image"><img src="v7/image-2.webp" width="1448" height="1086" alt="Woman thoughtfully reviewing household documents at a sunny table" loading="lazy"></div><div class="guide-text"><span>WHEN WORK CHANGES</span><h3>Just lost your job?<br><em>Start here.</em></h3><p>A calm plan for this week, next month, and the choices ahead.</p><b>Read the guide <span aria-hidden="true">↗</span></b></div></a>
+    <a class="guide-card" href="/tools/guides/first-home/" rel="noopener"><div class="guide-image"><img src="v7/image-3.webp" width="1448" height="1086" alt="Clear golden-hour photograph of a welcoming home with a front porch and landscaping" loading="lazy"></div><div class="guide-text"><span>MAKING A HOME</span><h3>Ready for your<br><em>first home?</em></h3><p>See beyond the listing price and plan for the real costs.</p><b>Read the guide <span aria-hidden="true">↗</span></b></div></a>
+  </div></div></section>
+
+  <div class="shell" style="padding-top:24px"><a class="inline-link" href="guides/true-cost-of-a-car/">Buying a car? Explore the true cost guide ↗</a></div><section class="steps-section shell" id="how" aria-labelledby="how-title"><p class="eyebrow">THE PYMTW WAY</p><h2 id="how-title">No finance degree needed.</h2><div class="step-grid"><div><span class="step-number">01</span><h3>Ask in your own words.</h3><p>Tell us the money question on your mind.</p></div><div><span class="step-number">02</span><h3>Try the numbers.</h3><p>Compare a real example, then adjust the assumptions.</p></div><div><span class="step-number">03</span><h3>Know your next step.</h3><p>Take away a clearer answer and something useful to do.</p></div></div></section>
+
+  <section class="trust-section shell" id="trust" aria-labelledby="trust-title"><div class="trust-heading"><p class="eyebrow">CLEAR ABOUT THE DETAILS</p><h2 id="trust-title">Trust should be <em>easy to see.</em></h2></div><div class="trust-grid"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3 8.2-8 10-5-1.8-8-5-8-10V6z"/><path d="m8 12 3 3 5-6"/></svg><h3>Private calculations</h3><p>Local example calculations run in your browser. No account required.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l4 4v14H3V3z"/><path d="M17 3v5h5M7 12h10M7 16h7"/></svg><h3>See the assumptions</h3><p>Example inputs and formulas are displayed, with clear limits on what estimates mean.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3-7 8-7s8 3 8 7"/></svg><h3>Created by a person</h3><p>PYMTW stands for Put Your Money to Work, founded by financial educator Frank Jerome.</p></div></div></section>
+
+  <section class="about-section" id="behind" aria-labelledby="about-title"><div class="shell about-layout"><div class="book-figure"><div class="book-glow" aria-hidden="true"></div><img src="v7/image-4.webp" width="1236" height="1865" loading="lazy" alt="Original front cover of Bitcoin for Working Professionals, 2nd Edition, by Frank Jerome"><span>THE ACTUAL SECOND EDITION COVER</span></div><div class="about-copy"><p class="eyebrow">THE PERSON BEHIND PYMTW</p><h2 id="about-title">Good money guidance<br>should feel <em>human.</em></h2><p>PYMTW means <strong>Put Your Money to Work.</strong> It was created by Frank Jerome, a financial educator and author with more than a decade of Wall Street experience.</p><p>His book, <em>Bitcoin for Working Professionals, 2nd Edition</em>, is written for busy people who want clear explanations instead of hype.</p><a class="text-cta" href="https://amzn.to/4ARnTzi" rel="noopener sponsored" target="_blank">Explore the book on Amazon <span>↗</span></a><small>The book is optional. The tools are free to use. The Amazon link may generate an affiliate commission.</small></div></div></section>
+
+  <section class="checkup-section shell" id="checkup" aria-labelledby="checkup-title"><div class="checkup-inner"><div><p class="eyebrow">ONE SIMPLE NEXT STEP</p><h2 id="checkup-title">Not sure where to begin?<br><em>Start with two minutes.</em></h2><p>Answer a few straightforward questions to see which money topics might deserve your attention. No judgment. No score.</p><a class="button-primary" href="/tools/checkup/" rel="noopener">Take the 2-minute money checkup <span>↗</span></a></div><div class="checkup-number" aria-hidden="true">02<span>minutes</span></div></div><p class="newsletter-note">Prefer to learn at your own pace? <a href="#newsletter">Get occasional money ideas by email ↗</a></p></section>
+
+<section class="newsletter-section" id="newsletter" aria-labelledby="newsletter-title">
+  <div class="shell newsletter-layout">
+    <div class="newsletter-copy">
+      <p class="eyebrow">FROM PYMTW TO YOUR INBOX</p>
+      <h2 id="newsletter-title">A little clarity,<br><em>delivered.</em></h2>
+      <p>One useful money idea at a time. Plain-English explanations, practical tools, and no pressure to keep up.</p>
+      <div class="newsletter-points"><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> Free to subscribe</span><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> Unsubscribe anytime</span></div>
+    </div>
+    <div class="newsletter-signup-card">
+      <div class="newsletter-card-heading"><span class="newsletter-envelope" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span>THE PYMTW TOOLS NEWSLETTER</span></div>
+      <h3>Good ideas. <em>No noise.</em></h3>
+      <p>Sign up securely through Beehiiv. You don't need an account to use the financial tools.</p>
+      <div class="newsletter-embed" id="beehiiv-signup-widget" aria-label="PYMTW Tools newsletter subscription form" data-form-id="e52526c9-fd98-4fde-bda0-ee1a61507c09"></div>
+      <a class="newsletter-subscribe-link" href="https://pymtwtools.beehiiv.com/" target="_blank" rel="noopener noreferrer">Subscribe free on Beehiiv <span aria-hidden="true">↗</span></a>
+      <p class="newsletter-privacy">Optional signup. Beehiiv handles your email address; financial numbers you enter in PYMTW calculators are not included.</p>
+    </div>
+  </div>
+</section>
 <!-- seo:body -->
 <section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
 <div class="faq"><h2>Common questions</h2><div class="qa"><h3>Are PYMTW Tools really free?</h3><p>Yes. Every tool and guide is free to use, with no signup and no ads.</p></div><div class="qa"><h3>Is my financial data uploaded anywhere?</h3><p>No. The calculators run entirely in your browser, so the numbers and files you enter stay on your device. The site counts anonymous page visits to improve the tools.</p></div><div class="qa"><h3>Which tool should I start with?</h3><p>If you are not sure, take the 2-minute money checkup. It asks a few questions and gives you a short, prioritized list of what to look at, with links to the right tools.</p></div><div class="qa"><h3>Is this financial advice?</h3><p>No. The tools are educational and give estimates based on what you enter. For decisions about your situation, talk to a licensed professional.</p></div></div>
 <nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="checkup/"><b>2-minute money checkup</b><span>Two minutes of questions, then a prioritized list of money blind spots.</span></a></li><li><a href="guides/lost-my-job/"><b>Just lost your job? What to do</b><span>What to do this week, this month and this year after a job loss.</span></a></li><li><a href="guides/first-home/"><b>Buying your first home: the checklist</b><span>The real upfront cash, PMI, pre-approval, inspections and year-one costs.</span></a></li><li><a href="guides/true-cost-of-a-car/"><b>The true cost of owning a car</b><span>Where the money goes, a 5-year cost calculator and what to ask before you sign.</span></a></li><li><a href="https://stackcost-pink.vercel.app" target="_blank" rel="noopener"><b>StackCost (external site)</b><span>See the real all-in cost to DCA Bitcoin by platform (fees, spread, withdrawal).</span></a></li></ul></nav>
 </div></section>
 <!-- /seo:body -->
-<section class="newsletter" id="newsletter" aria-label="Newsletter signup">
-  <div class="wrap">
-    <div class="newsletter-inner">
-      <div class="newsletter-copy">
-        <div class="kicker">Newsletter</div>
-        <h2>One genuinely useful money idea per issue</h2>
-        <p class="newsletter-sub">Free. No spam. Unsubscribe anytime.</p>
-        <p class="newsletter-archive"><a href="https://pymtwtools.beehiiv.com" target="_blank" rel="noopener">Browse the archive ↗</a></p>
-      </div>
-      <div class="newsletter-form">
-      </div>
-    </div>
-  </div>
-</section>
+</main>
+<footer class="footer"><div class="shell"><p class="privacy-note">We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts (no personal data). <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>. The newsletter signup form is run by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">beehiiv</a>; the email address you enter is sent to beehiiv. Calculator numbers still never leave your device.</p></div><div class="shell footer-upper"><div><a class="logo footer-logo" href="#top">PYMTW<span class="logo-underline"></span></a><p>Put Your Money to Work.<br>Real questions. Clearer next steps.</p></div><div class="footer-nav"><a href="#top">Back to top</a><a href="#moments">Find tools</a><a href="#guides">Life guides</a><a href="#newsletter">Newsletter</a><a href="/legal.html" rel="noopener">Legal & privacy ↗</a><a href="/" rel="noopener">Visit PYMTW ↗</a></div></div><div class="shell footer-lower"><span>© 2026 PYMTW</span><span>For education. Example results are not financial advice.</span></div><div class="shell"><div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. Calculator numbers never leave your device. If you sign up for the newsletter, your email is sent to beehiiv, which runs the form. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div></div></footer>
+<button type="button" class="mobile-search-dock" id="mobile-search-dock" hidden aria-label="Ask another money question"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg> What's on your money mind? <span aria-hidden="true">↑</span></button>
 
-<footer><div class="wrap">
-  <div class="top">
-    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
-    <div class="links"><a href="./">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
-  </div>
-  <p class="privacy-note">We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts (no personal data). <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>. The newsletter signup form is run by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">beehiiv</a>; the email address you enter is sent to beehiiv. Calculator numbers still never leave your device.</p>
-  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. Calculator numbers never leave your device. If you sign up for the newsletter, your email is sent to beehiiv, which runs the form. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
-</div></footer>
-<script src="tools.js"></script>
-<script src="catalog.js"></script>
-<script src="router.js"></script>
-<script>
-/* Lazy-load the beehiiv signup form when the newsletter section nears the viewport. */
-(function(){var box=document.querySelector('.newsletter-form'),done=false;if(!box)return;
-function load(){if(done)return;done=true;
- var s=document.createElement('script');s.async=true;s.src='https://subscribe-forms.beehiiv.com/v3/loader.js';s.setAttribute('data-beehiiv-form','e52526c9-fd98-4fde-bda0-ee1a61507c09');box.appendChild(s);
- var a=document.createElement('script');a.async=true;a.src='https://subscribe-forms.beehiiv.com/attribution.js';document.body.appendChild(a);}
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e.some(function(x){return x.isIntersecting})){io.disconnect();load();}},{rootMargin:'300px 0px'});io.observe(box);}
-else{['scroll','pointerdown','keydown','touchstart'].forEach(function(t){addEventListener(t,load,{once:true,passive:true})});
- (window.requestIdleCallback||function(f){setTimeout(f,1)})(function(){setTimeout(load,4000)});}})();
-</script>
-<script data-goatcounter="https://pymtw.goatcounter.com/count"
+
+<script src="tools.js"></script><script src="catalog.js"></script><script src="v7/home.js"></script><script data-goatcounter="https://pymtw.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

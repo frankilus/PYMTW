@@ -1,0 +1,22 @@
+{
+  "source": "User-supplied V7 newsletter preview: preview-standalone (2).html",
+  "source_sha256": "758e7b2532c900a300b2e0cf232cf9c2830eedda09d392168785e2d88e2453f7",
+  "assets": [
+    {
+      "file": "image-1.webp",
+      "sha256": "a8b35eae3d645dc20ee9f2c20cb8b298af97a22f89cf7f89ca2bfea55fddce02"
+    },
+    {
+      "file": "image-2.webp",
+      "sha256": "6278e7556f508822a735d2124f4b4e411a20fa748c84944b088e3b1c86c8aff6"
+    },
+    {
+      "file": "image-3.webp",
+      "sha256": "24b8762a8b142848b3aab9391f89b3fc97c3bcaacb69dc527065e5c0419d4d2f"
+    },
+    {
+      "file": "image-4.webp",
+      "sha256": "1f7ce9939f520b1af975a9869d4e75fa68922f1b4c6f7e26c7c105c10e163c0f"
+    }
+  ]
+}
