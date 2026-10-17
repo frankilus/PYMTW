@@ -1,6 +1,17 @@
-# PYMTW — Site Architecture (Stage 2)
+# PYMTW — Site Architecture
 
-## Positioning (site-wide theme)
+## Parent homepage and sections
+
+- `/`: approved Version 4 directory with distinct Bitcoin and Money Tools cards, prominent brand heading, and original book promotion.
+- `/bitcoin/`: former Bitcoin homepage, retaining its content and behavior.
+- `/tools/`: existing personal finance website, unchanged by the parent-homepage migration.
+- Existing education pages keep their `.html` routes; navigation links back to both the parent and Bitcoin section.
+- Existing root Bitcoin fragments are forwarded by `assets/home/legacy-links.js`; new homepage fragments stay on the parent.
+- Add a new section by adding a real linked card to the homepage directory; the grid wraps to additional rows.
+
+The remaining education funnel below applies to the Bitcoin section.
+
+## Bitcoin positioning
 
 > **Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.**
 > Secondary: _Build a responsible Bitcoin strategy without becoming a trader._
@@ -13,7 +24,7 @@ Journey verbs: **Learn → Assess → Subscribe → Purchase → Attend → Impl
 
 ## Primary navigation
 
-`Home · Start Here · Tools ▾ · Programs ▾ · Book · Newsletter · About` + persistent **Assess** button.
+`PYMTW Home · Bitcoin · Start Here · Tools ▾ · Programs ▾ · Book · Newsletter · About` + persistent **Assess** button.
 
 - **Tools ▾:** Bitcoin Readiness Assessment · DCA Calculator · Net-Worth Calculator · Performance Comparison · Resource Library
 - **Programs ▾:** Overview · Live Workshops · Private Education · Self-Custody Education · Membership · Corporate Education
@@ -24,13 +35,13 @@ Global elements: **trust bar** (never asks for keys / never takes custody / neve
 
 | Page | File | Funnel stage | Audience | Primary CTA | Secondary CTA |
 |---|---|---|---|---|---|
-| Home | `index.html` | Awareness | All professionals | Take the Readiness Assessment | Explore Programs |
+| Bitcoin | `bitcoin/index.html` | Awareness | All professionals | Take the Readiness Assessment | Explore Programs |
 | Start Here | `start-here.html` | Awareness→Segment | Beginners/unsure | Take the Assessment | Free Playbook |
 | Readiness Assessment | `assessment.html` | **Lead capture** | All | Email → see result | Explore Programs |
 | DCA Calculator | `dca.html` | Consideration | Accumulators | Get DCA worksheet (Starter Kit) | Busy Professionals workshop |
 | Net-Worth Calculator | `calculator.html` | Consideration | Curious owners | Learn basics / DCA / Security | — |
 | Performance | `performance.html` | Consideration | Skeptics | Assessment | Newsletter |
-| Resource Library | `index.html#resources`¹ | Consideration | Researchers | Newsletter | Assessment |
+| Resource Library | `/bitcoin/#resources`¹ | Consideration | Researchers | Newsletter | Assessment |
 | Programs (hub) | `programs.html` | Purchase | Warm leads | Request a seat/session | Assessment |
 | Starter Kit | `starter-kit.html` | **First purchase ($29)** | DIY owners | Get the Kit / notify at launch | Programs |
 | Corporate & Speaking | `corporate.html` | B2B | Orgs | Request a proposal | See formats |

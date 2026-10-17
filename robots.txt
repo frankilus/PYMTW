@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pymtw.com/tools/sitemap.xml
+
+Sitemap: https://pymtw.com/sitemap.xml

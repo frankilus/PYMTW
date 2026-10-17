@@ -9,33 +9,34 @@
 
   /* ---------- Navigation model (single source of truth) ---------- */
   var NAV = [
-    { label: "Home", href: "index.html" },
-    { label: "Start Here", href: "start-here.html" },
+    { label: "PYMTW Home", href: "/" },
+    { label: "Bitcoin", href: "/bitcoin/" },
+    { label: "Start Here", href: "/start-here.html" },
     {
       label: "Tools",
       children: [
         { label: "All Free Tools", href: "/tools/" },
-        { label: "Bitcoin Readiness Assessment", href: "assessment.html" },
-        { label: "DCA Calculator", href: "dca.html" },
-        { label: "Net-Worth Calculator", href: "calculator.html" },
-        { label: "Performance Comparison", href: "performance.html" },
-        { label: "Resource Library", href: "resources.html" }
+        { label: "Bitcoin Readiness Assessment", href: "/assessment.html" },
+        { label: "DCA Calculator", href: "/dca.html" },
+        { label: "Net-Worth Calculator", href: "/calculator.html" },
+        { label: "Performance Comparison", href: "/performance.html" },
+        { label: "Resource Library", href: "/resources.html" }
       ]
     },
     {
       label: "Programs",
       children: [
-        { label: "Programs Overview", href: "programs.html" },
-        { label: "Live Workshops", href: "programs.html#workshops" },
-        { label: "Private Education", href: "programs.html#private" },
-        { label: "Self-Custody Workshop", href: "workshop-self-custody.html" },
-        { label: "Membership", href: "membership.html" },
-        { label: "Corporate Education", href: "corporate.html" }
+        { label: "Programs Overview", href: "/programs.html" },
+        { label: "Live Workshops", href: "/programs.html#workshops" },
+        { label: "Private Education", href: "/programs.html#private" },
+        { label: "Self-Custody Workshop", href: "/workshop-self-custody.html" },
+        { label: "Membership", href: "/membership.html" },
+        { label: "Corporate Education", href: "/corporate.html" }
       ]
     },
     { label: "Book", href: "/book" },
-    { label: "Newsletter", href: "newsletter.html" },
-    { label: "About", href: "about.html" }
+    { label: "Newsletter", href: "/newsletter.html" },
+    { label: "About", href: "/about.html" }
   ];
 
   var TRUST_ITEMS = [
@@ -57,7 +58,7 @@
 
   function isActive(item) {
     if (!item.href) return false;
-    var key = item.href.replace(/\.html.*$/, "").replace(/^\//, "");
+    var key = item.href.replace(/\.html.*$/, "").replace(/^\//, "").replace(/\/$/, "");
     return key === activePage;
   }
 
@@ -82,10 +83,10 @@
 
     return (
       '<nav class="navbar" id="navbar"><div class="nav-container">' +
-      '<a href="index.html" class="nav-logo"><span class="logo-icon">₿</span>' +
+      '<a href="/bitcoin/" class="nav-logo"><span class="logo-icon">₿</span>' +
       '<span class="logo-text">PYMTW</span></a>' +
       '<ul class="nav-links" id="nav-links">' + items +
-      '<li><a href="assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>' +
+      '<li><a href="/assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>' +
       "</ul>" +
       '<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">' +
       "<span></span><span></span><span></span></button>" +
@@ -106,34 +107,34 @@
       '<footer class="footer"><div class="container">' +
       '<div class="footer-grid">' +
       '<div class="footer-brand">' +
-      '<a href="index.html" class="nav-logo"><span class="logo-icon">₿</span><span class="logo-text">PYMTW</span></a>' +
+      '<a href="/bitcoin/" class="nav-logo"><span class="logo-icon">₿</span><span class="logo-text">PYMTW</span></a>' +
       "<p>Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.</p>" +
-      '<a href="newsletter.html" class="footer-newsletter-link">' +
+      '<a href="/newsletter.html" class="footer-newsletter-link">' +
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>' +
       " Get the free newsletter</a></div>" +
       '<div class="footer-links"><h4>Learn</h4><ul>' +
-      '<li><a href="start-here.html">Start Here</a></li>' +
-      '<li><a href="assessment.html">Readiness Assessment</a></li>' +
-      '<li><a href="resources.html">Resource Library</a></li>' +
-      '<li><a href="whitepaper.html">The Whitepaper</a></li>' +
-      '<li><a href="videos.html">Video Library</a></li>' +
+      '<li><a href="/start-here.html">Start Here</a></li>' +
+      '<li><a href="/assessment.html">Readiness Assessment</a></li>' +
+      '<li><a href="/resources.html">Resource Library</a></li>' +
+      '<li><a href="/whitepaper.html">The Whitepaper</a></li>' +
+      '<li><a href="/videos.html">Video Library</a></li>' +
       '<li><a href="/book">The Book</a></li>' +
       "</ul></div>" +
       '<div class="footer-links"><h4>Programs</h4><ul>' +
-      '<li><a href="programs.html#workshops">Live Workshops</a></li>' +
-      '<li><a href="programs.html#private">Private Education</a></li>' +
-      '<li><a href="membership.html">Membership</a></li>' +
-      '<li><a href="corporate.html">Corporate & Speaking</a></li>' +
-      '<li><a href="starter-kit.html">Starter Kit</a></li>' +
-      '<li><a href="services.html">All Services</a></li>' +
+      '<li><a href="/programs.html#workshops">Live Workshops</a></li>' +
+      '<li><a href="/programs.html#private">Private Education</a></li>' +
+      '<li><a href="/membership.html">Membership</a></li>' +
+      '<li><a href="/corporate.html">Corporate & Speaking</a></li>' +
+      '<li><a href="/starter-kit.html">Starter Kit</a></li>' +
+      '<li><a href="/services.html">All Services</a></li>' +
       "</ul></div>" +
       '<div class="footer-links"><h4>Trust</h4><ul>' +
-      '<li><a href="security-promise.html">Security Promise</a></li>' +
-      '<li><a href="legal.html#disclaimer">Educational Disclaimer</a></li>' +
-      '<li><a href="legal.html#privacy">Privacy Policy</a></li>' +
-      '<li><a href="legal.html#affiliate">Affiliate Disclosure</a></li>' +
-      '<li><a href="legal.html#terms">Terms & Policies</a></li>' +
-      '<li><a href="about.html">About</a></li>' +
+      '<li><a href="/security-promise.html">Security Promise</a></li>' +
+      '<li><a href="/legal.html#disclaimer">Educational Disclaimer</a></li>' +
+      '<li><a href="/legal.html#privacy">Privacy Policy</a></li>' +
+      '<li><a href="/legal.html#affiliate">Affiliate Disclosure</a></li>' +
+      '<li><a href="/legal.html#terms">Terms & Policies</a></li>' +
+      '<li><a href="/about.html">About</a></li>' +
       "</ul></div>" +
       "</div>" +
       '<div class="footer-bottom">' +

@@ -1,0 +1,2 @@
+/* Contain the original decorative orbits at narrow viewport widths. */
+html { overflow-x: clip; }
