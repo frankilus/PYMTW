@@ -86,43 +86,8 @@
 
 
 // ---- Navbar scroll behavior ----
-(function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
+// Navigation is shared in bitcoin-nav.js.
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    links.classList.toggle('active');
-    document.body.style.overflow = links.classList.contains('active') ? 'hidden' : '';
-  });
-
-  links.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('active');
-      links.classList.remove('active');
-      document.body.style.overflow = '';
-      document.querySelectorAll('.nav-dropdown').forEach(dd => dd.classList.remove('open'));
-    });
-  });
-
-  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
-    trigger.addEventListener('click', e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        trigger.parentElement.classList.toggle('open');
-      }
-    });
-  });
-})();
 
 
 // ---- Scroll Reveal (IntersectionObserver) ----

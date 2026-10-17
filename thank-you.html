@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="thank-you">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -23,8 +24,8 @@
     <section class="page-hero">
       <div class="container">
         <span class="eyebrow">Next steps</span>
-        <h1>You're in.</h1>
-        <p class="lead">Check your inbox for your receipt and delivery details. If you registered for a live session, your confirmation email will include preparation notes and scheduling instructions.</p>
+        <h1>Check your confirmation.</h1>
+        <p class="lead">This page cannot verify a payment or registration. If you completed checkout, check the payment provider’s receipt and PYMTW’s separate confirmation for delivery or scheduling details. If either is missing, contact PYMTW before paying again.</p>
         <div class="page-hero-actions">
           <a href="programs.html" class="btn btn-secondary btn-sm"><span>Explore Programs</span></a>
           <a href="newsletter.html" class="btn btn-ghost btn-sm"><span>Read the Newsletter</span></a>
@@ -58,9 +59,7 @@
   <div id="site-footer"></div>
   <script src="pymtw.js"></script>
   <script>
-    window.pymtwTrack && window.pymtwTrack("checkout_completed", {
-      source: new URLSearchParams(window.location.search).get("source") || "checkout_redirect"
-    });
+    window.pymtwTrack && window.pymtwTrack("checkout_return_viewed", {});
   </script>
 </body>
 </html>

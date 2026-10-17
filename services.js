@@ -3,38 +3,8 @@
    ============================================ */
 
 // ---- Navbar Scroll & Hamburger ----
-(function initNavbar() {
-  var navbar = document.getElementById('navbar');
-  var toggle = document.getElementById('nav-toggle');
-  var links = document.getElementById('nav-links');
-  if (!navbar || !toggle || !links) return;
+// Navigation is shared in bitcoin-nav.js.
 
-  window.addEventListener('scroll', function () {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  toggle.addEventListener('click', function () {
-    toggle.classList.toggle('active');
-    links.classList.toggle('active');
-  });
-
-  links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      toggle.classList.remove('active');
-      links.classList.remove('active');
-      document.querySelectorAll('.nav-dropdown').forEach(function (dd) { dd.classList.remove('open'); });
-    });
-  });
-
-  document.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
-    trigger.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        trigger.parentElement.classList.toggle('open');
-      }
-    });
-  });
-})();
 
 // ---- Live Bitcoin Price Feed ----
 (function initBitcoinPrice() {
@@ -296,8 +266,8 @@
     // Check if API key is still placeholder
     var accessKey = form.querySelector('input[name="access_key"]');
     if (accessKey && accessKey.value === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-      statusEl.className = 'svc-form-status success';
-      statusEl.textContent = 'Thank you for your interest! The inquiry form is being set up. Please email us directly in the meantime.';
+      statusEl.className = 'svc-form-status error';
+      statusEl.textContent = 'This form is not configured. No request was sent.';
       statusEl.style.display = 'block';
       return;
     }
@@ -315,12 +285,13 @@
       body: formData
     })
     .then(function (response) {
+      if (!response.ok) throw new Error('Request rejected');
       return response.json();
     })
     .then(function (data) {
-      if (data.success) {
+      if (data.success === true) {
         statusEl.className = 'svc-form-status success';
-        statusEl.textContent = 'Thank you! Your inquiry has been sent successfully. We will get back to you within 24 hours.';
+        statusEl.textContent = 'The inquiry service accepted your request. PYMTW will reply separately; this does not confirm a booking.';
         statusEl.style.display = 'block';
         form.reset();
       } else {

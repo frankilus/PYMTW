@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="newsletter">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -32,18 +33,10 @@
         <p class="lead">Practical Bitcoin education for working professionals, delivered to your inbox. Clear thinking on understanding Bitcoin, accumulating responsibly, and securing what you own — with none of the noise.</p>
 
         <div class="signup-card" style="max-width:560px;margin:28px auto 0;text-align:left;">
-          <form id="nl-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate>
-            <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
-            <input type="hidden" name="utm_source" value="newsletter_page">
-            <input type="hidden" name="utm_medium" value="newsletter_signup">
-            <label for="nl-email" style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:10px;">Get the next issue — free</label>
-            <div class="signup-row">
-              <input type="email" id="nl-email" name="form[email]" required autocomplete="email" placeholder="you@example.com" aria-describedby="nl-status">
-              <button type="submit" class="btn btn-primary"><span>Subscribe</span></button>
-            </div>
-            <p class="form-status" id="nl-status" role="status" aria-live="polite"></p>
-            <p class="signup-fineprint">Unsubscribe anytime in one click. We never sell your data or ask for seed phrases, keys, or account credentials. See our <a href="legal.html#privacy">Privacy Policy</a>.</p>
-          </form>
+          <div class="newsletter-handoff">
+  <a class="btn btn-primary" href="https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" data-track="newsletter_signup_opened">Subscribe free on Beehiiv ↗</a>
+  <p class="form-hint">Finish signup on Beehiiv and follow any confirmation instructions there. Opening the signup page does not subscribe you. <a href="/legal.html#privacy">Privacy policy</a>.</p>
+</div>
         </div>
         <p class="page-hero-note" style="margin-top:16px;">Practical education. Long-term thinking. No hype.</p>
       </div>
@@ -107,30 +100,5 @@
 
   <div id="site-footer"></div>
   <script src="pymtw.js"></script>
-  <script>
-  (function () {
-    var f = document.getElementById("nl-form"), s = document.getElementById("nl-status");
-    if (!f) return;
-    f.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var em = document.getElementById("nl-email");
-      if (!em.value || !/.+@.+\..+/.test(em.value)) {
-        s.textContent = "Please enter a valid email address."; s.className = "form-status error"; em.focus(); return;
-      }
-      var btn = f.querySelector('button[type="submit"] span'), orig = btn.textContent;
-      btn.textContent = "Subscribing...";
-      s.textContent = ""; s.className = "form-status";
-      fetch(f.action, { method: "POST", body: new FormData(f), mode: "no-cors" })
-        .catch(function () {})
-        .finally(function () {
-          window.pymtwTrack && window.pymtwTrack("newsletter_signup", { source: "newsletter_page" });
-          btn.textContent = orig;
-          s.textContent = "You're in! Check your inbox to confirm your subscription.";
-          s.className = "form-status success";
-          f.reset();
-        });
-    });
-  })();
-  </script>
 </body>
 </html>

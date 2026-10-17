@@ -4,55 +4,7 @@
 (function () {
   'use strict';
 
-  // ── Monthly BTC prices (first-of-month close, USD) — Jan 2011 to Mar 2026 ──
-  const BTC_PRICES = {
-    "2011-01":0.30,"2011-02":1.00,"2011-03":0.82,"2011-04":0.75,"2011-05":3.15,
-    "2011-06":15.40,"2011-07":14.00,"2011-08":10.90,"2011-09":5.80,"2011-10":3.20,
-    "2011-11":2.90,"2011-12":4.25,
-    "2012-01":6.30,"2012-02":4.60,"2012-03":5.00,"2012-04":4.90,"2012-05":5.10,
-    "2012-06":6.30,"2012-07":7.40,"2012-08":10.20,"2012-09":12.30,"2012-10":11.00,
-    "2012-11":12.00,"2012-12":13.45,
-    "2013-01":13.30,"2013-02":22.00,"2013-03":34.00,"2013-04":93.00,"2013-05":130.00,
-    "2013-06":100.00,"2013-07":89.00,"2013-08":110.00,"2013-09":133.00,"2013-10":195.00,
-    "2013-11":350.00,"2013-12":750.00,
-    "2014-01":770.00,"2014-02":580.00,"2014-03":630.00,"2014-04":450.00,"2014-05":440.00,
-    "2014-06":630.00,"2014-07":585.00,"2014-08":490.00,"2014-09":380.00,"2014-10":340.00,
-    "2014-11":370.00,"2014-12":310.00,
-    "2015-01":270.00,"2015-02":220.00,"2015-03":245.00,"2015-04":235.00,"2015-05":240.00,
-    "2015-06":250.00,"2015-07":285.00,"2015-08":230.00,"2015-09":235.00,"2015-10":270.00,
-    "2015-11":375.00,"2015-12":430.00,
-    "2016-01":370.00,"2016-02":435.00,"2016-03":415.00,"2016-04":420.00,"2016-05":455.00,
-    "2016-06":530.00,"2016-07":665.00,"2016-08":575.00,"2016-09":605.00,"2016-10":695.00,
-    "2016-11":735.00,"2016-12":960.00,
-    "2017-01":970.00,"2017-02":1050.00,"2017-03":1070.00,"2017-04":1340.00,"2017-05":2300.00,
-    "2017-06":2500.00,"2017-07":2550.00,"2017-08":4400.00,"2017-09":4340.00,"2017-10":6140.00,
-    "2017-11":10000.00,"2017-12":14000.00,
-    "2018-01":13850.00,"2018-02":10200.00,"2018-03":6950.00,"2018-04":7500.00,"2018-05":7400.00,
-    "2018-06":6200.00,"2018-07":7600.00,"2018-08":6950.00,"2018-09":6600.00,"2018-10":6300.00,
-    "2018-11":6340.00,"2018-12":3700.00,
-    "2019-01":3450.00,"2019-02":3400.00,"2019-03":3800.00,"2019-04":5300.00,"2019-05":8550.00,
-    "2019-06":10820.00,"2019-07":9580.00,"2019-08":9600.00,"2019-09":8300.00,"2019-10":9200.00,
-    "2019-11":7500.00,"2019-12":7200.00,
-    "2020-01":9350.00,"2020-02":8770.00,"2020-03":6400.00,"2020-04":8600.00,"2020-05":9450.00,
-    "2020-06":9150.00,"2020-07":11350.00,"2020-08":11650.00,"2020-09":10780.00,"2020-10":13800.00,
-    "2020-11":19700.00,"2020-12":29000.00,
-    "2021-01":33100.00,"2021-02":45200.00,"2021-03":58800.00,"2021-04":57800.00,"2021-05":37300.00,
-    "2021-06":35000.00,"2021-07":41500.00,"2021-08":47100.00,"2021-09":43800.00,"2021-10":61300.00,
-    "2021-11":57000.00,"2021-12":46300.00,
-    "2022-01":38500.00,"2022-02":43200.00,"2022-03":45500.00,"2022-04":37700.00,"2022-05":31800.00,
-    "2022-06":19800.00,"2022-07":23300.00,"2022-08":20050.00,"2022-09":19400.00,"2022-10":20500.00,
-    "2022-11":17150.00,"2022-12":16500.00,
-    "2023-01":23100.00,"2023-02":23600.00,"2023-03":28500.00,"2023-04":29300.00,"2023-05":27200.00,
-    "2023-06":30500.00,"2023-07":29200.00,"2023-08":26100.00,"2023-09":27000.00,"2023-10":34500.00,
-    "2023-11":37700.00,"2023-12":42500.00,
-    "2024-01":42600.00,"2024-02":51800.00,"2024-03":63500.00,"2024-04":60200.00,"2024-05":67500.00,
-    "2024-06":62700.00,"2024-07":64600.00,"2024-08":59000.00,"2024-09":63300.00,"2024-10":72300.00,
-    "2024-11":96400.00,"2024-12":93400.00,
-    "2025-01":102000.00,"2025-02":96500.00,"2025-03":84000.00,"2025-04":82500.00,"2025-05":87000.00,
-    "2025-06":90000.00,"2025-07":88000.00,"2025-08":91000.00,"2025-09":95000.00,"2025-10":93000.00,
-    "2025-11":97000.00,"2025-12":100000.00,
-    "2026-01":98000.00,"2026-02":95000.00,"2026-03":92000.00
-  };
+  const BTC_PRICES = window.PYMTW_DCA_PRICES;
 
   let chart = null;
 
@@ -68,70 +20,33 @@
     return n.toFixed(6) + ' BTC';
   }
 
-  function monthKey(year, month) {
-    return year + '-' + String(month).padStart(2, '0');
-  }
-
   // ── Main calculation ──
   function calculate(userTriggered) {
-    var initial  = parseFloat(document.getElementById('initial').value) || 0;
-    var monthly  = parseFloat(document.getElementById('monthly').value) || 0;
-    var startVal = document.getElementById('start-date').value;
-    var duration = parseInt(document.getElementById('duration').value, 10);
-
-    if (!startVal) return;
-
-    var parts      = startVal.split('-');
-    var startYear  = parseInt(parts[0], 10);
-    var startMonth = parseInt(parts[1], 10);
-    var totalMonths = duration * 12;
-
-    var firstKey = monthKey(startYear, startMonth);
-    if (!BTC_PRICES[firstKey]) {
-      alert('Start date is outside available price data (Jan 2011 \u2013 Mar 2026).');
+    var status = document.getElementById('dca-status');
+    var result;
+    try {
+      result = window.PYMTW_DCA.calculate(BTC_PRICES, {
+        initial: document.getElementById('initial').value,
+        monthly: document.getElementById('monthly').value,
+        start: document.getElementById('start-date').value,
+        years: document.getElementById('duration').value
+      });
+    } catch (error) {
+      status.textContent = error.message;
+      status.className = 'dca-disclaimer error';
+      document.getElementById('results-section').style.display = 'none';
+      document.getElementById('chart-section').style.display = 'none';
+      if (chart) { chart.destroy(); chart = null; }
+      if (userTriggered) status.focus();
       return;
     }
-
-    var totalInvested = 0;
-    var btcHeld = 0;
-    var dataPoints = [];
-    var investedPoints = [];
-
-    for (var i = 0; i <= totalMonths; i++) {
-      var d = new Date(startYear, startMonth - 1 + i, 1);
-      var key = monthKey(d.getFullYear(), d.getMonth() + 1);
-      var price = BTC_PRICES[key];
-      if (price === undefined) break;
-
-      var contribution = (i === 0) ? initial : monthly;
-      if (contribution > 0) {
-        btcHeld += contribution / price;
-        totalInvested += contribution;
-      }
-
-      var portfolioValue = btcHeld * price;
-      dataPoints.push({ x: d, y: portfolioValue });
-      investedPoints.push({ x: d, y: totalInvested });
-    }
-
-    if (dataPoints.length < 2) {
-      alert('Not enough price data for the selected range.');
-      return;
-    }
-
-    var lastPoint   = dataPoints[dataPoints.length - 1];
-    var finalValue  = lastPoint.y;
-    var roi         = ((finalValue - totalInvested) / totalInvested) * 100;
-    var avgBuyPrice = totalInvested / btcHeld;
-
-    // Lump sum comparison
-    var firstPrice   = BTC_PRICES[monthKey(startYear, startMonth)];
-    var lastDate     = lastPoint.x;
-    var lastKey      = monthKey(lastDate.getFullYear(), lastDate.getMonth() + 1);
-    var lastPrice    = BTC_PRICES[lastKey];
-    var lumpSumBtc   = totalInvested / firstPrice;
-    var lumpSumValue = lumpSumBtc * lastPrice;
-    var dcaVsLump    = ((finalValue - lumpSumValue) / lumpSumValue) * 100;
+    status.className = 'dca-disclaimer';
+    status.textContent = (result.truncated ? 'SHORTENED RANGE: requested through ' + result.requestedEnd + ', but prices end at ' + result.end + '. ' : '') +
+      'Illustrative results: ' + result.start + ' through ' + result.end + ' (' + result.months + ' monthly contributions after the initial deposit). No returns beyond this range are estimated.';
+    var totalInvested = result.invested, finalValue = result.value, btcHeld = result.btc;
+    var roi = result.roi, avgBuyPrice = result.averagePrice, dcaVsLump = result.vsLump;
+    var dataPoints = result.points.map(function (p) { return { x: p.month + '-01', y: p.value }; });
+    var investedPoints = result.points.map(function (p) { return { x: p.month + '-01', y: p.invested }; });
 
     // Update DOM
     document.getElementById('results-section').style.display = 'block';
@@ -150,7 +65,8 @@
     vsLumpEl.style.color = dcaVsLump >= 0 ? '#3fb950' : '#f85149';
 
     // Show chart section
-    document.getElementById('chart-section').style.display = 'block';
+    document.getElementById('chart-section').style.display = typeof Chart === 'function' ? 'block' : 'none';
+    if (typeof Chart !== 'function') { status.textContent += ' Chart unavailable; the numeric results are still shown.'; return; }
 
     // Chart
     if (chart) chart.destroy();
@@ -324,40 +240,6 @@
       });
   }
 
-  // ── Navbar scroll behavior ──
-  function initNavbar() {
-    var navbar = document.getElementById('navbar');
-    var toggle = document.getElementById('nav-toggle');
-    var links = document.getElementById('nav-links');
-
-    if (toggle && links) {
-      toggle.addEventListener('click', function () {
-        links.classList.toggle('active');
-        toggle.classList.toggle('active');
-      });
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!navbar) return;
-      if (window.scrollY > 10) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Dropdown hover for desktop
-    var dropdowns = document.querySelectorAll('.nav-dropdown');
-    dropdowns.forEach(function (dd) {
-      dd.addEventListener('mouseenter', function () {
-        this.classList.add('open');
-      });
-      dd.addEventListener('mouseleave', function () {
-        this.classList.remove('open');
-      });
-    });
-  }
-
   // ── Particle canvas ──
   function initParticles() {
     var canvas = document.getElementById('particle-canvas');
@@ -423,7 +305,6 @@
 
   // ── Init ──
   document.addEventListener('DOMContentLoaded', function () {
-    initNavbar();
     initParticles();
     fetchBtcPrice();
     btcPriceUpdateInterval = setInterval(fetchBtcPrice, 60000);

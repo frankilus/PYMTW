@@ -3,38 +3,8 @@
    ============================================ */
 
 // ---- Navbar Scroll & Hamburger ----
-(function initNavbar() {
-  var navbar = document.getElementById('navbar');
-  var toggle = document.getElementById('nav-toggle');
-  var links = document.getElementById('nav-links');
-  if (!navbar || !toggle || !links) return;
+// Navigation is shared in bitcoin-nav.js.
 
-  window.addEventListener('scroll', function () {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  toggle.addEventListener('click', function () {
-    toggle.classList.toggle('active');
-    links.classList.toggle('active');
-  });
-
-  links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      toggle.classList.remove('active');
-      links.classList.remove('active');
-      document.querySelectorAll('.nav-dropdown').forEach(function (dd) { dd.classList.remove('open'); });
-    });
-  });
-
-  document.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
-    trigger.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        trigger.parentElement.classList.toggle('open');
-      }
-    });
-  });
-})();
 
 // ---- Live Bitcoin Price Feed ----
 (function initBitcoinPrice() {

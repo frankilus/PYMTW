@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="assessment">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -27,7 +28,7 @@
     <section class="page-hero">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>Bitcoin Readiness Assessment</nav>
-        <span class="eyebrow">Free · 2 minutes · 10 questions</span>
+        <span class="eyebrow">Free · 2 minutes · 10 questions · No email required</span>
         <h1>What Is Your Bitcoin Readiness Level?</h1>
         <p class="lead">Working professionals arrive at Bitcoin from different starting points. This short assessment identifies where you are today and gives you one clear, practical next step — no hype, no jargon, no pressure.</p>
       </div>
@@ -53,36 +54,7 @@
             </div>
           </div>
 
-          <!-- EMAIL GATE -->
-          <div class="assess-gate" id="assess-gate">
-            <div class="assess-card">
-              <span class="tag-pill">Your result is ready</span>
-              <h2 class="assess-q" style="margin-top:14px;">Where should we send your personalized Bitcoin plan?</h2>
-              <p class="muted" style="margin-bottom:20px;">Enter your email to unlock your readiness profile, your three recommended next steps, and a matching free resource. You'll also get our practical Bitcoin newsletter (unsubscribe anytime).</p>
-              <form id="assess-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate>
-                <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
-                <input type="hidden" name="utm_source" value="assessment">
-                <input type="hidden" name="utm_medium" value="lead_magnet">
-                <input type="hidden" name="utm_campaign" value="readiness_assessment">
-                <div class="field">
-                  <label for="assess-name">First name <span class="muted">(optional)</span></label>
-                  <input type="text" id="assess-name" name="first_name" autocomplete="given-name" placeholder="Alex">
-                </div>
-                <div class="field">
-                  <label for="assess-email">Email address</label>
-                  <input type="email" id="assess-email" name="form[email]" required autocomplete="email" placeholder="you@example.com" aria-describedby="assess-form-status">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                  <span>Show My Result</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-                <p class="form-status" id="assess-form-status" role="status" aria-live="polite"></p>
-                <p class="form-hint">We never ask for seed phrases, private keys, passwords, or account credentials. See our <a href="legal.html#privacy">Privacy Policy</a>.</p>
-              </form>
-            </div>
-          </div>
-
-          <!-- RESULT -->
+          <!-- Results are local and never require newsletter signup. -->
           <div class="assess-result" id="assess-result" tabindex="-1">
             <div class="assess-card">
               <span class="result-badge" id="result-badge"></span>
@@ -114,6 +86,7 @@
               <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
                 <a href="programs.html" class="btn btn-secondary btn-sm">Explore Programs</a>
                 <button class="btn btn-secondary btn-sm" id="assess-retake" type="button">Retake the assessment</button>
+<p class="form-hint">Want more lessons? <a href="/newsletter.html">Subscribe separately</a>. Your result is available here without signup.</p>
               </div>
             </div>
           </div>
@@ -199,8 +172,8 @@
         steps: [
           { h: "Formalize a recurring-buy process", p: "Turn ad-hoc buying into a documented, automatic routine you won't second-guess." },
           { h: "Build recordkeeping habits", p: "Track cost basis and purchases now to save yourself pain later." },
-          { h: "Model your plan", p: "Use the DCA Calculator to understand historical behavior and set realistic expectations." } ],
-        free: { title: "DCA Calculator", desc: "Explore how a disciplined recurring-buy approach has behaved historically — with clear volatility reminders.", cta: "Open the DCA Calculator", href: "dca.html" },
+          { h: "Model your plan", p: "Use the DCA Calculator to explore an illustrative contribution example and read its data limitations." } ],
+        free: { title: "DCA Calculator", desc: "Explore recurring contributions using an illustrative price series, with explicit data limitations.", cta: "Open the DCA Calculator", href: "dca.html" },
         paid: { title: "Bitcoin Implementation Intensive", desc: "Two private sessions plus worksheets to build and document your accumulation and recordkeeping process.", cta: "See the Intensive", href: "programs.html#private" }
       },
       s: {
@@ -220,7 +193,6 @@
     var answers = new Array(QUESTIONS.length).fill(null);
     var current = 0;
     var quiz = document.getElementById("assess-quiz");
-    var gate = document.getElementById("assess-gate");
     var result = document.getElementById("assess-result");
     var bar = document.getElementById("assess-bar");
     var counter = document.getElementById("assess-counter");
@@ -281,10 +253,8 @@
       bar.style.width = "100%";
       progressEl.setAttribute("aria-valuenow", "100");
       quiz.style.display = "none";
-      gate.classList.add("active");
-      gate.style.display = "block";
       window.pymtwTrack && window.pymtwTrack("assessment_completed", { profile: PROFILES[score()].key });
-      document.getElementById("assess-email").focus();
+      showResult();
     }
 
     function showResult() {
@@ -309,7 +279,6 @@
       var pc = document.getElementById("result-paid-cta");
       pc.textContent = p.paid.cta; pc.href = p.paid.href;
 
-      gate.style.display = "none";
       result.classList.add("active");
       result.style.display = "block";
       result.focus();
@@ -317,38 +286,10 @@
       window.pymtwTrack && window.pymtwTrack("assessment_result_viewed", { profile: p.key });
     }
 
-    // Email gate submit -> subscribe (best effort) -> reveal result
-    var form = document.getElementById("assess-form");
-    var status = document.getElementById("assess-form-status");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var email = document.getElementById("assess-email");
-      if (!email.value || !/.+@.+\..+/.test(email.value)) {
-        status.textContent = "Please enter a valid email address.";
-        status.className = "form-status error";
-        email.focus();
-        return;
-      }
-      var btn = form.querySelector('button[type="submit"] span');
-      var orig = btn.textContent;
-      btn.textContent = "Unlocking...";
-      status.textContent = ""; status.className = "form-status";
-      var data = new FormData(form);
-      // Only email + name + utm are sent. No assessment answers or financial data.
-      fetch(form.action, { method: "POST", body: data, mode: "no-cors" })
-        .catch(function () {})
-        .finally(function () {
-          window.pymtwTrack && window.pymtwTrack("newsletter_signup", { source: "assessment" });
-          btn.textContent = orig;
-          showResult();
-        });
-    });
-
     document.getElementById("assess-retake").addEventListener("click", function () {
       answers = new Array(QUESTIONS.length).fill(null);
       current = 0;
       result.style.display = "none"; result.classList.remove("active");
-      gate.style.display = "none"; gate.classList.remove("active");
       quiz.style.display = "block";
       render();
       window.scrollTo({ top: quiz.offsetTop - 120, behavior: "smooth" });

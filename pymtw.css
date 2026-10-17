@@ -308,3 +308,8 @@ body.pymtw-page .navbar.scrolled { background: transparent; border-bottom: none;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }
+
+/* Grid children must be allowed to shrink so tables scroll within their own wrapper. */
+.card-grid > *, .tier-grid > *, .program-layout > *, .spec-table-wrap { min-width: 0; max-width: 100%; }
+.field input, .field select, .field textarea { max-width: 100%; min-width: 0; }
+.newsletter-handoff .btn { white-space: normal; }
