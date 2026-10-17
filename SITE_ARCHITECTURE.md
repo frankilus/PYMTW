@@ -4,7 +4,7 @@
 
 - `/`: approved Version 4 directory with distinct Bitcoin and Money Tools cards, prominent brand heading, and original book promotion.
 - `/bitcoin/`: former Bitcoin homepage, retaining its content and behavior.
-- `/tools/`: existing personal finance website, unchanged by the parent-homepage migration.
+- `/tools/`: existing personal finance website, with the approved deep green and sage palette across the homepage, calculators, checkup and guides. Routes, content and calculation logic are retained.
 - Existing education pages keep their `.html` routes; navigation links back to both the parent and Bitcoin section.
 - Existing root Bitcoin fragments are forwarded by `assets/home/legacy-links.js`; new homepage fragments stay on the parent.
 - Add a new section by adding a real linked card to the homepage directory; the grid wraps to additional rows.

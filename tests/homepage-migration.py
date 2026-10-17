@@ -8,7 +8,9 @@ base = '95a2e842cd69f2fdd885be011fd87e49e9601f77'
 def original(name):
     return subprocess.check_output(['git', 'show', base + ':' + name], cwd=root)
 paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', base], cwd=root, text=True).splitlines()
-protected = [p for p in paths if p.startswith('tools/') or (p.endswith('.js') and p != 'pymtw.js') or p in ['legal.html', 'CNAME']]
+# The approved green theme changes only these presentation files.
+theme_files = {'tools/v7/home.css', 'tools/v7/pages.css'}
+protected = [p for p in paths if p not in theme_files and (p.startswith('tools/') or (p.endswith('.js') and p != 'pymtw.js') or p in ['legal.html', 'CNAME'])]
 for name in protected:
     assert (root/name).read_bytes() == original(name), name + ' must remain unchanged'
 old = original('index.html').decode()
