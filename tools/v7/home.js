@@ -85,31 +85,4 @@
  function updateSearchDock(){const show=window.innerWidth<=590 && window.scrollY>Math.max(530,$('.opening').getBoundingClientRect().height+110);searchDock.hidden=!show;searchDock.classList.toggle('visible',show);}
  window.addEventListener('scroll',updateSearchDock,{passive:true});window.addEventListener('resize',updateSearchDock);updateSearchDock();
  searchDock.addEventListener('click',()=>{$('#finder-input').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});$('#finder-input').focus({preventScroll:true});});
- // Restore the live PYMTW Tools Beehiiv signup. The existing public form ID
- // comes from frankilus/PYMTW/tools/index.html, not from a simulated API.
- // Standalone file previews may load the remote form when online, and always
- // keep a hosted signup link available. We never fake subscription success.
- const beehiivBox = $('#beehiiv-signup-widget');
- if (beehiivBox && (['http:', 'https:', 'file:'].includes(location.protocol))) {
-  let injected=false;
-  const loadBeehiiv=()=>{
-   if(injected)return;injected=true;
-   const form=document.createElement('script');form.async=true;
-   form.src='https://subscribe-forms.beehiiv.com/v3/loader.js';
-   form.setAttribute('data-beehiiv-form',beehiivBox.dataset.formId);
-   beehiivBox.appendChild(form);
-   const attribution=document.createElement('script');attribution.async=true;
-   attribution.src='https://subscribe-forms.beehiiv.com/attribution.js';
-   document.body.appendChild(attribution);
-  };
-  if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>{
-     if(entries.some(entry=>entry.isIntersecting)){
-      observer.disconnect();loadBeehiiv();
-     }
-    },{rootMargin:'250px 0px'});
-    observer.observe(beehiivBox);
-  }else{loadBeehiiv();}
- }
 })();
-
