@@ -287,16 +287,18 @@
         <span class="tag-pill">Claim your bonus</span>
         <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:12px 0 6px;">Submit your proof of purchase</h3>
         <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:16px;">Enter your email and your order number (from Amazon or your retailer). We'll verify and email your toolkit.</p>
-        <form id="bonus-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate>
-          <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+        <form id="bonus-form" action="https://api.web3forms.com/submit" data-inquiry-form method="post">
+          <input type="hidden" name="access_key" value="c9e8acac-8ca8-4ffc-a6ba-9f777b2cb94b">
+<input type="hidden" name="subject" value="PYMTW inquiry: book/index.html">
+<input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
           <input type="hidden" name="utm_source" value="book">
           <input type="hidden" name="utm_medium" value="reader_bonus">
-          <div class="field"><label for="bn-email">Email</label><input id="bn-email" name="form[email]" type="email" required autocomplete="email" placeholder="you@example.com"></div>
-          <div class="field"><label for="bn-order">Order number</label><input id="bn-order" name="order_number" type="text" placeholder="e.g. 123-4567890-1234567"></div>
-          <button type="submit" class="bk-buy-btn" style="width:100%;justify-content:center;"><span>Send Me the Toolkit</span></button>
+          <div class="field"><label for="bn-email">Email</label><input id="bn-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="bn-order">Order number</label><input id="bn-order" name="order_number" type="text" required placeholder="e.g. 123-4567890-1234567"></div>
+          <button type="submit" class="bk-buy-btn" style="width:100%;justify-content:center;"><span>Request the Toolkit</span></button>
           <p class="form-status" id="bn-status" role="status" aria-live="polite"></p>
-          <p class="form-hint">Automated verification is being connected; for now we review submissions manually. We never ask for seed phrases, keys, passwords, or account credentials.</p>
-        </form>
+          <p class="form-hint">This is a request for manual review, not a delivery confirmation. We never ask for seed phrases, keys, passwords, or account credentials.</p>
+        <p class="form-hint">Your details go to PYMTW through Web3Forms for this request. This does not subscribe you to a newsletter. <a href="/legal.html#privacy">Privacy policy</a>.</p><noscript><p>The provider will show the submission result after you send this form.</p></noscript></form>
       </div>
     </div>
   </section>
@@ -361,7 +363,7 @@
           <a href="/book">Book</a>
           <a href="/calculator.html">Net Worth Calculator</a>
           <a href="/performance.html">Performance</a>
-          <a href="newsletter.html">Newsletter</a>
+          <a href="/newsletter.html">Newsletter</a>
         </div>
         <div class="bk-footer-copy">&copy; 2026 Frank Jerome | pymtw.com</div>
       </div>
@@ -369,14 +371,6 @@
   </footer>
 
   <script src="book.js"></script>
-  <script>
-  (function(){var f=document.getElementById("bonus-form"),s=document.getElementById("bn-status");if(!f)return;
-    f.addEventListener("submit",function(e){e.preventDefault();var em=document.getElementById("bn-email");
-      if(!em.value||!/.+@.+\..+/.test(em.value)){s.textContent="Please enter a valid email.";s.className="form-status error";return;}
-      var b=f.querySelector('button[type="submit"] span'),o=b.textContent;b.textContent="Sending...";
-      fetch(f.action,{method:"POST",body:new FormData(f),mode:"no-cors"}).catch(function(){}).finally(function(){
-        if(window.pymtwTrack)window.pymtwTrack("book_bonus_claim",{source:"book"});
-        b.textContent=o;s.textContent="Thanks! We'll verify and email your toolkit shortly.";s.className="form-status success";f.reset();});});})();
-  </script>
+  <script src="/inquiry-forms.js"></script>
 </body>
 </html>

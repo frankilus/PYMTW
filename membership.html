@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="membership">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -30,7 +31,7 @@
         <h1>PYMTW Professional</h1>
         <p class="lead">Keep learning and stay organized, month after month. A calm, ongoing Bitcoin education membership for working professionals — <strong>not</strong> a trading group, signal service, or advisory.</p>
         <div class="page-hero-actions">
-          <a href="#join" class="btn btn-primary" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="hero-monthly"><span>Join — $29/mo</span></a>
+          <a href="#join" class="btn btn-primary" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="hero-monthly"><span>Join the interest list</span></a>
           <a href="#whats-inside" class="btn btn-secondary btn-sm"><span>What's included</span></a>
         </div>
         <p class="page-hero-note">$29/mo or $290/yr (two months free) · Cancel anytime</p>
@@ -73,7 +74,7 @@
               <li>Annual readiness review</li>
               <li>Replay archive &amp; book discussions</li>
             </ul>
-            <a href="#waitlist" class="btn btn-secondary btn-block" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="monthly">Join monthly</a>
+            <a href="#waitlist" class="btn btn-secondary btn-block" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="monthly">Monthly plan interest</a>
           </div>
           <div class="tier-card featured">
             <span class="tier-badge">Best value</span>
@@ -86,7 +87,7 @@
               <li>Best pricing on private sessions</li>
               <li>Locked-in annual rate</li>
             </ul>
-            <a href="#waitlist" class="btn btn-primary btn-block" data-checkout="membership-annual" data-track="membership_interest" data-track-label="annual">Join annually</a>
+            <a href="#waitlist" class="btn btn-primary btn-block" data-checkout="membership-annual" data-track="membership_interest" data-track-label="annual">Annual plan interest</a>
           </div>
           <div class="tier-card">
             <div class="tier-name">PYMTW Family <span class="coming-soon">Coming soon</span></div>
@@ -97,7 +98,7 @@
               <li class="muted">Family custody &amp; inheritance sessions</li>
               <li class="muted">Shared documentation templates</li>
             </ul>
-            <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="btn btn-ghost btn-block" data-track="membership_interest" data-track-label="family-waitlist">Join the waitlist</a>
+            <a href="/membership.html#waitlist" class="btn btn-ghost btn-block" data-track="membership_interest" data-track-label="family-waitlist">Join the waitlist</a>
           </div>
         </div>
       </div>
@@ -133,20 +134,22 @@
     <!-- Waitlist / join -->
     <section class="pymtw-section alt" id="waitlist">
       <div class="container" style="max-width:640px;">
-        <div class="section-head"><span class="eyebrow">Join</span><h2>Reserve your membership</h2><p>Recurring billing is being connected. Join the list and we'll send your invitation and the member calendar as soon as doors open — at the launch rate.</p></div>
-        <form id="mem-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate class="assess-card">
-          <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+        <div class="section-head"><span class="eyebrow">Join</span><h2>Membership interest list</h2><p>Membership is not open for checkout. Register your interest for launch updates; this does not activate a membership or start billing. Dates and final terms will be confirmed before purchase.</p></div>
+        <form id="mem-form" action="https://api.web3forms.com/submit" data-inquiry-form method="post" class="assess-card">
+          <input type="hidden" name="access_key" value="c9e8acac-8ca8-4ffc-a6ba-9f777b2cb94b">
+<input type="hidden" name="subject" value="PYMTW inquiry: membership.html">
+<input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
           <input type="hidden" name="utm_source" value="membership">
           <input type="hidden" name="utm_medium" value="membership_waitlist">
-          <div class="field"><label for="mm-name">First name</label><input id="mm-name" name="first_name" type="text" autocomplete="given-name" placeholder="Alex"></div>
-          <div class="field"><label for="mm-email">Email</label><input id="mm-email" name="form[email]" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="mm-name">First name</label><input id="mm-name" name="name" type="text" autocomplete="given-name" placeholder="Alex"></div>
+          <div class="field"><label for="mm-email">Email</label><input id="mm-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
           <div class="field"><label for="mm-plan">Preferred plan</label>
             <select id="mm-plan" name="plan"><option>Monthly ($29/mo)</option><option>Annual ($290/yr)</option><option>Family (waitlist)</option><option>Not sure yet</option></select>
           </div>
-          <button type="submit" class="btn btn-primary btn-block"><span>Reserve My Spot</span></button>
+          <button type="submit" class="btn btn-primary btn-block"><span>Join the interest list</span></button>
           <p class="form-status" id="mm-status" role="status" aria-live="polite"></p>
           <p class="form-hint">We never ask for seed phrases, keys, passwords, or account credentials.</p>
-        </form>
+        <p class="form-hint">Your details go to PYMTW through Web3Forms for this request. This does not subscribe you to a newsletter. <a href="/legal.html#privacy">Privacy policy</a>.</p><noscript><p>The provider will show the submission result after you send this form.</p></noscript></form>
       </div>
     </section>
 
@@ -165,14 +168,6 @@
 
   <div id="site-footer"></div>
   <script src="pymtw.js"></script>
-  <script>
-  (function(){var f=document.getElementById("mem-form"),s=document.getElementById("mm-status");if(!f)return;
-    f.addEventListener("submit",function(e){e.preventDefault();var em=document.getElementById("mm-email");
-      if(!em.value||!/.+@.+\..+/.test(em.value)){s.textContent="Please enter a valid email.";s.className="form-status error";return;}
-      var b=f.querySelector('button[type="submit"] span'),o=b.textContent;b.textContent="Sending...";
-      fetch(f.action,{method:"POST",body:new FormData(f),mode:"no-cors"}).catch(function(){}).finally(function(){
-        window.pymtwTrack&&window.pymtwTrack("membership_waitlist",{plan:(document.getElementById("mm-plan").value||"").slice(0,40)});
-        b.textContent=o;s.textContent="You're on the list — we'll send your invitation soon.";s.className="form-status success";f.reset();});});})();
-  </script>
+  <script src="/inquiry-forms.js"></script>
 </body>
 </html>

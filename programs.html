@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="programs">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -69,7 +70,7 @@
               <li>Common mistakes &amp; a 30-day action plan</li>
             </ul>
             <p class="muted" style="font-size:0.82rem;">For: professionals who are new or newer to Bitcoin.</p>
-            <a href="workshop-professionals.html" class="btn btn-primary btn-sm btn-block" data-track="workshop_interest" data-track-label="busy-professionals" style="margin-top:12px;">View Workshop &amp; Register</a>
+            <a href="workshop-professionals.html" class="btn btn-primary btn-sm btn-block" data-track="workshop_interest" data-track-label="busy-professionals" style="margin-top:12px;">View Workshop &amp; Availability</a>
           </div>
 
           <div class="p-card featured" id="self-custody" style="border-color:var(--accent-orange);">
@@ -84,7 +85,7 @@
               <li>Family access &amp; inheritance considerations</li>
             </ul>
             <div class="callout-security" style="font-size:0.82rem;padding:12px 14px;margin-bottom:12px;"><strong>PYMTW will never ask for your seed phrase, private keys, passwords, authentication codes, or control of your funds.</strong></div>
-            <a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" data-track="workshop_interest" data-track-label="self-custody" style="margin-top:4px;">View Workshop &amp; Register</a>
+            <a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" data-track="workshop_interest" data-track-label="self-custody" style="margin-top:4px;">View Workshop &amp; Availability</a>
           </div>
 
           <div class="p-card" id="couples-families">
@@ -99,7 +100,7 @@
               <li>Inheritance preparation &amp; security responsibilities</li>
             </ul>
             <p class="muted" style="font-size:0.82rem;">For: couples and families holding Bitcoin together.</p>
-            <a href="workshop-family.html" class="btn btn-secondary btn-sm btn-block" data-track="workshop_interest" data-track-label="couples-families" style="margin-top:12px;">View Workshop &amp; Register</a>
+            <a href="workshop-family.html" class="btn btn-secondary btn-sm btn-block" data-track="workshop_interest" data-track-label="couples-families" style="margin-top:12px;">View Workshop &amp; Availability</a>
           </div>
 
         </div>
@@ -169,7 +170,7 @@
     <section class="pymtw-section alt" id="membership">
       <div class="container">
         <div class="section-head"><span class="eyebrow">Membership</span><h2>PYMTW Professional</h2><p>Keep learning and stay organized month after month. A calm, ongoing education membership — not a trading group, signal service, or advisory.</p></div>
-        <div class="tier-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="tier-grid">
           <div class="tier-card">
             <div class="tier-name">Monthly</div>
             <div class="tier-price">$29<small>/mo</small></div>
@@ -184,7 +185,7 @@
               <li>Annual readiness review</li>
               <li>Replay archive &amp; book discussions</li>
             </ul>
-            <a href="membership.html#join" class="btn btn-secondary btn-block" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="monthly">Join monthly</a>
+            <a href="membership.html#join" class="btn btn-secondary btn-block" data-checkout="membership-monthly" data-track="membership_interest" data-track-label="monthly">Monthly plan interest</a>
           </div>
           <div class="tier-card featured">
             <span class="tier-badge">Best value</span>
@@ -196,7 +197,7 @@
               <li>Priority workshop registration</li>
               <li>Best pricing on private sessions</li>
             </ul>
-            <a href="membership.html#join" class="btn btn-primary btn-block" data-checkout="membership-annual" data-track="membership_interest" data-track-label="annual">Join annually</a>
+            <a href="membership.html#join" class="btn btn-primary btn-block" data-checkout="membership-annual" data-track="membership_interest" data-track-label="annual">Annual plan interest</a>
           </div>
           <div class="tier-card">
             <div class="tier-name">PYMTW Family <span class="coming-soon">Coming soon</span></div>
@@ -207,7 +208,7 @@
               <li class="muted">Family custody &amp; inheritance sessions</li>
               <li class="muted">Shared documentation templates</li>
             </ul>
-            <a href="https://pymtw.beehiiv.com" target="_blank" rel="noopener" class="btn btn-ghost btn-block" data-track="membership_interest" data-track-label="family-waitlist">Join the waitlist</a>
+            <a href="/membership.html#waitlist" class="btn btn-ghost btn-block" data-track="membership_interest" data-track-label="family-waitlist">Join the waitlist</a>
           </div>
         </div>
         <div class="callout-security mt-md">
@@ -231,18 +232,20 @@
     <!-- REGISTER / INQUIRY -->
     <section class="pymtw-section alt" id="register">
       <div class="container" style="max-width:720px;">
-        <div class="section-head"><span class="eyebrow">Request a seat or session</span><h2>Tell us what you're interested in</h2><p>Secure checkout and scheduling are being connected. In the meantime, send this quick request and we'll email you dates, details, and the next steps.</p></div>
-        <form id="program-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate class="assess-card">
-          <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+        <div class="section-head"><span class="eyebrow">Request a seat or session</span><h2>Tell us what you're interested in</h2><p>Request availability for a workshop or private session. This request does not book a session or take payment. We will reply with dates, final pricing and next steps.</p></div>
+        <form id="program-form" action="https://api.web3forms.com/submit" data-inquiry-form method="post" class="assess-card">
+          <input type="hidden" name="access_key" value="c9e8acac-8ca8-4ffc-a6ba-9f777b2cb94b">
+<input type="hidden" name="subject" value="PYMTW inquiry: programs.html">
+<input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
           <input type="hidden" name="utm_source" value="programs">
           <input type="hidden" name="utm_medium" value="program_inquiry">
           <div class="field">
             <label for="pf-name">Name</label>
-            <input type="text" id="pf-name" name="first_name" autocomplete="name" placeholder="Your name">
+            <input type="text" id="pf-name" name="name" autocomplete="name" placeholder="Your name">
           </div>
           <div class="field">
             <label for="pf-email">Email</label>
-            <input type="email" id="pf-email" name="form[email]" required autocomplete="email" placeholder="you@example.com">
+            <input type="email" id="pf-email" name="email" required autocomplete="email" placeholder="you@example.com">
           </div>
           <div class="field">
             <label for="pf-interest">I'm interested in</label>
@@ -260,7 +263,7 @@
           <button type="submit" class="btn btn-primary btn-block"><span>Send my request</span></button>
           <p class="form-status" id="pf-status" role="status" aria-live="polite"></p>
           <p class="form-hint">We never ask for seed phrases, private keys, passwords, or account credentials.</p>
-        </form>
+        <p class="form-hint">Your details go to PYMTW through Web3Forms for this request. This does not subscribe you to a newsletter. <a href="/legal.html#privacy">Privacy policy</a>.</p><noscript><p>The provider will show the submission result after you send this form.</p></noscript></form>
       </div>
     </section>
 
@@ -280,30 +283,6 @@
   <div id="site-footer"></div>
 
   <script src="pymtw.js"></script>
-  <script>
-  (function () {
-    var form = document.getElementById("program-form");
-    var status = document.getElementById("pf-status");
-    if (!form) return;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var email = document.getElementById("pf-email");
-      if (!email.value || !/.+@.+\..+/.test(email.value)) {
-        status.textContent = "Please enter a valid email address."; status.className = "form-status error"; return;
-      }
-      var btn = form.querySelector('button[type="submit"] span');
-      var orig = btn.textContent; btn.textContent = "Sending...";
-      fetch(form.action, { method: "POST", body: new FormData(form), mode: "no-cors" })
-        .catch(function () {})
-        .finally(function () {
-          var interest = document.getElementById("pf-interest").value;
-          window.pymtwTrack && window.pymtwTrack("program_inquiry", { interest: interest.slice(0, 60) });
-          btn.textContent = orig;
-          status.textContent = "Thanks! We'll email you the details shortly."; status.className = "form-status success";
-          form.reset();
-        });
-    });
-  })();
-  </script>
+  <script src="/inquiry-forms.js"></script>
 </body>
 </html>

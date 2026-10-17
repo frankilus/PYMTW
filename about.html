@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body class="pymtw-page" data-page="about">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -88,30 +89,25 @@
 
         <h2 id="contact" style="font-family:var(--font-display);font-size:1.4rem;margin:34px 0 12px;">Contact &amp; speaking</h2>
         <p class="muted">Frank is available for corporate education, webinars, workshops, keynotes, and author Q&amp;As — see <a href="corporate.html">Corporate Education &amp; Speaking</a>. For general questions, reply to any newsletter email or send a note below and we'll get back to you.</p>
-        <form id="contact-form" action="https://subscribe-forms.beehiiv.com/api/submit" method="post" novalidate class="assess-card" style="margin-top:16px;">
-          <input type="hidden" name="form_id" value="b4a2c81e-45db-403c-8b9d-9e317a677a67">
+        <form id="contact-form" action="https://api.web3forms.com/submit" data-inquiry-form method="post" class="assess-card" style="margin-top:16px;">
+          <input type="hidden" name="access_key" value="c9e8acac-8ca8-4ffc-a6ba-9f777b2cb94b">
+<input type="hidden" name="subject" value="PYMTW inquiry: about.html">
+<input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
           <input type="hidden" name="utm_source" value="about">
           <input type="hidden" name="utm_medium" value="contact">
-          <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="first_name" type="text" autocomplete="name" placeholder="Your name"></div>
-          <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="form[email]" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name"></div>
+          <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" rows="4" required maxlength="5000" placeholder="How can we help?"></textarea></div>
           <button type="submit" class="btn btn-primary btn-block"><span>Send</span></button>
           <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
           <p class="form-hint">Please don't include account numbers, passwords, or any credentials. We never need them.</p>
-        </form>
+        <p class="form-hint">Your details go to PYMTW through Web3Forms for this request. This does not subscribe you to a newsletter. <a href="/legal.html#privacy">Privacy policy</a>.</p><noscript><p>The provider will show the submission result after you send this form.</p></noscript></form>
       </div>
     </section>
   </main>
 
   <div id="site-footer"></div>
   <script src="pymtw.js"></script>
-  <script>
-  (function(){var f=document.getElementById("contact-form"),s=document.getElementById("cf-status");if(!f)return;
-    f.addEventListener("submit",function(e){e.preventDefault();var em=document.getElementById("cf-email");
-      if(!em.value||!/.+@.+\..+/.test(em.value)){s.textContent="Please enter a valid email.";s.className="form-status error";return;}
-      var b=f.querySelector('button[type="submit"] span'),o=b.textContent;b.textContent="Sending...";
-      fetch(f.action,{method:"POST",body:new FormData(f),mode:"no-cors"}).catch(function(){}).finally(function(){
-        window.pymtwTrack&&window.pymtwTrack("contact_submitted",{source:"about"});
-        b.textContent=o;s.textContent="Thanks — we'll be in touch.";s.className="form-status success";f.reset();});});})();
-  </script>
+  <script src="/inquiry-forms.js"></script>
 </body>
 </html>

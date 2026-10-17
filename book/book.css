@@ -393,7 +393,7 @@ img { max-width: 100%; display: block; }
   height: 20px;
   background: radial-gradient(ellipse, rgba(247, 147, 26, 0.15) 0%, transparent 70%);
   filter: blur(10px);
-  animation: bkBookFloat 6s ease-in-out infinite reverse;
+  animation: none; /* Keep the centering transform; the book animation overrides it. */
 }
 
 /* Floating badges */
@@ -759,6 +759,9 @@ img { max-width: 100%; display: block; }
 
 .bk-footer-links {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 0;
   gap: 24px;
 }
 .bk-footer-links a {

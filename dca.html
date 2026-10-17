@@ -14,6 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   <script src="pymtw-config.js"></script>
+  <script src="/bitcoin-nav.js" defer></script>
 </head>
 <body>
   <!-- Live Bitcoin Price Bar -->
@@ -102,7 +103,7 @@
         Bitcoin <span class="gradient-text">DCA</span> Calculator
       </h1>
       <p class="dca-hero-subtitle">
-        Simulate dollar-cost averaging into Bitcoin using historical prices. See how consistent monthly investing would have performed over time.
+        Explore how dollar-cost averaging works using an illustrative monthly price series. These are not verified historical investment returns.
       </p>
     </div>
   </section>
@@ -156,6 +157,7 @@
               </div>
             </div>
           </div>
+          <p id="dca-status" class="dca-disclaimer" role="status" aria-live="polite" tabindex="-1"></p>
           <button class="dca-btn" id="calculate-btn">Calculate DCA Returns</button>
         </div>
 
@@ -207,7 +209,8 @@
         </div>
       </div>
 
-      <p class="dca-disclaimer">Uses monthly historical BTC/USD closing prices. Past performance does not guarantee future results.</p>
+      <p class="dca-disclaimer">The initial deposit buys at the selected starting month’s sample price. Monthly deposits begin one month later, including the ending month; one year means 12 monthly deposits after the initial deposit. Valuation uses the last included sample price. Fees, spreads, taxes and inflation are excluded. The lump-sum comparison assumes all contributed cash was available at the start. This is an educational illustration, not a forecast.</p>
+      <p class="dca-disclaimer" id="dca-data-note">Illustrative data covers January 2011–March 2026. The original source and sampling method were not documented, so these values must not be treated as verified monthly closing prices or used to establish actual investment performance. <a href="/assets/dca-prices.csv" download>Download the exact price series (CSV)</a>.</p>
 
       <!-- Educational interpretation & reminders -->
       <div style="max-width:900px;margin:28px auto 0;display:grid;gap:16px;">
@@ -215,7 +218,7 @@
           <strong>How to read this.</strong> Dollar-cost averaging spreads purchases over time so no single entry price defines your outcome. The <em>average buy price</em> above shows the discipline effect; the growth chart shows how bumpy the ride was along the way. Use this to build a realistic mental model &mdash; not to predict returns.
         </div>
         <div class="callout-security">
-          <strong>Volatility &amp; drawdown reminder.</strong> Bitcoin has repeatedly fallen 50%&ndash;80% from its highs and taken years to recover. Any period you select could have included long, deep drawdowns. <strong>Historical results are hypothetical and do not predict future performance.</strong> Only you can decide what, if anything, fits your situation.
+          <strong>Volatility &amp; drawdown reminder.</strong> Bitcoin has repeatedly fallen 50%&ndash;80% from its highs and taken years to recover. Any period you select could have included long, deep drawdowns. <strong>Illustrative results are hypothetical and do not predict future performance.</strong> Only you can decide what, if anything, fits your situation.
         </div>
         <div class="callout-security">
           <strong>Your privacy:</strong> this calculator runs entirely in your browser. The amounts and dates you enter are not transmitted to PYMTW, not stored, and never sent to analytics. Only public Bitcoin price data is fetched. <a href="legal.html#calculators">Calculator Privacy policy</a>.
@@ -225,7 +228,7 @@
       <!-- CTAs -->
       <div style="max-width:900px;margin:24px auto 0;">
         <div class="card-grid cols-2">
-          <div class="p-card"><span class="tag-pill">Free</span><h3 style="margin-top:12px;">Get a DCA planning worksheet</h3><p>Turn this into a documented, automatic routine you'll actually stick to.</p><a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">See the Starter Kit</a></div>
+          <div class="p-card"><span class="tag-pill">Paid Starter Kit · $29</span><h3 style="margin-top:12px;">Get a DCA planning worksheet</h3><p>Turn this into a documented, automatic routine you'll actually stick to.</p><a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:12px;">See the Starter Kit</a></div>
           <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live</span><h3 style="margin-top:12px;">Workshop: Bitcoin for Busy Professionals</h3><p>Build a calm, disciplined process with a 30-day action plan.</p><a href="workshop-professionals.html" class="btn btn-primary btn-sm btn-block" style="margin-top:12px;">See the workshop</a></div>
         </div>
       </div>
@@ -279,6 +282,8 @@
     </div>
   </footer>
 
+  <script src="dca-data.js"></script>
+  <script src="dca-core.js"></script>
   <script src="dca.js"></script>
 </body>
 </html>

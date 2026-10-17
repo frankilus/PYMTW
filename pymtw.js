@@ -148,45 +148,6 @@
   }
 
   /* ---------- Behaviors: scroll state, mobile toggle, dropdowns ---------- */
-  function wireNav() {
-    var navbar = document.getElementById("navbar");
-    var toggle = document.getElementById("nav-toggle");
-    var links = document.getElementById("nav-links");
-
-    window.addEventListener("scroll", function () {
-      if (!navbar) return;
-      if (window.scrollY > 20) navbar.classList.add("scrolled");
-      else navbar.classList.remove("scrolled");
-    });
-    if (window.scrollY > 20 && navbar) navbar.classList.add("scrolled");
-
-    if (toggle && links) {
-      toggle.addEventListener("click", function () {
-        var open = links.classList.toggle("active");
-        toggle.classList.toggle("active", open);
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        document.body.style.overflow = open ? "hidden" : "";
-      });
-      links.addEventListener("click", function (e) {
-        if (e.target.closest("a") && !e.target.closest(".nav-dropdown-trigger")) {
-          toggle.classList.remove("active");
-          links.classList.remove("active");
-          toggle.setAttribute("aria-expanded", "false");
-          document.body.style.overflow = "";
-          document.querySelectorAll(".nav-dropdown").forEach(function (dd) { dd.classList.remove("open"); });
-        }
-      });
-    }
-    document.querySelectorAll(".nav-dropdown-trigger").forEach(function (trigger) {
-      trigger.addEventListener("click", function (e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          trigger.parentElement.classList.toggle("open");
-        }
-      });
-    });
-  }
-
   // Analytics + click tracking are provided by pymtw-config.js (loaded site-wide).
   // Fallback no-op so this file is safe even if the config isn't present.
   window.pymtwTrack = window.pymtwTrack || function () {};
@@ -197,7 +158,7 @@
     if (header) header.innerHTML = buildNav() + buildTrustBar();
     var footer = document.getElementById("site-footer");
     if (footer) footer.innerHTML = buildFooter();
-    wireNav();
+    if (window.pymtwInitNav) window.pymtwInitNav();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
