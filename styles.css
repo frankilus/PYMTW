@@ -2387,3 +2387,13 @@ a.resource-card {
   }
 }
 
+
+/* Keep both the parent-home and Bitcoin section links usable at tablet widths. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 0.8rem; }
+}
+/* The longer section menu must remain scrollable on short mobile screens. */
+@media (max-width: 768px) {
+  .nav-links { overflow-y: auto; justify-content: flex-start; padding: 110px 20px 40px; }
+}

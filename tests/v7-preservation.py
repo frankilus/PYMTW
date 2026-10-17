@@ -7,7 +7,8 @@ paths=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root
 count=0
 for name in paths:
  p=root/name
- if name.endswith('.js') or name in ['legal.html','tools/sitemap.xml','tools/robots.txt','robots.txt','CNAME','index.html']:
+ # The parent-homepage migration intentionally changes root navigation and robots.
+ if (name.endswith('.js') and name != 'pymtw.js') or name in ['legal.html','tools/sitemap.xml','tools/robots.txt','CNAME']:
   assert p.read_bytes()==original(name),name+' changed';count+=1
  if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name:
   old=original(name).decode();new=p.read_text()
