@@ -1,0 +1,116 @@
+/* PYMTW V7 — shared presentation for ORIGINAL calculators, money checkup, and guides.
+   The existing formulas, validation, content, metadata, and routes remain untouched.
+   This stylesheet is loaded after tools.css and each page's own <style>. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+:root{
+  --ink:#231e19;--ink-2:#554c44;--ink-3:#71685e;
+  --line:#e9dfd3;--bg:#fffbf6;--bg-2:#f7eee3;
+  --accent:#e97617;--accent-2:#b8510c;--accent-soft:#fbe9d5;
+  --radius:16px;
+  --font:'DM Sans',Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --v7-serif:'Fraunces',Georgia,serif;
+}
+html{scroll-padding-top:86px}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+nav{background:rgba(255,251,246,.96);border-bottom:1px solid var(--line);box-shadow:0 4px 26px rgba(58,29,7,.035)}
+nav .wrap{height:76px;max-width:1192px}
+nav .logo{position:relative;letter-spacing:-.065em;font-weight:800;font-size:23px;gap:8px;padding-bottom:8px;border-bottom:3px solid var(--accent)}
+nav .logo-mark{display:none}
+nav .logo .dim{font-size:12px;font-weight:700;letter-spacing:0;color:#89766a}
+nav .nav-links{align-items:center;gap:28px;font-size:13px;font-weight:700}
+nav a:hover{color:var(--accent-2)}
+.tool-hero,.g-hero,.ck-hero{background:linear-gradient(175deg,#fffbf6 5%,#f9f1e6 100%);position:relative}
+.tool-hero{padding:80px 0 34px}
+.tool-hero>.narrow,.g-hero>.narrow{max-width:870px}
+.tool-hero h1,.g-hero h1,.ck-hero h1{
+  font-family:var(--v7-serif);font-weight:500;line-height:1.12;
+  letter-spacing:-.045em;color:var(--ink);font-size:clamp(42px,5.2vw,68px)
+}
+.tool-hero h1 em,.g-hero h1 em,.ck-hero h1 em{color:var(--accent-2);font-weight:500}
+.tool-hero .eyebrow,.g-hero .eyebrow,.ck-hero .eyebrow{color:var(--accent-2);font-size:12px;font-weight:800;letter-spacing:.1em}
+.tool-hero .sub,.g-hero .sub,.ck-hero .sub{color:var(--ink-2);font-size:16px;line-height:1.8;max-width:66ch}
+.tool-hero .direct-answer,.g-hero .direct-answer,.ck-hero .direct-answer{
+  background:#fffefa;border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:12px;padding:18px 21px;max-width:70ch;line-height:1.72;
+  font-size:15px;color:var(--ink-2);margin:22px 0 0
+}
+.privacy{background:#fff3e6;border:1px solid #f0d5b9;border-radius:999px;padding:8px 14px;font-size:12px;color:#87532d}
+.wizard,.card,.ck-card{
+  background:#fffefa;border:1px solid var(--line);border-radius:18px;
+  box-shadow:0 12px 50px rgba(66,36,10,.045)
+}
+.wizard{padding:clamp(22px,3vw,40px)}
+.wizard h2,.ck-card h2,.g-hero h2,.g-hero h3,.related h2,.seo-extra h2,.faq h2,.card h3{
+  letter-spacing:-.025em;color:var(--ink)
+}
+.wizard h2,.related h2,.seo-extra h2,.faq h2,.ck-card h2{
+  font-family:var(--v7-serif);font-weight:500
+}
+.wizard .step h2{font-size:clamp(25px,3vw,38px);line-height:1.2}
+.field>span{font-weight:700;color:var(--ink-2)}
+.inp{border:1.5px solid #dac9b5;background:#fff;border-radius:12px;transition:box-shadow .2s,border-color .2s}
+.inp:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px #f9e6d4}
+.inp input,.inp select{color:var(--ink)}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{
+  outline:3px solid #d9701b;outline-offset:3px
+}
+.btn,.btn.accent{background:var(--accent);border-radius:10px;color:white;font-weight:800;min-height:50px}
+.btn:hover,.btn.accent:hover{background:var(--accent-2)}
+.btn.ghost{border-color:#e2cdb7;color:#5b4431;background:#fffefa}
+.btn.ghost:hover{border-color:var(--accent);background:#fff1e4}
+.progress{background:#efe3d5;height:6px;border-radius:999px}
+.progress i{background:var(--accent)}
+.note,.hint{color:var(--ink-3)}
+.note{background:#fffcf7;border-color:var(--line)}
+.related a,.card{background:#fffefa;border:1px solid var(--line);border-radius:14px}
+.related a:hover{background:#fff3e7;border-color:#e8bb96}
+.results{scroll-margin-top:100px}
+.results .big,.mini-out .big{color:var(--accent-2)}
+.results .stats,.results .stat,.next,.share-box{border-color:var(--line)}
+.faq .qa{border-color:var(--line)}
+.faq .qa h3{font-size:17px}
+.seo-extra,.faq,.related{line-height:1.72}
+.g-hero .narrow{padding-top:60px;padding-bottom:50px}
+.g-hero{padding:0}
+.g-hero h1{max-width:860px}
+.ck-hero{padding:55px 0 30px}
+.ck-hero h1{font-size:clamp(39px,5vw,58px)!important}
+.ck-card{padding:clamp(22px,4vw,36px)}
+.ck .ck-foot{border-top-color:var(--line)}
+.ck-remember{color:var(--ink-3)}
+.toc{background:#fff9f2;border:1px solid var(--line);border-radius:12px}
+.toc a{color:#94501b}
+.toc a:hover{color:var(--accent-2)}
+.src a,.sources a{color:#95511c;text-decoration:underline;text-decoration-color:#dfb28d;text-underline-offset:3px}
+footer{background:#29241f;color:#e8e0d8}
+footer .brand{color:#fff}
+footer a:hover{color:#f9b274}
+.v7-next-step{
+  background:#f7eddf;border-top:1px solid #e9d6c0;
+  padding:24px max(24px,calc((100vw - 960px)/2));
+  display:flex;gap:14px 35px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  color:#5b4a3d;font-size:13px;font-weight:600
+}
+.v7-next-step a{
+  display:inline-flex;align-items:center;gap:15px;padding:12px 17px;background:var(--accent);
+  border-radius:9px;color:#fff;font-size:12px;font-weight:800;min-height:46px
+}
+.v7-next-step a:hover{background:var(--accent-2)}
+.v7-next-step a:focus-visible{outline-color:#372015}
+@media(max-width:620px){
+  nav .wrap{height:67px;padding-left:18px;padding-right:18px}
+  nav .nav-links{gap:12px;font-size:11px}
+  nav .logo{font-size:19px}
+  nav .logo .dim{font-size:10px}
+  nav .nav-links a:last-child{display:none}
+  .tool-hero{padding:55px 0 27px}
+  .tool-hero h1,.g-hero h1{font-size:clamp(35px,9vw,49px)}
+  .tool-hero .sub,.g-hero .sub{font-size:14px}
+  .tool-hero .direct-answer,.g-hero .direct-answer,.ck-hero .direct-answer{font-size:13px;padding:15px}
+  .wizard{padding:20px;border-radius:13px}
+  .v7-next-step{padding:25px 20px;flex-direction:column;align-items:flex-start;gap:12px}
+  .v7-next-step a{width:100%;justify-content:space-between}
+  .card{padding:19px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media print{.v7-next-step{display:none!important}}
