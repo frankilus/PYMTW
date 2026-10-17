@@ -1,0 +1,17 @@
+/* V7 presentation layer; original calculation code and content are unchanged. */
+:root{--ink:#231e19;--ink-2:#53493f;--ink-3:#71685e;--line:#e9dfd3;--bg:#fffbf6;--bg-2:#f8f1e8;--accent:#b8510c;--accent-2:#e97617;--accent-soft:#fbe9d5;--radius:14px;--font:"DM Sans",Inter,"Helvetica Neue",Arial,sans-serif}
+nav{background:rgba(255,251,246,.96);border-bottom:1px solid var(--line)}
+h1,h2{font-family:Georgia,serif;font-weight:500}h1 em{font-style:italic}
+.wizard,.card,.stat{border:1px solid var(--line)}.wizard{background:#fff}.btn.accent{background:var(--accent)}
+.next .k{color:#f4a055}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent-2);outline-offset:4px}
+.nav-links a{min-height:44px;display:inline-flex;align-items:center}.v7-next{padding:30px 24px;text-align:center}.v7-next a{display:inline-block;padding:12px;color:var(--accent);text-decoration:underline}
+@media(max-width:590px){nav .wrap{height:auto;min-height:64px;gap:8px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}.nav-links{gap:14px;font-size:12px}.wizard{padding:22px 16px}.row3{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.next a{white-space:normal}h1{overflow-wrap:break-word}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+/* Keep status/error colors meaningful; recolor only the primary chart series. */
+.chart svg [stroke="#0a7c55"]{stroke:var(--accent-2)}
+.chart svg [fill="#0a7c55"]{fill:var(--accent-2)}
+.chart .legend i[style*="#0a7c55"],.chart .legend i[style*="rgb(10, 124, 85)"],.chart div[style*="background:#0a7c55"],.chart div[style*="background: rgb(10, 124, 85)"]{background:var(--accent-2)!important}
+.ck-card,.rp-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+input,select,textarea{accent-color:var(--accent)}
+footer{background:#26221f;color:#c2b9b1}footer .brand strong{color:#fffaf4}footer .brand a,footer .privacy-note a{color:#f4a055}footer .privacy-note{color:#c2b9b1}footer .links a{min-height:44px;display:inline-flex;align-items:center}footer .links a:hover{color:#fff}footer .legal{border-color:#51463c}
+.v7-next{background:#26221f;color:#fffaf4}.v7-next a{color:#f4a055}
