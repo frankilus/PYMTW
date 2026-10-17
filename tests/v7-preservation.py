@@ -20,5 +20,6 @@ for name in paths:
    new=re.sub(r'<link rel="stylesheet" href="(?:../)+v7/pages.css">\n','',new)
    new=re.sub(r'<div class="v7-next">.*?</div>\n','',new)
    new=new.replace('<meta name="theme-color" content="#fffbf6">','<meta name="theme-color" content="#0a7c55">')
+   new=new.replace('No cookies, except any set by the beehiiv newsletter signup form on this page.','No cookies.')  # accurate cookie wording (guides lazy-load beehiiv)
    assert old==new,name+' original content changed'
 print(f'Preserved {count} existing JS/config/privacy files, all tool/guide page content and all SEO blocks/schema.')
