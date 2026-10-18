@@ -1,54 +1,59 @@
-# Bitcoin homepage and consistent interior theme
+# Bitcoin homepage and simpler interior pages
 
 Review only. Do not merge or deploy until approved.
 
 ## Visitor experience
 
-The approved warm-white/orange concept replaces `/bitcoin/` with three clear starting paths. Choosing a path updates a short set of existing resources; links stay on the current site. Each path has a bookmarkable URL (`#understand`, `#evaluate`, `#protect`), works with browser history and restores its selection after reload. Keyboard activation moves focus to the corresponding resource panel. Without JavaScript, the cards link directly to their starting guides and the introductory resource list remains visible.
+The approved warm-white/orange design replaces `/bitcoin/` with three starting paths: **Understand, Evaluate, Protect**. Each reveals three existing resources and supports direct links, browser history, keyboard activation and a no-JavaScript fallback. The authentic second-edition book cover and existing newsletter handoff remain on the homepage.
 
-The homepage keeps the authentic second-edition book cover, existing Amazon link, optional Bitcoin Beehiiv newsletter handoff, resource library and Money Tools link. It removes the preview banner and development labels, and includes canonical/social metadata and page schema. No newsletter submission, provider setting, analytics configuration or calculator logic is changed.
+The parent homepage keeps its distinct directory design. Money Tools remains green and its source is unchanged. A shared warm-white/orange theme covers 35 Bitcoin interiors; 32 active reading, tool and product pages also receive the simplification described below.
 
-## Existing content and links
+## Review findings and changes
 
-- The previous Bitcoin homepage is retained at `/bitcoin/explore/`. Its entire body, including the FAQ, knowledge quiz, educational tabs and resources, is byte-for-byte preserved. Its metadata changes for the new URL, and it loads the shared interior theme.
-- Existing `/bitcoin/#faq`, `#learn`, `#why-bitcoin`, `#getting-started`, and other section fragments route to the corresponding library sections. Query strings survive. Earlier parent-homepage fragment redirects continue through this route.
-- The 35 Bitcoin interior pages add one stylesheet link each. Their content, metadata and scripts remain intact. The parent homepage, approved Bitcoin homepage design, green Money Tools files, calculator code/data and existing shared styles/scripts are preserved.
-- The sitemap gains the learning-library route and retains all existing entries.
-- Legacy fragment routing is browser-side because fragments are not sent to the server. Without JavaScript, the homepage provides a visible link to the retained library.
+| Finding | Result |
+| --- | --- |
+| Interior headers competed with nine top-level destinations and duplicated calls to action. | Five navigation groups: Understand, Evaluate, Protect, Library, More. The same shared header/footer now serves calculators and legacy standalone educational pages as well as guides. The security promise remains linked beside a concise reminder. |
+| Start Here repeated the homepage's path picker. | A short introduction, one primary free-playbook action and a three-step learning sequence. |
+| The resource library presented all metadata for every entry at once. | Search and topic filters across 45 resources; costs, limitations and review notes open on demand. Existing affiliate disclosure and security notices remain available. Filtering happens entirely in the browser. |
+| Comparison guides mixed reading, large card grids and repeated sales offers. | On-page contents links, a narrower reading column, quieter criteria lists and one related-library link. Tables, limitations and security notices are preserved. |
+| Calculator results led into multiple promotions. | One relevant next step after the tool. Every input, result, calculation, dataset, assumption and privacy note remains unchanged. |
+| The whitepaper exposed long explanations all at once. | Existing key insights remain visible; each excerpt/explanation opens independently. Expand/collapse-all controls and chapter bookmarks reveal the requested explanation. |
+| Programs repeated full syllabuses and package feature lists. | Optional syllabus/package details with visible pricing and inquiry actions. Workshop agendas, eligibility, policies and forms remain available. The family workshop's sole outline is open initially. |
+| The playbook and book pages repeated promotional sections. | A calmer playbook introduction, fewer repeated calls to action, optional book chapter list and a clear route back to Bitcoin. Download, purchase and reader-toolkit request flows remain intact. |
 
-## Bitcoin interior theme
+Already concise pages (newsletter, security promise, about/contact and confirmation) receive the common navigation and spacing without unnecessary content rewrites. Legal content is preserved. The original learning archive and unfinished account pages are retained separately.
 
-`assets/bitcoin-theme.css` applies the approved warm-white/orange palette to 35 interior pages, including the retained library, guides, assessment, calculators, workshops, newsletter, book and playbook. It uses serif editorial headings, white cards, warm borders, readable orange buttons and visible keyboard focus. Success/error colors remain meaningful on light backgrounds. The original charts retain their dataset colors on dark plotting panels. Existing book artwork remains intact. Decorative particles and overflowing playbook glows are omitted. The playbook download/footer wrap on small phones, and the whitepaper chapter list scrolls within its grid without widening the page.
+## Content, routes and integrations
 
-The theme loads only on Bitcoin interiors. The parent homepage keeps its distinct directory layout, the approved Bitcoin homepage keeps its three-path design, and Money Tools remains green. No page content or calculator JavaScript is changed by this theme.
+- The previous Bitcoin homepage remains at `/bitcoin/explore/`; its body is byte-for-byte preserved from production. Its title/canonical/social/page-schema metadata reflect the library route, and it loads the Bitcoin theme.
+- All 46 old homepage fragments, including earlier parent-homepage redirects, retain their destinations and query strings. All sitemap entries remain; the library route is added.
+- Existing content IDs survive the simplification. Shared navigation IDs are now created by the common header on six standalone pages.
+- All form markup and inline scripts are unchanged. Inquiry payloads, checkout configuration, newsletter destinations, privacy settings and calculator code/data are unchanged.
+- Comparison tables, security callouts, legal main content, resource metadata and DCA assumptions are checked against the prior review commit (`56cc9e6`). This is source preservation, not fresh verification of the underlying claims or provider details.
+- Core calculator/provider scripts, parent homepage and Money Tools remain byte-for-byte unchanged. The shared navigation renderer is intentionally updated.
+- Without JavaScript, native resource disclosures and guide links still work, all library entries remain visible, and a simple Bitcoin navigation fallback is available. Dynamic calculators continue to require JavaScript.
 
 ## Verification
 
-From the repository root, serve locally with `python3 -m http.server 8771 --bind 127.0.0.1` and run:
+Serve the repository locally with `python3 -m http.server 8771 --bind 127.0.0.1` and run:
 
 ```sh
 node tests/bitcoin-homepage.cjs
-node tests/bitcoin-theme-browser.cjs
-node tests/bitcoin-homepage-browser.cjs
-PREVIEW_URL=http://127.0.0.1:8771 node tests/bitcoin-browser.cjs
+python3 tests/bitcoin-interiors-preservation.py
 python3 tests/bitcoin-static.py
-node tests/homepage-fragments.cjs
+node tests/bitcoin-homepage-browser.cjs
+node tests/bitcoin-theme-browser.cjs
+node tests/bitcoin-interiors-browser.cjs
+PREVIEW_URL=http://127.0.0.1:8771 node tests/bitcoin-browser.cjs
+node tests/bitcoin-reliability.cjs
 node tests/v7-calculations.cjs
+node tests/homepage-fragments.cjs
 ```
 
-Set `PLAYWRIGHT_PATH` to the installed Playwright module if necessary. Browser tests use Chrome, default to `http://127.0.0.1:8771`, and accept `PREVIEW_URL` and `SCREENSHOT_DIR`. Set `NODE` for the Python syntax checker if Node is not on PATH.
+Set `PLAYWRIGHT_PATH` to the installed Playwright module if needed, and `NODE` for the Python syntax checker. Browser checks use Chrome; `PREVIEW_URL` selects the local server and `SCREENSHOT_DIR` saves review screenshots.
 
-Coverage:
-- All 35 interiors at 390 and 1280 px, plus representative pages at 320/768 px; theme text/button contrast, menu/skip-link colors, and isolation from the parent and Money Tools styles.
-- Five screen widths: 320, 390, 768, 1280 and 1440 px; no horizontal overflow.
-- All three paths and nine resource destinations, keyboard activation/focus, history, refresh and direct path URLs.
-- Representative old Bitcoin and parent-homepage bookmarks, query preservation and malformed fragments.
-- Real card links and readable content with JavaScript disabled; original book asset loading.
-- Source preservation except the intended homepage/sitemap changes and single interior stylesheet links; exact retention of the previous homepage body; all 46 old fragments mapped.
-- 915 local references across 38 pages, JavaScript syntax and unchanged existing tool calculations.
-
-`tests/bitcoin-browser.cjs` now checks the retained library's legacy mobile menu instead of expecting that menu on the new homepage. Its other reliability checks are unchanged. `tests/bitcoin-static.py` resolves the intentional fragment redirects and includes the new library.
+Coverage includes all 32 simplified pages at 320, 390, 768 and 1280 px; navigation/header clearance; resource search, topic combinations, no-results/reset and old category bookmarks; keyboard/native disclosures; guide and whitepaper chapter links; workshop/book bookmarks; and no-JavaScript navigation/library access. Existing tests cover homepage paths/history, all 46 legacy fragments, mobile menus, calculator/assessment behavior, nine inquiry forms with mocked provider acceptance/failures, and source preservation. No real forms, subscriptions, payments or settings are submitted or changed by these tests.
 
 ## Limits
 
-This updates the homepage, navigation and Bitcoin interior presentation; it does not rewrite the retained learning content. Earlier limitations still apply: DCA prices remain illustrative; actual inquiry/newsletter delivery and paid fulfillment are not newly verified. No forms, subscriptions or payments were submitted during this work. The existing missing dashboard/member CSS/JS files remain outside scope and are reported by the static scan.
+This is a presentation and navigation review. Existing financial claims, product pricing, provider availability and source data have not been newly certified. DCA data remains explicitly illustrative. Real newsletter/inquiry delivery and paid fulfillment are not newly verified. The pre-existing missing `dashboard.css`, `dashboard.js`, `members.css` and `members.js` remain outside this change and are reported by the static scan. The old learning archive retains its original content and interactions.

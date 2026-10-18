@@ -42,7 +42,7 @@ for page in files:
  for attrs,code in re.findall(r'<script([^>]*)>(.*?)</script>',s,re.S):
   if 'src=' in attrs or 'application/ld+json' in attrs:continue
   subprocess.run([node,'--check'],input=code,text=True,check=True,capture_output=True)
-for p in list(root.glob('*.js'))+list((root/'assets/bitcoin-home').glob('*.js')):subprocess.run([node,'--check',str(p)],check=True,capture_output=True)
+for p in list(root.glob('*.js'))+list((root/'assets/bitcoin-home').glob('*.js'))+list((root/'assets').glob('bitcoin-interiors.js')):subprocess.run([node,'--check',str(p)],check=True,capture_output=True)
 print(f'Passed {count} local references across {len(files)} pages, inline/root JavaScript syntax, no unsupported Beehiiv POSTs, and preservation of all Tools files, parent homepage, routes and PDF.')
 
 print('Pre-existing missing assets outside this fix:', known_missing)

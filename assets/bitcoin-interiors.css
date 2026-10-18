@@ -1,0 +1,83 @@
+/* Quiet reading layouts for Bitcoin only; calculators keep their own controls. */
+.bitcoin-interior { scroll-padding-top: 145px; }
+html:has(.bitcoin-interior) { scroll-padding-top: 145px; }
+.bitcoin-interior [hidden] { display: none !important; }
+.bitcoin-interior .trust-bar-inner { font-size: .8rem; gap: 8px; padding: 8px 24px; color: var(--text-secondary); }
+.bitcoin-interior .trust-bar a { color: var(--accent-orange); text-decoration: underline; text-underline-offset: 3px; }
+.bitcoin-interior .page-hero { padding: 38px 0 24px; }
+.bitcoin-interior .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); }
+.bitcoin-interior .page-hero .lead { font-size: 1.05rem; line-height: 1.7; }
+.bitcoin-interior .pymtw-section { padding: 36px 0; }
+.bitcoin-interior .section-head { margin-bottom: 26px; }
+.bitcoin-interior .p-card { padding: 22px; }
+.bitcoin-interior .p-card:hover { transform: none; }
+.bitcoin-interior .footer { padding: 30px 0 22px; margin-top: 32px; }
+.bitcoin-interior .footer-bottom { text-align: left; padding-top: 18px; margin-top: 18px; }
+.bitcoin-interior .footer-bottom p { max-width: 85ch; }
+.simple-footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.simple-footer-links a { padding: 8px 0; font-size: .88rem; color: var(--text-secondary); text-decoration: underline; text-underline-offset: 4px; }
+.simple-reading { max-width: 800px; }
+.simple-reading h2 { font-size: 1.7rem; margin-bottom: 22px; }
+.simple-sequence { list-style: none; counter-reset: learning; margin-bottom: 28px; }
+.simple-sequence li { position: relative; padding: 20px 0 20px 52px; border-top: 1px solid var(--border-subtle); counter-increment: learning; }
+.simple-sequence li::before { content: counter(learning); position: absolute; left: 0; top: 20px; width: 30px; height: 30px; border-radius: 50%; background: #f4e3cd; color: var(--accent-orange); display: grid; place-items: center; }
+.simple-sequence h3 { margin-bottom: 8px; font-size: 1.1rem; }
+.simple-sequence p { color: var(--text-secondary); }
+.simple-sequence a, .simple-next a, .simple-text-link { color: var(--accent-orange); text-decoration: underline; text-underline-offset: 4px; }
+.simple-text-link { display: inline-flex; align-items: center; padding: 12px 0; }
+.simple-next { max-width: 900px; margin: 28px auto 0; padding: 20px 0; border-top: 1px solid var(--border-subtle); color: var(--text-secondary); line-height: 1.7; }
+.guide-contents { max-width: 900px; display: flex; gap: 8px 20px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
+.guide-contents span { width: 100%; color: var(--text-muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; }
+.guide-contents a { color: var(--accent-orange); text-decoration: underline; text-underline-offset: 4px; font-size: .88rem; padding: 5px 0; }
+.bitcoin-guide .pymtw-section > .container { max-width: 900px !important; }
+.bitcoin-guide .card-grid { gap: 14px; }
+.bitcoin-guide .p-card { border: 0; border-radius: 0; border-top: 1px solid var(--border-subtle); background: transparent; padding: 18px 0; }
+.bitcoin-guide .card-grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+.bitcoin-guide .p-card h3 { font-size: 1.03rem; }
+.simple-details, .resource-details { border-top: 1px solid var(--border-subtle); margin-top: 16px; }
+.simple-details > summary, .resource-details > summary { color: var(--accent-orange); cursor: pointer; padding: 15px 0; font-size: .92rem; font-weight: 600; }
+.simple-details[open] > summary, .resource-details[open] > summary { margin-bottom: 8px; }
+.simple-details > .container { padding: 0; }
+.library-controls { display: grid; grid-template-columns: 1.7fr 1fr auto; gap: 12px; align-items: end; margin: 24px 0 8px; }
+.library-controls label { display: block; font-size: .85rem; margin-bottom: 7px; font-weight: 600; }
+.library-controls input, .library-controls select, .library-controls button, .reading-actions button { font: inherit; border: 1px solid var(--border-color); border-radius: 6px; padding: 12px; min-height: 46px; color: var(--text-primary); background: white; }
+.library-controls input, .library-controls select { width: 100%; min-width: 0; }
+.library-controls button, .reading-actions button { cursor: pointer; }
+#resource-count { grid-column: 1 / -1; color: var(--text-muted); font-size: .85rem; }
+.library-enhanced .cat-nav { display: none; }
+.simple-empty { text-align: center; margin: 24px auto; padding: 32px 24px; }
+.bitcoin-interior .res-cat { padding: 30px 0; }
+.bitcoin-interior .res-card { padding: 20px; }
+.bitcoin-interior .res-card h3 { font-size: 1.1rem; }
+.bitcoin-interior .res-card h3 a { text-decoration: underline; text-underline-offset: 3px; }
+.bitcoin-interior .res-card .res-meta { margin-top: 0; }
+.reading-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 24px; }
+.bitcoin-interior .wp-section-card { padding: 26px; margin-bottom: 20px; }
+.bitcoin-interior .wp-section-title { font: 400 1.8rem/1.2 Georgia, serif; }
+.bitcoin-interior .wp-section-number { font-size: 2rem; color: #ded6ca; }
+body.bitcoin-with-price #site-header { top: 38px; }
+.bitcoin-with-price .wp-sidebar { top: 145px; }
+.bitcoin-with-price .wp-mobile-nav { top: 145px; }
+/* Utility pages prioritize the task, with fewer oversized decorative elements. */
+.bitcoin-interior .calc-hero, .bitcoin-interior .dca-hero, .bitcoin-interior .perf-hero,
+.bitcoin-interior .vid-hero, .bitcoin-interior .wp-hero, .bitcoin-interior .svc-hero { padding-top: 170px; padding-bottom: 28px; }
+@media (max-width: 768px) {
+  html:has(.bitcoin-interior) { scroll-padding-top: 115px; }
+  .bitcoin-interior .page-hero { padding-top: 24px; }
+  .bitcoin-interior .pymtw-section { padding: 28px 0; }
+  .library-controls { grid-template-columns: 1fr; }
+  .bitcoin-guide .card-grid.cols-3 { grid-template-columns: 1fr; }
+  .bitcoin-with-price .wp-mobile-nav { top: 102px; }
+  .bitcoin-interior .calc-hero, .bitcoin-interior .dca-hero, .bitcoin-interior .perf-hero,
+  .bitcoin-interior .vid-hero, .bitcoin-interior .wp-hero, .bitcoin-interior .svc-hero { padding-top: 130px; }
+  .simple-footer-links { gap: 6px 18px; }
+}
+@media print {
+  .library-controls, .reading-actions { display: none !important; }
+  .resource-details::details-content, .simple-details::details-content { content-visibility: visible; }
+}
+.library-note { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; border-left: 3px solid var(--accent-orange); padding-left: 14px; }
+.fallback-nav { position: relative; z-index: 1100; display: flex; flex-wrap: wrap; gap: 16px; padding: 18px 24px; background: var(--bg-primary); }
+.fallback-nav a { color: var(--accent-orange); text-decoration: underline; }
+.bitcoin-interior .tier-card > .simple-details { margin-bottom: 20px; }
+.bitcoin-interior .bk-chapters, .bitcoin-interior .pb-benefits { padding-top: 40px; padding-bottom: 40px; }

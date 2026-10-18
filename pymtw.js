@@ -9,42 +9,103 @@
 
   /* ---------- Navigation model (single source of truth) ---------- */
   var NAV = [
-    { label: "PYMTW Home", href: "/" },
-    { label: "Bitcoin", href: "/bitcoin/" },
-    { label: "Start Here", href: "/start-here.html" },
-    {
-      label: "Tools",
-      children: [
-        { label: "All Free Tools", href: "/tools/" },
-        { label: "Bitcoin Readiness Assessment", href: "/assessment.html" },
-        { label: "DCA Calculator", href: "/dca.html" },
-        { label: "Net-Worth Calculator", href: "/calculator.html" },
-        { label: "Performance Comparison", href: "/performance.html" },
-        { label: "Resource Library", href: "/resources.html" }
-      ]
-    },
-    {
-      label: "Programs",
-      children: [
-        { label: "Programs Overview", href: "/programs.html" },
-        { label: "Live Workshops", href: "/programs.html#workshops" },
-        { label: "Private Education", href: "/programs.html#private" },
-        { label: "Self-Custody Workshop", href: "/workshop-self-custody.html" },
-        { label: "Membership", href: "/membership.html" },
-        { label: "Corporate Education", href: "/corporate.html" }
-      ]
-    },
-    { label: "Book", href: "/book" },
-    { label: "Newsletter", href: "/newsletter.html" },
-    { label: "About", href: "/about.html" }
-  ];
-
-  var TRUST_ITEMS = [
-    "Never asks for your seed phrase or private keys",
-    "Never takes custody of your funds",
-    "Never executes trades on your behalf",
-    "Education — not individualized investment advice"
-  ];
+  {
+    "label": "Understand",
+    "children": [
+      {
+        "label": "Start here",
+        "href": "/start-here.html"
+      },
+      {
+        "label": "Free playbook",
+        "href": "/playbook.html"
+      },
+      {
+        "label": "Video library",
+        "href": "/videos.html"
+      },
+      {
+        "label": "Whitepaper guide",
+        "href": "/whitepaper.html"
+      }
+    ]
+  },
+  {
+    "label": "Evaluate",
+    "children": [
+      {
+        "label": "Readiness assessment",
+        "href": "/assessment.html"
+      },
+      {
+        "label": "DCA calculator",
+        "href": "/dca.html"
+      },
+      {
+        "label": "Net-worth calculator",
+        "href": "/calculator.html"
+      },
+      {
+        "label": "Performance comparison",
+        "href": "/performance.html"
+      }
+    ]
+  },
+  {
+    "label": "Protect",
+    "children": [
+      {
+        "label": "Exchange or self-custody?",
+        "href": "/bitcoin-on-exchange.html"
+      },
+      {
+        "label": "Compare hardware wallets",
+        "href": "/compare-hardware-wallets.html"
+      },
+      {
+        "label": "Custody approaches",
+        "href": "/compare-collaborative-vs-multisig.html"
+      },
+      {
+        "label": "Our security promise",
+        "href": "/security-promise.html"
+      }
+    ]
+  },
+  {
+    "label": "Library",
+    "href": "/resources.html"
+  },
+  {
+    "label": "More",
+    "children": [
+      {
+        "label": "Books",
+        "href": "/compare-bitcoin-books.html"
+      },
+      {
+        "label": "Newsletter",
+        "href": "/newsletter.html"
+      },
+      {
+        "label": "Programs & workshops",
+        "href": "/programs.html"
+      },
+      {
+        "label": "About & contact",
+        "href": "/about.html"
+      },
+      {
+        "label": "Money Tools",
+        "href": "/tools/"
+      },
+      {
+        "label": "PYMTW home",
+        "href": "/"
+      }
+    ]
+  }
+];
 
   function shieldIcon() {
     return '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
@@ -54,7 +115,7 @@
     return '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg>';
   }
 
-  var activePage = (document.body.getAttribute("data-page") || "").toLowerCase();
+  var activePage = (document.body.getAttribute("data-page") || location.pathname.replace(/^\//, "").replace(/\.html$/, "").replace(/\/$/, "")).toLowerCase();
 
   function isActive(item) {
     if (!item.href) return false;
@@ -67,7 +128,7 @@
       if (item.children) {
         var childActive = item.children.some(isActive);
         var menu = item.children.map(function (c) {
-          return '<li><a href="' + c.href + '">' + c.label + "</a></li>";
+          return '<li><a href="' + c.href + '"' + (isActive(c) ? ' aria-current="page"' : '') + '>' + c.label + "</a></li>";
         }).join("");
         return (
           '<li class="nav-dropdown">' +
@@ -86,7 +147,6 @@
       '<a href="/bitcoin/" class="nav-logo"><span class="logo-icon">₿</span>' +
       '<span class="logo-text">PYMTW</span></a>' +
       '<ul class="nav-links" id="nav-links">' + items +
-      '<li><a href="/assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>' +
       "</ul>" +
       '<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">' +
       "<span></span><span></span><span></span></button>" +
@@ -95,56 +155,13 @@
   }
 
   function buildTrustBar() {
-    var items = TRUST_ITEMS.map(function (t) {
-      return '<span class="trust-bar-item">' + shieldIcon() + "<span>" + t + "</span></span>";
-    }).join("");
-    return '<div class="trust-bar"><div class="trust-bar-inner">' + items + "</div></div>";
+    return '<div class="trust-bar"><div class="trust-bar-inner">' + shieldIcon() +
+      '<span>Education only. Never share your seed phrase or private keys.</span> ' +
+      '<a href="/security-promise.html">Our security promise</a></div></div>';
   }
 
   function buildFooter() {
-    var year = new Date().getFullYear();
-    return (
-      '<footer class="footer"><div class="container">' +
-      '<div class="footer-grid">' +
-      '<div class="footer-brand">' +
-      '<a href="/bitcoin/" class="nav-logo"><span class="logo-icon">₿</span><span class="logo-text">PYMTW</span></a>' +
-      "<p>Practical Bitcoin education for working professionals who want long-term exposure without trading, hype, or unnecessary complexity.</p>" +
-      '<a href="/newsletter.html" class="footer-newsletter-link">' +
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>' +
-      " Get the free newsletter</a></div>" +
-      '<div class="footer-links"><h4>Learn</h4><ul>' +
-      '<li><a href="/start-here.html">Start Here</a></li>' +
-      '<li><a href="/assessment.html">Readiness Assessment</a></li>' +
-      '<li><a href="/resources.html">Resource Library</a></li>' +
-      '<li><a href="/whitepaper.html">The Whitepaper</a></li>' +
-      '<li><a href="/videos.html">Video Library</a></li>' +
-      '<li><a href="/book">The Book</a></li>' +
-      "</ul></div>" +
-      '<div class="footer-links"><h4>Programs</h4><ul>' +
-      '<li><a href="/programs.html#workshops">Live Workshops</a></li>' +
-      '<li><a href="/programs.html#private">Private Education</a></li>' +
-      '<li><a href="/membership.html">Membership</a></li>' +
-      '<li><a href="/corporate.html">Corporate & Speaking</a></li>' +
-      '<li><a href="/starter-kit.html">Starter Kit</a></li>' +
-      '<li><a href="/services.html">All Services</a></li>' +
-      "</ul></div>" +
-      '<div class="footer-links"><h4>Trust</h4><ul>' +
-      '<li><a href="/security-promise.html">Security Promise</a></li>' +
-      '<li><a href="/legal.html#disclaimer">Educational Disclaimer</a></li>' +
-      '<li><a href="/legal.html#privacy">Privacy Policy</a></li>' +
-      '<li><a href="/legal.html#affiliate">Affiliate Disclosure</a></li>' +
-      '<li><a href="/legal.html#terms">Terms & Policies</a></li>' +
-      '<li><a href="/about.html">About</a></li>' +
-      "</ul></div>" +
-      "</div>" +
-      '<div class="footer-bottom">' +
-      "<p><strong>Educational disclaimer:</strong> PYMTW provides general educational information about Bitcoin, technology, custody, and financial concepts. " +
-      "Nothing on this website constitutes individualized investment, tax, legal, accounting, or financial advice. " +
-      "Bitcoin is volatile and can decline substantially in value. Past performance does not predict future results.</p>" +
-      '<p class="footer-copy">&copy; ' + year + " Put Your Money to Work in Bitcoin (PYMTW). All rights reserved. " +
-      "Founder &amp; educator: Frank W. Jerome.</p>" +
-      "</div></div></footer>"
-    );
+    return "<footer class=\"footer\"><div class=\"container\"><div class=\"simple-footer-links\"><a href=\"/bitcoin/\">Bitcoin home</a><a href=\"/resources.html\">All resources</a><a href=\"/programs.html\">Programs &amp; workshops</a><a href=\"/newsletter.html\">Newsletter</a><a href=\"/about.html\">About &amp; contact</a><a href=\"/legal.html#privacy\">Privacy</a><a href=\"/legal.html#affiliate\">Affiliate disclosure</a><a href=\"/legal.html#terms\">Terms &amp; policies</a><a href=\"/\">PYMTW home</a></div><div class=\"footer-bottom\"><p><strong>Educational disclaimer:</strong> PYMTW provides general educational information about Bitcoin, technology, custody, and financial concepts. Nothing on this website constitutes individualized investment, tax, legal, accounting, or financial advice. Bitcoin is volatile and can decline substantially in value. Past performance does not predict future results.</p><p class=\"footer-copy\">Put Your Money to Work \u00b7 Frank W. Jerome</p></div></div></footer>";
   }
 
   /* ---------- Behaviors: scroll state, mobile toggle, dropdowns ---------- */
