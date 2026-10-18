@@ -1,0 +1,16 @@
+/* Readability adjustments scoped to the legacy Bitcoin library. */
+.btc-price-bar,
+.btc-price-bar span,
+.btc-price-bar a,
+.resource-badge,
+.resource-meta,
+.resource-type,
+.tag-pill,
+.sample-tag,
+.edu-item small,
+.edu-item .edu-tag,
+.resource-card small,
+.section-eyebrow,
+.footer-note {
+  font-size:12px;
+}
