@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pymtw.com/tools/</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq></url>
+  <url><loc>https://pymtw.com/tools/</loc><lastmod>2026-10-18</lastmod><changefreq>weekly</changefreq></url>
   <url><loc>https://pymtw.com/tools/checkup/</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq></url>
   <url><loc>https://pymtw.com/tools/subscription-leak-finder/</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq></url>
   <url><loc>https://pymtw.com/tools/credit-card-optimizer/</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq></url>
@@ -16,4 +16,5 @@
   <url><loc>https://pymtw.com/tools/guides/lost-my-job/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://pymtw.com/tools/guides/first-home/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://pymtw.com/tools/guides/true-cost-of-a-car/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://pymtw.com/tools/paycheck-decoder/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq></url>
 </urlset>

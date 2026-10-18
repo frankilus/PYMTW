@@ -1,123 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- seo:head -->
-<title>Paycheck Decoder: Pay Stub Lines Explained (Coming Soon)</title>
-<meta name="description" content="Coming soon: every line on your pay stub explained in plain English, including FICA, withholding and pre-tax vs. post-tax deductions.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self'; img-src 'self' blob: data:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Paycheck Decoder | PYMTW Money Tools</title>
+<meta name="description" content="Understand the lines on a U.S. pay stub and reconcile gross pay, employee deductions and take-home pay. Private photo/PDF import or manual entry.">
 <link rel="canonical" href="https://pymtw.com/tools/paycheck-decoder/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PYMTW Tools">
-<meta property="og:title" content="Paycheck Decoder: Pay Stub Lines Explained (Coming Soon)">
-<meta property="og:description" content="Coming soon: every line on your pay stub explained in plain English, including FICA, withholding and pre-tax vs. post-tax deductions.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="PYMTW Tools">
+<meta property="og:title" content="Paycheck Decoder | PYMTW Money Tools">
+<meta property="og:description" content="Understand pay-stub lines and reconcile your take-home pay. Private photo/PDF import and manual entry for U.S. employee paychecks.">
 <meta property="og:url" content="https://pymtw.com/tools/paycheck-decoder/">
-<meta property="og:image" content="https://pymtw.com/tools/og/spending.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PYMTW Tools: Spending">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Paycheck Decoder: Pay Stub Lines Explained (Coming Soon)">
-<meta name="twitter:description" content="Coming soon: every line on your pay stub explained in plain English, including FICA, withholding and pre-tax vs. post-tax deductions.">
-<meta name="twitter:image" content="https://pymtw.com/tools/og/spending.png">
-<meta name="twitter:image:alt" content="PYMTW Tools: Spending">
-<!-- /seo:head -->
-<meta name="theme-color" content="#fffbf6">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../tools.css">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "BreadcrumbList",
-   "itemListElement": [
-    {
-     "@type": "ListItem",
-     "position": 1,
-     "name": "PYMTW",
-     "item": "https://pymtw.com/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "name": "Tools",
-     "item": "https://pymtw.com/tools/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 3,
-     "name": "Paycheck decoder",
-     "item": "https://pymtw.com/tools/paycheck-decoder/"
-    }
-   ]
-  },
-  {
-   "@type": "FAQPage",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "What is FICA on my paycheck?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "FICA is the combined Social Security and Medicare tax taken from most wages. Your employer pays a matching share."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "What is the difference between pre-tax and post-tax deductions?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Pre-tax deductions, such as traditional 401(k) contributions and many health premiums, come out before income tax is calculated and lower your taxable pay. Post-tax deductions come out after tax."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "How do I know if my withholding is too high or too low?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Compare what is being withheld with what you expect to owe for the year. The IRS Tax Withholding Estimator can help, and you can change withholding with a new Form W-4."
-     }
-    }
-   ]
-  }
- ]
-}
-</script>
-<link rel="stylesheet" href="../v7/pages.css">
-
+<meta property="og:image" content="https://pymtw.com/tools/og/spending.png"><meta property="og:image:alt" content="PYMTW Money Tools: Spending">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Paycheck Decoder | PYMTW Money Tools">
+<meta name="twitter:description" content="Understand pay-stub lines and reconcile your take-home pay."><meta name="twitter:image" content="https://pymtw.com/tools/og/spending.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PYMTW","item":"https://pymtw.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pymtw.com/tools/"},{"@type":"ListItem","position":3,"name":"Paycheck decoder","item":"https://pymtw.com/tools/paycheck-decoder/"}]}</script>
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="decoder.css">
 <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="robots" content="noindex">
+<script src="core.js" defer></script><script src="app.js" defer></script><script src="import-parser.js" defer></script><script src="import.js" defer></script>
 </head>
 <body>
-<nav><div class="wrap">
-  <a class="logo" href="/" aria-label="PYMTW home — Put Your Money to Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a>
-  <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
-</div></nav>
-<header class="soon"><div class="narrow"><div class="icon">🧾</div><div class="eyebrow" style="margin-top:20px">Coming soon</div><h1>Paycheck decoder</h1><p class="sub">Snap or upload your pay stub and get every line explained in plain English, with a quick check on your tax withholding.</p><p class="direct-answer">A pay stub shows your gross pay, then subtracts taxes (federal and state withholding plus FICA for Social Security and Medicare) and deductions such as benefits and retirement contributions to arrive at take-home pay. This tool, coming soon, will explain each line of yours.</p>
-<ul><li>What each tax and deduction means: FICA, federal and state withholding, pre-tax vs. post-tax</li><li>Whether your withholding looks too high or too low for the year</li><li>Where your benefits money is going</li></ul>
-<p style="margin-top:36px"><a class="btn" href="../">Browse the tools that work today →</a></p><p class="hint" style="margin-top:18px">Meanwhile, try the <a style="color:var(--accent);font-weight:600" href="../emergency-fund-runway/">emergency fund runway</a>.</p>
-<p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. When this tool launches, everything will be calculated in your browser, and nothing you type or upload leaves your device.</p></div></header>
-<!-- seo:body -->
-<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
-<div class="faq"><h2>Common questions</h2><div class="qa"><h3>What is FICA on my paycheck?</h3><p>FICA is the combined Social Security and Medicare tax taken from most wages. Your employer pays a matching share.</p></div><div class="qa"><h3>What is the difference between pre-tax and post-tax deductions?</h3><p>Pre-tax deductions, such as traditional 401(k) contributions and many health premiums, come out before income tax is calculated and lower your taxable pay. Post-tax deductions come out after tax.</p></div><div class="qa"><h3>How do I know if my withholding is too high or too low?</h3><p>Compare what is being withheld with what you expect to owe for the year. The IRS Tax Withholding Estimator can help, and you can change withholding with a new Form W-4.</p></div></div>
-<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../roth-vs-traditional/"><b>Roth vs. traditional</b><span>Which account wins for you, now and in retirement.</span></a></li><li><a href="../emergency-fund-runway/"><b>Emergency fund runway</b><span>How long your savings would last, and how much is enough.</span></a></li><li><a href="../checkup/"><b>2-minute money checkup</b><span>Two minutes of questions, then a prioritized list of money blind spots.</span></a></li></ul></nav>
-</div></section>
-<!-- /seo:body -->
-<footer><div class="wrap">
-  <div class="top">
-    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
-    <div class="links"><a href="../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
-  </div>
-  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. No signup. Your numbers never leave your device. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
-</div></footer>
-<script src="../tools.js"></script>
-
-
-<div class="v7-next"><a href="../checkup/">Take the 2-minute money checkup →</a><a href="../#newsletter">Newsletter signup →</a></div>
-<script src="/assets/site-analytics.js" defer></script>
-</body>
-</html>
+<a class="pd-skip" href="#pd-form">Skip to paycheck entry</a>
+<nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/" title="Return to the PYMTW main homepage"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="../#tools">All money tools</a></div></div></nav>
+<main class="pd-shell">
+<header class="pd-hero"><p class="eyebrow">PAYCHECK DECODER · U.S. PAY STUBS</p><h1>Your paycheck,<br><em>in plain English.</em></h1><p class="sub">Understand what came out, where it went, and how the numbers add up to your take-home pay.</p><p class="pd-privacy">Private by design. Your entries stay in this tab. No account or cloud upload. Files and entries stay on your device.</p></header>
+<noscript><p class="pd-error">Turn on JavaScript to use the decoder. The source links below still work.</p></noscript>
+<section class="pd-import pd-panel" aria-labelledby="pd-import-title">
+<div class="pd-section-title"><h2 id="pd-import-title">Start with your pay stub</h2><span class="pd-local-badge">ON YOUR DEVICE</span></div>
+<p class="pd-copy">Choose a photo or PDF to fill in the lines for you. Review what was read before using it, or <a href="#pd-form">enter amounts yourself</a>.</p>
+<div class="pd-import-actions"><label class="pd-button secondary pd-file-label" for="pd-file">Choose photo or PDF<input type="file" id="pd-file" accept="image/jpeg,image/png,image/webp,application/pdf,.jpg,.jpeg,.png,.webp,.pdf"></label><button type="button" class="pd-text-button" id="pd-file-clear" hidden>Remove file</button></div>
+<p class="pd-mini">JPG, PNG, WebP or PDF · up to 10 MB · PDFs up to 5 pages · English printed text. A sharp, upright photo works best. No files, images or extracted text are sent to a server.</p>
+<p class="pd-mini">No stub handy? Download a <a href="examples/fictional-paystub.pdf" download>fictional sample PDF</a> or <a href="examples/fictional-paystub.png" download>sample photo</a> to try the reader.</p>
+<p id="pd-file-status" class="pd-copy" role="status" aria-live="polite"></p><p id="pd-file-error" class="pd-error" role="alert" hidden></p>
+<div id="pd-document" hidden>
+<div class="pd-document-controls"><label class="pd-label" id="pd-page-label" for="pd-page" hidden>PDF page<select id="pd-page"></select></label><button type="button" class="pd-button secondary" id="pd-rotate">Rotate photo ↻</button><button type="button" class="pd-button" id="pd-read">Read this page</button><button type="button" class="pd-text-button" id="pd-file-cancel" hidden>Cancel reading</button></div>
+<p class="pd-mini">One page at a time. Import the page for this paycheck; pages are never merged automatically.</p>
+<details class="pd-image-details"><summary>View the selected page</summary><canvas id="pd-page-canvas" aria-label="Selected pay stub page"></canvas></details>
+</div>
+<section id="pd-import-review" class="pd-import-review" hidden aria-labelledby="pd-import-review-title">
+<h3 id="pd-import-review-title" tabindex="-1">Review before using these amounts</h3><p class="pd-copy">Text recognition can miss digits, mix columns or misread labels. Check the source page and select only this paycheck’s amounts. Earnings details and subtotals are excluded to avoid counting them twice.</p>
+<label class="pd-label pd-column-label" id="pd-column-label" for="pd-column" hidden>For rows with several amounts, which column is current pay?<select id="pd-column"><option value="">Choose a column…</option></select><small>This sets the same position on each multi-amount row. Review individual rows if your layout changes across sections.</small></label>
+<div id="pd-import-rows"></div>
+<details class="pd-raw-details"><summary>Show all text read from this page</summary><p class="pd-mini">Use this to spot a missing line. Unrecognized items can still be entered manually.</p><textarea id="pd-raw" readonly aria-label="Text read from the selected page" spellcheck="false"></textarea></details>
+<label class="pd-confirm"><input type="checkbox" id="pd-import-confirm">I checked the selected labels, types and current-period amounts against my pay stub.</label>
+<p class="pd-mini">Using these amounts replaces the existing paycheck entries. Your file and extracted text will then be removed from this page; the selected amounts remain editable.</p>
+<button type="button" class="pd-button" id="pd-import-use">Use selected amounts →</button><p id="pd-import-error" class="pd-error" role="alert" hidden></p>
+</section></section>
+<div class="pd-layout">
+<form id="pd-form" class="pd-panel" novalidate autocomplete="off">
+<div class="pd-section-title"><span class="pd-step" aria-hidden="true">1</span><h2>Start with one paycheck</h2></div>
+<p class="pd-copy">Use the <strong>current pay period</strong> column on a U.S. employee pay stub. Leave out year-to-date totals and personal details.</p>
+<div class="pd-example-actions"><button type="button" class="pd-button secondary" id="pd-example">Try a fictional example</button><button type="button" class="pd-text-button" id="pd-reset">Clear all entries</button></div>
+<p id="pd-mode" class="pd-mode" hidden></p>
+<div class="pd-fields"><label class="pd-label" for="pd-gross">Gross cash pay ($)<input id="pd-gross" required inputmode="decimal" placeholder="e.g. 3,000.00" maxlength="16" aria-describedby="pd-gross-help"><small id="pd-gross-help">Total cash earnings before deductions, including overtime or bonus pay on this check. Exclude non-cash benefits.</small></label><label class="pd-label" for="pd-net">Net pay on your stub ($)<input id="pd-net" inputmode="decimal" placeholder="Optional" maxlength="16" aria-describedby="pd-net-help"><small id="pd-net-help">Optional: enter the full net pay, before it is split between bank accounts.</small></label></div>
+<hr class="pd-rule">
+<div class="pd-section-title"><span class="pd-step" aria-hidden="true">2</span><h2>Decode the lines</h2></div>
+<p class="pd-copy">Add each employee tax and deduction once. Select what the line represents to see its explanation. For reimbursements and employer-paid items, choose the matching type.</p>
+<div id="pd-lines"></div>
+<button type="button" class="pd-button secondary pd-add" id="pd-add">+ Add another line</button>
+<p class="pd-mini" style="margin-top:14px">Do not add “Total deductions” if you have entered the individual lines. Amounts must be zero or positive. Use “Cash addition outside gross pay” for a refund that increases this check.</p>
+<p id="pd-error" class="pd-error" role="alert" hidden></p>
+<p id="pd-status" class="pd-status" role="status"></p>
+<button type="submit" class="pd-button pd-submit">Decode my paycheck →</button>
+<p class="pd-mini" style="margin-top:12px">This checks arithmetic using your entries. It does not verify payroll accuracy or calculate how much tax you should owe.</p>
+</form>
+<aside class="pd-summary" aria-label="Your paycheck explanation">
+<div class="pd-empty" id="pd-empty"><p class="pd-result-label">A little clarity</p><h2>From what you earn<br>to what you keep.</h2><p class="pd-copy">Your explanation will appear here. Try the example to see a complete paycheck decoded.</p><div class="pd-equation"><span>Gross cash pay</span><span>− Employee taxes</span><span>− Benefits &amp; other deductions</span><span>+ Cash additions outside gross</span><b>= Calculated take-home pay</b></div><p class="pd-mini">Employer contributions are explained separately. They are not taken out of your pay.</p></div>
+<section class="pd-results" id="pd-results" hidden aria-labelledby="pd-result-amount"></section>
+</aside>
+</div>
+<section class="pd-glossary" aria-labelledby="pd-glossary-title"><p class="eyebrow">MAKE SENSE OF THE SMALL PRINT</p><h2 id="pd-glossary-title">What does that code mean?</h2><p class="pd-copy">Look up common entries even if you do not have your pay stub handy. Employers use different codes, so confirm unfamiliar labels with payroll.</p><label class="pd-label" for="pd-search">Search a code or deduction<input type="search" id="pd-search" placeholder="Try FICA, OASDI, Roth, or medical" maxlength="80" aria-controls="pd-terms"></label><div id="pd-terms"></div><p id="pd-no-terms" class="pd-copy" role="status" hidden>No matching term. Ask payroll to explain the code, or record it as “Other deduction / not sure” if it reduces your cash pay.</p>
+<div class="pd-source"><strong>How this works</strong><p>The decoder subtracts the tax and deduction amounts you enter from cash gross pay, then adds cash payments not already included in gross. It compares that result with the optional net-pay figure. It does not infer taxable wages, apply tax tables, or assess annual withholding. Special cases such as stock compensation, non-cash benefits and payroll reversals may need help from payroll.</p><p style="margin-top:12px"><strong>Sources &amp; useful next steps</strong> · Reviewed October 18, 2026</p><ul><li><a href="https://consumer.gov/your-money/your-paycheck-explained" target="_blank" rel="noopener noreferrer">Consumer.gov: your paycheck explained ↗</a></li><li><a href="https://www.irs.gov/taxtopics/tc751" target="_blank" rel="noopener noreferrer">IRS: Social Security and Medicare withholding ↗</a></li><li><a href="https://www.irs.gov/retirement-plans/retirement-plan-faqs-regarding-contributions-are-retirement-plan-contributions-subject-to-withholding-for-fica-medicare-or-federal-income-tax" target="_blank" rel="noopener noreferrer">IRS: tax treatment of retirement contributions ↗</a></li><li><a href="https://www.irs.gov/publications/p15b" target="_blank" rel="noopener noreferrer">IRS: employer fringe benefits guide ↗</a></li><li><a href="https://www.irs.gov/individuals/tax-withholding-estimator" target="_blank" rel="noopener noreferrer">IRS Tax Withholding Estimator ↗</a></li></ul><p>For education, not individualized tax, legal, or financial advice. Photo/PDF recognition can miss or misread amounts; always review the selected current-period entries. Unusual layouts and handwriting may require manual entry.</p></div>
+</section>
+</main>
+<footer class="pd-footer"><p><strong>PYMTW · Put Your Money to Work</strong></p><p><a href="/">Main homepage</a> · <a href="../">Money Tools</a> · <a href="../roth-vs-traditional/">Roth vs. traditional</a> · <a href="/legal.html#privacy">Privacy</a></p><p>Files and entries are processed in this tab. Nothing from your pay stub is sent to a server or saved in browser storage. The browser downloads public reading software from this site when needed. Clear all entries to remove the file, extracted text and entered amounts from the page.</p></footer>
+</body></html>

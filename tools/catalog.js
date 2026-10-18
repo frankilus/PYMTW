@@ -47,9 +47,9 @@ var PT_CATS = [
     "slug": "paycheck-decoder",
     "icon": "🧾",
     "name": "Paycheck decoder",
-    "desc": "Every line on your pay stub, explained in plain English.",
-    "time": "30 sec",
-    "live": false,
+    "desc": "Understand your pay stub with private photo/PDF import or manual entry.",
+    "time": "3 min",
+    "live": true,
     "kw": [
      "paycheck",
      "pay stub",

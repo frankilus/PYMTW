@@ -23,11 +23,14 @@ for name in paths:
   elif name=='tools/debt-payoff-planner/app.js':
    for label,key in [('Debt name','name'),('Balance','balance'),('Annual percentage rate','apr'),('Minimum monthly payment','min')]:
     before=before.replace('data-k="'+key+'"','aria-label="'+label+'" data-k="'+key+'"')
+  elif name=='tools/catalog.js':
+   start=before.index('"slug": "paycheck-decoder"');end=before.index('"kw":',start)
+   before=before[:start]+before[start:end].replace('Every line on your pay stub, explained in plain English.','Understand your pay stub with private photo/PDF import or manual entry.').replace('"30 sec"','"3 min"').replace('"live": false','"live": true')+before[end:] # Approved Paycheck Decoder launch only.
   elif name=='tools/v7/home.js':continue # Approved benefit copy and 404-search handoff; tested in browser.
   assert before==after,name+' behavior changed';count+=1
  if name in ['CNAME','tools/robots.txt','googlea70c61482c1a9eed.html','bitcoin-playbook.pdf'] or name.endswith(('.csv','.webp','.woff2')):
   if name not in approved_covers:assert p.read_bytes()==original(name),name+' original asset changed'
- if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name:
+ if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name and name!='tools/paycheck-decoder/index.html': # Approved replacement of the coming-soon stub with the approved Paycheck Decoder.
   before=original(name).decode();after=p.read_text()
   for pattern in [r'<!-- seo:head -->.*?<!-- /seo:head -->',r'<script type="application/ld\+json">.*?</script>',r'<form\b.*?</form>',r'<fieldset\b.*?</fieldset>']:
    for block in re.findall(pattern,before,re.S):assert block in after,name+' original SEO/form/schema changed'
