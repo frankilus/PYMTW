@@ -6,6 +6,14 @@ root=Path(__file__).resolve().parents[1]
 base='876fcc6827857ceca9d5b5d6798bbb62fb9b08c9'
 def original(path):return subprocess.check_output(['git','show',base+':'+path],cwd=root)
 paths=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines()
+def normalized(markup):
+ markup=markup.replace('favicon.svg?v=pymtw-20261018','favicon.svg')
+ markup=re.sub(r'<link rel="icon" href="/favicon.ico[^>]*>', '', markup)
+ social='<meta property="og:image" content="https://pymtw.com/assets/og/pymtw.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="PYMTW — Put Your Money to Work: Bitcoin education and Money Tools">'
+ twitter='<meta name="twitter:image" content="https://pymtw.com/assets/og/pymtw.png">'
+ for card in ['', '<meta name="twitter:card" content="summary_large_image">']:
+  markup=markup.replace(social+card+twitter, '')
+ return markup.replace('\n\n</head>','\n</head>')
 count=0
 # Frank explicitly replaced the book artwork with his supplied second-edition cover.
 cover_manifest=json.loads((root/'assets/home/book-cover-provenance.json').read_text())
@@ -26,21 +34,25 @@ for name in paths:
   elif name=='tools/catalog.js':
    start=before.index('"slug": "paycheck-decoder"');end=before.index('"kw":',start)
    before=before[:start]+before[start:end].replace('Every line on your pay stub, explained in plain English.','Understand your pay stub with private photo/PDF import or manual entry.').replace('"30 sec"','"3 min"').replace('"live": false','"live": true')+before[end:] # Approved Paycheck Decoder launch only.
+   start=before.index('"slug": "explain-my-401k"');end=before.index('"kw":',start)
+   before=before[:start]+before[start:end].replace('See what you own, what it costs, and whether you’re on track.','Understand contributions, match, investments and fees with private photo/PDF import or manual entry.').replace('"45 sec"','"5 min"').replace('"live": false','"live": true')+before[end:]
+  elif name=='assets/bitcoin-home/home.js':before=before.replace('with<br>','with <br>').replace('for<br>','for <br>').replace('security<br>','security <br>')
   elif name=='tools/v7/home.js':continue # Approved benefit copy and 404-search handoff; tested in browser.
   assert before==after,name+' behavior changed';count+=1
  if name in ['CNAME','tools/robots.txt','googlea70c61482c1a9eed.html','bitcoin-playbook.pdf'] or name.endswith(('.csv','.webp','.woff2')):
   if name not in approved_covers:assert p.read_bytes()==original(name),name+' original asset changed'
- if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name and name!='tools/paycheck-decoder/index.html': # Approved replacement of the coming-soon stub with the approved Paycheck Decoder.
-  before=original(name).decode();after=p.read_text()
+ if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name and name not in ['tools/paycheck-decoder/index.html','tools/explain-my-401k/index.html']: # Approved replacement of the coming-soon stub with the approved Paycheck Decoder.
+  before=original(name).decode();after=normalized(p.read_text())
+  if name=='tools/debt-payoff-planner/index.html':before=before.replace('<th></th>','<th scope="col"><span class="sr-only">Remove</span></th>')
   for pattern in [r'<!-- seo:head -->.*?<!-- /seo:head -->',r'<script type="application/ld\+json">.*?</script>',r'<form\b.*?</form>',r'<fieldset\b.*?</fieldset>']:
    for block in re.findall(pattern,before,re.S):assert block in after,name+' original SEO/form/schema changed'
   # Existing visible copy survives outside the explicitly revised homepage copy.
   if name!='tools/index.html':
    for block in re.findall(r'<p\b[^>]*>.*?</p>',before,re.S):
-    block=block.replace('href="https://pymtwtools.beehiiv.com"','href="https://pymtwtools.beehiiv.com/archive"')
+    block=block.replace('href="https://pymtwtools.beehiiv.com"','href="https://pymtwtools.beehiiv.com/subscribe"').replace('Browse the archive ↗','Subscribe to the newsletter ↗')
     assert block in after,name+' original paragraph changed'
 # Preserve privacy disclosures verbatim; only hostname and analytics loader additions are allowed.
 old=original('legal.html').decode().replace('https://www.pymtw.com','https://pymtw.com')
-new=(root/'legal.html').read_text().replace('<meta name="referrer" content="strict-origin-when-cross-origin">\n','').replace('<script src="/assets/site-analytics.js" defer></script>\n','')
+new=normalized((root/'legal.html').read_text()).replace('<meta name="referrer" content="strict-origin-when-cross-origin">\n','').replace('<script src="/assets/site-analytics.js" defer></script>\n','')
 assert old==new,'Privacy policy content changed'
 print(f'Preserved {count} current JavaScript files (debt labels excepted), original photos/data/PDF/verification, tool SEO/schema/forms/paragraphs and privacy disclosures; verified user-approved replacement book assets.')

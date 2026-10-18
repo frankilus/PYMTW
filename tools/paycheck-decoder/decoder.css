@@ -10,3 +10,6 @@
 @media print{.pd-import{display:none!important}}
 
 .pd-import-review,#pd-import-review-title{scroll-margin-top:95px}.pd-import-row>input[type=checkbox]{width:24px;height:24px;min-height:24px}
+
+/* Show the static signup invitation only with a calculated result. */
+.pd-results[hidden]+.result-newsletter{display:none}

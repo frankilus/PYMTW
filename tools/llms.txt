@@ -19,7 +19,7 @@ Pages marked "coming soon" describe tools that are not yet functional.
 
 - [Subscription leak finder](https://pymtw.com/tools/subscription-leak-finder/): To find subscriptions you forgot about, load a bank or credit card CSV export here: the tool spots charges that repeat on a schedule and totals what they cost you.
 - [Credit card optimizer](https://pymtw.com/tools/credit-card-optimizer/): The best rewards card is the type that earns the most on how you actually spend, after its annual fee.
-- [Paycheck decoder](https://pymtw.com/tools/paycheck-decoder/) (coming soon): A pay stub shows your gross pay, then subtracts taxes (federal and state withholding plus FICA for Social Security and Medicare) and deductions such as benefits and retirement contributions to arrive at take-home pay.
+- [Paycheck decoder](https://pymtw.com/tools/paycheck-decoder/): A pay stub shows your gross pay, then subtracts taxes (federal and state withholding plus FICA for Social Security and Medicare) and deductions such as benefits and retirement contributions to arrive at take-home pay.
 
 ## Debt
 
@@ -37,7 +37,7 @@ Pages marked "coming soon" describe tools that are not yet functional.
 
 - [Fee x-ray](https://pymtw.com/tools/fee-x-ray/): Investment fees are charged every year as a percentage of your balance, so their cost compounds and can add up to a large share of your growth over decades.
 - [Roth vs. traditional](https://pymtw.com/tools/roth-vs-traditional/): A Roth account is taxed now and withdrawn tax-free later, while a traditional account gives a tax break now and is taxed when you withdraw.
-- [Explain my 401(k)](https://pymtw.com/tools/explain-my-401k/) (coming soon): To understand your 401(k), check three things: what funds you hold, what they cost (each fund’s expense ratio plus any plan fees) and whether your contribution rate is on track for your goals.
+- [Explain my 401(k)](https://pymtw.com/tools/explain-my-401k/): Understand employee contributions, employer matching, vesting, investments and estimated fees using private photo/PDF import or manual entry. This is a current-plan snapshot, not a retirement-readiness projection.
 
 ## Bitcoin
 
