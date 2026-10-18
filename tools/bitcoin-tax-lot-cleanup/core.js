@@ -53,11 +53,11 @@ function analyze(records){
   if(!stamp)add(i,'Use a valid UTC timestamp: YYYY-MM-DDTHH:MM:SSZ.');
   if(stamp&&stamp>new Date().toISOString())add(i,'This transaction is in the future. Check its timestamp.');
   if(!['buy','sell','transfer'].includes(type))add(i,'Unsupported activity. Only USD buys, USD sales and transfers between your own accounts are modeled. Keep other activity for your preparer.');
-  if(stamp&&type!=='buy'&&stamp<'2025-01-01T00:00:00Z')add(i,'Pre-2025 sales/transfers are outside this preview’s scope. A preparer must reconcile your opening lots.');
+  if(stamp&&type!=='buy'&&stamp<'2025-01-01T00:00:00Z')add(i,'Pre-2025 sales/transfers are outside this tool’s scope. A preparer must reconcile your opening lots.');
   if(!account||account.length>80)add(i,'Enter a wallet/account name of 1–80 characters.');
   if(qty===null||qty<=0n||qty>21000000n*100000000n)add(i,'Enter a positive BTC amount, at most 8 decimal places and no more than 21 million BTC.');
   if(fee===null)add(i,'Confirm the BTC fee. Enter 0 only when no fee was paid in BTC.');
-  else if(fee>0n)add(i,'A fee paid in BTC needs a separate disposition/basis review. This preview cannot calculate it.');
+  else if(fee>0n)add(i,'A fee paid in BTC needs a separate disposition/basis review. This tool cannot calculate it.');
   if(type==='buy'||type==='sell'){
    if(usd===null)add(i,type==='buy'?'Missing or invalid cost basis. Enter total USD cost including USD purchase fees; do not guess.':'Missing or invalid net USD proceeds. Subtract eligible USD selling fees first.');
    if(destination)add(i,'Destination is only for a transfer. Clear it for a buy or sale.');
@@ -77,7 +77,7 @@ function analyze(records){
   if(signature.has(key)){add(r.i,'Possible duplicate of record '+(signature.get(key)+1)+'. Verify and exclude one copy if duplicated.');add(signature.get(key),'Possible duplicate of record '+(r.i+1)+'.');}else signature.set(key,r.i);
   const refkey=JSON.stringify([r.account,r.ref]);if(r.ref&&refs.has(refkey)){add(r.i,'Reference repeats within this account. Check for overlapping exports or split fills.');}else if(r.ref)refs.set(refkey,r.i);
   if(r.stamp)for(const a of [r.account,r.destination].filter(Boolean)){
-   const key=JSON.stringify([r.stamp,a]);if(stamps.has(key))add(r.i,'Another record touches this account at the same second. Verify execution order/timestamps; the preview will not guess.');else stamps.set(key,r.i);
+   const key=JSON.stringify([r.stamp,a]);if(stamps.has(key))add(r.i,'Another record touches this account at the same second. Verify execution order/timestamps; the tool will not guess.');else stamps.set(key,r.i);
   }
  }
  const empty={issues,active:valid.length,sales:[],wallets:[],lots:[],proceeds:0n,basis:0n,gain:0n};

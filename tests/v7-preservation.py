@@ -36,6 +36,8 @@ for name in paths:
    before=before[:start]+before[start:end].replace('Every line on your pay stub, explained in plain English.','Understand your pay stub with private photo/PDF import or manual entry.').replace('"30 sec"','"3 min"').replace('"live": false','"live": true')+before[end:] # Approved Paycheck Decoder launch only.
    start=before.index('"slug": "explain-my-401k"');end=before.index('"kw":',start)
    before=before[:start]+before[start:end].replace('See what you own, what it costs, and whether you’re on track.','Understand contributions, match, investments and fees with private photo/PDF import or manual entry.').replace('"45 sec"','"5 min"').replace('"live": false','"live": true')+before[end:]
+   start=before.index('"slug": "bitcoin-tax-lot-cleanup"');end=before.index('"kw":',start)
+   before=before[:start]+before[start:end].replace('Merge exchange exports into clean cost basis, ready for tax time.','Review Bitcoin CSV records privately, find missing costs and duplicates, and explore account-specific FIFO lots.').replace('"60 sec"','"5 min"').replace('"live": false','"live": true')+before[end:]
   elif name=='assets/bitcoin-home/home.js':before=before.replace('with<br>','with <br>').replace('for<br>','for <br>').replace('security<br>','security <br>')
   elif name=='tools/v7/home.js':continue # Approved benefit copy and 404-search handoff; tested in browser.
   assert before==after,name+' behavior changed';count+=1

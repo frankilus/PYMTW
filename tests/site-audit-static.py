@@ -29,7 +29,7 @@ for p in files:
   target=(r/u.path.lstrip('/') if u.path.startswith('/') else p.parent/unquote(u.path)).resolve()
   if target.is_dir():target=target/'index.html'
   assert target.exists(),(p,ref);count+=1
- if p.name in ['dashboard.html','members.html'] or p.parent.name in ['bitcoin-tax-lot-cleanup']:assert page.noindex,p
+ if p.name in ['dashboard.html','members.html']:assert page.noindex,p
 for name in ['sitemap.xml','tools/sitemap.xml']:
  tree=ET.parse(r/name)
  for url in tree.getroot():

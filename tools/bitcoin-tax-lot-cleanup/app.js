@@ -29,7 +29,7 @@ function render(){
  $('pager').hidden=records.length<=25;$('prev').disabled=page===0;$('next').disabled=(page+1)*25>=records.length;$('page-label').textContent=`Page ${page+1} of ${Math.ceil(records.length/25)}`;
 }
 function invalidate(){const had=analysis!==null;analysis=null;$('results').hidden=true;$('results').replaceChildren();$('export-lots').hidden=true;$('review-status').textContent='';$('stale').hidden=!(had||!$('stale').hidden);$('fifo-confirm').checked=false;render();}
-function openEditor(i){if(i===null&&records.length>=C.MAX_ROWS){$('review-status').textContent='The preview supports up to 500 records. Clear entries to begin another set.';return;}editing=i;$('editor').hidden=false;$('editor-title').textContent=i===null?'Add a record':'Edit record '+(i+1);for(const f of C.fields)$('f-'+f).value=i===null?(f==='type'?'buy':''):(records[i][f]||'');if(!$('f-type').value)$('f-type').value='other';scrollTo('editor');$('f-timestamp').focus({preventScroll:true});}
+function openEditor(i){if(i===null&&records.length>=C.MAX_ROWS){$('review-status').textContent='The tool supports up to 500 records. Clear entries to begin another set.';return;}editing=i;$('editor').hidden=false;$('editor-title').textContent=i===null?'Add a record':'Edit record '+(i+1);for(const f of C.fields)$('f-'+f).value=i===null?(f==='type'?'buy':''):(records[i][f]||'');if(!$('f-type').value)$('f-type').value='other';scrollTo('editor');$('f-timestamp').focus({preventScroll:true});}
 function closeEditor(){editing=null;$('editor').hidden=true;$('editor').reset();}
 function cancelImport(){generation++;pending=null;$('mapping').hidden=true;$('mapping-fields').replaceChildren();$('csv-sample').replaceChildren();$('file').value='';$('map-confirm').checked=false;}
 function clear(){records=[];analysis=null;page=0;cancelImport();closeEditor();$('results').replaceChildren();$('results').hidden=true;$('export-lots').hidden=true;$('review-status').textContent='';$('import-status').textContent='';$('import-error').hidden=true;$('import-error').textContent='';$('fifo-confirm').checked=false;$('stale').hidden=true;$('example-note').hidden=true;$('pager').hidden=true;render();}
@@ -39,7 +39,7 @@ $('file').addEventListener('change',async()=>{
  $('import-error').hidden=true;$('import-status').textContent='Reading locally…';
  try{
   if(file.size>2*1024*1024)throw Error('Choose a CSV under 2 MB.');
-  if(!/\.csv$/i.test(file.name))throw Error('Choose a .csv file. Photos, PDFs and spreadsheets are not supported in this preview.');
+  if(!/\.csv$/i.test(file.name))throw Error('Choose a .csv file. Photos, PDFs and spreadsheets are not supported in this tool.');
   const text=await file.text();if(token!==generation)return;
   const data=C.parseCSV(text);if(data.rows.length+records.length>C.MAX_ROWS)throw Error('This would exceed 500 total records. Use a smaller set.');
   pending={...data,name:file.name.slice(0,150)};
