@@ -1,6 +1,6 @@
-# Verified Round 2 audit fixes — review only
+# Verified Round 2 audit fixes and approved 401(k) launch
 
-Based on main `639202524de45d7b8e43f49c19de08c1aea4eef6`. No merge or deployment is part of this change. The separate Explain My 401(k) preview remains unpublished; this branch contains its existing coming-soon placeholder only.
+Based on main `639202524de45d7b8e43f49c19de08c1aea4eef6`. Frank subsequently approved merging PR #19 and launching the reviewed Explain My 401(k), including its private statement import. The release now includes that tool and its catalog/search/sitemap activation.
 
 ## Changes and decisions by audit item
 
@@ -27,17 +27,17 @@ Based on main `639202524de45d7b8e43f49c19de08c1aea4eef6`. No merge or deployment
 
 - Paycheck photos, PDFs and extracted amounts continue to be processed locally. No third-party request, document upload, analytics, cookies or browser persistence was observed during the tested import and manual-entry flows.
 - The newsletter card contains a fixed external link; it does not include entered amounts or document text. The page keeps `no-referrer` and the link uses `noopener noreferrer`.
-- The unpublished 401(k) statement-import preview remains in its separate local branch, with its existing no-analytics policy. This audit does not launch it.
-- All existing production JavaScript is byte-for-byte preserved relative to this PR's base, except the three heading spaces. Calculator data, photographs, authentic book-cover derivatives, routes, canonicals, noindex rules, sitemaps, privacy-policy body, provider configuration and Search Console verification are preserved.
+- The reviewed 401(k) statement-import tool is included in this release with its existing no-analytics policy and restrictive CSP.
+- Existing calculator JavaScript is byte-for-byte preserved relative to this PR's base. Production changes are the three heading spaces and the exact 401(k) catalog/homepage activation. New 401(k) calculation and import scripts match the reviewed preview. Calculator data, photographs, authentic book-cover derivatives, routes, canonicals, privacy-policy body, provider configuration and Search Console verification are preserved; only the newly launched 401(k) noindex/sitemap entry changes.
 - Existing analytics on other public pages are unchanged.
 
 ## Validation
 
 Passed automated checks:
 
-- `tests/site-audit-static.py`: 57 pages and 1,251 local references; canonical/description/JSON-LD, indexing and script syntax.
-- `tests/round2-static.py`: strict production-JavaScript and asset preservation; metadata/link fixes; unchanged Paycheck CSP and no tracking; unchanged live catalog and separate 401(k) launch boundary.
-- `tests/v7-preservation.py` and `tests/v7-links.py`: original calculation scripts/forms, approved cover hashes, privacy disclosures and 360 Tools references.
+- `tests/site-audit-static.py`: 57 pages and 1,252 local references; canonical/description/JSON-LD, indexing and script syntax.
+- `tests/round2-static.py`: strict production-JavaScript and asset preservation; metadata/link fixes; unchanged Paycheck CSP and no tracking; exact authorized 401(k) catalog/sitemap launch changes and unchanged reviewed scripts.
+- `tests/v7-preservation.py` and `tests/v7-links.py`: original calculation scripts/forms, approved cover hashes, privacy disclosures and 361 Tools references.
 - `tests/v7-calculations.cjs`: 17 original calculation assertions.
 - `tests/paycheck-decoder.cjs`: 17 calculation/validation scenarios.
 - `tests/paycheck-import-parser.cjs`: 14 parsing scenarios.
@@ -73,3 +73,7 @@ Full HTML/JSON reports and screenshots are saved in this Codex task's outputs. A
 Serve this branch with a static HTTP server and review `/`, `/bitcoin/`, `/resources.html`, `/book/` and `/tools/paycheck-decoder/`. Select **Try a fictional example** on Paycheck Decoder to see the newsletter invitation below the result.
 
 Set `PREVIEW_URL` for browser tests, `PLAYWRIGHT_PATH` for the installed Playwright module, and `NODE` for the Python syntax checker. Chrome is used by the browser tests.
+
+## Approved 401(k) release addition
+
+See [the tool review and launch notes](REVIEW-401K-PREVIEW.md) for scope, privacy, limits and tests. It supports manual entry and private photo/PDF import of investment holdings. Contributions, match rules, vesting and plan fees are entered separately. It does not score retirement readiness or infer missing expense ratios. Both statement-import tools remain free of analytics. The Lighthouse table above records the audit build before this launch addition; it is not a Lighthouse score for the new 401(k) tool.

@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');const fs=require('node:fs');const pat
 const {chromium}=require(process.env.PLAYWRIGHT_PATH||'playwright');
 const base=process.env.PREVIEW_URL||'http://127.0.0.1:8765';
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'});const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto(base+'/tools/');assert.equal(await page.locator('.tool-card').count(),14);assert.equal(await page.locator('.tool-footer a').count(),12);
+await page.goto(base+'/tools/');assert.equal(await page.locator('.tool-card').count(),14);assert.equal(await page.locator('.tool-footer a').count(),13);
 for(const [q,slug] of [['Explain my paycheck','paycheck-decoder'],['I just lost my job','guides/lost-my-job'],['Can I afford a home','guides/first-home'],['Where do I start','checkup'],['car insurance','guides/true-cost-of-a-car']]){await page.locator('#finder-input').fill(q);await page.locator('#finder-form').evaluate(el=>el.requestSubmit());assert.ok((await page.locator('#finder-results a').evaluateAll(es=>es.map(e=>e.getAttribute('href')))).some(x=>x.includes(slug)),q);}
 await page.locator('#finder-input').fill('zzzzzzz');await page.locator('#finder-form').evaluate(el=>el.requestSubmit());assert.ok(await page.locator('.result-empty').isVisible());
 for(const [moment,count] of [['starting',3],['purchase',2],['unexpected',3],['ahead',6]]){await page.locator(`.moment-card[data-moment="${moment}"]`).click();assert.equal(await page.locator('.tool-card').count(),count);}

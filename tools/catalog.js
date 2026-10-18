@@ -248,9 +248,9 @@ var PT_CATS = [
     "slug": "explain-my-401k",
     "icon": "📊",
     "name": "Explain my 401(k)",
-    "desc": "See what you own, what it costs, and whether you’re on track.",
-    "time": "45 sec",
-    "live": false,
+    "desc": "Understand contributions, match, investments and fees with private photo/PDF import or manual entry.",
+    "time": "5 min",
+    "live": true,
     "kw": [
      "401k",
      "401(k)",

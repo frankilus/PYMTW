@@ -11,8 +11,8 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
    const card=page.locator('.tool-card').filter({has:page.getByRole('heading',{name:'Paycheck decoder',exact:true})});
    assert.equal(await card.locator('.tool-state').innerText(),'AVAILABLE');
    assert.equal(await card.locator('.disabled').count(),0);
-   assert.equal(await page.locator('.tool-card.is-planned').count(),2);
-   assert.equal(await page.locator('.tool-footer a').count(),12);
+   assert.equal(await page.locator('.tool-card.is-planned').count(),1);
+   assert.equal(await page.locator('.tool-footer a').count(),13);
    await page.locator('.moment-card[data-moment="starting"]').click();
    assert.equal(await card.count(),1);
    await page.locator('#finder-input').fill('Explain my paycheck');
@@ -28,6 +28,6 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
   }
   const sitemap=await page.request.get(base+'/tools/sitemap.xml');
   assert.ok((await sitemap.text()).includes('https://pymtw.com/tools/paycheck-decoder/'));
-  console.log('PASS available listing, two remaining planned tools, search, life-moment category, navigation, public metadata, import control, sitemap and mobile/desktop layout.');
+  console.log('PASS available listing, one remaining planned tool, search, life-moment category, navigation, public metadata, import control, sitemap and mobile/desktop layout.');
  } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

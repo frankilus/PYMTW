@@ -1,123 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- seo:head -->
-<title>Explain My 401(k): What You Own and Pay (Coming Soon)</title>
-<meta name="description" content="Coming soon: see what your 401(k) owns, what its fees cost you and whether you’re on track, explained in plain English.">
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self'; img-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Explain My 401(k) | PYMTW Money Tools</title>
+<meta name="description" content="Understand your 401(k) contributions, employer match, investments and fees in plain English. Use private photo/PDF import or manual entry.">
+<meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://pymtw.com/tools/explain-my-401k/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PYMTW Tools">
-<meta property="og:title" content="Explain My 401(k): What You Own and Pay (Coming Soon)">
-<meta property="og:description" content="Coming soon: see what your 401(k) owns, what its fees cost you and whether you’re on track, explained in plain English.">
-<meta property="og:url" content="https://pymtw.com/tools/explain-my-401k/">
-<meta property="og:image" content="https://pymtw.com/tools/og/retirement.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PYMTW Tools: Retirement &amp; investing">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Explain My 401(k): What You Own and Pay (Coming Soon)">
-<meta name="twitter:description" content="Coming soon: see what your 401(k) owns, what its fees cost you and whether you’re on track, explained in plain English.">
-<meta name="twitter:image" content="https://pymtw.com/tools/og/retirement.png">
-<meta name="twitter:image:alt" content="PYMTW Tools: Retirement &amp; investing">
-<!-- /seo:head -->
-<meta name="theme-color" content="#fffbf6">
-<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="../../favicon.svg?v=pymtw-20261018" type="image/svg+xml">
-<link rel="stylesheet" href="../tools.css">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "BreadcrumbList",
-   "itemListElement": [
-    {
-     "@type": "ListItem",
-     "position": 1,
-     "name": "PYMTW",
-     "item": "https://pymtw.com/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "name": "Tools",
-     "item": "https://pymtw.com/tools/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 3,
-     "name": "Explain my 401(k)",
-     "item": "https://pymtw.com/tools/explain-my-401k/"
-    }
-   ]
-  },
-  {
-   "@type": "FAQPage",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "How do I find the fees in my 401(k)?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Look for your plan’s fee disclosure and each fund’s expense ratio, usually on your provider’s website or in the fund fact sheet."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Am I getting my full employer match?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Check your plan’s match formula and compare it with your contribution rate. Contributing less than the match leaves part of it unclaimed."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "What happens to my 401(k) if I leave my job?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "You can usually leave it in the plan, roll it to an IRA or a new employer’s plan, or cash it out. Cashing out is generally taxable and may face an extra 10% tax before age 59½."
-     }
-    }
-   ]
-  }
- ]
-}
-</script>
-<link rel="stylesheet" href="../v7/pages.css">
+<meta property="og:title" content="Explain My 401(k) | PYMTW Money Tools"><meta property="og:description" content="A clearer picture of your workplace retirement plan."><meta property="og:type" content="website"><meta property="og:url" content="https://pymtw.com/tools/explain-my-401k/"><meta property="og:image" content="https://pymtw.com/tools/og/retirement.png">
+<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/favicon.svg?v=pymtw-20261018" type="image/svg+xml"><link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="plan.css"><link rel="stylesheet" href="import.css">
+<script src="core.js" defer></script><script src="app.js" defer></script><script src="import-parser.js" defer></script><script src="import.js" defer></script>
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Explain My 401(k) | PYMTW Money Tools"><meta name="twitter:description" content="Understand contributions, match, investments and fees with private photo/PDF import or manual entry."><meta name="twitter:image" content="https://pymtw.com/tools/og/retirement.png">
+</head><body>
+<a class="skip" href="#plan-form">Skip to plan details</a>
+<nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="../#tools">All money tools</a></div></div></nav>
+<main class="shell">
+<header class="hero"><p class="eyebrow">EXPLAIN MY 401(k)</p><h1>Your retirement plan.<br><em>A little less mysterious.</em></h1><p class="sub">See what’s going in, what you own, and what you’re paying. Turn the numbers in your plan into a clearer next step.</p><p class="privacy-note">Private by design. No account, no tracking, no saved entries. Your numbers stay in this tab.</p><div class="jump"><a href="#contributions">01 · Money going in</a><a href="#investments">02 · What you own</a><a href="#terms">The plain-English guide ↓</a></div></header>
+<noscript><p class="error">Turn on JavaScript to use the calculator. The plain-English guide below still works.</p></noscript>
+<section class="ki-import panel" aria-labelledby="ki-import-title">
+<div class="ki-section-title"><h2 id="ki-import-title">Start with your 401(k) statement</h2><span class="ki-local-badge">ON YOUR DEVICE</span></div>
+<p class="copy">Read the investment page from your statement, then choose the holdings and current balances to use. You can also <a href="#plan-form">enter them yourself</a>. Match rules, contribution rates, vesting and plan fees are not imported.</p>
+<div class="ki-import-actions"><label class="button secondary ki-file-label" for="ki-file">Choose photo or PDF<input type="file" id="ki-file" accept="image/jpeg,image/png,image/webp,application/pdf,.jpg,.jpeg,.png,.webp,.pdf"></label><button type="button" class="text-button" id="ki-file-clear" hidden>Remove file</button></div>
+<p class="help">JPG, PNG, WebP or PDF · up to 10 MB · PDFs up to 20 pages · English printed text. A sharp, upright photo works best. No files, images or extracted text are sent to a server.</p>
+<p class="help">No statement handy? Download a <a href="examples/fictional-statement.pdf" download>fictional sample PDF</a> or <a href="examples/fictional-statement.png" download>sample photo</a> to try the reader.</p>
+<p id="ki-file-status" class="copy" role="status" aria-live="polite"></p><p id="ki-file-error" class="error" role="alert" hidden></p>
+<div id="ki-document" hidden>
+<div class="ki-document-controls"><label class="field" id="ki-page-label" for="ki-page" hidden>PDF page<select id="ki-page"></select></label><button type="button" class="button secondary" id="ki-rotate">Rotate photo ↻</button><button type="button" class="button" id="ki-read">Read this page</button><button type="button" class="text-button" id="ki-file-cancel" hidden>Cancel reading</button></div>
+<p class="help">One page at a time. Choose a holdings page, not an activity or contribution-summary page. Pages are never merged automatically; holdings on other pages must be added manually.</p>
+<details class="ki-image-details"><summary>View the selected page</summary><canvas id="ki-page-canvas" aria-label="Selected 401(k) statement page"></canvas></details>
+</div>
+<section id="ki-import-review" class="ki-import-review" hidden aria-labelledby="ki-import-review-title">
+<h3 id="ki-import-review-title" tabindex="-1">Review before using these amounts</h3><p class="copy">Text recognition can miss digits, mix columns or misread labels. All candidate lines start unchecked. Include only actual investments. Choose current/ending balances—not beginning balances, share quantities, share prices or transactions. Check for missing holdings. Do not import both an account total and its individual funds.</p>
+<label class="field ki-column-label" id="ki-column-label" for="ki-column" hidden>Which amount column contains current/ending investment balances?<select id="ki-column"><option value="">Choose a column…</option></select><small>Positions count amounts with two decimal places, from left to right. This applies to all candidate rows. Check every row; columns can differ between sections.</small></label>
+<div id="ki-import-rows"></div>
+<details class="ki-raw-details"><summary>Show all text read from this page</summary><p class="help">Use this to spot a missing line. Unrecognized items can still be entered manually.</p><textarea id="ki-raw" readonly aria-label="Text read from the selected page" spellcheck="false"></textarea></details>
+<label class="ki-confirm"><input type="checkbox" id="ki-import-confirm">I checked each selected holding and its current balance, and verified any expense ratio I entered, against the original statement or fund disclosure.</label>
+<p class="help">Using these holdings replaces the existing investment list only. Contributions, match, vesting and plan-fee entries stay unchanged. Your file and extracted text are then removed; imported values remain editable. All values must belong to the same plan and statement date.</p>
+<button type="button" class="button" id="ki-import-use">Use selected holdings →</button><p id="ki-import-error" class="error" role="alert" hidden></p>
+</section></section>
 
-<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="robots" content="noindex">
-</head>
-<body>
-<nav><div class="wrap">
-  <a class="logo" href="/" title="PYMTW · Put Your Money To Work"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a>
-  <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
-</div></nav>
-<header class="soon"><div class="narrow"><div class="icon">📊</div><div class="eyebrow" style="margin-top:20px">Coming soon</div><h1>Explain my 401(k)</h1><p class="sub">Upload your 401(k) statement to see what you own, what it costs, whether you’re getting the full employer match, and if you’re on track.</p><p class="direct-answer">To understand your 401(k), check three things: what funds you hold, what they cost (each fund’s expense ratio plus any plan fees) and whether your contribution rate is on track for your goals. This tool, coming soon, will read that for you; the Fee x-ray works today.</p>
-<ul><li>Your holdings and asset mix in one simple picture</li><li>Total fees in dollars, not just percentages</li><li>Match check: are you leaving free money behind?</li><li>An on-track estimate based on your age and savings rate</li></ul>
-<p style="margin-top:36px"><a class="btn" href="../">Browse the tools that work today →</a></p><p class="hint" style="margin-top:18px">Meanwhile, try the <a style="color:var(--accent);font-weight:600" href="../fee-x-ray/">Fee x-ray</a>.</p>
-<p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. When this tool launches, everything will be calculated in your browser, and nothing you type or upload leaves your device.</p></div></header>
-<!-- seo:body -->
-<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
-<div class="faq"><h2>Common questions</h2><div class="qa"><h3>How do I find the fees in my 401(k)?</h3><p>Look for your plan’s fee disclosure and each fund’s expense ratio, usually on your provider’s website or in the fund fact sheet.</p></div><div class="qa"><h3>Am I getting my full employer match?</h3><p>Check your plan’s match formula and compare it with your contribution rate. Contributing less than the match leaves part of it unclaimed.</p></div><div class="qa"><h3>What happens to my 401(k) if I leave my job?</h3><p>You can usually leave it in the plan, roll it to an IRA or a new employer’s plan, or cash it out. Cashing out is generally taxable and may face an extra 10% tax before age 59½.</p></div></div>
-<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../fee-x-ray/"><b>Fee x-ray</b><span>Reveal what your fund and advisor fees cost you over 30 years.</span></a></li><li><a href="../roth-vs-traditional/"><b>Roth vs. traditional</b><span>Which account wins for you, now and in retirement.</span></a></li><li><a href="../guides/lost-my-job/"><b>Just lost your job? What to do</b><span>What to do this week, this month and this year after a job loss.</span></a></li></ul></nav>
-</div></section>
-<!-- /seo:body -->
-<footer><div class="wrap">
-  <div class="top">
-    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
-    <div class="links"><a href="../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
-  </div>
-  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. No signup. Your numbers never leave your device. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
-</div></footer>
-<script src="../tools.js"></script>
-
-
-<div class="v7-next"><a href="../checkup/">Take the 2-minute money checkup →</a><a href="../#newsletter">Newsletter signup →</a></div>
-<script src="/assets/site-analytics.js" defer></script>
-</body>
-</html>
+<div class="layout"><form id="plan-form" novalidate autocomplete="off">
+<section class="panel" id="contributions"><div class="section-head"><span>01</span><h2>What’s going in?</h2></div><p class="copy">Have your statement and plan details nearby. Enter what you know, or try a fictional example. You can also import investment balances from a photo or PDF above.</p><div class="actions"><button type="button" class="button secondary" id="example">Try an example</button><button type="button" class="text-button" id="clear">Clear all entries</button></div><p id="mode" class="mode" role="status" hidden></p>
+<div class="fields"><label class="field">Annual eligible pay ($)<input id="pay" inputmode="decimal" placeholder="e.g. 80,000" maxlength="18"><small>Pay your plan uses to calculate contributions and matching. It may exclude bonuses or other earnings.</small></label><label class="field">Your contribution (% of pay)<input id="rate" inputmode="decimal" placeholder="e.g. 4" maxlength="9"><small>Traditional + Roth employee contributions combined. Exclude employer amounts, loan repayments and non-Roth after-tax contributions.</small></label></div>
+<label class="field">Your employer’s match formula<select id="match"><option value="unknown">I’m not sure / another formula</option><option value="none">My plan has no matching contribution</option><option value="simple">One tier — e.g. 50% of the first 6%</option><option value="tiered">Two tiers — e.g. 100% of the first 3%, then 50% of the next 2%</option></select></label>
+<div id="match-fields" hidden><div class="fields"><label class="field">Employer matches (%)<input id="m1" inputmode="decimal" placeholder="e.g. 50" maxlength="9"><small>50 means 50¢ per $1 you contribute.</small></label><label class="field">On the first (% of your pay)<input id="cap1" inputmode="decimal" placeholder="e.g. 6" maxlength="9"><small>The contribution band eligible for that rate.</small></label></div><div class="fields" id="second-tier" hidden><label class="field">Then employer matches (%)<input id="m2" inputmode="decimal" placeholder="e.g. 50" maxlength="9"></label><label class="field">On the next (% of your pay)<input id="cap2" inputmode="decimal" placeholder="e.g. 2" maxlength="9"><small>An additional band, not the combined limit.</small></label></div></div>
+<p class="help">Leave both pay and contribution blank to explore only your investments. Annualized illustrations assume steady eligible pay and contributions; IRS/plan limits, eligibility, pay-period matching, true-ups and other employer deposits are not modeled.</p>
+<details class="optional"><summary>What does “vested” mean for my employer money?</summary><p class="copy">Vested means yours to keep. Your employee contributions are fully vested. Employer money can follow different schedules. Optional: use one employer contribution source and its current vested percentage from your statement.</p><div class="fields"><label class="field">Employer-source balance ($)<input id="employer" inputmode="decimal" placeholder="Leave blank if unknown" maxlength="18"><small>Current balance attributable to this source, including its gains/losses. Already part of your investments below; don’t add it twice.</small></label><label class="field">Vested percentage (%)<input id="vest" inputmode="decimal" placeholder="e.g. 60" maxlength="9"><small>Use your statement’s percentage, not a guess based on years worked.</small></label></div></details>
+</section>
+<section class="panel" id="investments"><div class="section-head"><span>02</span><h2>What do you own?</h2></div><p class="copy">Add the current balance of each investment once. Use the fund’s annual expense ratio from its fact sheet or your plan’s fee disclosure. Leave unknown fees blank; zero means a confirmed 0% fee.</p><p class="help">Use current dollar balances, not future contribution percentages. Skip outstanding loans. Target-date funds stay grouped because their underlying stock/bond mix varies.</p><div id="funds"></div><button type="button" class="text-button" id="add">+ Add another investment</button>
+<details class="optional"><summary>Other plan fees (optional)</summary><p class="copy">Add ongoing fees charged to your account separately from fund expenses. Enter 0 only if you’ve confirmed no charge. Avoid counting a fee twice.</p><div class="fields"><label class="field">Flat plan fees per year ($)<input id="admin" inputmode="decimal" placeholder="Unknown" maxlength="18"><small>For example, a $15 quarterly fee is $60 per year.</small></label><label class="field">Asset-based plan fee per year (%)<input id="adminPct" inputmode="decimal" placeholder="Unknown" maxlength="9"><small>Not fund expense ratios. Use only if this fee applies to all entered holdings.</small></label></div></details>
+<p id="error" class="error" role="alert" tabindex="-1" hidden></p><button type="submit" class="button full" id="explain">Explain my 401(k) →</button><p class="help">You can explore investments alone or contributions alone. Nothing is sent to your plan provider.</p>
+</section></form>
+<aside class="summary-column" aria-label="Your plan explained"><div id="empty" class="empty"><p class="kicker">A clearer picture</p><h2>Less jargon.<br>More understanding.</h2><p class="copy">Your explanation will appear here. No need to know every answer to get started.</p><ol><li><b>Your contributions &amp; match</b>Separate what you put in from what your employer may add.</li><li><b>Your investments</b>See how your entered balances are spread across fund types.</li><li><b>Your fees</b>Translate small percentages into estimated dollars a year.</li></ol><p class="help">Have a statement handy? Start with the investment balances and fees. No statement? Try the example.</p></div><div id="results" hidden aria-labelledby="result-title"><h2 id="result-title" tabindex="-1">Your plan, explained.</h2><div id="result-content"></div></div><p id="stale" class="mode" role="status" hidden>Your entries changed. Select “Explain my 401(k)” to update your results.</p></aside></div>
+<section class="glossary" id="terms"><p class="eyebrow">THE PLAIN-ENGLISH GUIDE</p><h2>Start with the language.</h2>
+<details class="term"><summary>Is my 401(k) an investment?</summary><p>Your 401(k) is a workplace retirement account. The funds inside it are the investments. A contribution election tells payroll what to add; an investment election tells the plan where to put that money. Existing balances and new-contribution allocations can differ.</p></details>
+<details class="term"><summary>Traditional vs. Roth: what changes?</summary><p>Traditional elective contributions generally reduce current federal taxable income; withdrawals are generally taxable. Roth contributions use after-tax income, and qualified withdrawals are tax-free. They share an employee contribution limit. Tax treatment and investment choice are separate decisions.</p></details>
+<details class="term"><summary>What is an expense ratio?</summary><p>An ongoing annual fund cost expressed as a percentage of assets. At an unchanged $10,000 balance, a 0.50% ratio is about $50 a year. These expenses are generally reflected in fund returns, rather than appearing as a separate bill. Plan administration or service fees may be additional.</p></details>
+<details class="term"><summary>How does the employer match work?</summary><p>A match depends on how much you contribute and your plan’s formula. “50% of the first 6%” means the employer adds up to 3% of eligible pay when you contribute 6%. Matching can be calculated each paycheck. A year-end true-up may reconcile differences, but only if the plan provides one. Confirm the rules before changing contribution timing.</p></details>
+<details class="term"><summary>What is a target-date fund?</summary><p>A fund holding a mix of investments that generally changes over time toward and sometimes beyond a target retirement year. Funds with the same year can have different risks and fees. They are not guaranteed. Mixing one with other funds changes your combined allocation; this tool does not look through to the underlying holdings.</p></details>
+<details class="term"><summary>Am I on track for retirement?</summary><p>This snapshot cannot answer that on its own. Retirement readiness depends on future spending, retirement age, other savings, Social Security, taxes and uncertain returns. Use this tool to understand your plan first, then build a broader retirement plan. A high balance, full match or low fee alone does not establish readiness.</p></details>
+<div class="reference"><strong>How the estimates work</strong><p>Contribution illustrations use eligible pay × contribution rate. Match tiers apply sequentially to the entered rate. Annual fund-cost estimates use each current balance × expense ratio, before market changes. Fee estimates exclude unknown amounts, transaction/service charges and costs not entered. No tax limits or investment returns are modeled, and no fund is recommended.</p><p>Educational information, not individualized financial, tax or legal advice. Confirm plan-specific terms with your administrator.</p><p style="margin-top:16px"><strong>Sources · Reviewed October 18, 2026</strong></p><ul><li><a href="https://www.irs.gov/retirement-plans/matching-contributions-help-you-save-more-for-retirement" target="_blank" rel="noopener noreferrer">IRS: matching contributions</a></li><li><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-vesting" target="_blank" rel="noopener noreferrer">IRS: vesting and ownership</a></li><li><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-designated-roth-account" target="_blank" rel="noopener noreferrer">IRS: designated Roth accounts</a></li><li><a href="https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/understanding-your-retirement-plan-fees" target="_blank" rel="noopener noreferrer">Department of Labor: retirement plan fees</a></li><li><a href="https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/fact-sheets/target-date-retirement-funds-tips-for-erisa-plan-fiduciaries" target="_blank" rel="noopener noreferrer">Department of Labor: target-date funds</a></li></ul></div></section>
+</main><footer class="foot"><p><strong>PYMTW · Put Your Money to Work</strong></p><p><a href="/">Main homepage</a> · <a href="../">Money Tools</a> · <a href="../fee-x-ray/">Fee x-ray</a> · <a href="../roth-vs-traditional/">Roth vs. traditional</a> · <a href="/legal.html#privacy">Privacy</a></p><p>Your entries exist only in this page’s memory. No analytics, account connection or saved statement data. Reading software loads from this site; documents are processed on your device. Clear all entries or reload to start over.</p></footer>
+</body></html>
