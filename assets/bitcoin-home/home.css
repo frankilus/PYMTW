@@ -72,7 +72,7 @@ h1 em,h2 em{color:var(--orange);font-weight:400}
 .green{color:var(--green)}
 .book{margin-top:70px;display:grid;grid-template-columns:.9fr 1.2fr;gap:65px;align-items:center;padding:45px 65px;background:#f2eade;border-radius:8px;border:1px solid #e7ddce}
 .book-art{position:relative;text-align:center;isolation:isolate;padding:8px 0}
-.book-halo{position:absolute;inset:15px -5px 35px;background:radial-gradient(ellipse,#e6d0b4 0%,#f2eade 70%);border:1px solid #dfcdb4;border-radius:50%;z-index:-1}
+
 .book-art img{display:block;height:275px;width:auto;max-width:100%;object-fit:contain;transform:rotate(-5deg);margin:auto;filter:drop-shadow(10px 14px 10px #5d43242a)}
 .book-art>p{font-size:8px;letter-spacing:.12em;color:#786b59;margin:25px 0 0}
 .book-copy .eyebrow{font-size:9px;margin-bottom:16px}
