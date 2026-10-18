@@ -1,8 +1,8 @@
-# Paycheck Decoder — unpublished review preview
+# Paycheck Decoder — release notes
 
 Preview: http://127.0.0.1:8773/tools/paycheck-decoder/
 
-Branch: `feature/paycheck-decoder-preview`. Based on main after PR #17. No merge, deployment, or public launch. The shared catalog still marks Paycheck Decoder as planned, and this page remains noindex and excluded from the sitemap.
+Branch: `feature/paycheck-decoder-preview`. Based on main after PR #17. Launch approved by the user on October 18, 2026 through PR #18. The release removes preview labels/noindex, enables the tool in the shared catalog and homepage, and adds it to the Tools sitemap.
 
 ## What is implemented
 
@@ -15,7 +15,7 @@ Branch: `feature/paycheck-decoder-preview`. Based on main after PR #17. No merge
 - Existing green Money Tools theme, responsive layout, and PYMTW logo returning to the parent homepage.
 - No analytics, server uploads, third-party scripts or persistence of pay-stub data. OCR/PDF code, models and fonts are bundled and loaded from the same origin. External source links open only when selected, without sending entries or a referrer.
 
-## Scope for this first preview
+## Scope for this release
 
 This is a pay-stub explanation and arithmetic tool. It suggests classifications for recognized labels but requires review. It does not audit employer correctness, project annual tax liability, or recommend W-4 settings. Labels alone cannot establish pre-tax treatment. Non-cash pay and unusual reversals may require payroll assistance. The IRS withholding estimator is linked for the broader annual question.
 
@@ -39,17 +39,17 @@ Run `node tests/paycheck-decoder.cjs`. For browser checks set `PLAYWRIGHT_PATH` 
 - https://www.irs.gov/publications/p15b
 - https://www.irs.gov/individuals/tax-withholding-estimator
 
-Before launch, obtain approval of the preview and scope, remove the preview banner/noindex, finalize public metadata, enable the tool in the catalog/search, and add the route to the sitemap. These release actions are intentionally not part of this preview.
+The approved release includes public metadata, catalog/search availability and sitemap inclusion. Photo/PDF imports retain the same mandatory review and private on-device processing as the reviewed preview.
 
 ## Private photo and PDF import
 
 Supported: JPEG, PNG, WebP and PDFs up to 10 MB; PDFs up to 5 pages; English printed text. One selected page is processed at a time. Photos over 40 megapixels are rejected and working canvases are bounded to about 6 million pixels. Password-protected PDFs must be unlocked locally first. Handwriting and unfamiliar layouts may require manual corrections.
 
-PDF.js 5.6.205 reads text PDFs and renders scanned pages. Tesseract.js/core 7.0.0 and the bundled English tessdata_fast model recognize images. All code/model/resource URLs point to the same origin; there is no cloud OCR fallback. Content Security Policy blocks third-party connections, form submission, frames and objects. PDF JavaScript actions are never invoked; dynamic PDF evaluation is disabled. OCR model IndexedDB caching is disabled. Public library/model assets may be cached by the browser, but pay-stub data is not written to storage.
+PDF.js 5.6.205 reads text PDFs and renders scanned pages. Tesseract.js/core 7.0.0 and the bundled English tessdata_fast model recognize images. All code/model/resource URLs point to the same origin; there is no cloud OCR fallback. Content Security Policy blocks third-party connections, form submission and objects. PDF JavaScript actions are never invoked; dynamic PDF evaluation is disabled. OCR model IndexedDB caching is disabled. Public library/model assets may be cached by the browser, but pay-stub data is not written to storage.
 
 The reader only proposes lines. It excludes identifying/banking fields and defaults unknown labels, earnings details and subtotals to excluded. Multiple amount columns require a user selection; it does not silently choose current versus YTD. Source text is shown alongside editable labels, classifications and amounts. Negative adjustments are not converted to positive values. A review checkbox and explicit import are required. Import replaces the form values and removes the document canvas and raw extracted text; it does not automatically calculate a result. Users can remove the file, cancel reading or clear all entries.
 
-Vendor licenses and a SHA-256 manifest are in `tools/paycheck-decoder/vendor/`. The vendored bundle is approximately 21 MB, loaded as needed (not all downloaded on initial page load). Fictional sample PDF/photo downloads are available within the preview. All fixtures in `tests/fixtures/paycheck-import/` are synthetic; no actual pay stub was used or committed.
+Vendor licenses and a SHA-256 manifest are in `tools/paycheck-decoder/vendor/`. The vendored bundle is approximately 21 MB, loaded as needed (not all downloaded on initial page load). Fictional sample PDF/photo downloads are available within the tool. All fixtures in `tests/fixtures/paycheck-import/` are synthetic; no actual pay stub was used or committed.
 
 ### Import verification
 
@@ -62,4 +62,8 @@ Vendor licenses and a SHA-256 manifest are in `tools/paycheck-decoder/vendor/`. 
 
 Run `node tests/paycheck-import-parser.cjs` and `node tests/paycheck-import-browser.cjs` (same Playwright/PREVIEW_URL configuration as above). OCR tests use the committed fictional fixtures and need no remote OCR service.
 
-Real-world payroll layouts and camera quality vary. Tests demonstrate the private pipeline and review controls on synthetic fixtures, not universal extraction accuracy. The preview remains local and unpublished; catalog status and sitemap are unchanged.
+Real-world payroll layouts and camera quality vary. Tests demonstrate the private pipeline and review controls on synthetic fixtures, not universal extraction accuracy. The release includes catalog and sitemap updates; recognition limitations and review controls remain unchanged.
+
+## Release verification
+
+`node tests/paycheck-launch.cjs` checks Money Tools availability, the two remaining planned tools, paycheck search, the Getting Started category, navigation, removal of preview/noindex, sitemap inclusion and mobile/desktop layout. Calculation, parser, manual-entry and full private-import browser tests passed again on the release candidate.
