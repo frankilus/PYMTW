@@ -24,3 +24,6 @@ footer .privacy-note a{text-decoration:underline;text-underline-offset:3px}
 
 /* Keep table action headings available to assistive technology. */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Give standalone text buttons a usable touch target without enlarging their text. */
+.linkbtn{display:inline-flex;align-items:center;min-width:24px;min-height:24px;padding:3px 0}

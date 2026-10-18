@@ -20,7 +20,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8775';
    assert.equal(await page.locator('#finder-results a[href="./explain-my-401k/"]').count(),1);
    await card.getByRole('link',{name:'Open this tool'}).click();
    assert.equal(new URL(page.url()).pathname,'/tools/explain-my-401k/');
-   assert.equal(await page.title(),'Explain My 401(k) | PYMTW Money Tools');
+   assert.equal(await page.title(),'401(k) Explainer: Match, Investments & Fees | PYMTW');
    assert.equal(await page.locator('.preview, meta[name=robots][content*=noindex]').count(),0);
    assert.ok(await page.locator('#ki-file').count());
    assert.equal(await page.locator('script[src*=analytics], script[src*=goatcounter], iframe').count(),0);

@@ -2,14 +2,109 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self'; img-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Explain My 401(k) | PYMTW Money Tools</title>
+<title>401(k) Explainer: Match, Investments &amp; Fees | PYMTW</title>
 <meta name="description" content="Understand your 401(k) contributions, employer match, investments and fees in plain English. Use private photo/PDF import or manual entry.">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://pymtw.com/tools/explain-my-401k/">
-<meta property="og:title" content="Explain My 401(k) | PYMTW Money Tools"><meta property="og:description" content="A clearer picture of your workplace retirement plan."><meta property="og:type" content="website"><meta property="og:url" content="https://pymtw.com/tools/explain-my-401k/"><meta property="og:image" content="https://pymtw.com/tools/og/retirement.png">
+<meta property="og:title" content="401(k) Explainer: Match, Investments &amp; Fees | PYMTW"><meta property="og:description" content="A clearer picture of your workplace retirement plan."><meta property="og:type" content="website"><meta property="og:url" content="https://pymtw.com/tools/explain-my-401k/"><meta property="og:image" content="https://pymtw.com/tools/og/retirement.png">
 <link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/favicon.svg?v=pymtw-20261018" type="image/svg+xml"><link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="plan.css"><link rel="stylesheet" href="import.css">
 <script src="core.js" defer></script><script src="app.js" defer></script><script src="import-parser.js" defer></script><script src="import.js" defer></script>
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Explain My 401(k) | PYMTW Money Tools"><meta name="twitter:description" content="Understand contributions, match, investments and fees with private photo/PDF import or manual entry."><meta name="twitter:image" content="https://pymtw.com/tools/og/retirement.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="401(k) Explainer: Match, Investments &amp; Fees | PYMTW"><meta name="twitter:description" content="Understand contributions, match, investments and fees with private photo/PDF import or manual entry."><meta name="twitter:image" content="https://pymtw.com/tools/og/retirement.png">
+<link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "PYMTW",
+          "item": "https://pymtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Money Tools",
+          "item": "https://pymtw.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Explain My 401(k)",
+          "item": "https://pymtw.com/tools/explain-my-401k/"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Explain My 401(k)",
+      "url": "https://pymtw.com/tools/explain-my-401k/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any modern browser",
+      "isAccessibleForFree": true,
+      "description": "Understand contributions, employer matching, investments and estimated fees with manual entry or private, on-device statement photo and PDF import."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is my 401(k) an investment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your 401(k) is a workplace retirement account. The funds inside it are the investments. A contribution election tells payroll what to add; an investment election tells the plan where to put that money. Existing balances and new-contribution allocations can differ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Traditional vs. Roth: what changes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional elective contributions generally reduce current federal taxable income; withdrawals are generally taxable. Roth contributions use after-tax income, and qualified withdrawals are tax-free. They share an employee contribution limit. Tax treatment and investment choice are separate decisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an expense ratio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An ongoing annual fund cost expressed as a percentage of assets. At an unchanged $10,000 balance, a 0.50% ratio is about $50 a year. These expenses are generally reflected in fund returns, rather than appearing as a separate bill. Plan administration or service fees may be additional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the employer match work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A match depends on how much you contribute and your plan’s formula. “50% of the first 6%” means the employer adds up to 3% of eligible pay when you contribute 6%. Matching can be calculated each paycheck. A year-end true-up may reconcile differences, but only if the plan provides one. Confirm the rules before changing contribution timing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a target-date fund?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A fund holding a mix of investments that generally changes over time toward and sometimes beyond a target retirement year. Funds with the same year can have different risks and fees. They are not guaranteed. Mixing one with other funds changes your combined allocation; this tool does not look through to the underlying holdings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Am I on track for retirement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This snapshot cannot answer that on its own. Retirement readiness depends on future spending, retirement age, other savings, Social Security, taxes and uncertain returns. Use this tool to understand your plan first, then build a broader retirement plan. A high balance, full match or low fee alone does not establish readiness."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head><body>
 <a class="skip" href="#plan-form">Skip to plan details</a>
 <nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="../#tools">All money tools</a></div></div></nav>
@@ -50,7 +145,7 @@
 <details class="optional"><summary>Other plan fees (optional)</summary><p class="copy">Add ongoing fees charged to your account separately from fund expenses. Enter 0 only if you’ve confirmed no charge. Avoid counting a fee twice.</p><div class="fields"><label class="field">Flat plan fees per year ($)<input id="admin" inputmode="decimal" placeholder="Unknown" maxlength="18"><small>For example, a $15 quarterly fee is $60 per year.</small></label><label class="field">Asset-based plan fee per year (%)<input id="adminPct" inputmode="decimal" placeholder="Unknown" maxlength="9"><small>Not fund expense ratios. Use only if this fee applies to all entered holdings.</small></label></div></details>
 <p id="error" class="error" role="alert" tabindex="-1" hidden></p><button type="submit" class="button full" id="explain">Explain my 401(k) →</button><p class="help">You can explore investments alone or contributions alone. Nothing is sent to your plan provider.</p>
 </section></form>
-<aside class="summary-column" aria-label="Your plan explained"><div id="empty" class="empty"><p class="kicker">A clearer picture</p><h2>Less jargon.<br>More understanding.</h2><p class="copy">Your explanation will appear here. No need to know every answer to get started.</p><ol><li><b>Your contributions &amp; match</b>Separate what you put in from what your employer may add.</li><li><b>Your investments</b>See how your entered balances are spread across fund types.</li><li><b>Your fees</b>Translate small percentages into estimated dollars a year.</li></ol><p class="help">Have a statement handy? Start with the investment balances and fees. No statement? Try the example.</p></div><div id="results" hidden aria-labelledby="result-title"><h2 id="result-title" tabindex="-1">Your plan, explained.</h2><div id="result-content"></div></div><p id="stale" class="mode" role="status" hidden>Your entries changed. Select “Explain my 401(k)” to update your results.</p></aside></div>
+<aside class="summary-column" aria-label="Your plan explained"><div id="empty" class="empty"><p class="kicker">A clearer picture</p><h2>Less jargon.<br>More understanding.</h2><p class="copy">Your explanation will appear here. No need to know every answer to get started.</p><ol><li><b>Your contributions &amp; match</b>Separate what you put in from what your employer may add.</li><li><b>Your investments</b>See how your entered balances are spread across fund types.</li><li><b>Your fees</b>Translate small percentages into estimated dollars a year.</li></ol><p class="help">Have a statement handy? Start with the investment balances and fees. No statement? Try the example.</p></div><div id="results" hidden aria-labelledby="result-title"><h2 id="result-title" tabindex="-1">Your plan, explained.</h2><div id="result-content"></div><section class="result-newsletter" aria-labelledby="plan-newsletter-title"><h2 id="plan-newsletter-title">A little clarity, delivered.</h2><p>One useful money idea per issue, in plain English.</p><a href="https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe to the newsletter ↗</a><p class="help">Opens the newsletter signup page. Your statement and plan entries are not included.</p></section></div><p id="stale" class="mode" role="status" hidden>Your entries changed. Select “Explain my 401(k)” to update your results.</p></aside></div>
 <section class="glossary" id="terms"><p class="eyebrow">THE PLAIN-ENGLISH GUIDE</p><h2>Start with the language.</h2>
 <details class="term"><summary>Is my 401(k) an investment?</summary><p>Your 401(k) is a workplace retirement account. The funds inside it are the investments. A contribution election tells payroll what to add; an investment election tells the plan where to put that money. Existing balances and new-contribution allocations can differ.</p></details>
 <details class="term"><summary>Traditional vs. Roth: what changes?</summary><p>Traditional elective contributions generally reduce current federal taxable income; withdrawals are generally taxable. Roth contributions use after-tax income, and qualified withdrawals are tax-free. They share an employee contribution limit. Tax treatment and investment choice are separate decisions.</p></details>
