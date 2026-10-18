@@ -71,3 +71,15 @@ button,a,input{touch-action:manipulation} .prompt{min-height:44px} .footer-nav a
 
 /* Respect decorative contrast while keeping all text readable. */
 .checkup-number{color:#b7cabe}.modal-close{width:44px;height:44px}.hero-title{letter-spacing:-.035em}
+
+/* Planned tools use a slate palette, with explicit labels as well as color. */
+.tool-card.is-planned{background:#edf0f4;border-color:#c6cdd5}
+.tool-card.is-planned:hover{border-color:#c6cdd5;box-shadow:none}
+.tool-card.is-planned .tool-symbol{background:#dfe5ec;color:#475569}
+.tool-card.is-planned .tool-state.soon{background:#d5dde7;color:#374151;padding:5px 9px;border-radius:5px}
+.tool-card.is-planned h4{color:#374151}
+.tool-card.is-planned>p,.tool-card.is-planned .tool-footer .disabled{color:#475569}
+.tool-card.is-planned .tool-preview{background:#e1e6ed}
+.tool-card.is-planned .tool-preview span,.tool-card.is-planned .tool-preview small{color:#475569}
+.tool-card.is-planned .tool-preview strong{color:#374151}
+.tool-card.is-planned .tool-footer .disabled{font-weight:700}
