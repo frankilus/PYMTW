@@ -20,7 +20,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
    assert.equal(await page.locator('#finder-results a[href="./paycheck-decoder/"]').count(),1);
    await card.getByRole('link',{name:'Open this tool'}).click();
    assert.equal(new URL(page.url()).pathname,'/tools/paycheck-decoder/');
-   assert.equal(await page.title(),'Paycheck Decoder | PYMTW Money Tools');
+   assert.equal(await page.title(),'Paycheck Decoder: Understand Your Pay Stub | PYMTW');
    assert.equal(await page.locator('.pd-preview').count(),0);
    assert.equal(await page.locator('meta[name=robots][content*=noindex]').count(),0);
    assert.ok(await page.locator('#pd-file').count());
