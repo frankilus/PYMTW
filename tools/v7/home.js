@@ -73,11 +73,11 @@
  const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,homeGuide];
  const aliases=[
   [/baby|pregnan|newborn|child care|daycare|day care|parental leave|maternity|paternity/,['guides/true-cost-of-a-baby','emergency-fund-runway']],
-  [/cost of owning|homeowner|property tax|home insurance|hoa|maintenance|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
+  [/cost of owning|homeowner|property tax|home insurance|\bhoa\b|home maintenance|house maintenance|home repair|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
   [/wedding|engaged|engagement|marry|married|honeymoon/,['guides/true-cost-of-a-wedding','money-timeline']],
   [/where do i start|not sure|start with|overwhelmed|financial health|getting started|money mind/,['checkup']],
   [/lost my job|lost job|laid off|fired|unemployed|unemployment/,['guides/lost-my-job','severance-runway','emergency-fund-runway']],
-  [/afford a home|buy a home|house|mortgage|first home/,['guides/first-home','rent-vs-buy']],
+  [/afford a home|buy a home|house(?! maintenance| repair)|mortgage|first home/,['guides/first-home','rent-vs-buy']],
   [/pay off|debt|credit card balance/,['debt-payoff-planner']],
   [/bitcoin|btc/,['bitcoin-dca-backtester']],
   [/retirement|ira|roth/,['roth-vs-traditional']],

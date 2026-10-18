@@ -39,6 +39,9 @@ for name in paths:
    start=before.index('"slug": "bitcoin-tax-lot-cleanup"');end=before.index('"kw":',start)
    before=before[:start]+before[start:end].replace('Merge exchange exports into clean cost basis, ready for tax time.','Review Bitcoin CSV records privately, find missing costs and duplicates, and explore account-specific FIFO lots.').replace('"60 sec"','"5 min"').replace('"live": false','"live": true')+before[end:]
   elif name=='assets/bitcoin-home/home.js':before=before.replace('with<br>','with <br>').replace('for<br>','for <br>').replace('security<br>','security <br>')
+  elif name=='tools/router.js':
+   assert hashlib.sha256(p.read_bytes()).hexdigest()=='b33e3a4a3290d3b28be0af8b3e36d45bef42115a104288c6edaa02831ecbe19c',name+' approved guide keywords changed'
+   continue
   elif name=='tools/v7/home.js':continue # Approved benefit copy and 404-search handoff; tested in browser.
   assert before==after,name+' behavior changed';count+=1
  if name in ['CNAME','tools/robots.txt','googlea70c61482c1a9eed.html','bitcoin-playbook.pdf'] or name.endswith(('.csv','.webp','.woff2')):
@@ -47,7 +50,17 @@ for name in paths:
   before=original(name).decode();after=normalized(p.read_text())
   if name=='tools/debt-payoff-planner/index.html':before=before.replace('<th></th>','<th scope="col"><span class="sr-only">Remove</span></th>')
   for pattern in [r'<!-- seo:head -->.*?<!-- /seo:head -->',r'<script type="application/ld\+json">.*?</script>',r'<form\b.*?</form>',r'<fieldset\b.*?</fieldset>']:
-   for block in re.findall(pattern,before,re.S):assert block in after,name+' original SEO/form/schema changed'
+   for block in re.findall(pattern,before,re.S):
+    if name=='tools/index.html' and block.startswith('<script type="application/ld+json">'):
+     # Allow only the approved FAQ addition; every original schema field remains exact.
+     current=re.search(pattern,after,re.S)[0]
+     old_schema=json.loads(re.search(r'>(.*?)</script>',block,re.S)[1])
+     new_schema=json.loads(re.search(r'>(.*?)</script>',current,re.S)[1])
+     faq=next(x for x in new_schema['@graph'] if x['@type']=='FAQPage')
+     added=faq['mainEntity'].pop(0)
+     assert added['name']=='How do I use the tools?'
+     assert new_schema==old_schema,name+' original schema changed beyond FAQ addition'
+    else:assert block in after,name+' original SEO/form/schema changed'
   # Existing visible copy survives outside the explicitly revised homepage copy.
   if name!='tools/index.html':
    for block in re.findall(r'<p\b[^>]*>.*?</p>',before,re.S):
