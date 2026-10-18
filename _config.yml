@@ -1,0 +1,29 @@
+# Exclude internal root notes and tests from the published website.
+# Keep vendor license/readme files available; new root notes must be added here.
+# Preserve Jekyll default dependency exclusions when setting an explicit list.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - tests/
+  - CONTENT_AND_COPY_PLAN.md
+  - IMPLEMENTATION_SUMMARY.md
+  - INTEGRATIONS.md
+  - LEGAL_REVIEW_ITEMS.md
+  - REVIEW-401K-PREVIEW.md
+  - REVIEW-BITCOIN-HOMEPAGE.md
+  - REVIEW-BITCOIN-TAX-LOT-PREVIEW.md
+  - REVIEW-BITCOIN.md
+  - REVIEW-HOMEPAGE.md
+  - REVIEW-PAYCHECK-DECODER.md
+  - REVIEW-ROUND2-AUDIT.md
+  - REVIEW-ROUND3-AUDIT.md
+  - REVIEW-SITE-AUDIT.md
+  - REVIEW-V7.md
+  - SITE_ARCHITECTURE.md
+  - SITE_AUDIT.md
+  - STARTER_KIT_LAUNCH_CHECKLIST.md

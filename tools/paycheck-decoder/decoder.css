@@ -13,3 +13,6 @@
 
 /* Show the static signup invitation only with a calculated result. */
 .pd-results[hidden]+.result-newsletter{display:none}
+
+/* Keep sample downloads readable and comfortably selectable inline. */
+.pd-import .pd-mini a[download]{display:inline-block;padding:4px 0;min-height:24px}
