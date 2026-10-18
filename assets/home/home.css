@@ -9,3 +9,8 @@
 @media(max-width:850px){.book-feature{gap:30px;padding:35px}.book-art img{height:270px}.book-art{min-height:325px}.book-copy h2{font-size:36px}}
 @media(max-width:650px){.header{height:80px}.brand-note{font-size:12px}main{padding-top:37px}.intro h1{font-size:clamp(53px,12.5vw,72px)}.intro>p:last-child{font-size:14px}.directory-head{margin-top:36px}.directory-head h2{font-size:12px}.section-count{display:none}.tile-top{min-height:145px;padding:23px 25px}.tile-top h3{font-size:33px}.tile-body{padding:23px 25px}.book-feature{grid-template-columns:1fr;gap:30px;padding:29px 25px 33px;margin-top:44px}.book-art{min-height:300px}.book-art img{height:260px}.book-copy h2{font-size:39px}.book-copy>p{font-size:13px}.book-cta{display:flex;gap:15px}.book-copy .eyebrow{font-size:12px}}
 
+
+/* Landing-page newsletter and book captions, kept with their owning page. */
+.home-newsletter{border-top:1px solid #d9d2c6;margin-top:40px;padding:32px 0;display:flex;align-items:center;justify-content:space-between;gap:24px}.home-newsletter h2{font:400 28px Georgia,serif;margin:0 0 10px}.home-newsletter p{font-size:14px;color:#5c645d}.home-newsletter a{color:#315b4c;font-size:14px;font-weight:600;text-decoration:underline;min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:650px){.home-newsletter{align-items:flex-start;flex-direction:column}}
+.book-art>span,.book-copy p.book-disclosure{color:#625541;font-size:13px}
