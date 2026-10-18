@@ -1,123 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- seo:head -->
-<title>Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)</title>
-<meta name="description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<title>Bitcoin Tax-Lot Cleanup | PYMTW</title>
+<meta name="description" content="Organize Bitcoin records privately, find missing costs and duplicates, and review a wallet-by-wallet FIFO worksheet.">
 <link rel="canonical" href="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PYMTW Tools">
-<meta property="og:title" content="Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)">
-<meta property="og:description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
-<meta property="og:url" content="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/">
-<meta property="og:image" content="https://pymtw.com/tools/og/bitcoin.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PYMTW Tools: Bitcoin">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bitcoin Cost Basis &amp; Tax-Lot Cleanup Tool (Coming Soon)">
-<meta name="twitter:description" content="Coming soon: merge exchange exports into one clean bitcoin cost-basis record, ready for tax time. Runs in your browser.">
-<meta name="twitter:image" content="https://pymtw.com/tools/og/bitcoin.png">
-<meta name="twitter:image:alt" content="PYMTW Tools: Bitcoin">
-<!-- /seo:head -->
-<meta name="theme-color" content="#fffbf6">
-<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="../../favicon.svg?v=pymtw-20261018" type="image/svg+xml">
-<link rel="stylesheet" href="../tools.css">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "BreadcrumbList",
-   "itemListElement": [
-    {
-     "@type": "ListItem",
-     "position": 1,
-     "name": "PYMTW",
-     "item": "https://pymtw.com/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "name": "Tools",
-     "item": "https://pymtw.com/tools/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 3,
-     "name": "Bitcoin tax-lot cleanup",
-     "item": "https://pymtw.com/tools/bitcoin-tax-lot-cleanup/"
-    }
-   ]
-  },
-  {
-   "@type": "FAQPage",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "What is cost basis for bitcoin?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "It is generally what you paid to acquire the bitcoin, including certain fees. Your gain or loss when you sell is the sale proceeds minus that basis."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Why do I need my records from every exchange?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "If you moved coins between exchanges or wallets, one platform may not know what you originally paid. Combining records helps keep the original basis attached to each lot."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Is this tax advice?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "No. Crypto tax rules can be complex and change over time. Confirm your situation with a tax professional or official IRS guidance."
-     }
-    }
-   ]
-  }
- ]
-}
-</script>
-<link rel="stylesheet" href="../v7/pages.css">
-
-<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="robots" content="noindex">
-</head>
-<body>
-<nav><div class="wrap">
-  <a class="logo" href="/" title="PYMTW · Put Your Money To Work"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a>
-  <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
-</div></nav>
-<header class="soon"><div class="narrow"><div class="icon">🧮</div><div class="eyebrow" style="margin-top:20px">Coming soon</div><h1>Bitcoin tax-lot cleanup</h1><p class="sub">Merge CSV exports from several exchanges into one clean list of tax lots, with cost basis under FIFO, HIFO or specific ID, and an 8949-style export for your tax preparer.</p><p class="direct-answer">Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell. This tool, coming soon, will merge exchange exports into one clean record you can review with your tax software or preparer.</p>
-<ul><li>Combines buys, sells, and transfers between your own wallets</li><li>Flags missing cost basis and duplicate transfers</li><li>Runs entirely in your browser because this data is sensitive</li></ul>
-<p style="margin-top:36px"><a class="btn" href="../">Browse the tools that work today →</a></p><p class="hint" style="margin-top:18px">Meanwhile, try the <a style="color:var(--accent);font-weight:600" href="../bitcoin-dca-backtester/">Bitcoin DCA backtester</a>.</p>
-<p class="note"><strong>Educational only, not financial advice.</strong> This tool gives estimates based on what you enter and the stated assumptions. It is not financial, tax, or legal advice. Talk to a licensed professional before you make decisions. When this tool launches, everything will be calculated in your browser, and nothing you type or upload leaves your device.</p></div></header>
-<!-- seo:body -->
-<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
-<div class="faq"><h2>Common questions</h2><div class="qa"><h3>What is cost basis for bitcoin?</h3><p>It is generally what you paid to acquire the bitcoin, including certain fees. Your gain or loss when you sell is the sale proceeds minus that basis.</p></div><div class="qa"><h3>Why do I need my records from every exchange?</h3><p>If you moved coins between exchanges or wallets, one platform may not know what you originally paid. Combining records helps keep the original basis attached to each lot.</p></div><div class="qa"><h3>Is this tax advice?</h3><p>No. Crypto tax rules can be complex and change over time. Confirm your situation with a tax professional or official IRS guidance.</p></div></div>
-<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="../bitcoin-dca-backtester/"><b>Bitcoin DCA backtester</b><span>See what buying a little every month would have actually done, vs. the S&amp;P 500.</span></a></li><li><a href="../fee-x-ray/"><b>Fee x-ray</b><span>Reveal what your fund and advisor fees cost you over 30 years.</span></a></li><li><a href="../checkup/"><b>2-minute money checkup</b><span>Two minutes of questions, then a prioritized list of money blind spots.</span></a></li></ul></nav>
-</div></section>
-<!-- /seo:body -->
-<footer><div class="wrap">
-  <div class="top">
-    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
-    <div class="links"><a href="../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
-  </div>
-  <div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies. No signup. Your numbers never leave your device. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div>
-</div></footer>
-<script src="../tools.js"></script>
-
-
-<div class="v7-next"><a href="../checkup/">Take the 2-minute money checkup →</a><a href="../#newsletter">Newsletter signup →</a></div>
-<script src="/assets/site-analytics.js" defer></script>
-</body>
-</html>
+<meta property="og:title" content="Bitcoin Tax-Lot Cleanup | PYMTW"><meta property="og:description" content="Clearer records. Fewer loose ends."><meta property="og:type" content="website"><meta property="og:url" content="https://pymtw.com/tools/bitcoin-tax-lot-cleanup/"><meta property="og:image" content="https://pymtw.com/tools/og/bitcoin.png">
+<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/favicon.svg?v=pymtw-20261018" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="cleanup.css">
+<script src="core.js" defer></script><script src="app.js" defer></script>
+</head><body>
+<a class="skip" href="#start">Skip to your records</a>
+<nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="/tools/">All money tools</a></div></div></nav>
+<main class="shell"><header class="hero"><p class="eyebrow">BITCOIN TAX-LOT CLEANUP</p><h1>A little order.<br><em>A lot more clarity.</em></h1><p class="sub">Bring your Bitcoin records together. Find the missing pieces. Leave with a clearer worksheet for your tax preparer.</p><p class="privacy-note"><span aria-hidden="true">●</span> On your device. No account, tracking, uploads or saved entries.</p><div class="jump"><a href="#start">01 · Bring your records</a><a href="#records">02 · Check the details</a><a href="#review">03 · Review your lots</a></div></header>
+<noscript><p class="error">JavaScript is needed to review records. The guide below is still available.</p></noscript>
+<div class="intro-grid"><section id="start" class="panel"><div class="section-head"><span>01</span><h2>Bring your records.</h2></div><p class="copy">Start with a CSV, enter a transaction, or explore a fictional example. Add more files to combine records from different accounts.</p><div class="actions"><label class="button" for="file">Choose CSV<input id="file" type="file" accept=".csv,text/csv"></label><button class="button secondary" id="example" type="button">Try an example</button></div><p class="help">Up to 2 MB per file · 500 total records · Bitcoin and USD only. CSV values stay in memory in this tab. Downloaded files stay on your device until you delete them.</p><a class="text-link" href="examples/template.csv" download>Download the CSV template ↓</a><details class="format"><summary>What should my CSV contain?</summary><p>Use a UTC timestamp, type (buy, sell or transfer), wallet/account, positive BTC quantity, total USD amount, and BTC fee. For a transfer, include the destination account you own. An optional reference helps trace each record.</p><p>Buy: total USD cost including USD purchase fees. Sell: net USD proceeds after eligible USD selling fees. Transfer: one combined row, with no USD amount or fee. Convert your exchange export to this structure; raw deposit/withdrawal rows are not automatically paired.</p><p>Fees paid in BTC, swaps, rewards, gifts, mining and other activity are flagged for separate review. Never upload seed phrases, private keys, identity documents or account passwords.</p></details><p id="import-status" role="status" class="help"></p><p id="import-error" role="alert" class="error" hidden></p>
+<section id="mapping" class="mapping" hidden><h3>Match your columns</h3><p class="help">Check every selection. No currency, sign, date format or transaction type is guessed. Blank amounts remain unknown.</p><div id="mapping-fields" class="fields"></div><div class="table-wrap" tabindex="0" role="region" aria-label="First three rows of selected CSV"><table id="csv-sample"></table></div><label class="check"><input type="checkbox" id="map-confirm">These columns use the template meanings above. BTC quantities are positive, timestamps are UTC, and each own-account transfer appears once.</label><div class="actions"><button id="import-use" type="button" class="button">Add these records</button><button id="import-cancel" type="button" class="text-button">Cancel import</button></div></section>
+</section><aside class="scope"><p class="kicker">THE GOAL IS CLARITY</p><h2>Find the gaps<br>before tax time.</h2><ul><li><b>Missing costs</b>A blank cost is unknown, not zero.</li><li><b>Overlapping exports</b>Keep a trace of duplicates you exclude.</li><li><b>Transfers &amp; lots</b>Follow acquisition costs between your own accounts.</li></ul><p class="help">U.S. federal tax record review. FIFO illustration, not a tax return or a tax bill. Include complete supported history for each account; reconcile the result to your own records.</p></aside></div>
+<section class="panel" id="records"><div class="section-head"><span>02</span><h2>Check the details.</h2></div><div class="toolbar"><p id="record-count" class="copy" role="status">No records yet. Start above, or add one below.</p><div><button id="add" type="button" class="button secondary">+ Add a record</button><button id="clear" type="button" class="text-button">Clear everything</button></div></div>
+<p id="example-note" class="notice" hidden>Fictional example: record 5 is a duplicate and record 6 is missing its cost. Exclude record 5 and set record 6’s USD cost to 4,000 to see a complete worksheet.</p>
+<form id="editor" class="editor" autocomplete="off" hidden><h3 id="editor-title">Add a record</h3><p class="help">Use the same spelling for each account throughout. Amounts must be plain numbers without currency symbols or thousands separators.</p><div class="fields">
+<label class="field">UTC date and time<input id="f-timestamp" placeholder="2026-01-15T12:00:00Z" maxlength="20" required><small>Exact UTC time, including seconds and Z.</small></label>
+<label class="field">Activity<select id="f-type"><option value="buy">Buy with USD</option><option value="sell">Sell for USD</option><option value="transfer">Transfer between my accounts</option><option value="other">Other / needs review</option></select></label>
+<label class="field">Wallet or account<input id="f-account" maxlength="80" placeholder="e.g. Exchange A" required></label><label class="field">Destination (transfers only)<input id="f-destination" maxlength="80" placeholder="e.g. Hardware wallet"></label>
+<label class="field">BTC quantity<input id="f-btc" inputmode="decimal" maxlength="24" placeholder="e.g. 0.025" required><small>Positive amount, up to 8 decimal places.</small></label><label class="field">Total USD cost / net proceeds<input id="f-amount_usd" inputmode="decimal" maxlength="16" placeholder="Unknown"><small>Buy: cost incl. USD fees. Sell: net proceeds. Transfer: blank.</small></label>
+<label class="field">Fee paid in BTC<input id="f-btc_fee" inputmode="decimal" maxlength="24" placeholder="Unknown"><small>Enter 0 only if none. BTC fees need separate review.</small></label><label class="field">Reference (optional)<input id="f-reference" maxlength="160" placeholder="Your transaction reference"></label>
+</div><div class="actions"><button type="submit" class="button">Save record</button><button type="button" id="cancel-edit" class="text-button">Cancel</button></div></form>
+<div id="record-list"></div><div class="pager" id="pager" hidden><button type="button" id="prev" class="button secondary">Previous</button><span id="page-label"></span><button type="button" id="next" class="button secondary">Next</button></div></section>
+<section class="panel" id="review"><div class="section-head"><span>03</span><h2>Review your lots.</h2></div><p class="copy">We check the included records, then match sales and transfers to the earliest acquired lots in that same account. Transfers keep the original acquisition date and basis.</p><p class="help">Include complete supported history for each account. This is a U.S. tax-record worksheet, not a tax return or tax owed. A clean check does not establish that your records are complete.</p><label class="check"><input type="checkbox" id="fifo-confirm">I want a FIFO illustration. I understand this does not change my broker’s lot method or replace a valid specific-identification record.</label><div class="actions"><button class="button" id="analyze" type="button">Check my records →</button><button class="text-button" id="export-records" type="button" disabled>Download records &amp; issues ↓</button></div><p id="stale" class="notice" role="status" hidden>Your records changed. Check them again to update the worksheet.</p><p id="review-status" role="status" class="copy"></p><div id="results" hidden></div><button id="export-lots" type="button" class="button secondary" hidden>Download FIFO review worksheet ↓</button></section>
+<section class="guide" id="guide"><p class="eyebrow">BEFORE YOU FILE</p><h2>Good records come first.</h2><details><summary>What does this tool support?</summary><p>USD purchases, USD sales and fee-free transfers between accounts you own. Sales and transfers must be dated January 1, 2025 or later; earlier purchases can establish original lots. Include the full supported transaction history for every account, not just the current tax year. The worksheet covers all entered sales, with no tax-year filter.</p><p>Other assets, rewards, gifts, inheritance, mining, income, spending, swaps, BTC fees and legacy universal-basis allocations are not calculated. Do not exclude genuine unsupported transactions just to obtain a result: they may change later inventory and basis. Take those records to your preparer.</p></details>
+<details><summary>How should I handle transfers?</summary><p>Combine the withdrawal and matching deposit into one transfer row only after checking both original records. Enter the originating account and your destination account. This tool models fee-free transfers only. If a transfer includes a BTC or cash fee, preserve the original records for separate review; do not erase or fold the fee into another amount.</p></details>
+<details><summary>Why isn’t there a “lowest tax” method?</summary><p>Choosing a method after the fact does not establish valid specific identification. This tool illustrates FIFO within each account. Broker requirements, your prior records and any standing instructions may require a different result. It does not reconstruct the transition from universal basis to wallet/account basis in 2025.</p></details>
+<details><summary>Is this ready for Form 8949?</summary><p>No. The CSV is a review worksheet, not Form 8949. It does not classify holding periods, select reporting boxes, reconcile broker forms, calculate tax or verify whether your history is complete. Review every amount, fee and lot with your preparer. BTC uses integer satoshis; USD is allocated in cents with remainders retained, so splitting lots conserves the entered basis.</p></details>
+<details><summary>What happens to my records?</summary><p>They are processed locally and kept only in this tab’s memory. There are no analytics, exchange connections, cloud uploads or browser-storage writes. Clear everything or reload to remove entries. Your original files and any downloads remain on your device. Closing the browser does not delete those files.</p></details>
+<div class="reference"><p>Educational record organization, not individualized tax advice. Source guidance reviewed October 18, 2026.</p><a href="https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-digital-asset-transactions" target="_blank" rel="noopener noreferrer">IRS: digital asset basis, fees &amp; identification rules ↗</a><a href="https://www.irs.gov/filing/digital-assets" target="_blank" rel="noopener noreferrer">IRS: reporting digital assets ↗</a></div></section>
+</main><footer class="foot"><p><a href="/">PYMTW · Put Your Money to Work</a></p><p>Private tools. Clearer decisions. <a href="/tools/">Explore Money Tools</a> · <a href="/legal.html">Privacy &amp; terms</a></p></footer></body></html>

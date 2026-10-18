@@ -1,0 +1,4 @@
+timestamp,type,account,destination,btc,amount_usd,btc_fee,reference
+2025-02-01T12:00:00Z,buy,Exchange A,,0.10,4000.00,0,fictional-buy-1
+2025-04-01T12:00:00Z,transfer,Exchange A,Hardware wallet,0.04,,0,fictional-transfer-1
+2026-02-01T12:00:00Z,sell,Hardware wallet,,0.02,1500.00,0,fictional-sale-1

@@ -310,9 +310,9 @@ var PT_CATS = [
     "slug": "bitcoin-tax-lot-cleanup",
     "icon": "🧮",
     "name": "Bitcoin tax-lot cleanup",
-    "desc": "Merge exchange exports into clean cost basis, ready for tax time.",
-    "time": "60 sec",
-    "live": false,
+    "desc": "Review Bitcoin CSV records privately, find missing costs and duplicates, and explore account-specific FIFO lots.",
+    "time": "5 min",
+    "live": true,
     "kw": [
      "bitcoin tax",
      "crypto tax",
