@@ -144,7 +144,7 @@
 
     return (
       '<nav class="navbar" id="navbar"><div class="nav-container">' +
-      '<a href="/bitcoin/" class="nav-logo"><span class="logo-icon">₿</span>' +
+      '<a href="/" class="nav-logo" aria-label="PYMTW home — Put Your Money to Work"><span class="logo-icon">₿</span>' +
       '<span class="logo-text">PYMTW</span></a>' +
       '<ul class="nav-links" id="nav-links">' + items +
       "</ul>" +
