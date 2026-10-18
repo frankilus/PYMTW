@@ -84,7 +84,7 @@ sup.ref{font-size:12px;line-height:0;margin-left:1px}sup.ref+sup.ref:before{cont
 .out .lead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .out .lead .big{font-size:52px}
 .out .lead p{color:var(--ink-2);font-size:15px;max-width:360px}
-.out .stats{margin-top:16px;grid-template-columns:repeat(4,1fr)}
+.out .stats{margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr))}
 .out .stat{background:var(--bg-2)}
 .out .stat b{font-size:22px}
 .out ul.says{list-style:none;padding:0;margin:16px 0 0;font-size:15px;color:var(--ink-2);line-height:1.55}
@@ -111,11 +111,11 @@ table.tiers td:nth-child(n+2),table.tiers th:nth-child(n+2){text-align:right}
 .sources a{color:var(--accent);word-break:break-word;text-decoration:underline;text-underline-offset:3px}
 .sharebar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:28px}
 .sharebar .hint{margin:0}
-@media (max-width:760px){.toc{grid-template-columns:1fr}.vs{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.calc .row4{grid-template-columns:1fr 1fr}.out .stats{grid-template-columns:1fr 1fr}.rule{grid-template-columns:1fr}}
+@media (max-width:760px){.toc{grid-template-columns:1fr}.vs{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.calc .row4{grid-template-columns:1fr 1fr}.rule{grid-template-columns:1fr}}
 @media (max-width:640px){.cards{grid-template-columns:1fr}.permile{grid-template-columns:1fr 1fr 1fr}.permile b{font-size:20px}.g-hero{padding:44px 0 8px}.item{grid-template-columns:1fr;gap:10px}.phase{padding-top:44px}.phase-head{flex-direction:column;gap:10px}.toolcard{flex-wrap:wrap}.toolcard span.go{width:100%;text-align:center}.calc{padding:18px}.out{padding:18px}.out .lead .big{font-size:42px}table.tiers{font-size:13px}table.tiers th,table.tiers td{padding:8px 4px}}
 
-fieldset{min-width:0}.calc .inp input{min-width:0;width:100%}.calc .field>span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4;min-height:40px}.calc input,.calc select,.calc .seg label{min-height:44px}.calc .seg{flex-wrap:wrap}.calc summary{min-height:24px;padding:4px 0}.sources a,.item p a,.defaults a,.faq p a{display:inline-block;min-height:24px;padding:4px 0}sup.ref{line-height:1;vertical-align:super}sup.ref a{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;text-decoration:underline}table.tiers th[scope=row]{font-size:inherit;text-transform:none;letter-spacing:normal;font-weight:500;color:var(--ink-2)}.legend span{white-space:normal}.check-field{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}.check-field input{width:20px;flex-shrink:0}.inp .unit{font-size:12px}.out .stat b,.out .big{overflow-wrap:anywhere}.rule b{font-size:23px}.defaults{color:#526359}.sources .hint{font-size:13px}.stack span[style*="flex-grow:0"]{min-width:0}.sharebar .btn{min-height:44px}
-@media(max-width:420px){.calc .row4{grid-template-columns:1fr}.out .stats{grid-template-columns:1fr}.out .lead .big{font-size:36px}.calc .field>span{min-height:0}.toc b{font-size:17px}}
+fieldset{min-width:0}.calc .inp input{min-width:0;width:100%}.calc .field>span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4;min-height:40px}.calc input,.calc select,.calc .seg label{min-height:44px}.calc .seg{flex-wrap:wrap}.calc summary{min-height:24px;padding:4px 0}.sources a,.item p a,.defaults a,.faq p a{display:inline-block;min-height:24px;padding:4px 0}sup.ref{line-height:1;vertical-align:super}sup.ref a{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;text-decoration:underline}table.tiers th[scope=row]{font-size:inherit;text-transform:none;letter-spacing:normal;font-weight:500;color:var(--ink-2)}.legend span{white-space:normal}.check-field{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}.check-field input{width:20px;flex-shrink:0}.inp .unit{font-size:12px}.out .stat b,.out .big,.out .legend b{white-space:nowrap;overflow-wrap:normal}.rule b{font-size:23px}.defaults{color:#526359}.sources .hint{font-size:13px}.stack span[style*="flex-grow:0"]{min-width:0}.sharebar .btn{min-height:44px}
+@media(max-width:420px){.calc .row4{grid-template-columns:1fr}.out .lead .big{font-size:36px}.calc .field>span{min-height:0}.toc b{font-size:17px}}
 .calc .field>.inp{display:flex;align-items:center;margin-left:0;min-height:48px}.calc .inp .unit{flex:0 0 auto;white-space:nowrap}.seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:3px}
 .newsletter-archive a{display:inline-block;min-height:24px;padding:4px 0}
 </style><script type="application/ld+json">{
