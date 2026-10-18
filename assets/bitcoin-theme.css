@@ -123,3 +123,7 @@ input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 1
 @media (max-width: 600px) {
   .wp-timeline-item { flex-direction: column; gap: 6px; width: 100%; }
 }
+
+/* Minimum readable size for older-page badges, figures and timeline labels. */
+.tag-pill,.tier-badge,.coming-soon,.dca-stat-label,.wp-timeline-year,.wp-sidebar-num,
+.btc-live-text,.btc-stat-label,.btc-price-updated{font-size:12px}
