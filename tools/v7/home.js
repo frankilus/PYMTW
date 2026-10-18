@@ -2,9 +2,7 @@
  'use strict';
  const $ = q => document.querySelector(q);
  const $$ = q => [...document.querySelectorAll(q)];
- const fmt = n => Number.isFinite(n) ? new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n) : '—';
  const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const C = window.PT.calc;
  const paths={
   wallet:'<rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 9V6a3 3 0 0 1 3-3h12M16 14h5"/>',
   card:'<rect x="2" y="5" width="20" height="15" rx="3"/><path d="M2 10h20M6 16h5"/>',
@@ -37,23 +35,32 @@
   {slug:'bitcoin-tax-lot-cleanup',title:'Bitcoin tax-lot cleanup',desc:'Review Bitcoin records privately and find missing costs.',moment:'ahead',live:true,icon:'bitcoin',kw:'bitcoin tax lot basis crypto',preview:'Organize your records',detail:'Import CSV records, resolve gaps and review account-specific FIFO lots.'},
   {slug:'bitcoin-dca-backtester',title:'Bitcoin DCA backtester',desc:'Compare historical regular-purchase scenarios.',moment:'ahead',live:true,icon:'bitcoin',kw:'bitcoin btc dca investing regular buying historical',preview:'Explore past outcomes',detail:'Historical results do not predict future returns.'}
  ];
- const momentNames={all:'Helpful tools for wherever you are.',starting:'Getting started, one step at a time.',purchase:'Before you make a big purchase.',unexpected:'When something unexpected happens.',ahead:'A clearer path to what comes next.'};
- const momentDesc={all:'Explore the tools and find a useful next step.',starting:'Paychecks, recurring bills and everyday money choices.',purchase:'Understand the real cost before you commit.',unexpected:'Find your footing when your situation changes.',ahead:'Explore goals, retirement choices and long-term investing.'};
- let selected='all';
+ const categories=[
+  {id:'everyday',name:'Everyday money',desc:'Understand your pay, spending and savings goals.',slugs:['paycheck-decoder','subscription-leak-finder','credit-card-optimizer','money-timeline']},
+  {id:'debt',name:'Debt & emergencies',desc:'Pay down balances and prepare for income changes.',slugs:['debt-payoff-planner','emergency-fund-runway','severance-runway']},
+  {id:'home',name:'Home & big purchases',desc:'Compare your options before making a commitment.',slugs:['rent-vs-buy','before-you-sign']},
+  {id:'retirement',name:'Retirement & investing',desc:'Understand your plan, tax choices and investment fees.',slugs:['explain-my-401k','roth-vs-traditional','fee-x-ray']},
+  {id:'bitcoin',name:'Bitcoin',desc:'Organize your records and explore historical scenarios.',slugs:['bitcoin-tax-lot-cleanup','bitcoin-dca-backtester']},
+  {id:'all',name:'All tools',desc:'Browse the full collection, organized by topic.'}
+ ];
+ let selected='everyday';
  const catalog = window.PT_CATS.flatMap(c => c.tools);
  toolData.forEach(t => { const source = catalog.find(s => s.slug === t.slug); if(source){t.title=source.name;t.live=source.live;t.kw+=' '+source.kw.join(' ');} delete t.demo; });
  function toolURL(t){const path=t.slug.split('/').map(encodeURIComponent).join('/');return './'+path+'/';}
- function markup(t){return `<article class="tool-card${t.live?'':' is-planned'}" data-moment="${t.moment}"><div class="tool-head"><span class="tool-symbol">${icon(t.icon)}</span><span class="tool-state ${t.live?'':'soon'}">${t.live?'AVAILABLE':'PLANNED'}</span></div><h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p><div class="tool-preview"><span>${t.preview.startsWith('Example:')?'ILLUSTRATIVE EXAMPLE':'WHAT YOU CAN EXPLORE'}</span><strong>${esc(t.preview)}</strong><small>${esc(t.detail)}</small></div><div class="tool-footer">${t.live?`<a href="${toolURL(t)}" >Open this tool ↗</a>`:'<span class="disabled">Coming soon</span>'}</div></article>`;}
+ function markup(t){const inside=`<span class="directory-tool-icon">${icon(t.icon)}</span><div><h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p>${t.live?'':'<span class="planned-label">Coming soon</span>'}</div><span class="directory-tool-arrow" aria-hidden="true">${t.live?'↗':''}</span>`;return t.live?`<a class="directory-tool" href="${toolURL(t)}">${inside}</a>`:`<article class="directory-tool is-planned">${inside}</article>`;}
+ const categoryTools=category=>category.slugs.map(slug=>toolData.find(t=>t.slug===slug)).filter(Boolean);
+ $('#tool-categories').innerHTML=categories.map(c=>`<button type="button" class="category-button" data-category="${c.id}" aria-controls="tools-grid" aria-pressed="${c.id===selected}"><span>${esc(c.name)}</span><span class="category-count">${c.id==='all'?toolData.length:categoryTools(c).length}</span></button>`).join('');
  function renderTools(){
-  const shown=selected==='all'?toolData:toolData.filter(t=>t.moment===selected);
-  $('#tools-grid').innerHTML=shown.map(markup).join('');
-  $('#tool-list-title').textContent=momentNames[selected];
-  $('#tool-list-desc').textContent=momentDesc[selected];
-  $('#show-all').hidden=selected==='all';
-  $$('.moment-card').forEach(b=>{const active=b.dataset.moment===selected;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+  const category=categories.find(c=>c.id===selected);
+  const groups=selected==='all'?categories.filter(c=>c.id!=='all'):[category];
+  $('#tools-grid').innerHTML=groups.map(c=>`<section class="directory-group" aria-label="${esc(c.name)}">${selected==='all'?`<h4 class="directory-group-title">${esc(c.name)}</h4>`:''}<div class="directory-tool-list">${categoryTools(c).map(markup).join('')}</div></section>`).join('');
+  $('#tool-list-title').textContent=category.name;
+  $('#tool-list-desc').textContent=category.desc;
+  const count=groups.reduce((sum,c)=>sum+categoryTools(c).length,0);
+  $('#tool-count').textContent=`${count} tools${selected==='all'?' in all topics':' in '+category.name.toLowerCase()}`;
+  $$('.category-button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===selected)));
  }
- $$('.moment-card').forEach(b=>b.addEventListener('click',()=>{selected=selected===b.dataset.moment?'all':b.dataset.moment;renderTools();$('#tools').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});}));
- $('#show-all').addEventListener('click',()=>{selected='all';renderTools();$('#moments').scrollIntoView({behavior:'smooth'});});
+ $$('.category-button').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.category;renderTools();}));
  renderTools();
  const norm=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
  const checkup={title:'2-minute money checkup',desc:'Find a helpful starting point.',slug:'checkup',live:true,kw:'where do i start checkup beginner overwhelmed financial health not sure start my finances'};
@@ -79,17 +86,11 @@
  ];
  function search(q){const n=norm(q);if(!n)return[];const words=n.split(' ').filter(w=>w.length>=3);return searchPool.map(t=>{const hay=norm(`${t.title} ${t.desc} ${t.kw||''}`);let score=words.reduce((a,w)=>a+(hay.split(' ').includes(w)?1:0),0);aliases.forEach(([re,slugs])=>{if(re.test(n)&&slugs.includes(t.slug))score+=20-slugs.indexOf(t.slug)*3;});if(n.includes(norm(t.title)))score+=15;return {...t,score};}).filter(t=>t.score>0).sort((a,b)=>b.score-a.score).slice(0,4);}
  function resultMarkup(t){const url=toolURL(t);return `<a href="${esc(url)}"  class="result-item"><div><strong>${esc(t.title)}</strong><small>${esc(t.desc)}</small></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}
- function showResults(q){const matches=search(q),el=$('#finder-results');el.hidden=false;el.innerHTML=matches.length?`<div class="results-heading">HERE'S A GOOD PLACE TO BEGIN</div><div class="result-items">${matches.map(resultMarkup).join('')}</div>`:`<div class="results-heading">LET'S TRY ANOTHER WAY</div><p class="result-empty">No close match yet. Try asking a simpler question or <a href="#moments" style="text-decoration:underline;color:#aa550d">choose a life moment below</a>.</p>`;}
+ function showResults(q){const matches=search(q),el=$('#finder-results');el.hidden=false;el.innerHTML=matches.length?`<div class="results-heading">HERE'S A GOOD PLACE TO BEGIN</div><div class="result-items">${matches.map(resultMarkup).join('')}</div>`:`<div class="results-heading">LET'S TRY ANOTHER WAY</div><p class="result-empty">No close match yet. Try asking a simpler question or <a href="#moments" style="text-decoration:underline;color:var(--accent)">browse tools by topic</a>.</p>`;}
  $('#finder-form').addEventListener('submit',e=>{e.preventDefault();showResults($('#finder-input').value);});
  $$('.prompt').forEach(b=>b.addEventListener('click',()=>{$('#finder-input').value=b.dataset.query;showResults(b.dataset.query);$('#finder-results').scrollIntoView({behavior:'smooth',block:'nearest'});}));
 
  const menubtn=$('#menu-toggle');menubtn.addEventListener('click',()=>{const opened=menubtn.getAttribute('aria-expanded')==='true';menubtn.setAttribute('aria-expanded',String(!opened));menubtn.setAttribute('aria-label',opened?'Open navigation':'Close navigation');$('#main-nav').classList.toggle('open',!opened);});
  $$('#main-nav a').forEach(a=>a.addEventListener('click',()=>{$('#main-nav').classList.remove('open');menubtn.setAttribute('aria-expanded','false');menubtn.setAttribute('aria-label','Open navigation');}));
- function updateRunway(){const savings=Number($('#savings').value),expenses=Number($('#expenses').value),months=C.emergency(savings,expenses,6,0).covered;$('#savings-value').textContent=fmt(savings);$('#expenses-value').textContent=fmt(expenses);$('#runway-output').textContent=Number.isFinite(months)?months.toFixed(1).replace(/\.0$/,''):'—';['savings','expenses'].forEach(id=>{const e=$('#'+id);e.style.setProperty('--progress',((+e.value-e.min)/(e.max-e.min)*100)+'%');});}
- ['savings','expenses'].forEach(id=>$('#'+id).addEventListener('input',updateRunway));updateRunway();
  if(location.hash.startsWith('#search=')){try{const query=decodeURIComponent(location.hash.slice(8)).slice(0,200);$('#finder-input').value=query;showResults(query);}catch(_){}}
- const searchDock=$('#mobile-search-dock');
- function updateSearchDock(){const show=window.innerWidth<=590 && window.scrollY>Math.max(530,$('.opening').getBoundingClientRect().height+110);searchDock.hidden=!show;searchDock.classList.toggle('visible',show);}
- window.addEventListener('scroll',updateSearchDock,{passive:true});window.addEventListener('resize',updateSearchDock);updateSearchDock();
- searchDock.addEventListener('click',()=>{$('#finder-input').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});$('#finder-input').focus({preventScroll:true});});
 })();

@@ -84,5 +84,68 @@ button,a,input{touch-action:manipulation} .prompt{min-height:44px} .footer-nav a
 .tool-card.is-planned .tool-preview strong{color:#374151}
 .tool-card.is-planned .tool-footer .disabled{font-weight:700}
 
-/* Text-only true-cost guide navigation. */
-.true-cost-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}.true-cost-links h3{width:100%;font-size:24px;margin:0}.true-cost-links .inline-link{font-size:14px;min-height:24px;padding:4px 0}
+.opening{padding-bottom:58px}
+@media(max-width:590px){.opening{padding-bottom:38px}}
+
+/* Topic directory: a short list of useful choices instead of dense tool cards. */
+.tool-directory{padding:12px 0 76px;scroll-margin-top:100px}
+.directory-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px}
+.directory-heading .eyebrow{margin-bottom:12px}.directory-heading h2{font-size:44px;line-height:1.1;letter-spacing:-.035em;margin:0}
+.directory-heading>p{font-size:15px;color:#536456;margin:0}
+.directory-layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:40px;align-items:start}
+.tool-categories{display:flex;flex-direction:column;gap:6px}
+.category-button{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid transparent;border-radius:7px;padding:14px;text-align:left;min-height:52px;font-size:14px;font-weight:700;color:#4d6053;background:transparent}
+.category-button:hover{background:#edf2e9}.category-button[aria-pressed=true]{background:#315b4c;color:white;border-color:#315b4c}
+.category-count{font-size:12px;font-weight:500;min-width:22px;text-align:center}
+.directory-results{min-width:0;scroll-margin-top:100px}.directory-results-heading{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.directory-results-heading h3{font:700 22px/1.3 var(--sans);margin:0}.directory-results-heading p{font-size:12px;color:#536456;margin:0;white-space:nowrap}
+.directory-description{font-size:14px;color:#536456;margin:9px 0 22px}
+.tool-directory .tool-grid{display:block}.directory-tool-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.directory-tool{display:flex;align-items:start;gap:14px;padding:22px 18px;border:1px solid #dbe2d8;border-radius:8px;background:#fff;min-height:150px}
+.directory-tool:hover{border-color:#779a85;background:#f7faf5}.directory-tool-icon{flex:none;color:#315b4c;padding-top:2px}.directory-tool-icon svg{width:24px;height:24px}
+.directory-tool h4{font:700 17px/1.35 var(--sans);margin:0 0 8px;color:#292b29}.directory-tool p{font-size:14px;line-height:1.6;color:#536456;margin:0}
+.directory-tool-arrow{color:#315b4c;margin-left:auto;flex:none;font-size:20px;line-height:1.3}
+.directory-help{font-size:14px;color:#536456;border-top:1px solid var(--line);padding-top:22px;margin:28px 0 0}.directory-help a{color:#315b4c;text-decoration:underline;text-underline-offset:4px;display:inline-block;padding:6px 0}
+.directory-group+.directory-group{margin-top:28px}.directory-group-title{font:700 16px/1.4 var(--sans);margin:0 0 12px;color:#315b4c}
+.directory-tool.is-planned{background:#edf0f4;border-color:#c6cdd5}.directory-tool.is-planned h4,.directory-tool.is-planned p{color:#475569}.planned-label{display:inline-block;font-size:12px;font-weight:700;color:#374151;background:#d5dde7;border-radius:4px;padding:3px 7px;margin-top:10px}
+@media(max-width:1000px){.directory-layout{grid-template-columns:210px minmax(0,1fr);gap:24px}.directory-tool-list{grid-template-columns:1fr}.directory-tool{min-height:0}.directory-results-heading{display:block}.directory-results-heading p{margin-top:7px}}
+@media(max-width:590px){.tool-directory{padding:6px 0 44px;scroll-margin-top:85px}.directory-heading{display:block;margin-bottom:22px}.directory-heading h2{font-size:34px}.directory-heading>p{font-size:14px;margin-top:14px}.directory-layout{grid-template-columns:1fr;gap:26px}.tool-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.category-button{background:#edf2e9;padding:12px 10px;font-size:13px;gap:6px;min-height:60px}.directory-results-heading h3{font-size:21px}.directory-tool{padding:18px 14px;gap:12px}.directory-tool h4{font-size:16px}.directory-help{font-size:13px}}
+
+/* One home for life-event guides, immediately below the tool directory. */
+.life-guides-section{background:#eef3ec;padding:56px 0 60px;margin-bottom:72px;scroll-margin-top:95px}
+.guide-anchor{display:block;scroll-margin-top:95px}
+.life-guides-heading{margin-bottom:28px}.life-guides-heading .eyebrow{margin-bottom:12px}
+.life-guides-heading h2{font-size:clamp(32px,3.4vw,46px);line-height:1.15;letter-spacing:-.035em;margin:0 0 14px}.life-guides-heading h2 em{color:var(--accent)}
+.life-guides-heading>p:last-child{font-size:15px;color:#536456;margin:0}
+.life-guides-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.life-guide-choice{display:flex;flex-direction:column;align-items:start;padding:24px;background:var(--bg);border:1px solid #d1ddce;border-radius:9px}
+a.life-guide-choice:hover{background:#fff;border-color:#779a85}.life-guide-icon{color:var(--accent);margin-bottom:16px}.life-guide-icon svg{width:26px;height:26px;display:block}
+.life-guide-choice h3{font:700 18px/1.35 var(--sans);margin:0 0 10px}.life-guide-choice>p{font-size:14px;line-height:1.6;color:#536456;margin:0 0 16px}
+.life-guide-action{display:flex;justify-content:space-between;gap:16px;width:100%;margin-top:auto;min-height:44px;align-items:center;font-size:13px;font-weight:700;color:var(--accent)}
+.life-guide-actions{margin-top:auto;width:100%}.life-guide-actions a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;padding:7px 0;font-size:13px;font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:4px}.life-guide-actions a+a{border-top:1px solid var(--line)}
+@media(max-width:850px){.life-guides-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:590px){.life-guides-section{padding:36px 0 40px;margin-bottom:40px;scroll-margin-top:85px}.life-guides-heading h2{font-size:33px}.life-guides-heading>p:last-child{font-size:14px}.life-guides-grid{grid-template-columns:1fr;gap:12px}.life-guide-choice{padding:20px;display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:14px}.life-guide-icon{grid-column:1;grid-row:1/4;margin:0}.life-guide-choice h3,.life-guide-choice>p,.life-guide-action,.life-guide-actions{grid-column:2}.life-guide-choice h3{font-size:17px}.life-guide-choice>p{margin-bottom:10px}.life-guide-action{margin:0}.life-guide-actions{margin:0}}
+
+/* Photographic life-guide cards, keeping their copy short and readable. */
+.life-guide-choice{display:flex;flex-direction:column;align-items:stretch;padding:0;overflow:hidden}
+.life-guide-photo{width:100%;aspect-ratio:16/9;background:#dfe7da;flex:none;overflow:hidden}
+.life-guide-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-baby img{object-position:50% 68%}.photo-car img{object-position:50% 57%}.photo-wedding img{object-position:50% 47%}
+.life-guide-body{display:flex;flex-direction:column;align-items:start;flex:1;padding:22px 24px}
+.life-guide-body>p{font-size:14px;line-height:1.6;color:#536456;margin:0 0 16px}
+@media(max-width:590px){.life-guide-choice{display:flex;padding:0}.life-guide-body{padding:20px}.life-guide-body>p{margin-bottom:12px}.life-guide-action,.life-guide-actions{margin-top:auto}}
+
+/* Keep the introduction and topic choices together in Money Tools. */
+.tool-directory>.photo-moment{width:100%;margin-bottom:48px}
+#tool-topics{scroll-margin-top:100px}
+@media(max-width:590px){.tool-directory>.photo-moment{margin-bottom:32px}#tool-topics{scroll-margin-top:85px}}
+
+/* A focused homepage: discovery, tools, life guides, newsletter, and a short close. */
+.opening{padding-top:62px;padding-bottom:48px}.opening h1{font-size:clamp(56px,7vw,86px)}.opening-subtitle{margin-bottom:25px}.opening-promise{margin-top:24px}
+.life-guides-section{margin-bottom:0}.newsletter-section{padding:60px 0;background:var(--bg)}.newsletter-copy h2{font-size:clamp(36px,4vw,52px)}.newsletter-layout{gap:55px}.newsletter-signup-card{padding:28px}.newsletter-help{margin:12px 0}
+.about-compact{display:grid;grid-template-columns:120px minmax(0,1fr);gap:32px;align-items:center;padding-block:44px;border-block:1px solid var(--line);scroll-margin-top:100px}
+.about-compact>img{width:120px;height:auto;border-radius:2px;box-shadow:0 7px 18px #223e3320}.about-compact .eyebrow{margin-bottom:9px}.about-compact h2{font-size:30px;line-height:1.2;margin:0 0 12px;letter-spacing:-.025em}.about-compact p:not(.eyebrow){font-size:14px;color:#536456;max-width:760px;margin-bottom:12px}.about-compact a{font-size:14px;font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:4px;display:inline-block;padding:6px 0}.about-compact small{display:block;font-size:12px;color:#536456;line-height:1.6;margin-top:6px}
+.home-faq{padding-block:48px 56px}.home-faq h2{font-size:30px;margin-bottom:22px}.home-faq details{border-top:1px solid var(--line);scroll-margin-top:100px}.home-faq details:last-child{border-bottom:1px solid var(--line)}.home-faq summary{cursor:pointer;padding:16px 0;font-size:15px;font-weight:700;min-height:52px}.home-faq details p{font-size:14px;color:#536456;max-width:800px;padding-bottom:16px;margin:0;line-height:1.8}.home-faq a{text-decoration:underline;color:var(--accent)}
+.simple-footer{padding:36px 0 24px}.simple-footer-top{display:flex;justify-content:space-between;gap:32px;align-items:center}.simple-footer-top>div>p{font-size:13px;color:#c3cec6;margin:12px 0 0}.simple-footer .footer-nav{display:flex;flex-wrap:wrap;gap:8px 24px}.simple-footer-note{font-size:12px;color:#c3cec6;margin:24px 0 8px}.footer-privacy{color:#c3cec6;font-size:12px;max-width:950px}.footer-privacy summary{cursor:pointer;min-height:44px;padding:11px 0}.footer-privacy p{margin:8px 0;line-height:1.8}.footer-privacy a{text-decoration:underline;color:#e1e9df}
+#checkup{scroll-margin-top:100px}
+@media(max-width:590px){.opening{padding-top:40px;padding-bottom:36px}.opening h1{font-size:58px}.newsletter-section{padding:40px 0}.newsletter-layout{gap:24px}.newsletter-copy h2{font-size:39px}.about-compact{grid-template-columns:80px minmax(0,1fr);gap:20px;padding-block:30px;align-items:start}.about-compact>img{width:80px}.about-compact h2{font-size:25px}.about-compact .eyebrow{font-size:12px;letter-spacing:.1em}.home-faq{padding-block:36px 40px}.simple-footer-top{display:block}.simple-footer .footer-nav{margin-top:24px;gap:4px 20px}}
