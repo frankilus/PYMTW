@@ -18,6 +18,8 @@ for name in paths:
  if name.endswith('.js') and not name.startswith('tests/'):
   before=original(name).decode();after=p.read_text()
   if name=='pymtw-config.js':before=before.replace('https://www.pymtw.com','https://pymtw.com')
+  elif name=='pymtw.js':
+   before=before.replace('<a href="/bitcoin/" class="nav-logo">','<a href="/" class="nav-logo" aria-label="PYMTW home — Put Your Money to Work">') # Approved parent-home logo destination.
   elif name=='tools/debt-payoff-planner/app.js':
    for label,key in [('Debt name','name'),('Balance','balance'),('Annual percentage rate','apr'),('Minimum monthly payment','min')]:
     before=before.replace('data-k="'+key+'"','aria-label="'+label+'" data-k="'+key+'"')
