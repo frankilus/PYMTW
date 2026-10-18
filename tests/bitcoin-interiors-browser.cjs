@@ -14,15 +14,8 @@ const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')),'book/index.
  assert.equal(await page.locator('#nav-links > li').evaluateAll(items=>items.map(e=>e.firstElementChild.textContent.trim()).join(', ')),'Understand, Evaluate, Protect, Library, More');
  assert.ok(await page.evaluate(()=>document.querySelector('#navbar').getBoundingClientRect().top>=document.querySelector('#btc-price-bar').getBoundingClientRect().bottom-1),'header clears live price strip');
  for(const href of await page.locator('#nav-links a, #site-footer a').evaluateAll(items=>items.map(e=>e.getAttribute('href')))){assert.equal((await page.request.get(base+href)).status(),200,href);}
- // Library searches include metadata, combine with topics, and recover from no results.
- await page.goto(base+'/resources.html');const total=await page.locator('.res-cat .p-card, .res-cat .res-card').count();assert.equal(total,45);
- await page.locator('#resource-topic').selectOption('wallets');assert.equal(await page.locator('.res-card:visible').count(),5);for(const notice of await page.locator('#wallets .callout-security').all())assert.ok(await notice.isVisible());
- await page.locator('#resource-search').fill('trezor');assert.equal(await page.locator('.res-card:visible').count(),1);
- const detail=page.locator('.res-card:visible details');assert.equal(await detail.getAttribute('open'),null);await detail.locator('summary').focus();await page.keyboard.press('Enter');assert.ok(await detail.locator('.res-meta').isVisible());
- await page.locator('#resource-search').fill('nothing-matches-987');assert.ok(await page.locator('#resource-empty').isVisible());assert.match(await page.locator('#resource-count').innerText(),/^0 resources/);
- await page.locator('#resource-reset').click();assert.match(await page.locator('#resource-count').innerText(),/^45 resources/);assert.equal(await page.locator('#resource-search').evaluate(e=>e===document.activeElement),true);
- await page.locator('#resource-search').fill('nothing-matches-987');await page.evaluate(()=>location.hash='wallets');await page.waitForFunction(()=>document.querySelector('#resource-topic').value==='wallets');assert.equal(await page.locator('.res-card:visible').count(),5);
- await page.goto(base+'/resources.html#books');assert.equal(await page.locator('#resource-topic').inputValue(),'books');assert.ok(await page.locator('#books').isVisible());
+ // Detailed library coverage lives in bitcoin-resources-browser.cjs.
+ await page.goto(base+'/resources.html');assert.equal(await page.locator('.resource').count(),49);
  // Every deep guide contents link lands at an existing readable heading.
  await page.goto(base+'/compare-hardware-wallets.html');for(const href of await page.locator('.guide-contents a').evaluateAll(items=>items.map(e=>e.getAttribute('href')))){assert.equal(await page.locator(href).count(),1);}
  // Whitepaper chapter links and direct bookmarks reveal the explanation.
@@ -35,8 +28,8 @@ const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')),'book/index.
  await page.goto(base+'/book/#chapters');assert.ok(await page.locator('#chapters details').evaluate(e=>e.open));
  // The static fallback still provides navigation, resources and native disclosure.
  const noJS=await browser.newContext({javaScriptEnabled:false});const fallback=await noJS.newPage();await fallback.route('**/*',r=>r.request().url().startsWith(base)?r.continue():r.abort());
- await fallback.goto(base+'/resources.html');assert.ok(await fallback.locator('.fallback-nav').isVisible());assert.equal(await fallback.locator('.res-cat .p-card:visible, .res-cat .res-card:visible').count(),45);await fallback.locator('.res-card details summary').first().click();assert.ok(await fallback.locator('.res-card .res-meta').first().isVisible());await noJS.close();
+ await fallback.goto(base+'/resources.html');assert.ok(await fallback.locator('.fallback-nav').isVisible());assert.equal(await fallback.locator('.resource:visible').count(),49);await fallback.locator('.resource details summary').first().click();assert.ok(await fallback.locator('.resource .res-meta').first().isVisible());await noJS.close();
  if(process.env.SCREENSHOT_DIR){for(const width of [390,1280]){await page.setViewportSize({width,height:900});for(const route of ['start-here.html','resources.html','compare-hardware-wallets.html','dca.html','whitepaper.html']){await page.goto(base+'/'+route,{waitUntil:'domcontentloaded'});await page.waitForTimeout(1500);await page.screenshot({path:process.env.SCREENSHOT_DIR+'/bitcoin-simplified-'+route.replace('.html','')+'-'+width+'.png'});}}}
  assert.deepEqual(errors.filter(e=>e!=='Chart is not defined'),[]);
- console.log(`Simplified interiors passed: ${pages.length} pages at 4 widths; five-item navigation and header clearance; 45 searchable resources, topic/empty/reset/bookmark states; keyboard disclosures; guide/whitepaper/workshop/book bookmarks; no-JavaScript navigation and library.`);await browser.close();
+ console.log(`Simplified interiors passed: ${pages.length} pages at 4 widths; five-item navigation and header clearance; 49 resources; keyboard disclosures; guide/whitepaper/workshop/book bookmarks; no-JavaScript navigation and library.`);await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
