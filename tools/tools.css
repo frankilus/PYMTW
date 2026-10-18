@@ -1,3 +1,7 @@
+/* Self-hosted fonts; see /assets/fonts/*-OFL.txt for licenses. */
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('/assets/fonts/dm-sans-latin.woff2') format('woff2')}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/fraunces-normal.woff2') format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/fonts/fraunces-italic.woff2') format('woff2')}
 /* PYMTW Tools - shared styles. One accent, big type, lots of white space. */
 :root{--ink:#0b0b0c;--ink-2:#3a3a3f;--ink-3:#6e6e75;--line:#e8e8ec;--bg:#fff;--bg-2:#f6f6f8;--accent:#0a7c55;--accent-2:#0f9d6c;--accent-soft:#e7f4ee;--warn:#b4541a;--radius:22px;
 --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
@@ -173,3 +177,8 @@ footer .privacy-note a{color:var(--accent)}
 .related span{display:block;font-size:14px;color:var(--ink-3);margin-top:4px;line-height:1.45}
 /* Show the first wizard step before JS runs, to avoid a layout shift on load */
 .wizard:not(:has(.step.on)) .step:first-of-type{display:block}
+
+/* Audit: prevent intrinsic fieldset/input sizing from widening small screens. */
+fieldset,.row2>*,.row3>*{min-width:0}.inp input{min-width:0;width:100%}.tbl .x{min-width:44px;min-height:44px}
+.result-newsletter{border:1px solid var(--line);border-radius:14px;padding:24px;margin:24px 0;background:var(--bg-2)}.result-newsletter h2{font-size:25px;letter-spacing:-.025em}.result-newsletter p{font-size:14px;color:var(--ink-2);margin:12px 0}.result-newsletter a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);text-decoration:underline;font-weight:600}.checkup-newsletter{display:none}.rp.show+.checkup-newsletter{display:block}.checkup-newsletter .result-newsletter{max-width:760px;margin:24px auto}
+@media(max-width:590px){#debts thead{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}#debts,#debts tbody,#debts tr,#debts td{display:block;width:100%}#debts tr{border:1px solid var(--line);padding:12px;border-radius:12px;margin-bottom:12px}#debts td{padding:6px 0;border:0;text-align:left}#debts td:before{display:block;font-size:13px;font-weight:600;margin-bottom:5px}#debts td:nth-child(1):before{content:'Name'}#debts td:nth-child(2):before{content:'Balance'}#debts td:nth-child(3):before{content:'APR %'}#debts td:nth-child(4):before{content:'Minimum payment'}#debts td:last-child{text-align:right}.checkup-newsletter{padding:0 24px}}

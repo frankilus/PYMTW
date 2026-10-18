@@ -3,7 +3,7 @@ var form = PT.$('#wiz'), body = PT.$('#debts tbody');
 function addRow(d) {
   d = d || { name: '', balance: '', apr: '', min: '' };
   var tr = document.createElement('tr');
-  tr.innerHTML = '<td><input data-k="name" data-str placeholder="Card" value="' + PT.esc(d.name) + '"></td><td><input data-k="balance" inputmode="decimal" placeholder="5,000" value="' + d.balance + '"></td><td><input data-k="apr" inputmode="decimal" placeholder="22.9" value="' + d.apr + '"></td><td><input data-k="min" inputmode="decimal" placeholder="150" value="' + d.min + '"></td><td><button type="button" class="x" aria-label="Remove">×</button></td>';
+  tr.innerHTML = '<td><input aria-label="Debt name" data-k="name" data-str placeholder="Card" value="' + PT.esc(d.name) + '"></td><td><input aria-label="Balance" data-k="balance" inputmode="decimal" placeholder="5,000" value="' + d.balance + '"></td><td><input aria-label="Annual percentage rate" data-k="apr" inputmode="decimal" placeholder="22.9" value="' + d.apr + '"></td><td><input aria-label="Minimum monthly payment" data-k="min" inputmode="decimal" placeholder="150" value="' + d.min + '"></td><td><button type="button" class="x" aria-label="Remove">×</button></td>';
   tr.querySelector('.x').onclick = function () { if (body.rows.length > 1) tr.remove(); };
   body.appendChild(tr);
 }

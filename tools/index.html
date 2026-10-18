@@ -105,7 +105,12 @@
  ]
 }
 </script>
-<link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="v7/home.css"></head>
+<link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="v7/home.css">
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+</head>
 <body>
 
 <header class="header" id="top"><div class="shell header-inner">
@@ -137,7 +142,7 @@
 
   <section class="photo-moment shell" aria-labelledby="photo-title">
     <div class="photo-copy"><span class="section-kicker">A MORE HUMAN WAY TO TALK ABOUT MONEY</span><h2 id="photo-title">Life moves.<br><em>We'll help you find<br>your footing.</em></h2><p>Plain-English questions, useful numbers, and practical guides for whatever comes next.</p><a class="inline-link" href="#moments">Explore life's moments <span aria-hidden="true">↗</span></a></div>
-    <div class="photo-pane"><img src="v7/image-1.webp" width="1448" height="1086" alt="Sunlit desk with black coffee mug, notebook, laptop and plant" fetchpriority="high"><div class="photo-caption"><span class="photo-caption-line"></span>CLARITY FOR REAL LIFE</div></div>
+    <div class="photo-pane"><img src="v7/image-1-560.webp" srcset="v7/image-1-560.webp 560w, v7/image-1.webp 1433w" sizes="(max-width:590px) calc(100vw - 36px), 55vw" width="1448" height="1086" alt="Sunlit desk with black coffee mug, notebook, laptop and plant" fetchpriority="high"><div class="photo-caption"><span class="photo-caption-line"></span>CLARITY FOR REAL LIFE</div></div>
   </section>
 
   <section class="example-section" id="example" aria-labelledby="example-title"><div class="shell example-layout">
@@ -159,7 +164,7 @@
     </div>
     <div id="tools" class="tools-head"><div><p class="eyebrow">A TOOL FOR THAT</p><h3 id="tool-list-title">Helpful tools for wherever you are.</h3><p id="tool-list-desc">Explore the tools and find a useful next step.</p></div><button type="button" id="show-all" class="all-link" hidden>Show all tools ↗</button></div>
     <div class="tool-grid" id="tools-grid" aria-live="polite"></div>
-    <p class="tools-explainer">Tool names and availability are drawn from the PYMTW source catalog. Some tools are still planned. Example results are clearly labeled illustrations and are not personalized financial advice.</p>
+    <p class="tools-explainer">Explore free tools for everyday money decisions. Tools marked “Coming soon” are not yet available. Example results are clearly labeled illustrations and are not personalized financial advice.</p>
   </section>
 
   <section class="guide-section" id="guides" aria-labelledby="guides-title"><div class="shell"><div class="guide-header"><div><p class="eyebrow">WHEN LIFE GETS COMPLICATED</p><h2 id="guides-title">Guidance for life's<br><em>big moments.</em></h2></div><p>Sometimes the next step isn't a calculator. It's knowing what matters first.</p></div>
@@ -171,7 +176,7 @@
 
   <section class="trust-section shell" id="trust" aria-labelledby="trust-title"><div class="trust-heading"><p class="eyebrow">CLEAR ABOUT THE DETAILS</p><h2 id="trust-title">Trust should be <em>easy to see.</em></h2></div><div class="trust-grid"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3 8.2-8 10-5-1.8-8-5-8-10V6z"/><path d="m8 12 3 3 5-6"/></svg><h3>Private calculations</h3><p>Local example calculations run in your browser. No account required.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l4 4v14H3V3z"/><path d="M17 3v5h5M7 12h10M7 16h7"/></svg><h3>See the assumptions</h3><p>Example inputs and formulas are displayed, with clear limits on what estimates mean.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3-7 8-7s8 3 8 7"/></svg><h3>Created by a person</h3><p>PYMTW stands for Put Your Money to Work, founded by financial educator Frank Jerome.</p></div></div></section>
 
-  <section class="about-section" id="behind" aria-labelledby="about-title"><div class="shell about-layout"><div class="book-figure"><div class="book-glow" aria-hidden="true"></div><img src="v7/image-4.webp" width="1236" height="1865" loading="lazy" alt="Original front cover of Bitcoin for Working Professionals, 2nd Edition, by Frank Jerome"><span>THE ACTUAL SECOND EDITION COVER</span></div><div class="about-copy"><p class="eyebrow">THE PERSON BEHIND PYMTW</p><h2 id="about-title">Good money guidance<br>should feel <em>human.</em></h2><p>PYMTW means <strong>Put Your Money to Work.</strong> It was created by Frank Jerome, a financial educator and author with more than a decade of Wall Street experience.</p><p>His book, <em>Bitcoin for Working Professionals, 2nd Edition</em>, is written for busy people who want clear explanations instead of hype.</p><a class="text-cta" href="https://amzn.to/4zwsLbQ" rel="noopener sponsored" target="_blank">Explore the book on Amazon <span>↗</span></a><small>The book is optional. The tools are free to use. The Amazon link may generate an affiliate commission.</small></div></div></section>
+  <section class="about-section" id="behind" aria-labelledby="about-title"><div class="shell about-layout"><div class="book-figure"><div class="book-glow" aria-hidden="true"></div><img src="v7/image-4.webp" width="1236" height="1865" loading="lazy" alt="Original front cover of Bitcoin for Working Professionals, 2nd Edition, by Frank Jerome"><span>BITCOIN FOR WORKING PROFESSIONALS · SECOND EDITION</span></div><div class="about-copy"><p class="eyebrow">THE PERSON BEHIND PYMTW</p><h2 id="about-title">Good money guidance<br>should feel <em>human.</em></h2><p>PYMTW means <strong>Put Your Money to Work.</strong> It was created by Frank Jerome, a financial educator and author with more than a decade of Wall Street experience.</p><p>His book, <em>Bitcoin for Working Professionals, 2nd Edition</em>, is written for busy people who want clear explanations instead of hype.</p><a class="text-cta" href="https://amzn.to/4zwsLbQ" rel="noopener sponsored" target="_blank">Explore the book on Amazon <span>↗</span></a><small>The book is optional. The tools are free to use. The Amazon link may generate an affiliate commission.</small></div></div></section>
 
   <section class="checkup-section shell" id="checkup" aria-labelledby="checkup-title"><div class="checkup-inner"><div><p class="eyebrow">ONE SIMPLE NEXT STEP</p><h2 id="checkup-title">Not sure where to begin?<br><em>Start with two minutes.</em></h2><p>Answer a few straightforward questions to see which money topics might deserve your attention. No judgment. No score.</p><a class="button-primary" href="/tools/checkup/" rel="noopener">Take the 2-minute money checkup <span>↗</span></a></div><div class="checkup-number" aria-hidden="true">02<span>minutes</span></div></div><p class="newsletter-note">Prefer to learn at your own pace? <a href="#newsletter">Get occasional money ideas by email ↗</a></p></section>
 
@@ -199,6 +204,7 @@
     </div>
   </div>
 </section>
+<div class="shell"><p class="tools-explainer">Want an assets-and-liabilities overview? <a href="/calculator.html">Try the Bitcoin-focused net worth calculator</a>.</p></div>
 <!-- seo:body -->
 <section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
 <div class="faq"><h2>Common questions</h2><div class="qa"><h3>Are PYMTW Tools really free?</h3><p>Yes. Every tool and guide is free to use, with no signup and no ads.</p></div><div class="qa"><h3>Is my financial data uploaded anywhere?</h3><p>No. The calculators run entirely in your browser, so the numbers and files you enter stay on your device. The site counts anonymous page visits to improve the tools.</p></div><div class="qa"><h3>Which tool should I start with?</h3><p>If you are not sure, take the 2-minute money checkup. It asks a few questions and gives you a short, prioritized list of what to look at, with links to the right tools.</p></div><div class="qa"><h3>Is this financial advice?</h3><p>No. The tools are educational and give estimates based on what you enter. For decisions about your situation, talk to a licensed professional.</p></div></div>
@@ -210,7 +216,7 @@
 <button type="button" class="mobile-search-dock" id="mobile-search-dock" hidden aria-label="Ask another money question"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg> What's on your money mind? <span aria-hidden="true">↑</span></button>
 
 
-<script src="tools.js"></script><script src="catalog.js"></script><script src="v7/home.js"></script><script src="v7/newsletter.js"></script><script data-goatcounter="https://pymtw.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<script src="tools.js"></script><script src="catalog.js"></script><script src="v7/home.js"></script><script src="v7/newsletter.js"></script>
+<script src="/assets/site-analytics.js" defer></script>
 </body>
 </html>

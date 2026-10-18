@@ -1,0 +1,1 @@
+const form=document.getElementById('not-found-search');form.hidden=false;form.addEventListener('submit',event=>{event.preventDefault();const query=document.getElementById('tool-query').value.trim();if(query)location.href='/tools/#search='+encodeURIComponent(query);});

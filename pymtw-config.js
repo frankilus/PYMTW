@@ -19,7 +19,7 @@
     // Direct-checkout URLs (Stripe Payment Link, Lemon Squeezy, Gumroad, etc.).
     // Any <a data-checkout="KEY"> is upgraded to this URL when set; until then
     // the link keeps its existing href (e.g. the waitlist form).
-    // Recommended post-purchase redirect: https://www.pymtw.com/thank-you.html?source=KEY
+    // Recommended post-purchase redirect: https://pymtw.com/thank-you.html?source=KEY
     checkout: {
       "starter-kit": "https://buy.stripe.com/9B6aEW1w9O2ianE2iI57W00", // $29 Bitcoin Professional Starter Kit
       "workshop-professionals": "", // $79
