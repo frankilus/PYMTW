@@ -1,6 +1,6 @@
 # Website audit fixes — review only
 
-One PR based on live main `876fcc6`. Do not merge or deploy until Frank approves. The current design, original photos and cover, calculator math/data, privacy disclosures, provider configuration, and Google Search Console verification are retained.
+One PR based on live main `876fcc6`. Do not merge or deploy until Frank approves. The current design, original photos and user-approved replacement cover, calculator math/data, privacy disclosures, provider configuration, and Google Search Console verification are retained.
 
 ## Findings and changes by audit item
 
@@ -28,7 +28,7 @@ One PR based on live main `876fcc6`. Do not merge or deploy until Frank approves
 Passed:
 
 - `node tests/v7-newsletter.cjs` — optional provider loading, failures/timeouts, no false subscription success.
-- `python3 tests/v7-preservation.py` — current source preservation, calculator scripts, original assets/data, tool forms/schema/content, privacy disclosures, verification file.
+- `python3 tests/v7-preservation.py` — current source preservation, calculator scripts, original photos/data and approved replacement cover, tool forms/schema/content, privacy disclosures, verification file.
 - `python3 tests/v7-links.py` — 337 Tools references, no broken links.
 - `node tests/v7-calculations.cjs` — 17 original calculation assertions.
 - `node tests/bitcoin-reliability.cjs` — DCA known values, timing, date bounds, invalid inputs, missing prices and CSV parity.
@@ -40,7 +40,7 @@ Passed:
 
 Set `PLAYWRIGHT_PATH` to an installed Playwright module and `NODE` to Node for the Python syntax checker. Browser checks use Chrome and default to `http://127.0.0.1:8771`. Use `PREVIEW_URL` to override it.
 
-The requested preservation test initially failed on changes already merged in PRs 10–12. It now compares against current live main, allowing only audit-specific debt labels/config hostname changes, and continues protecting math, source data, forms, schemas, original images and privacy wording. The newsletter and link tests were not weakened or replaced.
+The requested preservation test initially failed on changes already merged in PRs 10–12. It now compares against current live main, allowing only audit-specific debt labels/config hostname changes, and continues protecting math, source data, forms, schemas, original photos and privacy wording. The later user-approved cover replacement is restricted to six named book assets, verified against their provenance manifest. The newsletter and link tests were not weakened or replaced.
 
 ## Lighthouse mobile results
 
@@ -62,3 +62,9 @@ Lighthouse 12.8.2, Chrome, default mobile simulation against the local review bu
 - Preserve the Google verification file rather than adding metadata to it.
 - No new financial claims, product prices or calculator source data were introduced or certified.
 - Existing historical PR preservation tests capture earlier snapshots and are not claims that later approved work remains byte-for-byte identical to those snapshots.
+
+## Confirmed cover replacement
+
+Frank supplied `Bitcoin_for_Working_Professionals_2nd_Edition_KDP_NO_WHITE_BOX_12.784x9.250_300dpi.png`. The website now uses its front panel, with no subtitle directly below “2ND EDITION.” Only extraction, proportional resizing and WebP compression were applied; the artwork and lettering were not regenerated. Homepage, Bitcoin, book, Tools, historical preview and three social-preview images use this cover. Source SHA-256, exact crop coordinates and derivative hashes are in `assets/home/book-cover-provenance.json`. September 2026 and the approved Amazon link remain unchanged. This replacement remains review-only in PR #13.
+
+Cover-update validation: all four current pages loaded the new image at 390px and 1280px without cover overflow. The 57-page static check (1,190 local references) and preservation check passed again. Lighthouse scores above were recorded before this cover-only replacement; they were not remeasured.

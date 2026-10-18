@@ -1,0 +1,23 @@
+{
+  "source": "Bitcoin_for_Working_Professionals_2nd_Edition_KDP_NO_WHITE_BOX_12.784x9.250_300dpi.png",
+  "source_sha256": "73e6be7fbabf56df43dc57b45881544514afcba726631c51b2bf24d7c92ee73d",
+  "source_dimensions": {
+    "width": 3835,
+    "height": 2775
+  },
+  "front_panel_crop": {
+    "left": 2001,
+    "top": 0,
+    "width": 1834,
+    "height": 2775
+  },
+  "processing": "Extract the supplied front panel; resize proportionally and encode WebP. No artwork or text generated, retouched, or added.",
+  "assets": {
+    "assets/home/book-cover.webp": "da0477943543f75afcdae381dfe2e1303e85d9bf8bfc182003067be08c2a887d",
+    "assets/home/book-cover-480.webp": "93014e52259f90974f2655509f8e9d0bca13c8bfdeea5ea4b3a4dde05094b9fd",
+    "assets/home/book-cover-960.webp": "2845adf91ebe941b9fcff36f6aea2ae5f87bffdcf5d646df0d16256e4da45a03",
+    "tools/v7/image-4.webp": "2845adf91ebe941b9fcff36f6aea2ae5f87bffdcf5d646df0d16256e4da45a03",
+    "tools/preview/v6/img/book-cover-336.webp": "418298089db76d7c81534c0aa62b9a40de371962ed332870b9208e177371e94d",
+    "tools/preview/v6/img/book-cover-504.webp": "0198be1b9054a22daa26250f8ba28a4076d6a29c1bc2511e98c474f8953f5957"
+  }
+}
