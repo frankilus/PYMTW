@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self'; img-src 'self' blob: data:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Paycheck Decoder Preview | PYMTW Money Tools</title>
 <meta name="description" content="Understand the lines on a U.S. pay stub and reconcile gross pay, employee deductions and take-home pay. Private, browser-only preview.">
 <link rel="canonical" href="https://pymtw.com/tools/paycheck-decoder/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="PYMTW Tools">
 <meta property="og:title" content="Paycheck Decoder Preview | PYMTW Money Tools">
-<meta property="og:description" content="Understand pay-stub lines and reconcile your take-home pay. A private, manual-entry preview for U.S. employee paychecks.">
+<meta property="og:description" content="Understand pay-stub lines and reconcile your take-home pay. A private photo, PDF and manual-entry preview for U.S. employee paychecks.">
 <meta property="og:url" content="https://pymtw.com/tools/paycheck-decoder/">
 <meta property="og:image" content="https://pymtw.com/tools/og/spending.png"><meta property="og:image:alt" content="PYMTW Money Tools: Spending">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Paycheck Decoder Preview | PYMTW Money Tools">
@@ -18,15 +19,36 @@
 <link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="decoder.css">
 <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
-<script src="core.js" defer></script><script src="app.js" defer></script>
+<script src="core.js" defer></script><script src="app.js" defer></script><script src="import-parser.js" defer></script><script src="import.js" defer></script>
 </head>
 <body>
 <a class="pd-skip" href="#pd-form">Skip to paycheck entry</a>
 <div class="pd-preview">DESIGN PREVIEW · Not yet released</div>
 <nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/" title="Return to the PYMTW main homepage"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="../#tools">All money tools</a></div></div></nav>
 <main class="pd-shell">
-<header class="pd-hero"><p class="eyebrow">PAYCHECK DECODER · U.S. PAY STUBS</p><h1>Your paycheck,<br><em>in plain English.</em></h1><p class="sub">Understand what came out, where it went, and how the numbers add up to your take-home pay.</p><p class="pd-privacy">Private by design. Your entries stay in this tab. No account, uploads, or saved pay-stub data.</p></header>
+<header class="pd-hero"><p class="eyebrow">PAYCHECK DECODER · U.S. PAY STUBS</p><h1>Your paycheck,<br><em>in plain English.</em></h1><p class="sub">Understand what came out, where it went, and how the numbers add up to your take-home pay.</p><p class="pd-privacy">Private by design. Your entries stay in this tab. No account or cloud upload. Files and entries stay on your device.</p></header>
 <noscript><p class="pd-error">Turn on JavaScript to use the decoder. The source links below still work.</p></noscript>
+<section class="pd-import pd-panel" aria-labelledby="pd-import-title">
+<div class="pd-section-title"><h2 id="pd-import-title">Start with your pay stub</h2><span class="pd-local-badge">ON YOUR DEVICE</span></div>
+<p class="pd-copy">Choose a photo or PDF to fill in the lines for you. Review what was read before using it, or <a href="#pd-form">enter amounts yourself</a>.</p>
+<div class="pd-import-actions"><label class="pd-button secondary pd-file-label" for="pd-file">Choose photo or PDF<input type="file" id="pd-file" accept="image/jpeg,image/png,image/webp,application/pdf,.jpg,.jpeg,.png,.webp,.pdf"></label><button type="button" class="pd-text-button" id="pd-file-clear" hidden>Remove file</button></div>
+<p class="pd-mini">JPG, PNG, WebP or PDF · up to 10 MB · PDFs up to 5 pages · English printed text. A sharp, upright photo works best. No files, images or extracted text are sent to a server.</p>
+<p class="pd-mini">No stub handy? Download a <a href="examples/fictional-paystub.pdf" download>fictional sample PDF</a> or <a href="examples/fictional-paystub.png" download>sample photo</a> to try the reader.</p>
+<p id="pd-file-status" class="pd-copy" role="status" aria-live="polite"></p><p id="pd-file-error" class="pd-error" role="alert" hidden></p>
+<div id="pd-document" hidden>
+<div class="pd-document-controls"><label class="pd-label" id="pd-page-label" for="pd-page" hidden>PDF page<select id="pd-page"></select></label><button type="button" class="pd-button secondary" id="pd-rotate">Rotate photo ↻</button><button type="button" class="pd-button" id="pd-read">Read this page</button><button type="button" class="pd-text-button" id="pd-file-cancel" hidden>Cancel reading</button></div>
+<p class="pd-mini">One page at a time. Import the page for this paycheck; pages are never merged automatically.</p>
+<details class="pd-image-details"><summary>View the selected page</summary><canvas id="pd-page-canvas" aria-label="Selected pay stub page"></canvas></details>
+</div>
+<section id="pd-import-review" class="pd-import-review" hidden aria-labelledby="pd-import-review-title">
+<h3 id="pd-import-review-title" tabindex="-1">Review before using these amounts</h3><p class="pd-copy">Text recognition can miss digits, mix columns or misread labels. Check the source page and select only this paycheck’s amounts. Earnings details and subtotals are excluded to avoid counting them twice.</p>
+<label class="pd-label pd-column-label" id="pd-column-label" for="pd-column" hidden>For rows with several amounts, which column is current pay?<select id="pd-column"><option value="">Choose a column…</option></select><small>This sets the same position on each multi-amount row. Review individual rows if your layout changes across sections.</small></label>
+<div id="pd-import-rows"></div>
+<details class="pd-raw-details"><summary>Show all text read from this page</summary><p class="pd-mini">Use this to spot a missing line. Unrecognized items can still be entered manually.</p><textarea id="pd-raw" readonly aria-label="Text read from the selected page" spellcheck="false"></textarea></details>
+<label class="pd-confirm"><input type="checkbox" id="pd-import-confirm">I checked the selected labels, types and current-period amounts against my pay stub.</label>
+<p class="pd-mini">Using these amounts replaces the existing paycheck entries. Your file and extracted text will then be removed from this page; the selected amounts remain editable.</p>
+<button type="button" class="pd-button" id="pd-import-use">Use selected amounts →</button><p id="pd-import-error" class="pd-error" role="alert" hidden></p>
+</section></section>
 <div class="pd-layout">
 <form id="pd-form" class="pd-panel" novalidate autocomplete="off">
 <div class="pd-section-title"><span class="pd-step" aria-hidden="true">1</span><h2>Start with one paycheck</h2></div>
@@ -51,8 +73,8 @@
 </aside>
 </div>
 <section class="pd-glossary" aria-labelledby="pd-glossary-title"><p class="eyebrow">MAKE SENSE OF THE SMALL PRINT</p><h2 id="pd-glossary-title">What does that code mean?</h2><p class="pd-copy">Look up common entries even if you do not have your pay stub handy. Employers use different codes, so confirm unfamiliar labels with payroll.</p><label class="pd-label" for="pd-search">Search a code or deduction<input type="search" id="pd-search" placeholder="Try FICA, OASDI, Roth, or medical" maxlength="80" aria-controls="pd-terms"></label><div id="pd-terms"></div><p id="pd-no-terms" class="pd-copy" role="status" hidden>No matching term. Ask payroll to explain the code, or record it as “Other deduction / not sure” if it reduces your cash pay.</p>
-<div class="pd-source"><strong>How this works</strong><p>The decoder subtracts the tax and deduction amounts you enter from cash gross pay, then adds cash payments not already included in gross. It compares that result with the optional net-pay figure. It does not infer taxable wages, apply tax tables, or assess annual withholding. Special cases such as stock compensation, non-cash benefits and payroll reversals may need help from payroll.</p><p style="margin-top:12px"><strong>Sources &amp; useful next steps</strong> · Reviewed October 18, 2026</p><ul><li><a href="https://consumer.gov/your-money/your-paycheck-explained" target="_blank" rel="noopener noreferrer">Consumer.gov: your paycheck explained ↗</a></li><li><a href="https://www.irs.gov/taxtopics/tc751" target="_blank" rel="noopener noreferrer">IRS: Social Security and Medicare withholding ↗</a></li><li><a href="https://www.irs.gov/retirement-plans/retirement-plan-faqs-regarding-contributions-are-retirement-plan-contributions-subject-to-withholding-for-fica-medicare-or-federal-income-tax" target="_blank" rel="noopener noreferrer">IRS: tax treatment of retirement contributions ↗</a></li><li><a href="https://www.irs.gov/publications/p15b" target="_blank" rel="noopener noreferrer">IRS: employer fringe benefits guide ↗</a></li><li><a href="https://www.irs.gov/individuals/tax-withholding-estimator" target="_blank" rel="noopener noreferrer">IRS Tax Withholding Estimator ↗</a></li></ul><p>For education, not individualized tax, legal, or financial advice. This preview uses manual entry; photo and PDF reading are not included.</p></div>
+<div class="pd-source"><strong>How this works</strong><p>The decoder subtracts the tax and deduction amounts you enter from cash gross pay, then adds cash payments not already included in gross. It compares that result with the optional net-pay figure. It does not infer taxable wages, apply tax tables, or assess annual withholding. Special cases such as stock compensation, non-cash benefits and payroll reversals may need help from payroll.</p><p style="margin-top:12px"><strong>Sources &amp; useful next steps</strong> · Reviewed October 18, 2026</p><ul><li><a href="https://consumer.gov/your-money/your-paycheck-explained" target="_blank" rel="noopener noreferrer">Consumer.gov: your paycheck explained ↗</a></li><li><a href="https://www.irs.gov/taxtopics/tc751" target="_blank" rel="noopener noreferrer">IRS: Social Security and Medicare withholding ↗</a></li><li><a href="https://www.irs.gov/retirement-plans/retirement-plan-faqs-regarding-contributions-are-retirement-plan-contributions-subject-to-withholding-for-fica-medicare-or-federal-income-tax" target="_blank" rel="noopener noreferrer">IRS: tax treatment of retirement contributions ↗</a></li><li><a href="https://www.irs.gov/publications/p15b" target="_blank" rel="noopener noreferrer">IRS: employer fringe benefits guide ↗</a></li><li><a href="https://www.irs.gov/individuals/tax-withholding-estimator" target="_blank" rel="noopener noreferrer">IRS Tax Withholding Estimator ↗</a></li></ul><p>For education, not individualized tax, legal, or financial advice. Photo/PDF recognition is a preview feature. It can miss or misread amounts; always review the selected current-period entries. Unusual layouts and handwriting may require manual entry.</p></div>
 </section>
 </main>
-<footer class="pd-footer"><p><strong>PYMTW · Put Your Money to Work</strong></p><p><a href="/">Main homepage</a> · <a href="../">Money Tools</a> · <a href="../roth-vs-traditional/">Roth vs. traditional</a> · <a href="/legal.html#privacy">Privacy</a></p><p>Entries are processed in this tab and are not sent to a server or saved in browser storage. Clear all entries to remove them from the page.</p></footer>
+<footer class="pd-footer"><p><strong>PYMTW · Put Your Money to Work</strong></p><p><a href="/">Main homepage</a> · <a href="../">Money Tools</a> · <a href="../roth-vs-traditional/">Roth vs. traditional</a> · <a href="/legal.html#privacy">Privacy</a></p><p>Files and entries are processed in this tab. Nothing from your pay stub is sent to a server or saved in browser storage. The browser downloads public reading software from this site when needed. Clear all entries to remove the file, extracted text and entered amounts from the page.</p></footer>
 </body></html>
