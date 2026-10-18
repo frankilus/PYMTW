@@ -83,3 +83,6 @@ button,a,input{touch-action:manipulation} .prompt{min-height:44px} .footer-nav a
 .tool-card.is-planned .tool-preview span,.tool-card.is-planned .tool-preview small{color:#475569}
 .tool-card.is-planned .tool-preview strong{color:#374151}
 .tool-card.is-planned .tool-footer .disabled{font-weight:700}
+
+/* Text-only true-cost guide navigation. */
+.true-cost-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}.true-cost-links h3{width:100%;font-size:24px;margin:0}.true-cost-links .inline-link{font-size:14px;min-height:24px;padding:4px 0}

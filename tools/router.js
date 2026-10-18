@@ -13,6 +13,13 @@ ALL.push(GUIDE_HOME);
 var GUIDE_CAR = { slug: 'guides/true-cost-of-a-car', icon: '🚗', name: 'Guide: The true cost of owning a car', desc: 'Where AAA’s $12,863 a year goes, a 5-year cost calculator, and what to ask before you sign.', time: '7 min read', live: true, boost: 1,
   kw: ['true cost of a car', 'cost of owning a car', 'cost to own a car', 'owning a car', 'own a car', 'buy a car', 'buying a car', 'new car', 'used car', 'new or used', 'car insurance', 'afford a car', 'car can i afford', 'car budget', 'car cost', 'cost per mile', 'depreciation', 'lease or buy', '20/4/10', '20 4 10'] };
 ALL.push(GUIDE_CAR);
+var GUIDE_BABY = {"slug": "guides/true-cost-of-a-baby", "icon": "👶", "name": "Guide: The true cost of having a baby", "desc": "Where the money goes in year one and after, a calculator for your own numbers, and the benefits to claim. Every figure links to its source.", "time": "7 min read", "live": true, "boost": 1, "kw": ["baby", "pregnant", "newborn", "child", "care", "daycare", "day", "care", "parental", "leave", "maternity", "paternity"]};
+ALL.push(GUIDE_BABY);
+var GUIDE_HOMECOST = {"slug": "guides/true-cost-of-owning-a-home", "icon": "🏠", "name": "Guide: The true cost of owning a home", "desc": "The bills that come with the keys, a calculator for your own home, and what to check before you buy. Every figure links to its source.", "time": "7 min read", "live": true, "boost": 1, "kw": ["cost", "of", "owning", "homeowner", "property", "tax", "home", "insurance", "hoa", "maintenance", "closing", "cost", "pmi"]};
+ALL.push(GUIDE_HOMECOST);
+var GUIDE_WEDDING = {"slug": "guides/true-cost-of-a-wedding", "icon": "💍", "name": "Guide: The true cost of a wedding", "desc": "Where wedding money goes, a budget calculator built around your guest list, and how to pay for it without starting married life in debt. Every figure links to its source.", "time": "7 min read", "live": true, "boost": 1, "kw": ["wedding", "engaged", "engagement", "marry", "married", "honeymoon", "wedding", "budget"]};
+ALL.push(GUIDE_WEDDING);
+
 var I = { // line icons, 24x24
  'subscription-leak-finder':'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
  'credit-card-optimizer':'<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/>',

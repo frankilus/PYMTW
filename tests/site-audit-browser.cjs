@@ -5,7 +5,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8771';
 const p=await browser.newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route('**/*',r=>r.request().url().startsWith(base)?r.continue():r.abort());
 const catalog=require('../tools/catalog.js').flatMap(c=>c.tools);
 for(const width of [320,390,1280]){await p.setViewportSize({width,height:900});
- for(const slug of [...catalog.map(t=>t.slug),'checkup','guides/first-home','guides/lost-my-job','guides/true-cost-of-a-car']){
+ for(const slug of [...catalog.map(t=>t.slug),'checkup','guides/first-home','guides/lost-my-job','guides/true-cost-of-a-car','guides/true-cost-of-a-baby','guides/true-cost-of-owning-a-home','guides/true-cost-of-a-wedding']){
   await p.goto(base+'/tools/'+slug+'/');await p.evaluate(()=>document.fonts.ready);
   assert.ok(await p.evaluate(()=>document.fonts.check('500 24px Fraunces')&&document.fonts.check('400 16px "DM Sans"')),slug+' fonts');
   // Include every wizard step, not just the first screen.
