@@ -105,7 +105,7 @@
  ]
 }
 </script>
-<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="../favicon.svg?v=pymtw-20261018"><link rel="stylesheet" href="v7/home.css">
+<link rel="icon" href="/favicon.ico?v=pymtw-20261018" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="../favicon.svg?v=pymtw-20261018"><link rel="stylesheet" href="v7/home.css?v=89eab7fc6e24">
 <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -116,7 +116,7 @@
 <header class="header" id="top"><div class="shell header-inner">
   <a class="logo" href="/" aria-label="PYMTW home — Put Your Money to Work">PYMTW<span class="logo-underline"></span></a>
   <nav class="nav" aria-label="Main navigation" id="main-nav">
-    <a href="#how">How it works</a><a href="#moments">Find a tool</a><a href="#guides">Life guides</a><a href="#behind">About</a><a href="#newsletter">Newsletter</a>
+    <a href="#tool-topics">Money tools</a><a href="#guides">Life guides</a><a href="#newsletter">Newsletter</a><a href="#behind">About</a>
   </nav>
   <div class="header-right"><span class="private"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Privacy first</span><a class="header-link" href="#checkup">Start here <span aria-hidden="true">↗</span></a><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
 </div></header>
@@ -140,45 +140,39 @@
     <p class="opening-promise"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>No judgment. No account needed for the tools. Just a place to begin.</p>
   </section>
 
-  <section class="photo-moment shell" aria-labelledby="photo-title">
-    <div class="photo-copy"><span class="section-kicker">A MORE HUMAN WAY TO TALK ABOUT MONEY</span><h2 id="photo-title">Life moves.<br><em>We'll help you find<br>your footing.</em></h2><p>Plain-English questions, useful numbers, and practical guides for whatever comes next.</p><a class="inline-link" href="#moments">Explore life's moments <span aria-hidden="true">↗</span></a></div>
+  <section class="tool-directory shell" id="moments" aria-labelledby="moments-title">
+  <section class="photo-moment" aria-labelledby="photo-title">
+    <div class="photo-copy"><span class="section-kicker">A MORE HUMAN WAY TO TALK ABOUT MONEY</span><h2 id="photo-title">Life moves.<br><em>We'll help you find<br>your footing.</em></h2><p>Plain-English questions, useful numbers, and practical guides for whatever comes next.</p><a class="inline-link" href="#tool-topics">Browse tools by topic <span aria-hidden="true">↓</span></a></div>
     <div class="photo-pane"><img src="v7/image-1-560.webp" srcset="v7/image-1-560.webp 560w, v7/image-1.webp 1433w" sizes="(max-width:590px) calc(100vw - 36px), 55vw" width="1448" height="1086" alt="Sunlit desk with black coffee mug, notebook, laptop and plant" fetchpriority="high"><div class="photo-caption"><span class="photo-caption-line"></span>CLARITY FOR REAL LIFE</div></div>
   </section>
-
-  <section class="example-section" id="example" aria-labelledby="example-title"><div class="shell example-layout">
-    <div class="example-intro"><p class="eyebrow">A USEFUL ANSWER, RIGHT AWAY</p><h2 id="example-title">What could your<br><em>savings cover?</em></h2><p>Here's a simple example. Change the numbers to see how long your savings might last if your income stops.</p><p class="example-micro">An illustration, not a prediction. This estimate doesn't account for taxes, unexpected costs, or changes in spending.</p><a href="/tools/emergency-fund-runway/" rel="noopener" class="inline-link">Explore the full emergency fund tool <span aria-hidden="true">↗</span></a></div>
-    <div class="example-widget">
-      <div class="widget-top"><div><span class="widget-overline">EXAMPLE SCENARIO</span><h3>A little more breathing room.</h3></div><span class="widget-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span></div>
-      <div class="big-answer"><div class="answer-number"><output id="runway-output">4</output><span>months</span></div><p>Estimated time your savings could cover the gap</p></div>
-      <div class="sample-inputs"><div class="sample-field"><div class="sample-top"><label for="savings">Savings available</label><output id="savings-value">$12,000</output></div><input type="range" id="savings" min="1000" max="50000" step="500" value="12000"><div class="range-ends"><span>$1,000</span><span>$50,000</span></div></div><div class="sample-field"><div class="sample-top"><label for="expenses">Monthly essentials</label><output id="expenses-value">$3,000</output></div><input type="range" id="expenses" min="1000" max="10000" step="250" value="3000"><div class="range-ends"><span>$1,000</span><span>$10,000</span></div></div></div>
-      <details class="method-disclosure"><summary>How is this calculated? <span>+</span></summary><p>Available savings ÷ essential monthly spending. For this illustration, monthly income is assumed to be $0. Example: $12,000 ÷ $3,000 = 4 months. See how long your savings could cover essential spending. Your numbers stay in your browser.</p></details>
+    <div class="directory-heading" id="tool-topics"><div><p class="eyebrow">MONEY TOOLS</p><h2 id="moments-title">Find the right tool.</h2></div><p>Choose a topic. Start with what matters to you.</p></div>
+    <div class="directory-layout">
+      <div class="tool-categories" role="group" aria-label="Filter tools by topic" id="tool-categories"></div>
+      <div id="tools" class="directory-results">
+        <div class="directory-results-heading"><h3 id="tool-list-title">Everyday money</h3><p id="tool-count" role="status" aria-live="polite" aria-atomic="true"></p></div>
+        <p id="tool-list-desc" class="directory-description">Understand your pay, spending and savings goals.</p>
+        <div class="tool-grid" id="tools-grid"></div>
+      </div>
     </div>
-  </div></section>
-
-  <section class="moment-section shell" id="moments" aria-labelledby="moments-title"><div class="moments-head"><p class="eyebrow">FIND YOUR STARTING POINT</p><h2 id="moments-title">Start where <em>life has you.</em></h2><p>You don't have to know the financial term. Just choose what's on your mind.</p></div>
-    <div class="moments-grid" role="group" aria-label="Choose your current money situation">
-      <button type="button" class="moment-card" data-moment="starting"><span class="moment-index">01</span><span class="moment-title">Starting out.</span><span class="moment-desc">Getting organized, understanding money, and building habits.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
-      <button type="button" class="moment-card" data-moment="purchase"><span class="moment-index">02</span><span class="moment-title">A big purchase.</span><span class="moment-desc">Thinking about a home, loan, or important commitment.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
-      <button type="button" class="moment-card" data-moment="unexpected"><span class="moment-index">03</span><span class="moment-title">Something changed.</span><span class="moment-desc">A job loss, money worries, or a debt you want to tackle.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
-      <button type="button" class="moment-card" data-moment="ahead"><span class="moment-index">04</span><span class="moment-title">Planning ahead.</span><span class="moment-desc">Looking further out, growing savings, or preparing for retirement.</span><span class="moment-arrow" aria-hidden="true">↗</span></button>
-    </div>
-    <div id="tools" class="tools-head"><div><p class="eyebrow">A TOOL FOR THAT</p><h3 id="tool-list-title">Helpful tools for wherever you are.</h3><p id="tool-list-desc">Explore the tools and find a useful next step.</p></div><button type="button" id="show-all" class="all-link" hidden>Show all tools ↗</button></div>
-    <div class="tool-grid" id="tools-grid" aria-live="polite"></div>
-    <p class="tools-explainer">Explore free tools for everyday money decisions. Tools marked “Coming soon” are not yet available. Example results are clearly labeled illustrations and are not personalized financial advice.</p>
+    <p class="directory-help" id="checkup">Not sure where to start? <a href="/tools/checkup/">Take the 2-minute money checkup <span aria-hidden="true">↗</span></a></p>
+    <noscript><p>Browse <a href="/tools/paycheck-decoder/">your paycheck</a>, <a href="/tools/debt-payoff-planner/">debt payoff</a>, <a href="/tools/rent-vs-buy/">rent vs. buy</a>, <a href="/tools/explain-my-401k/">your 401(k)</a>, or <a href="/tools/bitcoin-tax-lot-cleanup/">Bitcoin records</a>. Enable JavaScript to browse all categories and run the calculators.</p></noscript>
   </section>
 
-  <section class="guide-section" id="guides" aria-labelledby="guides-title"><div class="shell"><div class="guide-header"><div><p class="eyebrow">WHEN LIFE GETS COMPLICATED</p><h2 id="guides-title">Guidance for life's<br><em>big moments.</em></h2></div><p>Sometimes the next step isn't a calculator. It's knowing what matters first.</p></div>
-  <div class="guide-grid"><a class="guide-card" href="/tools/guides/lost-my-job/" rel="noopener"><div class="guide-image"><img src="v7/image-2.webp" width="1448" height="1086" alt="Woman thoughtfully reviewing household documents at a sunny table" loading="lazy"></div><div class="guide-text"><span>WHEN WORK CHANGES</span><h3>Just lost your job?<br><em>Start here.</em></h3><p>A calm plan for this week, next month, and the choices ahead.</p><b>Read the guide <span aria-hidden="true">↗</span></b></div></a>
-    <a class="guide-card" href="/tools/guides/first-home/" rel="noopener"><div class="guide-image"><img src="v7/image-3.webp" width="1448" height="1086" alt="Clear golden-hour photograph of a welcoming home with a front porch and landscaping" loading="lazy"></div><div class="guide-text"><span>MAKING A HOME</span><h3>Ready for your<br><em>first home?</em></h3><p>See beyond the listing price and plan for the real costs.</p><b>Read the guide <span aria-hidden="true">↗</span></b></div></a>
-  </div></div></section>
+  <section class="life-guides-section" id="guides" aria-labelledby="guides-title">
+    <div class="shell"><span id="life-guides" class="guide-anchor" aria-hidden="true"></span>
+      <div class="life-guides-heading"><p class="eyebrow">LIFE GUIDES</p><h2 id="guides-title">Guidance for life's <em>big moments.</em></h2><p>Choose what's happening in your life. Find a clear place to begin.</p></div>
+      <div class="life-guides-grid">
+        <a class="life-guide-choice" href="/tools/guides/true-cost-of-a-car/"><div class="life-guide-photo photo-car"><img src="v7/guides/car.webp" width="800" height="1200" alt="White car parked beside trees" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Buying a car</h3><p>See the costs beyond the sticker price.</p><span class="life-guide-action">Explore the guide <span aria-hidden="true">↗</span></span></div></a>
+        <a class="life-guide-choice" href="/tools/guides/true-cost-of-a-baby/"><div class="life-guide-photo photo-baby"><img src="v7/guides/baby.webp" width="800" height="1200" alt="Baby resting in soft natural light" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Having a baby</h3><p>Plan for birth costs, child care and time off.</p><span class="life-guide-action">Explore the guide <span aria-hidden="true">↗</span></span></div></a>
+        <article class="life-guide-choice life-guide-home"><div class="life-guide-photo photo-home"><img src="v7/image-3.webp" width="1448" height="1086" alt="Welcoming home with a front porch and garden" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Buying or owning a home</h3><p>Prepare to buy, or budget for life as a homeowner.</p><div class="life-guide-actions"><a href="/tools/guides/first-home/">Buying your first home <span aria-hidden="true">↗</span></a><a href="/tools/guides/true-cost-of-owning-a-home/">True cost of ownership <span aria-hidden="true">↗</span></a></div></div></article>
+        <a class="life-guide-choice" href="/tools/guides/true-cost-of-a-wedding/"><div class="life-guide-photo photo-wedding"><img src="v7/guides/wedding.webp" width="800" height="1200" alt="Flowers and place settings on a wedding reception table" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Planning a wedding</h3><p>Build a budget around what matters to you.</p><span class="life-guide-action">Explore the guide <span aria-hidden="true">↗</span></span></div></a>
+        <a class="life-guide-choice" href="/tools/guides/lost-my-job/"><div class="life-guide-photo photo-career"><img src="v7/image-2.webp" width="1448" height="1086" alt="Woman reviewing household documents at a table" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Losing a job</h3><p>Find a calm plan for this week and what comes next.</p><span class="life-guide-action">Explore the guide <span aria-hidden="true">↗</span></span></div></a>
+        <a class="life-guide-choice" href="/tools/checkup/"><div class="life-guide-photo photo-start"><img src="v7/guides/getting-started.webp" width="800" height="533" alt="Notebook, pencil and calculator ready for making a money plan" loading="lazy" decoding="async"></div><div class="life-guide-body"><h3>Getting started with money</h3><p>Find your next step with a two-minute money checkup.</p><span class="life-guide-action">Start the checkup <span aria-hidden="true">↗</span></span></div></a>
+      </div>
+    </div>
+  </section>
 
-  <div class="shell" style="padding-top:24px"><nav class="true-cost-links" aria-label="True-cost guides"><h3>True-cost guides</h3><a class="inline-link" href="guides/true-cost-of-a-car/">Buying a car? Explore the true cost guide ↗</a><a class="inline-link" href="guides/true-cost-of-a-baby/">Having a baby? See the true cost ↗</a><a class="inline-link" href="guides/true-cost-of-owning-a-home/">Buying a home? See the cost beyond the mortgage ↗</a><a class="inline-link" href="guides/true-cost-of-a-wedding/">Planning a wedding? See the true cost ↗</a></nav></div><section class="steps-section shell" id="how" aria-labelledby="how-title"><p class="eyebrow">THE PYMTW WAY</p><h2 id="how-title">No finance degree needed.</h2><div class="step-grid"><div><span class="step-number">01</span><h3>Ask in your own words.</h3><p>Tell us the money question on your mind.</p></div><div><span class="step-number">02</span><h3>Try the numbers.</h3><p>Compare a real example, then adjust the assumptions.</p></div><div><span class="step-number">03</span><h3>Know your next step.</h3><p>Take away a clearer answer and something useful to do.</p></div></div></section>
 
-  <section class="trust-section shell" id="trust" aria-labelledby="trust-title"><div class="trust-heading"><p class="eyebrow">CLEAR ABOUT THE DETAILS</p><h2 id="trust-title">Trust should be <em>easy to see.</em></h2></div><div class="trust-grid"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3 8.2-8 10-5-1.8-8-5-8-10V6z"/><path d="m8 12 3 3 5-6"/></svg><h3>Private calculations</h3><p>Local example calculations run in your browser. No account required.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l4 4v14H3V3z"/><path d="M17 3v5h5M7 12h10M7 16h7"/></svg><h3>See the assumptions</h3><p>Example inputs and formulas are displayed, with clear limits on what estimates mean.</p></div><div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3-7 8-7s8 3 8 7"/></svg><h3>Created by a person</h3><p>PYMTW stands for Put Your Money to Work, founded by financial educator Frank Jerome.</p></div></div></section>
-
-  <section class="about-section" id="behind" aria-labelledby="about-title"><div class="shell about-layout"><div class="book-figure"><div class="book-glow" aria-hidden="true"></div><img src="v7/image-4.webp" width="1834" height="2775" loading="lazy" alt="Original front cover of Bitcoin for Working Professionals, 2nd Edition, by Frank Jerome"><span>BITCOIN FOR WORKING PROFESSIONALS · SECOND EDITION</span></div><div class="about-copy"><p class="eyebrow">THE PERSON BEHIND PYMTW</p><h2 id="about-title">Good money guidance<br>should feel <em>human.</em></h2><p>PYMTW means <strong>Put Your Money to Work.</strong> It was created by Frank Jerome, a financial educator and author with more than a decade of Wall Street experience.</p><p>His book, <em>Bitcoin for Working Professionals, 2nd Edition</em>, is written for busy people who want clear explanations instead of hype.</p><a class="text-cta" href="https://amzn.to/4zwsLbQ" rel="noopener sponsored" target="_blank">Explore the book on Amazon <span>↗</span></a><small>The book is optional. The tools are free to use. The Amazon link may generate an affiliate commission.</small></div></div></section>
-
-  <section class="checkup-section shell" id="checkup" aria-labelledby="checkup-title"><div class="checkup-inner"><div><p class="eyebrow">ONE SIMPLE NEXT STEP</p><h2 id="checkup-title">Not sure where to begin?<br><em>Start with two minutes.</em></h2><p>Answer a few straightforward questions to see which money topics might deserve your attention. No judgment. No score.</p><a class="button-primary" href="/tools/checkup/" rel="noopener">Take the 2-minute money checkup <span>↗</span></a></div><div class="checkup-number" aria-hidden="true">02<span>minutes</span></div></div><p class="newsletter-note">Prefer to learn at your own pace? <a href="#newsletter">Get occasional money ideas by email ↗</a></p></section>
 
 <section class="newsletter-section" id="newsletter" aria-labelledby="newsletter-title">
   <div class="shell newsletter-layout">
@@ -192,10 +186,10 @@
       <div class="newsletter-card-heading"><span class="newsletter-envelope" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span>THE PYMTW TOOLS NEWSLETTER</span></div>
       <p>Sign up securely through Beehiiv. You don't need an account to use the financial tools.</p>
       <a class="newsletter-subscribe-link" href="https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe free on Beehiiv <span aria-hidden="true">↗</span></a>
-      <p class="newsletter-help">Opens Beehiiv’s secure signup page in a new tab. Complete any human-verification prompt there, then check your inbox and spam folder for any confirmation email.</p>
+      <p class="newsletter-help">Opens Beehiiv in a new tab. Follow its signup steps, then check your inbox for confirmation.</p>
       <details class="newsletter-inline" id="newsletter-inline">
         <summary>Prefer to sign up on this page?</summary>
-        <p class="newsletter-help">If the form stalls or does not confirm your signup, use the orange button above. Beehiiv may need to verify you in its own tab. Loading this form does not mean you are subscribed.</p>
+        <p class="newsletter-help">If the form stalls or does not confirm your signup, use the signup button above. Beehiiv may need to verify you in its own tab. Loading this form does not mean you are subscribed.</p>
         <p id="newsletter-form-status" class="newsletter-help" role="status" aria-live="polite"></p>
         <div class="newsletter-embed" id="beehiiv-signup-widget" aria-label="PYMTW Tools newsletter subscription form" data-form-id="e52526c9-fd98-4fde-bda0-ee1a61507c09"></div>
       </details>
@@ -203,19 +197,29 @@
     </div>
   </div>
 </section>
-<div class="shell"><p class="tools-explainer">Want an assets-and-liabilities overview? <a href="/calculator.html">Try the Bitcoin-focused net worth calculator</a>.</p></div>
+
+<section class="about-compact shell" id="behind" aria-labelledby="about-title">
+  <img src="v7/image-4.webp" width="1834" height="2775" loading="lazy" alt="Bitcoin for Working Professionals, Second Edition, by Frank Jerome">
+  <div><p class="eyebrow">THE PERSON BEHIND PYMTW</p><h2 id="about-title">Practical guidance, from Frank Jerome.</h2><p>PYMTW means Put Your Money to Work. Frank is a financial educator and author with more than a decade of Wall Street experience.</p><a href="https://amzn.to/4zwsLbQ" target="_blank" rel="noopener sponsored">Explore his book, Bitcoin for Working Professionals <span aria-hidden="true">↗</span></a><small>The book is optional. The tools are free. The Amazon link may generate an affiliate commission.</small></div>
+</section>
 <!-- seo:body -->
-<section class="seo-extra" aria-label="Questions and related tools"><div class="narrow">
-<div class="faq"><h2>Common questions</h2><div class="qa"><h3>Are PYMTW Tools really free?</h3><p>Yes. Every tool and guide is free to use, with no signup and no ads.</p></div><div class="qa"><h3>Is my financial data uploaded anywhere?</h3><p>No. The calculators run entirely in your browser, so the numbers and files you enter stay on your device. The site counts anonymous page visits to improve the tools.</p></div><div class="qa"><h3>Which tool should I start with?</h3><p>If you are not sure, take the 2-minute money checkup. It asks a few questions and gives you a short, prioritized list of what to look at, with links to the right tools.</p></div><div class="qa"><h3>Is this financial advice?</h3><p>No. The tools are educational and give estimates based on what you enter. For decisions about your situation, talk to a licensed professional.</p></div></div>
-<nav class="related" aria-label="Related tools and guides"><h2>Related</h2><ul><li><a href="checkup/"><b>2-minute money checkup</b><span>Two minutes of questions, then a prioritized list of money blind spots.</span></a></li><li><a href="guides/lost-my-job/"><b>Just lost your job? What to do</b><span>What to do this week, this month and this year after a job loss.</span></a></li><li><a href="guides/true-cost-of-a-baby/"><b>The true cost of having a baby</b><span>Explore costs and estimate your own budget.</span></a></li><li><a href="guides/true-cost-of-owning-a-home/"><b>The true cost of owning a home</b><span>Explore costs and estimate your own budget.</span></a></li><li><a href="guides/true-cost-of-a-wedding/"><b>The true cost of a wedding</b><span>Explore costs and estimate your own budget.</span></a></li></ul></nav>
-</div></section>
+<section class="home-faq shell" id="trust" aria-labelledby="faq-title">
+ <h2 id="faq-title">A few things to know.</h2>
+ <details id="how"><summary>How do I use the tools?</summary><p>Search in your own words or choose a topic, open a tool, and enter your numbers. Review its assumptions and limits, then explore how different choices affect the estimate.</p></details>
+ <details><summary>Are PYMTW Tools really free?</summary><p>Yes. Every tool and guide is free to use, with no signup and no ads.</p></details>
+ <details><summary>Is my financial data uploaded anywhere?</summary><p>No. The calculators run entirely in your browser, so the numbers and files you enter stay on your device. The site counts anonymous page visits to improve the tools.</p></details>
+ <details><summary>Which tool should I start with?</summary><p>If you are not sure, take the <a href="/tools/checkup/">2-minute money checkup</a>. It asks a few questions and gives you a short, prioritized list of what to look at, with links to the right tools.</p></details>
+ <details><summary>Is this financial advice?</summary><p>No. The tools are educational and give estimates based on what you enter. For decisions about your situation, talk to a licensed professional.</p></details>
+</section>
 <!-- /seo:body -->
 </main>
-<footer class="footer"><div class="shell"><p class="privacy-note">We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for privacy-friendly, cookieless page counts (no personal data). <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>. The newsletter signup form is run by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">beehiiv</a>; the email address you enter is sent to beehiiv. Calculator numbers still never leave your device.</p></div><div class="shell footer-upper"><div><a class="logo footer-logo" href="/" aria-label="PYMTW home — Put Your Money to Work">PYMTW<span class="logo-underline"></span></a><p>Put Your Money to Work.<br>Real questions. Clearer next steps.</p></div><div class="footer-nav"><a href="#top">Back to top</a><a href="#moments">Find tools</a><a href="#guides">Life guides</a><a href="#newsletter">Newsletter</a><a href="/legal.html" rel="noopener">Legal & privacy ↗</a><a href="/" rel="noopener">Visit PYMTW ↗</a></div></div><div class="shell footer-lower"><span>© 2026 PYMTW</span><span>For education. Example results are not financial advice.</span></div><div class="shell"><div class="legal">Educational tools only, not financial, tax, or legal advice. Results are estimates based on the information you provide. No cookies unless you open the newsletter signup form, which is run by beehiiv. Calculator numbers never leave your device. If you sign up, your email is sent to beehiiv. We count anonymous page visits to improve the tools. © 2026 Put Your Money to Work.</div></div></footer>
-<button type="button" class="mobile-search-dock" id="mobile-search-dock" hidden aria-label="Ask another money question"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg> What's on your money mind? <span aria-hidden="true">↑</span></button>
+<footer class="footer simple-footer"><div class="shell">
+ <div class="simple-footer-top"><div><a class="logo footer-logo" href="/" aria-label="PYMTW home — Put Your Money to Work">PYMTW<span class="logo-underline"></span></a><p>Put Your Money to Work.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#top">Back to top</a><a href="#tool-topics">Money tools</a><a href="#guides">Life guides</a><a href="/calculator.html">Bitcoin net worth</a><a href="/legal.html">Legal &amp; privacy</a></nav></div>
+ <p class="simple-footer-note">© 2026 Put Your Money to Work. Educational estimates, not financial, tax or legal advice.</p>
+ <details class="footer-privacy"><summary>Privacy and newsletter details</summary><p>Calculator numbers and imported files stay on your device. We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for anonymous, cookieless page counts; analytics are off on Paycheck Decoder, Explain My 401(k), and Bitcoin Tax-Lot Cleanup. <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>.</p><p>Optional newsletter signup is handled by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">Beehiiv</a>. Your email goes to Beehiiv; financial numbers do not. The site uses no cookies unless you open the newsletter signup form.</p></details>
+</div></footer>
 
-
-<script src="tools.js"></script><script src="catalog.js"></script><script src="v7/home.js"></script><script src="v7/newsletter.js"></script>
+<script src="tools.js"></script><script src="catalog.js"></script><script src="v7/home.js?v=0f3dea59087c"></script><script src="v7/newsletter.js"></script>
 <script src="/assets/site-analytics.js" defer></script>
 </body>
 </html>
