@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /tools/preview/
 
 Sitemap: https://pymtw.com/tools/sitemap.xml
 

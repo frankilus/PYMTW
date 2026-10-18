@@ -1,0 +1,13 @@
+# Put Your Money to Work
+
+> Practical Bitcoin education and free, browser-based personal finance tools. Educational information, not individualized investment, tax, or legal advice.
+
+- [Homepage](https://pymtw.com/): Choose Bitcoin education or Money Tools.
+- [Bitcoin](https://pymtw.com/bitcoin/): Understand, Evaluate, and Protect learning paths.
+- [Resource library](https://pymtw.com/resources.html): Guides and resources organized by visitor goals.
+- [Bitcoin for Working Professionals](https://pymtw.com/book/): Frank Jerome’s second-edition book and reader toolkit.
+- [Money Tools](https://pymtw.com/tools/): Private calculators and practical guides.
+- [Tools index for language models](https://pymtw.com/tools/llms.txt): Tool descriptions and routes.
+- [Legal and privacy](https://pymtw.com/legal.html): Disclosures and calculator privacy.
+
+Calculator inputs stay in the browser. Analytics count page visits and predefined link actions, not financial inputs. Newsletter and inquiry providers receive information only when a visitor chooses to submit it. Some tools are marked coming soon. Historical simulations have limitations; read each tool’s assumptions.

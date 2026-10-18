@@ -1,7 +1,7 @@
 /* V7 presentation layer; original calculation code and content are unchanged. */
 :root{--ink:#292b29;--ink-2:#444e48;--ink-3:#667065;--line:#dbe2d8;--bg:#fffcf7;--bg-2:#f0f4ed;--accent:#2a5042;--accent-2:#315b4c;--accent-soft:#e1e9df;--radius:14px;--font:"DM Sans",Inter,"Helvetica Neue",Arial,sans-serif}
 nav{background:rgba(255,252,247,.96);border-bottom:1px solid var(--line)}
-h1,h2{font-family:Georgia,serif;font-weight:500}h1 em{font-style:italic}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:500}h1 em{font-style:italic}
 .wizard,.card,.stat{border:1px solid var(--line)}.wizard{background:#fff}.btn.accent{background:var(--accent)}
 .next .k{color:#b9d2b7}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent-2);outline-offset:4px}
 .nav-links a{min-height:44px;display:inline-flex;align-items:center}.v7-next{padding:30px 24px;text-align:center}.v7-next a{display:inline-block;padding:12px;color:var(--accent);text-decoration:underline}
@@ -17,3 +17,7 @@ footer{background:#223e33;color:#b6bdb9}footer .brand strong{color:#fffcf7}foote
 .v7-next{background:#223e33;color:#fffcf7}.v7-next a{color:#b9d2b7}
 
 .progress{background:#e1e9df}.next{background:#223e33}.next .k{color:#b9d2b7}.tool-hero{background:linear-gradient(180deg,#edf2e9,transparent)}
+footer .privacy-note a{text-decoration:underline;text-underline-offset:3px}
+/* Car-guide grid children must shrink with narrow viewports as well. */
+.item>*{min-width:0}.calc .row4>*{min-width:0}
+@media(max-width:400px){.calc .row4{grid-template-columns:minmax(0,1fr)}}

@@ -155,10 +155,14 @@
 }
 </script>
 <link rel="stylesheet" href="../v7/pages.css">
+
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark">P</span>PYMTW <span class="dim">Tools</span></a>
+  <a class="logo" href="../" aria-label="PYMTW Tools: Put Your Money To Work" title="PYMTW · Put Your Money To Work"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
 
@@ -175,7 +179,7 @@
     <p id="forgot" class="ck-remember" style="display:none;color:var(--accent);font-weight:600">✓ Your answers were cleared from this device.</p>
   </section>
 
-  <section class="rp" id="report"></section>
+  <section class="rp" id="report"></section><div class="checkup-newsletter"><aside class="result-newsletter"><h2>Get one clear money idea a week</h2><p>Practical notes from PYMTW Tools. Optional, free, and separate from your results.</p><a href="https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener">Subscribe free on Beehiiv ↗</a></aside></div>
   <p class="note"><strong>Educational only, not financial advice.</strong> This checkup points out common money blind spots based on your answers. It isn’t financial, tax, legal or insurance advice. Rules of thumb are general and may not fit your situation. Your answers stay in your browser, and they’re only saved if you choose “Remember my answers.”</p>
 </main>
 
@@ -195,8 +199,8 @@
 <script src="../tools.js"></script>
 <script src="logic.js"></script>
 <script src="app.js"></script>
-<script data-goatcounter="https://pymtw.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+
 <div class="v7-next"><a href="../checkup/">Take the 2-minute money checkup →</a><a href="../#newsletter">Newsletter signup →</a></div>
+<script src="/assets/site-analytics.js" defer></script>
 </body>
 </html>

@@ -18,5 +18,11 @@
       "file": "image-4.webp",
       "sha256": "1f7ce9939f520b1af975a9869d4e75fa68922f1b4c6f7e26c7c105c10e163c0f"
     }
-  ]
+  ],
+  "book_cover_replacement": {
+    "source": "Bitcoin_for_Working_Professionals_2nd_Edition_KDP_NO_WHITE_BOX_12.784x9.250_300dpi.png",
+    "source_sha256": "73e6be7fbabf56df43dc57b45881544514afcba726631c51b2bf24d7c92ee73d",
+    "manifest": "/assets/home/book-cover-provenance.json",
+    "note": "User-approved actual second-edition cover supersedes the original V7 image-4.webp listed above."
+  }
 }
