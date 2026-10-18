@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');const baby=require('../tools/guides/true-cost-of-a-baby/calc.js'),home=require('../tools/guides/true-cost-of-owning-a-home/calc.js'),wedding=require('../tools/guides/true-cost-of-a-wedding/calc.js');
+const near=(a,b)=>assert.ok(Math.abs(a-b)<.01,`${a} ≠ ${b}`);
+const b={birth:2743,care:17264,diapers:90,food:4208,health:3638,trans:4422,housing:1680,clothes:313,gear:0,leaveWeeks:0,weeklyPay:'',ctc:2200,fsa:0,taxRate:''};let r=baby.calculate(b);
+for(const[k,v]of Object.entries({core:14261,firstYear:33148,perYearCare:29325,perYearAfter:12061,total18:307241}))near(r[k],v);
+near(baby.calculate({...b,care:0}).firstYear,15884);near(baby.calculate({...b,fsa:99999,taxRate:30}).fsaSavings,2250);near(baby.calculate({...b,care:1000,fsa:7500,taxRate:25}).fsaSavings,250);near(baby.calculate({...b,leaveWeeks:4,weeklyPay:1000}).lostIncome,4000);
+const h={price:417500,down:20,rate:7.4,term:30,taxRate:.9,ins:2470,maint:2,hoa:0,util:4494,net:1515,close:3,pmiPer100k:50,oppRate:5.1};r=home.calculate(h);
+for(const[k,v]of Object.entries({loan:334000,PI:2312.55,beyondYr:20586.5,allInMo:4028.09,upfront:96025,oppYr:4897.28,yr1Int:24610.93,trueYr1:50094.71}))near(r[k],v);
+r=home.calculate({...h,down:10});near(r.loan,375750);near(r.PI,2601.62);near(r.pmiYr,2254.5);near(home.calculate({...h,down:100}).PI,0);near(home.calculate({...h,rate:0}).PI,334000/360);assert.equal(home.calculate({...h,term:0}).invalidTerm,true);
+const w={guests:117,perGuest:292,buffer:5,family:0,saved:0,months:18,borrow:10000,apr:22.36,payoffMonths:24};r=wedding.calculate(w);
+for(const[k,v]of Object.entries({base:34164,buffer:1708.2,total:35872.2,gap:35872.2,monthly:1992.9,payment:520.56,interest:2493.47}))near(r[k],v);
+near(wedding.calculate({...w,ring:true,rehearsal:true,honeymoon:true}).total,48772.2);near(wedding.calculate({...w,guests:50,perGuest:342}).base,17100);near(wedding.calculate({...w,apr:0}).interest,0);near(wedding.calculate({...w,family:999999}).gap,0);assert.equal(wedding.calculate({...w,payoffMonths:0}).invalidTerm,true);near(wedding.calculate({...w,months:0}).monthly,r.gap);
+for(const api of [baby,home,wedding]){const zero=api.calculate({});function walk(x){if(typeof x==='number')assert.ok(Number.isFinite(x));else if(x&&typeof x==='object')Object.values(x).forEach(walk);}walk(zero);for(const val of ['',-10,'letters',NaN,Infinity,1e300]){const keys=[...Object.keys(b),...Object.keys(h),...Object.keys(w)];const result=api.calculate(Object.fromEntries(keys.map(k=>[k,val])));walk(result);}for(const[k,v]of Object.entries(zero))if(typeof v==='number')near(v,0);}
+for(const api of [home,wedding]){near(api.pmt(1200,0,12),100);near(api.pmt(1200,1e-20,12),100);near(api.pmt(1200,.1,0),0);near(api.pmt(-1,.1,12),0);}
+near(home.amortize(1200,0,12,12).balanceAt,0);near(home.amortize(1200,0,12,12).interestUpTo,0);
+console.log('PASS expected default/preset figures, amortization, FSA limits, zero/blank/negative/nonfinite inputs, full down payment, excess contributions and zero-term warnings.');

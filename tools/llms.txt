@@ -14,6 +14,9 @@ Pages marked "coming soon" describe tools that are not yet functional.
 - [Just lost your job? What to do](https://pymtw.com/tools/guides/lost-my-job/): After losing your job, file for unemployment right away, work out how many months your money will last, review your severance and final paycheck, and choose health coverage (COBRA or a Marketplace plan) within the 60-day window.
 - [Buying your first home: the checklist](https://pymtw.com/tools/guides/first-home/): Before buying your first home, budget for more than the down payment: closing costs typically run 2%–5% of the price, plus moving costs and a cash cushion.
 - [The true cost of owning a car](https://pymtw.com/tools/guides/true-cost-of-a-car/): Owning and operating a new car costs an average of $12,863 a year, or $1,071.92 a month, according to AAA’s 2026 Your Driving Costs study (five years, 15,000 miles a year), with depreciation the biggest piece at $4,422 a year; includes a 5-year cost calculator and questions to ask before you sign.
+- [The true cost of having a baby](https://pymtw.com/tools/guides/true-cost-of-a-baby/): LendingTree’s 2026 study estimates $29,325 a year for the first five years with infant day care and $303,418 over 18 years; includes an editable first-year calculator, birth costs and benefits.
+- [The true cost of owning a home](https://pymtw.com/tools/guides/true-cost-of-owning-a-home/): Bankrate’s 2025 study estimates $21,400 a year beyond the mortgage; includes a monthly cost calculator, closing costs, PMI and HOA planning.
+- [The true cost of a wedding](https://pymtw.com/tools/guides/true-cost-of-a-wedding/): The Knot’s 2026 study reports a $34,200 average for 2025 weddings and a $24,000 median; includes a guest-list budget and borrowing comparison.
 
 ## Spending
 

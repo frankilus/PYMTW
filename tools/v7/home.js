@@ -60,8 +60,14 @@
  const jobGuide={title:'Just lost your job?',desc:'What to do this week and next month.',slug:'guides/lost-my-job',live:true,kw:'lost my job lost job laid off fired unemployed unemployment cobra severance'};
  const homeGuide={title:'Buying your first home',desc:'Understand preparation, closing costs and affordability.',slug:'guides/first-home',live:true,kw:'first home afford a home buy a home buying a home house mortgage down payment first time buyer'};
  const carGuide={title:"True cost of a car",desc:"Plan beyond the sticker price.",slug:"guides/true-cost-of-a-car",live:true,kw:"car auto vehicle insurance maintenance transport"};
- const searchPool=[carGuide,...toolData.filter(t=>t.live),checkup,jobGuide,homeGuide];
+ const babyGuide={"title": "The true cost of having a baby", "desc": "Plan child care, birth costs and benefits.", "slug": "guides/true-cost-of-a-baby", "live": true, "kw": "baby pregnant newborn child care daycare day care parental leave maternity paternity"};
+ const homeCostGuide={"title": "The true cost of owning a home", "desc": "Budget for the bills beyond the mortgage.", "slug": "guides/true-cost-of-owning-a-home", "live": true, "kw": "cost of owning homeowner property tax home insurance hoa maintenance closing cost pmi"};
+ const weddingGuide={"title": "The true cost of a wedding", "desc": "Build a budget around your guest list.", "slug": "guides/true-cost-of-a-wedding", "live": true, "kw": "wedding engaged engagement marry married honeymoon wedding budget"};
+ const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,homeGuide];
  const aliases=[
+  [/baby|pregnan|newborn|child care|daycare|day care|parental leave|maternity|paternity/,['guides/true-cost-of-a-baby','emergency-fund-runway']],
+  [/cost of owning|homeowner|property tax|home insurance|hoa|maintenance|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
+  [/wedding|engaged|engagement|marry|married|honeymoon/,['guides/true-cost-of-a-wedding','money-timeline']],
   [/where do i start|not sure|start with|overwhelmed|financial health|getting started|money mind/,['checkup']],
   [/lost my job|lost job|laid off|fired|unemployed|unemployment/,['guides/lost-my-job','severance-runway','emergency-fund-runway']],
   [/afford a home|buy a home|house|mortgage|first home/,['guides/first-home','rent-vs-buy']],
@@ -71,7 +77,7 @@
   [/emergency fund|savings last/,['emergency-fund-runway']],
   [/fees|investment fee/,['fee-x-ray']]
  ];
- function search(q){const n=norm(q);if(!n)return[];const words=n.split(' ').filter(w=>w.length>=3);return searchPool.map(t=>{const hay=norm(`${t.title} ${t.desc} ${t.kw||''}`);let score=words.reduce((a,w)=>a+(hay.split(' ').includes(w)?1:0),0);aliases.forEach(([re,slugs])=>{if(re.test(n)&&slugs.includes(t.slug))score+=20;});if(n.includes(norm(t.title)))score+=15;return {...t,score};}).filter(t=>t.score>0).sort((a,b)=>b.score-a.score).slice(0,4);}
+ function search(q){const n=norm(q);if(!n)return[];const words=n.split(' ').filter(w=>w.length>=3);return searchPool.map(t=>{const hay=norm(`${t.title} ${t.desc} ${t.kw||''}`);let score=words.reduce((a,w)=>a+(hay.split(' ').includes(w)?1:0),0);aliases.forEach(([re,slugs])=>{if(re.test(n)&&slugs.includes(t.slug))score+=20-slugs.indexOf(t.slug)*3;});if(n.includes(norm(t.title)))score+=15;return {...t,score};}).filter(t=>t.score>0).sort((a,b)=>b.score-a.score).slice(0,4);}
  function resultMarkup(t){const url=toolURL(t);return `<a href="${esc(url)}"  class="result-item"><div><strong>${esc(t.title)}</strong><small>${esc(t.desc)}</small></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}
  function showResults(q){const matches=search(q),el=$('#finder-results');el.hidden=false;el.innerHTML=matches.length?`<div class="results-heading">HERE'S A GOOD PLACE TO BEGIN</div><div class="result-items">${matches.map(resultMarkup).join('')}</div>`:`<div class="results-heading">LET'S TRY ANOTHER WAY</div><p class="result-empty">No close match yet. Try asking a simpler question or <a href="#moments" style="text-decoration:underline;color:#aa550d">choose a life moment below</a>.</p>`;}
  $('#finder-form').addEventListener('submit',e=>{e.preventDefault();showResults($('#finder-input').value);});

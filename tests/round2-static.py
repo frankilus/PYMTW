@@ -29,7 +29,7 @@ plan=(r/'tools/explain-my-401k/index.html').read_text()
 assert 'noindex' not in plan and 'DESIGN PREVIEW' not in plan
 assert all(term not in plan for term in ['site-analytics','gc.zgo.at','goatcounter.com','<iframe'])
 assert re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',plan)[0]=='<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; script-src \'self\' \'wasm-unsafe-eval\'; worker-src \'self\' blob:; connect-src \'self\'; img-src \'self\' data: blob:; font-src \'self\' data: blob:; style-src \'self\' \'unsafe-inline\'; object-src \'none\'; frame-src \'none\'; base-uri \'none\'; form-action \'none\'">'
-for slug in ['first-home','lost-my-job','true-cost-of-a-car']:
+for slug in ['first-home','lost-my-job','true-cost-of-a-car','true-cost-of-a-baby','true-cost-of-owning-a-home','true-cost-of-a-wedding']:
  s=(r/f'tools/guides/{slug}/index.html').read_text();assert '/archive' not in s;assert 'Subscribe to the newsletter' in s
 pay=(r/'tools/paycheck-decoder/index.html').read_text()
 assert 'site-analytics' not in pay and 'gc.zgo.at' not in pay and 'goatcounter.com' not in pay and '<iframe' not in pay
