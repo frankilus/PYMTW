@@ -1,6 +1,6 @@
 # Verified Round 3 fixes — review only
 
-Based on main `ef63d858250d324e76aa591f20540bd98ea286fd` after PR #19. No merge or deployment is included. ISBN remains omitted until Frank confirms it. Both statement-import tools remain free of analytics.
+Based on main `ef63d858250d324e76aa591f20540bd98ea286fd` after PR #19. No merge or deployment is included. Frank confirmed ISBN **9798174357846** for the second edition; it is included in the Book metadata. Both statement-import tools remain free of analytics.
 
 ## Changes by audit item
 
@@ -8,7 +8,7 @@ Based on main `ef63d858250d324e76aa591f20540bd98ea286fd` after PR #19. No merge 
 2. **Explain My 401(k):** preloads all three locally hosted fonts; adds BreadcrumbList, WebApplication and FAQPage structured data matching its six existing visible questions; adds an optional newsletter link inside the results section. The card is hidden initially, after edits make results stale, after import replacement and after clearing. The page and social titles now read **401(k) Explainer: Match, Investments & Fees | PYMTW**. Existing visible guide content is unchanged.
 3. **Paycheck title:** page, Open Graph and Twitter titles now read **Paycheck Decoder: Understand Your Pay Stub | PYMTW**. Its existing FAQ/schema and private import remain intact.
 4. **Tap targets:** standalone `.linkbtn` controls, including “Add another debt,” now have a minimum 24×24px target with vertical padding. Add/remove behavior and mobile layouts passed. Existing navigation targets already have 44px minimum height. The cited “Put Your Money to Work” text is a footer sentence link; it was left in its existing inline layout. WCAG's minimum-target rule has inline and spacing exceptions, so its size alone was not treated as a verified failure.
-5. **Book metadata:** adds the confirmed publication month as `datePublished: "2026-09"`. The visible **September 2026** text is unchanged. **No ISBN or publication day was invented or added.**
+5. **Book metadata:** adds the confirmed publication month as `datePublished: "2026-09"`. The visible **September 2026** text is unchanged. Adds the user-confirmed ISBN **9798174357846**. No publication day is invented.
 6. **Privacy:** no analytics, external scripts or embedded signup forms were added to either importer. Both CSPs and no-referrer policies remain unchanged. The 401(k) signup uses a fixed hosted URL, `noopener noreferrer`, and no statement values, query parameters or request body.
 
 ## Preservation
@@ -19,7 +19,7 @@ All production JavaScript is byte-for-byte unchanged from main, including calcul
 
 Passed:
 
-- `tests/round3-static.py`: 18 italic headlines/preloads; all six schema answers match visible content; page/social titles match; month-only book date and no ISBN; scripts/assets/catalog/sitemaps/privacy/CSP preserved.
+- `tests/round3-static.py`: 18 italic headlines/preloads; all six schema answers match visible content; page/social titles match; month-only book date and confirmed ISBN; scripts/assets/catalog/sitemaps/privacy/CSP preserved.
 - Existing `site-audit-static.py`, `v7-preservation.py`, `round2-static.py`, `v7-links.py`: 57 pages, 1,271 local references, 380 Tools references, metadata/indexing and original source preservation.
 - `tests/round3-browser.cjs`: 320/390/768/1280px; newsletter hidden/show/stale/reset, sample math, add-debt target and behavior, italic font loading, overflow checks. An intercepted signup click used only the fixed destination, with no request body, referrer or opener. No actual subscription was submitted.
 - `tests/site-audit-browser.cjs`: 18 Tools routes at three widths; all wizard steps/live results, fonts, newsletter cards, navigation, debt controls and existing analytics opt-outs.

@@ -35,7 +35,8 @@ assert [(q['name'],q['acceptedAnswer']['text']) for q in graph['FAQPage']['mainE
 assert 'href="https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"' in plan
 book=(r/'book/index.html').read_text();before=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',original('book/index.html').decode(),re.S)[1]);after=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',book,re.S)[1])
 assert after.pop('datePublished')=='2026-09'
-assert after==before and 'isbn' not in after
+assert after.pop('isbn')=='9798174357846'
+assert after==before
 assert 'Second Edition — September 2026' in book
 assert (r/'legal.html').read_bytes()==original('legal.html')
-print(f'PASS Round 3: {count} italic headlines covered, matching FAQs/social titles, month-only book date without ISBN, unchanged scripts/assets/catalog/sitemaps/privacy/CSP, no tracking or embeds on either importer.')
+print(f'PASS Round 3: {count} italic headlines covered, matching FAQs/social titles, month-only book date and confirmed ISBN, unchanged scripts/assets/catalog/sitemaps/privacy/CSP, no tracking or embeds on either importer.')
