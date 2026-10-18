@@ -8,12 +8,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pymtw.css">
   <link rel="stylesheet" href="dca.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-  <script src="pymtw-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js" defer></script>
+  <script src="pymtw-config.js" defer></script>
   <script src="/bitcoin-nav.js" defer></script>
   <link rel="stylesheet" href="/assets/bitcoin-theme.css">
   <link rel="stylesheet" href="/assets/bitcoin-interiors.css">
@@ -57,9 +54,6 @@
 
   <!-- Navigation -->
   <div id="site-header"></div><noscript><nav class="fallback-nav" aria-label="Bitcoin navigation"><a href="/bitcoin/">Bitcoin home</a><a href="/start-here.html">Understand</a><a href="/assessment.html">Evaluate</a><a href="/bitcoin-on-exchange.html">Protect</a><a href="/resources.html">Library</a><a href="/">PYMTW home</a></nav></noscript>
-
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas"></canvas>
 
   <!-- DCA Hero -->
   <section class="dca-hero">
@@ -199,10 +193,10 @@
   <!-- Footer -->
   <div class="container"><p class="simple-next">Looking for a simpler monthly comparison? <a href="/tools/bitcoin-dca-backtester/">Use the Money Tools DCA calculator</a> for monthly-average Bitcoin and S&amp;P 500 comparisons. This simulator offers purchase-frequency controls and CSV export with illustrative sample prices.</p></div><div id="site-footer"></div>
 
-  <script src="dca-data.js"></script>
-  <script src="dca-core.js"></script>
-  <script src="dca.js"></script>
-  <script src="/pymtw.js"></script>
+  <script src="dca-data.js" defer></script>
+  <script src="dca-core.js" defer></script>
+  <script src="dca.js" defer></script>
+  <script src="/pymtw.js" defer></script>
 <script src="/assets/site-analytics.js" defer></script>
 </body>
 </html>
