@@ -21,8 +21,11 @@
   {"@context":"https://schema.org","@type":"Book","name":"Bitcoin for Working Professionals","author":{"@type":"Person","name":"Frank W. Jerome"},"bookFormat":"https://schema.org/Paperback","numberOfPages":"","inLanguage":"en","publisher":{"@type":"Organization","name":"PYMTW"},"about":"A practical Bitcoin guide for working professionals: inflation, buying safely, self-custody, taxes, and a 90-day action plan.","url":"https://www.pymtw.com/book"}
   </script>
   <script src="/pymtw-config.js"></script>
+  <link rel="stylesheet" href="/assets/bitcoin-theme.css">
+  <link rel="stylesheet" href="/assets/bitcoin-interiors.css">
+  <script src="/assets/bitcoin-interiors.js" defer></script>
 </head>
-<body>
+<body class="bitcoin-interior">
 
   <!-- Floating particles background -->
   <canvas id="bk-particles"></canvas>
@@ -30,13 +33,13 @@
   <!-- Minimal nav -->
   <nav class="bk-nav">
     <div class="bk-nav-inner">
-      <a href="/" class="bk-logo">
+      <a href="/bitcoin/" class="bk-logo">
         <span class="bk-logo-icon">&#8383;</span>
         <span class="bk-logo-text">PYMTW</span>
       </a>
-      <a href="/" class="bk-nav-back">
+      <a href="/bitcoin/" class="bk-nav-back">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Home
+        Back to Bitcoin
       </a>
     </div>
   </nav>
@@ -142,7 +145,7 @@
     <div class="bk-container">
       <div class="bk-section-tag">What's Inside</div>
       <h2 class="bk-section-title">12 Chapters From Problem<br>to <span class="bk-gradient-text">Action Plan</span></h2>
-      <div class="bk-chapters-layout">
+      <details class="simple-details"><summary>View all 12 chapters</summary><div class="bk-chapters-layout">
         <div class="bk-part">
           <div class="bk-part-label">Part 1 — The Case for Bitcoin</div>
           <div class="bk-chapter-list">
@@ -242,7 +245,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div></details>
     </div>
   </section>
 
@@ -320,16 +323,7 @@
   </section>
 
   <!-- ===== KEEP LEARNING FUNNEL ===== -->
-  <section style="padding:64px 0;">
-    <div class="bk-container">
-      <div class="section-head"><span class="eyebrow">After the book</span><h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);">Put it into practice</h2></div>
-      <div class="card-grid cols-3">
-        <div class="p-card"><h3>Live workshops</h3><p>Small-group sessions on fundamentals and self-custody.</p><a href="/programs.html#workshops" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>See workshops</span></a></div>
-        <div class="p-card"><h3>Readiness Assessment</h3><p>Find your next step in two minutes — free.</p><a href="/assessment.html" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>Take the assessment</span></a></div>
-        <div class="p-card"><h3>Membership</h3><p>Ongoing education, briefings, and Q&amp;A.</p><a href="/programs.html#membership" class="bk-secondary-btn" style="margin-top:12px;display:inline-flex;"><span>See membership</span></a></div>
-      </div>
-    </div>
-  </section>
+  <section class="pymtw-section"><div class="bk-container"><p class="simple-next">Keep learning: <a href="/resources.html">Browse the Bitcoin resource library →</a></p></div></section>
 
   <!-- ===== CTA ===== -->
   <section class="bk-cta">

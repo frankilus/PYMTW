@@ -21,29 +21,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
   <script src="/bitcoin-nav.js" defer></script>
+  <link rel="stylesheet" href="/assets/bitcoin-theme.css">
+  <link rel="stylesheet" href="/assets/bitcoin-interiors.css">
+  <script src="/assets/bitcoin-interiors.js" defer></script>
 </head>
-<body class="pymtw-page" data-page="bitcoin-on-exchange">
+<body class="pymtw-page bitcoin-interior bitcoin-guide" data-page="bitcoin-on-exchange">
   <a href="#main" class="skip-link">Skip to content</a>
-  <div id="site-header"></div>
+  <div id="site-header"></div><noscript><nav class="fallback-nav" aria-label="Bitcoin navigation"><a href="/bitcoin/">Bitcoin home</a><a href="/start-here.html">Understand</a><a href="/assessment.html">Evaluate</a><a href="/bitcoin-on-exchange.html">Protect</a><a href="/resources.html">Library</a><a href="/">PYMTW home</a></nav></noscript>
 
   <main id="main" class="pymtw-main">
     <section class="page-hero" style="padding-bottom:8px;">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span>How Much Bitcoin on an Exchange?</nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/bitcoin/">Bitcoin</a><span>/</span><a href="resources.html">Resources</a><span>/</span>How Much Bitcoin on an Exchange?</nav>
         <span class="eyebrow">Guide · Last updated July 2026</span>
         <h1>How Much Bitcoin Should You Keep on an Exchange?</h1>
         <p class="lead">There's an old Bitcoin saying: "not your keys, not your coins." It's a useful rule of thumb — but the honest answer depends on your amounts, your use case, and your comfort with self-custody. Here's a calm framework, not a number.</p>
       </div>
     </section>
+    <nav class="guide-contents container" aria-label="On this page"><span>On this page</span><a href="#guide-section-1">What &quot;on an exchange&quot; really means</a><a href="#guide-section-2">A simple framework</a><a href="#guide-section-3">Exchange vs. self-custody at a glance</a></nav>
 
     <section class="pymtw-section" style="padding-top:8px;">
       <div class="container" style="max-width:820px;">
         <div class="disclosure" style="margin-bottom:24px;"><strong>Educational, not advice.</strong> This is general education about custody trade-offs, not individualized investment, tax, or legal advice, and not a recommendation about how much Bitcoin to hold anywhere. You decide what fits your situation.</div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">What "on an exchange" really means</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-1">What "on an exchange" really means</h2>
         <p class="muted" style="margin-bottom:20px;">When your Bitcoin sits on an exchange, the exchange holds the keys — you hold an IOU. That's convenient for buying and selling, but it introduces <strong>counterparty risk</strong>: the platform could freeze withdrawals, get hacked, or fail. History has repeated examples. Self-custody removes that counterparty but makes <em>you</em> responsible for security and backups.</p>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">A simple framework</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-2">A simple framework</h2>
         <div class="steps" style="margin-bottom:28px;">
           <div class="step"><div><h4>Separate "spending/working" from "savings"</h4><p>Money you're actively trading or might sell soon can reasonably stay on a reputable exchange. Long-term savings are what self-custody is designed to protect.</p></div></div>
           <div class="step"><div><h4>Scale custody to the amount</h4><p>The larger the balance relative to your net worth, the stronger the case for moving it into self-custody you control.</p></div></div>
@@ -53,7 +57,7 @@
 
         <div class="callout-security" style="margin-bottom:28px;"><strong>A common approach:</strong> keep only what you actively need on an exchange, and move longer-term holdings to self-custody as your confidence grows. Whatever you keep on an exchange, protect it with app-based two-factor authentication (not SMS) and a withdrawal allow-list where available.</div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">Exchange vs. self-custody at a glance</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-3">Exchange vs. self-custody at a glance</h2>
         <div class="spec-table-wrap" style="margin-bottom:28px;">
           <table class="spec-table">
             <thead><tr><th>Factor</th><th>On an exchange</th><th>Self-custody</th></tr></thead>
@@ -67,10 +71,7 @@
           </table>
         </div>
 
-        <div class="card-grid cols-2" style="margin-bottom:24px;">
-          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live workshop</span><h3 style="margin-top:12px;">Self-Custody Without the Fear</h3><p>Ready to move savings off the exchange? Learn to do it calmly and correctly.</p><a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" style="margin-top:10px;">See the workshop</a></div>
-          <div class="p-card"><span class="tag-pill">Related guides</span><h3 style="margin-top:12px;">Choosing tools</h3><p>Compare beginner exchanges and hardware wallets on the criteria that matter.</p><a href="compare-exchanges-beginners.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:10px;">Exchanges guide</a><a href="compare-hardware-wallets.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:8px;">Hardware wallets guide</a></div>
-        </div>
+        <p class="simple-next">Continue exploring: <a href="/resources.html">Browse the resource library →</a></p>
 
         <div class="faq-list" style="margin-bottom:8px;">
           <details class="faq-item"><summary>So what's the right percentage?</summary><div class="faq-body">There's no universal number — it depends on your amounts, use case, and comfort with self-custody. The framework above helps you decide; it isn't a recommendation of a specific figure.</div></details>

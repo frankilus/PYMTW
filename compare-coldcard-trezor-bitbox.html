@@ -21,20 +21,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
   <script src="/bitcoin-nav.js" defer></script>
+  <link rel="stylesheet" href="/assets/bitcoin-theme.css">
+  <link rel="stylesheet" href="/assets/bitcoin-interiors.css">
+  <script src="/assets/bitcoin-interiors.js" defer></script>
 </head>
-<body class="pymtw-page" data-page="compare-coldcard-trezor-bitbox">
+<body class="pymtw-page bitcoin-interior bitcoin-guide" data-page="compare-coldcard-trezor-bitbox">
   <a href="#main" class="skip-link">Skip to content</a>
-  <div id="site-header"></div>
+  <div id="site-header"></div><noscript><nav class="fallback-nav" aria-label="Bitcoin navigation"><a href="/bitcoin/">Bitcoin home</a><a href="/start-here.html">Understand</a><a href="/assessment.html">Evaluate</a><a href="/bitcoin-on-exchange.html">Protect</a><a href="/resources.html">Library</a><a href="/">PYMTW home</a></nav></noscript>
 
   <main id="main" class="pymtw-main">
     <section class="page-hero" style="padding-bottom:8px;">
       <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources.html">Resources</a><span>/</span>Coldcard vs Trezor vs BitBox</nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/bitcoin/">Bitcoin</a><span>/</span><a href="resources.html">Resources</a><span>/</span>Coldcard vs Trezor vs BitBox</nav>
         <span class="eyebrow">Guide &middot; Security guidance checked October 2026</span>
         <h1>Coldcard vs. Trezor vs. BitBox</h1>
         <p class="lead">This guide used to compare three devices on equal footing. In late July 2026 that changed: a long-standing Coldcard firmware flaw made seeds generated on affected devices guessable, and funds were stolen. Here's what happened, what to do if it affects you, and how the remaining options compare.</p>
       </div>
     </section>
+    <nav class="guide-contents container" aria-label="On this page"><span>On this page</span><a href="#guide-section-1">Who this is for</a><a href="#guide-section-2">What the breach actually teaches</a><a href="#guide-section-3">The devices compared</a><a href="#guide-section-4">Where each one fits</a><a href="#guide-section-5">Advantages and limitations of self-custody</a></nav>
 
     <section class="pymtw-section" style="padding-top:8px;">
       <div class="container" style="max-width:900px;">
@@ -51,10 +55,10 @@
 
         <div class="disclosure" style="margin-bottom:24px;"><strong>How we compare and affiliate note.</strong> This is educational, not investment advice or a recommendation to use any specific product. We don't crown a single "best" &mdash; we give you criteria and honest trade-offs. Some links may become affiliate links; <strong>PYMTW may earn a commission at no additional cost to you, and compensation does not determine what we list</strong> (<a href="legal.html#affiliate">disclosure</a>). Details change often &mdash; <strong>confirm current pricing and features on the provider's site</strong>.</div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:8px;">Who this is for</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:8px;" id="guide-section-1">Who this is for</h2>
         <p class="muted" style="margin-bottom:24px;">Holders choosing a hardware wallet in the wake of the Coldcard disclosure &mdash; and existing Coldcard owners deciding what to do next.</p>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">What the breach actually teaches</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-2">What the breach actually teaches</h2>
         <p class="muted" style="margin-bottom:14px;">A published fix and a feature list are not a complete security audit. When evaluating any wallet, examine the evidence and its limits, recovery procedures and the work required of the owner.</p>
         <div class="card-grid cols-2" style="margin-bottom:28px;">
           <div class="p-card"><h3>Multiple independent entropy sources</h3><p>Check how randomness is generated, mixed and validated. Multiple sources are useful only if their implementation and independence hold up to scrutiny.</p></div>
@@ -63,7 +67,7 @@
           <div class="p-card"><h3>Passphrases require a recovery plan</h3><p>A passphrase adds another secret to preserve and recover correctly. It does not repair an affected seed or replace the manufacturer’s migration guidance.</p></div>
         </div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">The devices compared</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-3">The devices compared</h2>
         <p class="muted" style="margin-bottom:14px;font-size:0.9rem;">Qualitative positioning &mdash; not exact specs or prices. Always confirm current details with the provider.</p>
         <div class="spec-table-wrap" style="margin-bottom:20px;">
           <table class="spec-table">
@@ -78,7 +82,7 @@
           </table>
         </div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">Where each one fits</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-4">Where each one fits</h2>
         <div class="card-grid cols-2" style="margin-bottom:28px;">
           <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Air-gapped</span><h3 style="margin-top:12px;">Foundation Passport</h3><p>Bitcoin-only and fully air-gapped &mdash; it signs over QR codes and has no USB data path at all. Seeds are generated from three independent sources, one of which is an open-source avalanche noise circuit built from ordinary components you can inspect on the board rather than a black-box chip. Open source under GPLv3 with reproducible builds and an independent Keylabs audit. Assembled in the USA with a published supply chain.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>Trade-off:</strong> higher price, and the QR workflow takes a little getting used to.</p></div>
           <div class="p-card"><span class="tag-pill">Swiss</span><h3 style="margin-top:12px;">BitBox02</h3><p>Draws on five independent randomness sources and splits secrets across a dual-chip design, so an attacker needs several pieces rather than one. Open source with reproducible builds independently verified by WalletScrutiny, audited by Census Labs, with an active bug bounty. The Bitcoin-only edition keeps the attack surface small.</p><p class="muted" style="font-size:0.86rem;margin-top:8px;"><strong>Trade-off:</strong> connects over USB rather than air-gapped, and one of its entropy sources is the host computer (mixed with the others, not relied on alone).</p></div>
@@ -89,16 +93,13 @@
 
         <div class="callout-security" style="margin-bottom:28px;"><strong>Security first.</strong> Buy hardware only from the manufacturer, generate your own seed on the device, write it down offline, and never type it into a computer or share it &mdash; including with PYMTW. Learn the workflow in our <a href="workshop-self-custody.html">Self-Custody workshop</a>.</div>
 
-        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;">Advantages and limitations of self-custody</h2>
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-5">Advantages and limitations of self-custody</h2>
         <div class="card-grid cols-2" style="margin-bottom:28px;">
           <div class="p-card"><h3>Advantages</h3><ul class="check-list" style="margin-top:12px;"><li>You hold your own keys &mdash; no counterparty</li><li>Offline storage resists remote attacks</li><li>Standard seeds keep you portable across devices</li></ul></div>
           <div class="p-card"><h3>Limitations</h3><ul class="x-list" style="margin-top:12px;"><li>You are responsible for backups and recovery</li><li>Mistakes can be permanent</li><li>Vendors can ship bugs &mdash; verification and passphrases matter</li></ul></div>
         </div>
 
-        <div class="card-grid cols-2" style="margin-bottom:24px;">
-          <div class="p-card featured" style="border-color:var(--border-color);"><span class="tag-pill">Live workshop</span><h3 style="margin-top:12px;">Self-Custody Without the Fear</h3><p>Set up any of these devices calmly and correctly &mdash; including passphrases and migrating an existing seed.</p><a href="workshop-self-custody.html" class="btn btn-primary btn-sm btn-block" style="margin-top:10px;">See the workshop</a></div>
-          <div class="p-card"><span class="tag-pill">Free checklist</span><h3 style="margin-top:12px;">Hardware-wallet prep checklist</h3><p>Everything to have ready before setup.</p><a href="starter-kit.html" class="btn btn-secondary btn-sm btn-block" style="margin-top:10px;">Get the Starter Kit</a></div>
-        </div>
+        <p class="simple-next">Continue exploring: <a href="/resources.html">Browse the resource library →</a></p>
 
         <div class="faq-list" style="margin-bottom:8px;">
           <details class="faq-item"><summary>I have a Coldcard. Am I definitely affected?</summary><div class="faq-body">Use the manufacturer’s model-and-firmware table and migration decision guide linked above. Do not infer your status from the model, purchase date, or presence of a passphrase alone.</div></details>

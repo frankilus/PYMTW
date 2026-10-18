@@ -1,0 +1,125 @@
+/* Bitcoin interiors only. Loaded last; the parent directory, Bitcoin homepage
+   and green Money Tools retain their independent stylesheets. */
+:root {
+  color-scheme: light;
+  --bg-primary: #fffcf7;
+  --bg-secondary: #f8f3eb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4e3cd;
+  --text-primary: #29261f;
+  --text-secondary: #655d52;
+  --text-muted: #71695e;
+  --accent-orange: #a54415;
+  --accent-gold: #a54415;
+  --accent-amber: #a54415;
+  --gradient-start: #a54415;
+  --gradient-end: #a54415;
+  --gradient-alt: #873710;
+  --border-color: #cdbba5;
+  --border-subtle: #e5ded2;
+  --glow-orange: rgba(165, 68, 21, .12);
+  --glow-gold: rgba(165, 68, 21, .08);
+  --shadow-lg: 0 16px 40px -20px rgba(65, 47, 25, .2);
+  --radius-sm: 7px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --font-main: Arial, Helvetica, sans-serif;
+  --font-display: Arial, Helvetica, sans-serif;
+}
+body { background: var(--bg-primary); color: var(--text-primary); }
+/* Calm editorial headings; controls and numerical results remain sans serif. */
+h1, h2, .page-hero h1, .section-head h2, .hero-title,
+.dca-hero-title, .calc-hero-title, .perf-hero-title, .vid-hero-title,
+.wp-hero-title, .svc-hero-title, .bk-hero-title, .pb-hero-title,
+.bk-section-title, .pb-section-title, .section-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -.025em;
+}
+#particle-canvas, #bk-particles, #pb-particles { display: none; }
+body.pymtw-page #site-header, .navbar, .navbar.scrolled,
+.bk-nav, .pb-nav, .wp-mobile-nav, .vid-cat-nav {
+  background: var(--bg-primary);
+  border-color: var(--border-subtle);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+@media (max-width: 768px) { .nav-links { background: var(--bg-primary); } }
+.logo-icon, .bk-logo-icon, .pb-logo-icon, .btn-primary,
+.dca-btn, .bk-hero-cta, .bk-buy-btn, .pb-hero-cta, .pb-submit-btn,
+.newsletter-submit-btn, .tag-interactive.active, .tab-btn.active,
+.perf-time-pill.active, .vid-cat-pill.active, .wp-mobile-pill.active,
+.tier-badge, .resource-badge-new, .btc-price-icon, .ticker-item,
+.bk-book-tag, .pb-book-tag { color: #fff; }
+.btn-primary, .dca-btn, .bk-hero-cta, .bk-buy-btn, .pb-hero-cta,
+.pb-submit-btn, .newsletter-submit-btn { box-shadow: none; }
+.btn-primary:hover, .dca-btn:hover, .bk-hero-cta:hover, .bk-buy-btn:hover,
+.pb-hero-cta:hover, .pb-submit-btn:hover, .newsletter-submit-btn:hover {
+  background: #873710;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(65, 47, 25, .12);
+}
+:is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--accent-orange);
+  outline-offset: 4px;
+}
+input, select, textarea { accent-color: var(--accent-orange); }
+input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 1; }
+/* Keep success, loss and error meaning readable on light surfaces. */
+.form-status.success, .svc-form-status.success, .newsletter-form-status.success,
+.dca-stat-value.green, .perf-kpi-metric-value.positive,
+.calc-total-assets .calc-total-value, .calc-live-badge, .calc-proj-change,
+.quiz-option.correct, .edu-item-badge.beginner, .difficulty-beginner,
+.score-classification.beginner .classification-label, .btc-live-text,
+.btc-price-change.positive, .perf-heat-slight-positive, .perf-heat-positive,
+.perf-heat-very-positive { color: #28613f; }
+.form-status.error, .svc-form-status.error, .svc-field-error,
+.newsletter-form-status.error, .dca-stat-value.red,
+.perf-kpi-metric-value.negative, .calc-total-liabilities .calc-total-value,
+.calc-group-liabilities .calc-group-title svg, .quiz-option.incorrect,
+.btc-price-change.negative, .perf-heat-slight-negative,
+.perf-heat-negative, .perf-heat-very-negative { color: #a52b26; }
+#dca-status.error { border-left-color: #a52b26; }
+/* Original charts retain their dataset colors on a contained dark plotting
+   surface. Page, controls, result cards and explanatory text stay light. */
+.dca-chart-wrap, .perf-chart-canvas-wrap {
+  background: #12121a;
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+/* Preserve legibility inside existing dark book illustrations and media. */
+.bk-book, .pb-book {
+  --text-primary: #f0f0f5;
+  --text-secondary: #c5c5d0;
+  --text-muted: #b2b2c2;
+  --gradient-start: #f7931a;
+  --gradient-end: #ffd700;
+  --gradient-alt: #ff6b00;
+}
+.bk-book-tag, .pb-book-tag { color: #29261f; }
+.vid-modal-close, .vid-modal-close:hover { color: #fff; }
+.vid-play-btn { background: var(--accent-orange); color: #fff; }
+.vid-card-overlay { background: rgba(10, 10, 15, .4); }
+/* The original nav CTA declares an important text color. */
+.nav-cta { color: #fff !important; }
+.skip-link, .bio-avatar { color: #fff; }
+.newsletter-submit-btn svg { stroke: currentColor; }
+.quiz-feedback.correct { color: #28613f; }
+.quiz-feedback.incorrect { color: #a52b26; }
+.edu-item-badge.advanced, .difficulty-advanced,
+.score-classification.advanced .classification-label { color: #75429b; }
+/* Decorative glows extend beyond narrow pages; omit them in the calm theme. */
+.pb-capture-glow, .pb-book-shadow, .bk-book-shadow { display: none; }
+/* Allow the whitepaper's horizontally scrolling chapter list to shrink
+   inside its grid, rather than widening the entire page. */
+.wp-main > * { min-width: 0; }
+.wp-glossary-grid { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+.pb-submit-btn { max-width: 100%; white-space: normal; text-align: center; }
+.pb-submit-btn svg { flex-shrink: 0; }
+.pb-footer-links { flex-wrap: wrap; justify-content: center; }
+.cta-glow { display: none; }
+.wp-timeline-item { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .wp-timeline-item { flex-direction: column; gap: 6px; width: 100%; }
+}

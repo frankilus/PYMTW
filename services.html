@@ -15,8 +15,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="pymtw-config.js"></script>
   <script src="/bitcoin-nav.js" defer></script>
+  <link rel="stylesheet" href="/assets/bitcoin-theme.css">
+  <link rel="stylesheet" href="/assets/bitcoin-interiors.css">
+  <script src="/assets/bitcoin-interiors.js" defer></script>
 </head>
-<body>
+<body class="bitcoin-interior pymtw-page bitcoin-with-price">
   <!-- Live Bitcoin Price Bar -->
   <div class="btc-price-bar" id="btc-price-bar">
     <div class="btc-price-bar-inner">
@@ -49,48 +52,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-icon">&#8383;</span>
-        <span class="logo-text">PYMTW</span>
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="/">PYMTW Home</a></li>
-        <li><a href="/bitcoin/">Bitcoin</a></li>
-        <li><a href="start-here.html">Start Here</a></li>
-        <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger" href="#">Tools <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="/tools/">All Free Tools</a></li>
-            <li><a href="assessment.html">Bitcoin Readiness Assessment</a></li>
-            <li><a href="dca.html">DCA Calculator</a></li>
-            <li><a href="calculator.html">Net-Worth Calculator</a></li>
-            <li><a href="performance.html">Performance Comparison</a></li>
-            <li><a href="resources.html">Resource Library</a></li>
-          </ul>
-        </li>
-        <li class="nav-dropdown">
-          <a class="nav-dropdown-trigger" href="#">Programs <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l3 3 3-3"/></svg></a>
-          <ul class="nav-dropdown-menu">
-            <li><a href="programs.html">Programs Overview</a></li>
-            <li><a href="programs.html#workshops">Live Workshops</a></li>
-            <li><a href="programs.html#private">Private Education</a></li>
-            <li><a href="programs.html#self-custody">Self-Custody Education</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="corporate.html">Corporate Education</a></li>
-          </ul>
-        </li>
-        <li><a href="/book">Book</a></li>
-        <li><a href="newsletter.html">Newsletter</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="assessment.html" class="btn btn-primary btn-sm nav-cta">Assess</a></li>
-      </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  <div id="site-header"></div><noscript><nav class="fallback-nav" aria-label="Bitcoin navigation"><a href="/bitcoin/">Bitcoin home</a><a href="/start-here.html">Understand</a><a href="/assessment.html">Evaluate</a><a href="/bitcoin-on-exchange.html">Protect</a><a href="/resources.html">Library</a><a href="/">PYMTW home</a></nav></noscript>
 
   <!-- Hero Section -->
   <section class="svc-hero">
@@ -469,53 +431,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
-            <span class="logo-icon">&#8383;</span>
-            <span class="logo-text">PYMTW</span>
-          </a>
-          <p>Put Your Money to Work in Bitcoin. A beginner-friendly resource to help you understand and participate in the Bitcoin revolution.</p>
-          <a href="newsletter.html" class="footer-newsletter-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-            Subscribe to our Newsletter
-          </a>
-        </div>
-        <div class="footer-links">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a href="/bitcoin/#why-bitcoin">Why Bitcoin</a></li>
-            <li><a href="/bitcoin/#getting-started">Get Started</a></li>
-            <li><a href="/bitcoin/#resources">Resources</a></li>
-            <li><a href="/bitcoin/#learn">Learn</a></li>
-            <li><a href="videos.html">Video Library</a></li>
-            <li><a href="whitepaper.html">The Whitepaper</a></li>
-            <li><a href="calculator.html">Net Worth Calculator</a></li>
-            <li><a href="dca.html">DCA Calculator</a></li>
-            <li><a href="services.html">Bitcoin Services</a></li>
-            <li><a href="performance.html">Performance</a></li>
-            <li><a href="/bitcoin/#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org</a></li>
-            <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper</a></li>
-            <li><a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a></li>
-            <li><a href="https://en.bitcoin.it/wiki/Main_Page" target="_blank" rel="noopener">Bitcoin Wiki</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>This website is for educational purposes only. Nothing here constitutes financial advice. Always do your own research before making investment decisions.</p>
-        <p class="footer-copy">&copy; 2026 Put Your Money to Work in Bitcoin. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
   <script src="services.js"></script>
+  <script src="/pymtw.js"></script>
 </body>
 </html>

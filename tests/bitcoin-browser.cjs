@@ -23,7 +23,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8769';
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${width} ${path}`);
   }
  }
- for(const path of ['/bitcoin/','/programs.html','/dca.html','/calculator.html','/performance.html','/videos.html','/whitepaper.html','/services.html']){
+ for(const path of ['/bitcoin/explore/','/programs.html','/dca.html','/calculator.html','/performance.html','/videos.html','/whitepaper.html','/services.html']){
   await page.setViewportSize({width:390,height:844});await page.goto(base+path,{waitUntil:'domcontentloaded'});
   const toggle=page.locator('#nav-toggle');await toggle.click();assert.equal(await toggle.getAttribute('aria-expanded'),'true');
   const trigger=page.locator('button.nav-dropdown-trigger').first();await trigger.click();
