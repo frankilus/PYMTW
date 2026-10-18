@@ -41,7 +41,7 @@ for name in paths:
   assert before==after,name+' behavior changed';count+=1
  if name in ['CNAME','tools/robots.txt','googlea70c61482c1a9eed.html','bitcoin-playbook.pdf'] or name.endswith(('.csv','.webp','.woff2')):
   if name not in approved_covers:assert p.read_bytes()==original(name),name+' original asset changed'
- if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name and name not in ['tools/paycheck-decoder/index.html','tools/explain-my-401k/index.html']: # Approved replacement of the coming-soon stub with the approved Paycheck Decoder.
+ if name.startswith('tools/') and name.endswith('index.html') and '/preview/' not in name and name not in ['tools/paycheck-decoder/index.html','tools/explain-my-401k/index.html','tools/bitcoin-tax-lot-cleanup/index.html']: # User-requested replacements of these three coming-soon stubs; preview privacy and scope tested separately.
   before=original(name).decode();after=normalized(p.read_text())
   if name=='tools/debt-payoff-planner/index.html':before=before.replace('<th></th>','<th scope="col"><span class="sr-only">Remove</span></th>')
   for pattern in [r'<!-- seo:head -->.*?<!-- /seo:head -->',r'<script type="application/ld\+json">.*?</script>',r'<form\b.*?</form>',r'<fieldset\b.*?</fieldset>']:
