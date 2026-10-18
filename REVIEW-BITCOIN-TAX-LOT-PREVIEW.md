@@ -2,7 +2,7 @@
 
 Review URL: http://127.0.0.1:8777/tools/bitcoin-tax-lot-cleanup/
 
-Branch: `feature/bitcoin-tax-lot-preview`, based on main at `eb88595e5c6d7a7391388b8d273d7b110b498e20` (PR #20). No push, PR, merge or deployment is part of this preview. The catalog still marks this tool planned; noindex and sitemap exclusion remain.
+Branch: `feature/bitcoin-tax-lot-preview`, based on main at `eb88595e5c6d7a7391388b8d273d7b110b498e20` (PR #20). Submitted as a feature-branch PR for review at the user’s request. No merge or deployment is authorized. The catalog still marks this tool planned; noindex and sitemap exclusion remain until a release is approved.
 
 ## What to try
 
