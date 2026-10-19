@@ -84,9 +84,10 @@ sup.ref{font-size:12px;line-height:0;margin-left:1px}sup.ref+sup.ref:before{cont
 .out .lead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .out .lead .big{font-size:52px}
 .out .lead p{color:var(--ink-2);font-size:15px;max-width:360px}
-.out .stats{margin-top:16px;grid-template-columns:repeat(4,1fr)}
+.out .stats{margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr))}
 .out .stat{background:var(--bg-2)}
 .out .stat b{font-size:22px}
+.out .stat b,.out .big,.out .legend b{white-space:nowrap;overflow-wrap:normal}
 .out ul.says{list-style:none;padding:0;margin:16px 0 0;font-size:15px;color:var(--ink-2);line-height:1.55}
 .out ul.says li{padding:8px 0 8px 28px;position:relative;border-top:1px solid var(--line)}
 .out ul.says li:before{content:attr(data-i);position:absolute;left:0;top:8px;font-weight:700}
@@ -111,7 +112,7 @@ table.tiers td:nth-child(n+2),table.tiers th:nth-child(n+2){text-align:right}
 .sources a{color:var(--accent);word-break:break-word;text-decoration:underline;text-underline-offset:3px}
 .sharebar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:28px}
 .sharebar .hint{margin:0}
-@media (max-width:760px){.toc{grid-template-columns:1fr}.vs{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.calc .row4{grid-template-columns:1fr 1fr}.out .stats{grid-template-columns:1fr 1fr}.rule{grid-template-columns:1fr}}
+@media (max-width:760px){.toc{grid-template-columns:1fr}.vs{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.calc .row4{grid-template-columns:1fr 1fr}.rule{grid-template-columns:1fr}}
 @media (max-width:640px){.cards{grid-template-columns:1fr}.permile{grid-template-columns:1fr 1fr 1fr}.permile b{font-size:20px}.g-hero{padding:44px 0 8px}.item{grid-template-columns:1fr;gap:10px}.phase{padding-top:44px}.phase-head{flex-direction:column;gap:10px}.toolcard{flex-wrap:wrap}.toolcard span.go{width:100%;text-align:center}.calc{padding:18px}.out{padding:18px}.out .lead .big{font-size:42px}table.tiers{font-size:13px}table.tiers th,table.tiers td{padding:8px 4px}}
 </style>
 <script type="application/ld+json">
