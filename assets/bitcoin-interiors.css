@@ -81,3 +81,6 @@ body.bitcoin-with-price #site-header { top: 38px; }
 .fallback-nav a { color: var(--accent-orange); text-decoration: underline; }
 .bitcoin-interior .tier-card > .simple-details { margin-bottom: 20px; }
 .bitcoin-interior .bk-chapters, .bitcoin-interior .pb-benefits { padding-top: 40px; padding-bottom: 40px; }
+
+/* Security tips are static content, not animated timeline steps. */
+[data-page="security-promise"] .steps > .step { opacity: 1; transform: none; transition: none; margin-bottom: 0; }
