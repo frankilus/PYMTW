@@ -84,3 +84,6 @@ body.bitcoin-with-price #site-header { top: 38px; }
 
 /* Security tips are static content, not animated timeline steps. */
 [data-page="security-promise"] .steps > .step { opacity: 1; transform: none; transition: none; margin-bottom: 0; }
+
+/* Programs uses static numbered steps, not the legacy animated timeline. */
+[data-page="programs"] .steps > .step { opacity: 1; transform: none; transition: none; margin-bottom: 0; }
