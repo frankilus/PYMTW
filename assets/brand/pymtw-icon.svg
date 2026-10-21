@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">PYMTW — Put Your Money to Work</title>
+  <rect width="64" height="64" rx="14" fill="#292b29"/>
+  <path fill="#fffcf7" fill-rule="evenodd" d="M20 12h14c10 0 16 6 16 15s-6 15-16 15h-6v10h-8V12zm8 8v14h6c5 0 8-2 8-7s-3-7-8-7h-6z"/>
+  <rect x="20" y="56" width="28" height="3" rx="1.5" fill="#d46b2c"/>
+</svg>
