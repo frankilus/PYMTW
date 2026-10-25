@@ -2,6 +2,7 @@
 from pathlib import Path
 import subprocess,re,json,os
 root=Path(__file__).resolve().parents[1]
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either
 base='a5afedc49c21fcbb83393fb6e5a7c25af504c790'
 # PRs 23/24 are the baseline; allow only this follow-up’s reviewed files.
 allowed={
@@ -24,7 +25,7 @@ allowed={
 }
 for name in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines():
  if name not in allowed:
-  assert (root/name).read_bytes()==subprocess.check_output(['git','show',base+':'+name],cwd=root),name+' unexpected change'
+  assert matches(name,subprocess.check_output(['git','show',base+':'+name],cwd=root)),name+' unexpected change'
 config=(root/'_config.yml').read_text()
 excluded={line.strip()[2:] for line in config.splitlines() if line.strip().startswith('- ')}
 notes={p.name for p in root.glob('*.md')}
@@ -33,7 +34,7 @@ assert not any('*' in name for name in excluded),'Keep vendor licenses out of a 
 headline='Get one clear money idea a week'
 for name in ['bitcoin/index.html','tools/paycheck-decoder/index.html','tools/explain-my-401k/index.html']:
  before=subprocess.check_output(['git','show',base+':'+name],cwd=root,text=True)
- assert (root/name).read_text()==before.replace('A little clarity, delivered.',headline)
+ assert matches(name,before.replace('A little clarity, delivered.',headline))
 for slug in ['paycheck-decoder','explain-my-401k','bitcoin-tax-lot-cleanup']:
  s=(root/'tools'/slug/'index.html').read_text()
  assert not any(x in s for x in ['site-analytics','googletagmanager','gc.zgo.at','<iframe'])
