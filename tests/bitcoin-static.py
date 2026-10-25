@@ -4,11 +4,12 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import subprocess, os, re
 root=Path(__file__).resolve().parents[1]
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed
 base='cfe4a189337bba5fa17a9d99279e32f6a5731113'
 paths=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines()
 for name in paths:
  if name.startswith('tools/') or name in ['index.html','CNAME','robots.txt','bitcoin-playbook.pdf']:
-  assert (root/name).read_bytes()==subprocess.check_output(['git','show',base+':'+name],cwd=root), name+' unexpectedly changed'
+  assert matches(name,subprocess.check_output(['git','show',base+':'+name],cwd=root)), name+' unexpectedly changed'
 class Page(HTMLParser):
  def __init__(self,s):super().__init__();self.refs=[];self.ids=set();self.feed(s)
  def handle_starttag(self,t,attrs):

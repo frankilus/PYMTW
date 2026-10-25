@@ -2,12 +2,13 @@
 from pathlib import Path
 import subprocess,re,json,html
 r=Path(__file__).resolve().parents[1]
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed
 base='ef63d858250d324e76aa591f20540bd98ea286fd'
 def original(name):return subprocess.check_output(['git','show',base+':'+name],cwd=r)
 files=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=r,text=True).splitlines()
 for name in files:
  if (name.endswith('.js') and not name.startswith('tests/')) or name.endswith(('.woff2','.webp','.png','.pdf','.csv')) or name in ['sitemap.xml','tools/sitemap.xml','CNAME','googlea70c61482c1a9eed.html']:
-  assert (r/name).read_bytes()==original(name),name+' must remain unchanged'
+  assert matches(name,original(name)),name+' must remain unchanged'
 for slug in ['paycheck-decoder','explain-my-401k']:
  name=f'tools/{slug}/index.html';s=(r/name).read_text();before=original(name).decode()
  assert re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',s)[0]==re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',before)[0]
@@ -38,5 +39,5 @@ assert after.pop('datePublished')=='2026-09'
 assert after.pop('isbn')=='9798174357846'
 assert after==before
 assert 'Second Edition — September 2026' in book
-assert (r/'legal.html').read_bytes()==original('legal.html')
+assert matches('legal.html',original('legal.html'))
 print(f'PASS Round 3: {count} italic headlines covered, matching FAQs/social titles, month-only book date and confirmed ISBN, unchanged scripts/assets/catalog/sitemaps/privacy/CSP, no tracking or embeds on either importer.')

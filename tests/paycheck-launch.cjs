@@ -8,17 +8,18 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:900});
    await page.goto(base+'/tools/');
-   const card=page.locator('.tool-card').filter({has:page.getByRole('heading',{name:'Paycheck decoder',exact:true})});
-   assert.equal(await card.locator('.tool-state').innerText(),'AVAILABLE');
-   assert.equal(await card.locator('.disabled').count(),0);
-   assert.equal(await page.locator('.tool-card.is-planned').count(),1);
-   assert.equal(await page.locator('.tool-footer a').count(),13);
-   await page.locator('.moment-card[data-moment="starting"]').click();
+   await page.locator('[data-category=all]').click();
+   assert.equal(await page.locator('a.directory-tool').count(),14);
+   assert.ok(!(await page.locator('main').innerText()).match(/coming soon|planned/i));
+   const card=page.locator('a.directory-tool[href="./paycheck-decoder/"]');
    assert.equal(await card.count(),1);
+   assert.equal(await card.locator('h4').innerText(),'Paycheck decoder');
+   await page.locator('.category-button[data-category="everyday"]').click();
+   assert.ok(await card.isVisible());
    await page.locator('#finder-input').fill('Explain my paycheck');
    await page.locator('#finder-form').evaluate(el=>el.requestSubmit());
    assert.equal(await page.locator('#finder-results a[href="./paycheck-decoder/"]').count(),1);
-   await card.getByRole('link',{name:'Open this tool'}).click();
+   await card.click();
    assert.equal(new URL(page.url()).pathname,'/tools/paycheck-decoder/');
    assert.equal(await page.title(),'Paycheck Decoder: Understand Your Pay Stub | PYMTW');
    assert.equal(await page.locator('.pd-preview').count(),0);
@@ -28,6 +29,6 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
   }
   const sitemap=await page.request.get(base+'/tools/sitemap.xml');
   assert.ok((await sitemap.text()).includes('https://pymtw.com/tools/paycheck-decoder/'));
-  console.log('PASS available listing, one remaining planned tool, search, life-moment category, navigation, public metadata, import control, sitemap and mobile/desktop layout.');
+  console.log('PASS available listing, 14-tool directory, no planned tools, search, category, navigation, public metadata, import control, sitemap and mobile/desktop layout.');
  } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});
