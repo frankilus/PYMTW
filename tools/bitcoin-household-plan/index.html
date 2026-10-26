@@ -1,0 +1,244 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'">
+<title>Bitcoin Household Plan: Policy, Executor Letter &amp; Wallet Inventory | PYMTW</title>
+<meta name="description" content="A free, private 20-minute guide to write your Bitcoin policy, a letter for your executor and family, and a wallet inventory without secrets. Print one binder.">
+<link rel="canonical" href="https://pymtw.com/tools/bitcoin-household-plan/">
+<meta property="og:title" content="Bitcoin Household Plan | PYMTW"><meta property="og:description" content="Your Bitcoin, written down calmly. A private guide that ends in one printable family binder."><meta property="og:type" content="website"><meta property="og:url" content="https://pymtw.com/tools/bitcoin-household-plan/"><meta property="og:image" content="https://pymtw.com/tools/og/bitcoin.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="plan.css">
+<script src="config.js" defer></script><script src="safety.js" defer></script><script src="binder.js" defer></script><script src="app.js" defer></script>
+<link rel="icon" href="/assets/brand/pymtw-icon.ico?v=20261021" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/assets/brand/pymtw-icon.svg?v=20261021" type="image/svg+xml" sizes="any"><link rel="apple-touch-icon" href="/assets/brand/pymtw-icon-180.png?v=20261021">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PYMTW","item":"https://pymtw.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pymtw.com/tools/"},{"@type":"ListItem","position":3,"name":"Bitcoin Household Plan","item":"https://pymtw.com/tools/bitcoin-household-plan/"}]},
+{"@type":"WebApplication","name":"Bitcoin Household Plan","url":"https://pymtw.com/tools/bitcoin-household-plan/","description":"A private, guided way to write a personal Bitcoin policy, a letter for your executor and family, a wallet and account inventory without secrets, and a yearly review. Ends in one printable binder. Free.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Put Your Money to Work","url":"https://pymtw.com/"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Will this tool ask for my seed phrase or passwords?","acceptedAnswer":{"@type":"Answer","text":"No. It never asks for recovery words, private keys, passwords, PINs, passphrases or 2FA codes, and it removes anything that looks like a recovery phrase or private key if one is typed or pasted."}},
+{"@type":"Question","name":"Where are my answers stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your browser. Nothing is sent to a server. You can choose to remember answers on your device, save them to a file to resume later, and erase everything with one button."}},
+{"@type":"Question","name":"What is a Bitcoin executor letter?","acceptedAnswer":{"@type":"Answer","text":"A plain-language letter that tells your executor and family what Bitcoin you own, where the records and devices are kept, who to contact and the first safe steps, without revealing any secrets."}},
+{"@type":"Question","name":"Is this a will or legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. It is educational and helps your family find things. Your will and estate documents decide who inherits. Review your plan with an estate attorney or tax professional."}}]}
+]}
+</script>
+</head><body>
+<a class="skip" href="#plan">Skip to your plan</a>
+<nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="/tools/">All money tools</a></div></div></nav>
+<main class="hhp">
+<header class="hero"><p class="eyebrow">BITCOIN HOUSEHOLD PLAN</p><h1>Your Bitcoin, written down.<br><em>Calmly, for the people you love.</em></h1><p class="sub">In about 20 minutes, write why you hold Bitcoin, where it is and what your family should do, then print one binder. Answers, not homework.</p><p class="privacy-note">On your device. No account, no tracking, nothing sent anywhere.</p></header>
+
+<noscript><div class="panel"><p>This guide runs in your browser and needs JavaScript. Nothing you type is ever sent anywhere. Meanwhile, read the <a href="#learn">plain-English notes below</a>.</p></div></noscript>
+
+<div class="flow" id="plan" hidden>
+ <div class="flow-main">
+  <div class="flow-top">
+    <p class="flow-count" id="step-count" aria-live="polite">Step 1 of 12</p>
+    <div class="flow-bar" aria-hidden="true"><i id="flow-bar"></i></div>
+    <details class="flow-menu" id="flow-menu"><summary>All steps</summary><ol id="step-list"></ol></details>
+  </div>
+  <div class="alert" id="secret-alert" role="alert" hidden><strong>We removed that.</strong> <span id="secret-alert-text"></span> <button type="button" class="text-button" id="secret-alert-close">OK</button></div>
+
+  <form class="steps" id="plan-form" novalidate autocomplete="off">
+
+  <section class="step" data-step="start" data-title="Welcome" aria-labelledby="h-start">
+    <h2 id="h-start" tabindex="-1">Let’s write it down.</h2>
+    <p class="lede">You’ll answer a few short questions. Each step explains why it matters, in plain language. At the end you get one printable binder with five sections:</p>
+    <ol class="mini-toc"><li><b>Your Bitcoin policy</b> why you hold it, how much, how you buy, when you’d sell</li><li><b>A letter to your executor and family</b> what Bitcoin is, where it is, first safe steps</li><li><b>An inventory without secrets</b> accounts, wallet types, where things are kept, who to call</li><li><b>A yearly review</b> a checklist and a calendar reminder</li><li><b>Records</b> where your cost-basis records live</li></ol>
+    <div class="safe-card" id="never-ask">
+      <h3>What we will never ask for</h3>
+      <p>Not your recovery words (seed phrase), private keys, passwords, PINs, passphrases or two-step login codes. Not here, not by email, not ever. Nobody legitimate needs them, and this plan works without them.</p>
+      <p>If something that looks like a recovery phrase or private key is typed or pasted anywhere on this page, we remove it immediately and don’t save it.</p>
+    </div>
+    <div class="privacy-card">
+      <h3>Your answers stay on this device</h3>
+      <p>Nothing is uploaded. By default, answers live only in this tab and vanish when you close it.</p>
+      <label class="check big"><input type="checkbox" id="remember"><span><b>Remember my answers on this device</b><small>Saved in this browser only, so you can come back. Turn off on a shared computer.</small></span></label>
+      <div class="file-row"><label class="button secondary file-btn" for="import-file">Resume from a saved file</label><input type="file" id="import-file" accept=".json,application/json" class="sr-only"><p class="small" id="import-status" role="status"></p></div>
+    </div>
+  </section>
+
+  <section class="step" data-step="you" data-title="About you" aria-labelledby="h-you" hidden>
+    <h2 id="h-you" tabindex="-1">Whose plan is this?</h2>
+    <p class="lede">This goes on the cover, so your family knows the binder is yours. First names are fine.</p>
+    <div class="fields">
+      <label class="field"><span>Your name</span><input data-k="owner.name" maxlength="120" autocomplete="off" placeholder="Jordan Lee"></label>
+      <label class="field"><span>Household name for the cover <small>(optional)</small></span><input data-k="owner.household" maxlength="120" placeholder="The Lee household"></label>
+      <label class="field"><span>Date prepared</span><input type="date" data-k="owner.prepared"></label>
+    </div>
+  </section>
+
+  <section class="step" data-step="why" data-title="Why I hold it" aria-labelledby="h-why" hidden>
+    <h2 id="h-why" tabindex="-1">Why do you hold Bitcoin?</h2>
+    <p class="lede">A reason written on a calm day is the best defense against a decision made on a scary one. Choose any that fit.</p>
+    <fieldset class="group"><legend>My reasons</legend><div class="choices" data-choices="reasons" data-k="why.reasons" data-type="checkbox"></div></fieldset>
+    <label class="field"><span>In your own words <small>(optional)</small></span><textarea data-k="why.words" rows="3" maxlength="1200" placeholder="I’m saving a small part of our long-term money in Bitcoin because…"></textarea></label>
+    <fieldset class="group"><legend>How long do you plan to hold it?</legend><div class="choices" data-choices="horizon" data-k="why.horizon" data-type="radio"></div></fieldset>
+    <label class="field"><span>What would make you revisit this plan?</span><textarea data-k="why.revisit" rows="2" maxlength="800" placeholder="A big life change, or if my reason for holding no longer holds."></textarea></label>
+    <details class="learn"><summary>Why a time horizon matters</summary><p>Bitcoin’s price has fallen by more than half several times. Money you need soon has less time to wait out a drop. That’s why many people keep short-term money somewhere steadier.</p></details>
+  </section>
+
+  <section class="step" data-step="amount" data-title="How much" aria-labelledby="h-amount" hidden>
+    <h2 id="h-amount" tabindex="-1">How much is enough?</h2>
+    <p class="lede">There’s no right number, and we won’t suggest one. Pick a share you could watch fall sharply without changing your life. Then set a limit, so a rising price doesn’t quietly make the decision for you.</p>
+    <div class="fields two">
+      <label class="field"><span>Target share of my investments</span><span class="unit"><input data-k="alloc.target" inputmode="decimal" maxlength="5" placeholder="5"><b>%</b></span></label>
+      <label class="field"><span>Upper limit</span><span class="unit"><input data-k="alloc.cap" inputmode="decimal" maxlength="5" placeholder="10"><b>%</b></span></label>
+    </div>
+    <p class="small" id="alloc-hint" role="status"></p>
+    <fieldset class="group"><legend>Ground rules</legend>
+      <label class="check"><input type="checkbox" data-k="alloc.emergencyFirst" data-bool><span>My emergency fund comes first</span></label>
+      <label class="check"><input type="checkbox" data-k="alloc.shortTerm" data-bool><span>Money I’ll need in the next few years stays out</span></label>
+    </fieldset>
+    <fieldset class="group"><legend>If I go over my limit</legend><div class="choices" data-choices="overCap" data-k="alloc.overCap" data-type="radio"></div></fieldset>
+    <label class="field"><span>Notes <small>(optional)</small></span><textarea data-k="alloc.notes" rows="2" maxlength="800"></textarea></label>
+  </section>
+
+  <section class="step" data-step="buying" data-title="Buying plan" aria-labelledby="h-buying" hidden>
+    <h2 id="h-buying" tabindex="-1">How will you buy?</h2>
+    <p class="lede">Buying a fixed amount on a schedule (dollar-cost averaging) takes timing out of your hands. It doesn’t guarantee a good result; it just makes the plan easier to follow.</p>
+    <fieldset class="group"><legend>My approach</legend><div class="choices" data-choices="method" data-k="buy.method" data-type="radio"></div></fieldset>
+    <div class="fields two" id="recurring-fields">
+      <label class="field"><span>Amount</span><span class="unit"><b>$</b><input data-k="buy.amount" inputmode="decimal" maxlength="20" placeholder="100"></span></label>
+      <label class="field"><span>How often</span><select data-k="buy.frequency"><option value="">Choose…</option><option value="weekly">Every week</option><option value="biweekly">Every two weeks</option><option value="monthly">Every month</option><option value="paycheck">With each paycheck</option><option value="quarterly">Every quarter</option></select></label>
+    </div>
+    <label class="field"><span>Where I buy <small>(company name only)</small></span><input data-k="buy.platform" maxlength="120" placeholder="e.g. my exchange or brokerage"></label>
+    <fieldset class="group"><legend>If the price drops a lot</legend><div class="choices" data-choices="onDrop" data-k="buy.onDrop" data-type="radio"></div></fieldset>
+    <fieldset class="group"><legend>If the price rises a lot</legend><div class="choices" data-choices="onRise" data-k="buy.onRise" data-type="radio"></div></fieldset>
+    <label class="field"><span>Notes <small>(optional)</small></span><textarea data-k="buy.notes" rows="2" maxlength="800"></textarea></label>
+    <p class="small">Curious how a steady plan behaved in the past? Try the <a href="/tools/bitcoin-dca-backtester/">Bitcoin DCA backtester</a>. Past results don’t predict future ones.</p>
+  </section>
+
+  <section class="step" data-step="selling" data-title="Selling rules" aria-labelledby="h-selling" hidden>
+    <h2 id="h-selling" tabindex="-1">When would you sell, and when wouldn’t you?</h2>
+    <p class="lede">Deciding now, while nothing is happening, makes it easier to stay steady later.</p>
+    <fieldset class="group"><legend>I would consider selling</legend><div class="choices" data-choices="wouldSell" data-k="sell.would" data-type="checkbox"></div></fieldset>
+    <label class="field"><span>Anything else <small>(optional)</small></span><input data-k="sell.wouldWords" maxlength="300" placeholder="e.g. to help with a down payment"></label>
+    <fieldset class="group"><legend>I won’t sell</legend><div class="choices" data-choices="wontSell" data-k="sell.wont" data-type="checkbox"></div></fieldset>
+    <fieldset class="group"><legend>Before any big change, I wait</legend><div class="choices inline" data-choices="coolOff" data-k="sell.coolOff" data-type="radio"></div></fieldset>
+    <fieldset class="group"><legend>My rules</legend><div class="choices" data-choices="rules" data-k="sell.rules" data-type="checkbox"></div></fieldset>
+  </section>
+
+  <section class="step" data-step="inventory" data-title="Where it is" aria-labelledby="h-inventory" hidden>
+    <h2 id="h-inventory" tabindex="-1">Where is your Bitcoin?</h2>
+    <p class="lede">List each place you hold it. Your family needs to know <em>what exists</em> and <em>where to look</em>, not how to open it.</p>
+    <div class="warn-card" id="inventory-warning"><strong>Describe places, never secrets.</strong> Write “fireproof box, hall closet,” not the recovery words. Never type recovery words, PINs, passwords or keys into any website, including this one. You don’t need a full address.</div>
+    <details class="learn"><summary>Company account or self-custody: what’s the difference?</summary><p>At an exchange or brokerage, a company holds the Bitcoin and your family works with its support team, like a bank. In self-custody, you hold it with a wallet device or app, and a backup (often 12 or 24 words) can restore it. Whoever has that backup can take the Bitcoin, which is why this binder only says <em>where</em> it is.</p><p>We leave balances out on purpose. A printed list of amounts is a tempting target.</p></details>
+    <div id="accounts"></div>
+    <button type="button" class="button secondary" id="add-account">+ Add an account or wallet</button>
+  </section>
+
+  <section class="step" data-step="people" data-title="Trusted people" aria-labelledby="h-people" hidden>
+    <h2 id="h-people" tabindex="-1">Who should your family call?</h2>
+    <p class="lede">Name the person in charge and the people who can help. Professionals like an estate attorney or CPA can handle legal ownership, taxes and authority. A trusted helper can sit beside your family, not take the devices away.</p>
+    <div class="fields">
+      <label class="field"><span>Executor or person in charge</span><input data-k="people.executor" maxlength="120" placeholder="Name"></label>
+      <div class="fields two">
+        <label class="field"><span>Relationship</span><input data-k="people.executorRelation" maxlength="80" placeholder="Sister"></label>
+        <label class="field"><span>How to reach them</span><input data-k="people.executorContact" maxlength="160" placeholder="Phone or email"></label>
+      </div>
+    </div>
+    <div id="contacts"></div>
+    <button type="button" class="button secondary" id="add-contact">+ Add a trusted contact</button>
+    <label class="field"><span>Where my will and estate documents are kept</span><input data-k="people.willLocation" maxlength="200" placeholder="e.g. with my attorney, and a copy in the home safe"></label>
+    <fieldset class="group"><legend>Has an estate attorney seen this plan?</legend><div class="choices" data-choices="attorneySeen" data-k="people.attorneySeen" data-type="radio"></div></fieldset>
+    <details class="learn"><summary>Do my executor’s rights cover digital accounts?</summary><p>Most U.S. states have adopted a version of a uniform law on fiduciary access to digital assets. It affects what companies can share with an executor. Ask your estate attorney how it applies to you, and whether your will should mention digital assets.</p></details>
+  </section>
+
+  <section class="step" data-step="letter" data-title="Family letter" aria-labelledby="h-letter" hidden>
+    <h2 id="h-letter" tabindex="-1">A letter for the people who may need it.</h2>
+    <p class="lede">We’ve written the hard part: what Bitcoin is, where yours is and the first safe steps. Add a few words of your own if you like.</p>
+    <div class="fields">
+      <label class="field"><span>Addressed to</span><input data-k="letter.to" maxlength="120" placeholder="Uses your executor’s name if left blank"></label>
+      <label class="field"><span>A personal note <small>(optional)</small></span><textarea data-k="letter.note" rows="4" maxlength="1500" placeholder="Take your time. You don’t have to figure this out alone."></textarea></label>
+    </div>
+    <div class="preview-card"><p class="preview-label">Preview</p><div id="letter-preview" class="binder mini"></div></div>
+  </section>
+
+  <section class="step" data-step="review" data-title="Yearly review" aria-labelledby="h-review" hidden>
+    <h2 id="h-review" tabindex="-1">Pick a day to check in each year.</h2>
+    <p class="lede">A plan is only useful if it’s current. Once a year, about 30 minutes: check security, backups, records and contacts, then print a fresh copy. Pick a date you’ll remember, like a birthday month or tax season.</p>
+    <div class="fields two">
+      <label class="field"><span>Month</span><select data-k="review.month" id="review-month"><option value="">Choose…</option></select></label>
+      <label class="field"><span>Day</span><select data-k="review.day" id="review-day"><option value="">Choose…</option></select></label>
+    </div>
+    <p class="small" id="next-review" role="status"></p>
+    <button type="button" class="button secondary" id="ics" disabled>Add the yearly reminder to my calendar ↓</button>
+    <p class="small">Downloads a small calendar file. It names no people, places or accounts.</p>
+    <div id="checklist-preview" class="check-preview"></div>
+  </section>
+
+  <section class="step" data-step="records" data-title="Records" aria-labelledby="h-records" hidden>
+    <h2 id="h-records" tabindex="-1">Where are your records?</h2>
+    <p class="lede">What you paid for Bitcoin (your cost basis) matters whenever it’s sold, given or inherited. The IRS treats digital assets as property, so records of each purchase, sale and transfer are worth keeping.</p>
+    <div class="fields">
+      <label class="field"><span>Transaction exports and tax records are kept</span><input data-k="records.exports" maxlength="200" placeholder="e.g. “Taxes” folder in the file cabinet; downloads on the family computer"></label>
+      <div class="fields two">
+        <label class="field"><span>Tax software or method</span><input data-k="records.software" maxlength="120" placeholder="e.g. a tax program, a spreadsheet"></label>
+        <label class="field"><span>Tax preparer</span><input data-k="records.preparer" maxlength="160" placeholder="Name and phone"></label>
+      </div>
+    </div>
+    <fieldset class="group"><legend>Do you have cost-basis records?</legend><div class="choices inline" data-choices="basis" data-k="records.basis" data-type="radio"></div></fieldset>
+    <label class="field"><span>Notes <small>(optional)</small></span><textarea data-k="records.notes" rows="2" maxlength="800"></textarea></label>
+    <div class="tip-card"><p><b>Records scattered across accounts?</b> The free <a href="/tools/bitcoin-tax-lot-cleanup/">Bitcoin Tax-Lot Cleanup</a> helps you combine exports, find missing costs and review each account’s lots, privately.</p><p class="small">Sources: <a href="https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-digital-asset-transactions" target="_blank" rel="noopener noreferrer">IRS digital asset FAQ ↗</a> · <a href="https://www.irs.gov/businesses/small-businesses-self-employed/how-long-should-i-keep-records" target="_blank" rel="noopener noreferrer">IRS: how long to keep records ↗</a> · <a href="https://www.irs.gov/forms-pubs/about-form-1099-da" target="_blank" rel="noopener noreferrer">IRS Form 1099-DA ↗</a></p></div>
+  </section>
+
+  <section class="step" data-step="binder" data-title="Your binder" aria-labelledby="h-binder" hidden>
+    <h2 id="h-binder" tabindex="-1">Your binder is ready.</h2>
+    <p class="lede">Print it or save it as a PDF, then keep it somewhere private, like where you keep your will. Blank lines are fine: fill them in by hand or come back later.</p>
+    <p class="small" id="completeness" role="status"></p>
+    <div class="actions" id="binder-actions">
+      <button type="button" class="button" id="print">Print or save as PDF</button>
+      <button type="button" class="button secondary" id="export-json">Save my answers (.json) ↓</button>
+      <button type="button" class="button secondary" id="ics-2">Calendar reminder ↓</button>
+    </div>
+    <div class="paywall" id="paywall" hidden><p id="paywall-text"></p></div>
+    <p class="small">In the print window, choose “Save as PDF” to keep a digital copy. The answers file lets you pick up where you left off. It has names and places in it, so keep it as private as the binder.</p>
+  </section>
+  </form>
+
+  <div class="flow-nav">
+    <button type="button" class="button secondary" id="back">Back</button>
+    <button type="button" class="button" id="next">Start</button>
+  </div>
+
+  <div class="erase-row">
+    <button type="button" class="text-button danger" id="erase">Erase everything</button>
+    <span id="erase-confirm" hidden><span>Erase all answers from this tab and this device?</span> <button type="button" class="button danger" id="erase-yes">Yes, erase</button> <button type="button" class="text-button" id="erase-no">Cancel</button></span>
+    <p class="small" id="save-status" role="status"></p>
+  </div>
+ </div>
+ <aside class="flow-side" aria-label="What you’re building">
+  <p class="kicker">YOUR BINDER</p>
+  <h2>Five calm pages your family can follow.</h2>
+  <ol class="side-list" id="side-list">
+   <li data-part="policy"><b>My Bitcoin policy</b><small>Why, how much, how I buy and sell</small></li>
+   <li data-part="letter"><b>Letter to my executor &amp; family</b><small>What it is, where it is, first safe steps</small></li>
+   <li data-part="inventory"><b>Wallet &amp; account inventory</b><small>Places and people, never secrets</small></li>
+   <li data-part="review"><b>Yearly review</b><small>Checklist and calendar reminder</small></li>
+   <li data-part="records"><b>Records &amp; cost basis</b><small>Where the tax records live</small></li>
+  </ol>
+  <p class="side-safe">Never asks for recovery words, keys, passwords, PINs or codes.</p>
+ </aside>
+</div>
+
+<section class="binder-wrap" id="binder-wrap" aria-label="Binder preview" hidden><div id="binder" class="binder"></div></section>
+
+<section class="guide" id="learn"><p class="eyebrow">PLAIN ENGLISH</p><h2>Good intentions, written down.</h2>
+<details><summary>Why write a Bitcoin plan at all?</summary><p>Bitcoin you control yourself can be lost for good if nobody knows it exists or where the backup is. Bitcoin at a company can sit unclaimed if nobody knows which company. A short, calm document fixes both, and gives you a steady rulebook for the days the price makes headlines.</p></details>
+<details><summary>Why not just write down my recovery words for my family?</summary><p>Anyone who sees those words can take the Bitcoin, and a binder can be seen by many people over the years. Keep the backup itself secure and separate, and use this binder to say where it is and who can help. Your attorney can advise on secure ways to pass on access, such as sealed instructions or a collaborative custody setup.</p></details>
+<details><summary>Is this a will?</summary><p>No. Your will and estate documents decide who inherits. This binder helps the people you trust find things and avoid mistakes. Review it with an estate attorney.</p></details>
+<details><summary>What happens to my answers?</summary><p>They stay in this browser tab. If you turn on “Remember my answers,” they’re also saved in this browser on this device. You can save a file to resume, and “Erase everything” removes all of it. There are no analytics on this page, no accounts and no uploads.</p></details>
+<details><summary>Want the bigger picture?</summary><p>Frank W. Jerome’s book <a href="/book/"><cite>Bitcoin for Working Professionals</cite> (2nd edition)</a> covers custody, planning and taxes in plain, no-hype language.</p></details>
+<div class="reference"><p>Educational only. Sources reviewed October 26, 2026.</p><a href="https://www.irs.gov/filing/digital-assets" target="_blank" rel="noopener noreferrer">IRS: digital assets ↗</a><a href="https://www.nia.nih.gov/health/advance-care-planning/getting-your-affairs-order-checklist-documents-prepare-future" target="_blank" rel="noopener noreferrer">National Institute on Aging: getting your affairs in order ↗</a><a href="https://www.consumerfinance.gov/consumer-tools/managing-someone-elses-money/" target="_blank" rel="noopener noreferrer">CFPB: managing someone else’s money ↗</a><a href="https://www.uniformlaws.org/committees/community-home?CommunityKey=f7237fc4-74c2-4728-81c6-b39a91ecdf22" target="_blank" rel="noopener noreferrer">Uniform Law Commission: fiduciary access to digital assets ↗</a><a href="https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-scams" target="_blank" rel="noopener noreferrer">FTC: cryptocurrency scams ↗</a><a href="https://bitcoin.org/en/secure-your-wallet" target="_blank" rel="noopener noreferrer">Bitcoin.org: securing your wallet ↗</a></div>
+<p class="related">Related: <a href="/tools/bitcoin-tax-lot-cleanup/">Bitcoin Tax-Lot Cleanup</a> · <a href="/tools/bitcoin-dca-backtester/">Bitcoin DCA backtester</a></p>
+</section>
+</main>
+<footer><div class="wrap">
+  <div class="top">
+    <div class="brand"><strong>PYMTW Tools</strong>Built by <a href="https://pymtw.com/">Put Your Money to Work</a>, with no-hype education on Bitcoin and personal finance.</div>
+    <div class="links"><a href="../">All tools</a><a href="https://pymtw.com/">pymtw.com</a><a href="https://pymtw.com/legal.html">Legal</a><a href="https://pymtw.com/about.html">About</a></div>
+  </div>
+  <div class="legal">Educational tools only, not financial, tax, or legal advice. This plan does not replace a will or professional advice. No cookies. No signup. Your answers never leave your device. © 2026 Put Your Money to Work.</div>
+</div></footer>
+</body></html>

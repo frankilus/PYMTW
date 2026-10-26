@@ -1,0 +1,22 @@
+// Bitcoin Household Plan core: secret detection, answer files, the reminder and the binder (no browser).
+const assert=require('node:assert/strict');
+const S=require('../tools/bitcoin-household-plan/safety.js');const B=require('../tools/bitcoin-household-plan/binder.js');
+const seed12='abandon ability able about above absent absorb abstract absurd abuse access accident';
+assert.ok(S.check(seed12).block,'12 words');
+assert.ok(S.check('1. abandon 2. ability 3. able 4. about 5. above 6. absent 7. absorb 8. abstract 9. absurd 10. abuse 11. access 12. accident').block,'numbered');
+assert.ok(S.check((seed12+' ').repeat(2)).block,'24 words');
+assert.ok(S.check('aban abil able abou abov abse abso abst absu abus acce acci').block,'4-letter prefixes');
+assert.ok(S.check('xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbPy6cq3jPPqjiChkVvvNKmPGJxWUtg6LnF5kejMRNNU3TGtRBeJgk33yuGBxrMPHi').block,'xprv');
+assert.ok(S.check('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ').block,'WIF');
+assert.equal(S.check('bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq'),null,'an address is fine');
+assert.equal(S.check('My sister Sam knows where the hardware wallet is and will call our attorney about the will and the estate plan.'),null,'prose is fine');
+const s=B.blank();s.owner.name='Jordan';s.people.executor='Sam';s.review.month='1';s.review.day='15';
+s.accounts=[{type:'hardware',provider:'Wallet',nickname:'',holder:'',device:'Safe',backup:'Bank box',knows:'Sam',notes:''}];
+const back=B.parseFile(B.exportFile(s));assert.deepEqual(back,B.sanitize(s),'round trip');
+assert.throws(()=>B.parseFile('{"app":"other"}'));assert.throws(()=>B.parseFile('not json'));
+const ics=B.buildIcs(s.review,new Date(2026,9,26));assert.match(ics,/RRULE:FREQ=YEARLY/);assert.match(ics,/DTSTART;VALUE=DATE:20270115/);assert.ok(!ics.includes('Jordan'));
+assert.ok(ics.split('\r\n').every(l=>l.length<=75),'ICS lines folded');
+const html=B.renderBinder(s,new Date(2026,9,26));
+for(const id of ['b-policy','b-letter','b-inventory','b-review','b-records'])assert.ok(html.includes('id="'+id+'"'),id);
+assert.ok(B.renderBinder(Object.assign(B.blank(),{owner:{name:'<img src=x onerror=1>'}}),new Date()).includes('&lt;img'),'escaped');
+console.log('bitcoin household plan core checks passed');

@@ -120,6 +120,7 @@
   [/afford a home|buy a home|house(?! maintenance| repair)|mortgage|first home/,['guides/first-home','rent-vs-buy']],
   [/rollover|roll over|rolling over|old 401|cash out (my )?401|cashing out|rule of 55|left my job|leaving (a |my )?job|changing jobs|switching jobs|new job/,['guides/old-401k','explain-my-401k']],
   [/pay off|debt|credit card balance/,['debt-payoff-planner']],
+  [/inherit|executor|estate|\bwill\b|if i die|my family|beneficiar|self custody|wallet inventory|letter of instruction/,['bitcoin-household-plan']],
   [/bitcoin|btc/,['bitcoin-dca-backtester']],
   [/retirement|ira|roth/,['roth-vs-traditional']],
   [/emergency fund|savings last/,['emergency-fund-runway']],
