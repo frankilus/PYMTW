@@ -9,7 +9,9 @@ const items=[...catalog.flatMap(c=>c.tools).filter(t=>t.live),...catalog.guides]
 const slugs=items.map(t=>t.slug).sort();
 // External sister-site links (PT_EXTERNAL) are searchable in the directory but are not PYMTW pages, so they stay out of the sitemap.
 const ext=catalog.external||[];const extSlugs=ext.map(e=>e.slug);
-assert.ok(ext.length>=2&&ext.every(e=>/^https:\/\//.test(e.url)&&e.kind==='external'&&e.kw.length>=3&&!sitemap.includes(e.slug)),'external links are https, tagged external and kept out of the sitemap');
+assert.equal(ext.length,1,'exactly one StackCost external link');assert.deepEqual(extSlugs,['ext/stackcost-calculator']);assert.equal(ext[0].url,'https://stackcost-pink.vercel.app/calculator');
+assert.ok(catalog.topics.find(t=>t.id==='bitcoin').slugs.filter(s=>s.startsWith('ext/')).join()==='ext/stackcost-calculator','Bitcoin topic lists the one StackCost link');
+assert.ok(ext.length===1&&ext.every(e=>/^https:\/\//.test(e.url)&&e.kind==='external'&&e.kw.length>=3&&!sitemap.includes(e.slug)),'external links are https, tagged external and kept out of the sitemap');
 for(const e of ext)assert.ok(catalog.topics.find(c=>c.id==='bitcoin').slugs.includes(e.slug),e.slug+' is in the Bitcoin topic');
 assert.ok(sitemap.length>=22,'sitemap lists the tools and guides');
 assert.deepEqual(slugs,sitemap,'tools/catalog.js (PT_CATS + PT_GUIDES) must list exactly the pages in tools/sitemap.xml');
@@ -43,7 +45,7 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   for(const e of ext){const a=page.locator(`#tools-grid a.directory-tool[href="${e.url}"]`);assert.equal(await a.getAttribute('target'),'_blank');assert.equal(await a.getAttribute('rel'),'noopener');assert.equal(await a.locator('.directory-tag').innerText(),'External site');}
   const all=hrefs.filter(h=>!/^https:/.test(h)).map(h=>h.replace(/^\.\//,'').replace(/\/$/,'')).sort();
   assert.deepEqual(all,sitemap,'the All view shows every sitemap page exactly once');
-  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 8 guides & 2 external links/);
+  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 8 guides & 1 external link in all topics/);
   for(const s of sitemap){await search.fill('');await search.fill(items.find(t=>t.slug===s).name);
    assert.equal(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count(),1,'searching its name finds '+s);}
   for(const q of ['rollover','old 401k','IRA','Roth IRA','leaving job','cash out','401k','401(k) rollover','what should I do with my old 401(k)']){
@@ -53,9 +55,9 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   assert.match(await page.locator('#tool-count').innerText(),/1 match for “rollover”/);
   for(const [q,s] of [['checkup','checkup'],['laid off','guides/lost-my-job'],['daycare','guides/true-cost-of-a-baby'],['wedding','guides/true-cost-of-a-wedding'],['car insurance','guides/true-cost-of-a-car'],['property tax','guides/true-cost-of-owning-a-home'],['down payment','guides/first-home'],['bitcoin taxes','bitcoin-tax-lot-cleanup'],['pay stub','paycheck-decoder']]){
    await search.fill(q);assert.ok(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count()===1,q+' finds '+s);}
-  for(const q of ['dca cost','cash app','cheapest app to buy bitcoin','strike fees','coinbase spread']){await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/calculator"]').count(),1,q+' finds the DCA cost calculator');}
-  await search.fill('compare bitcoin apps');assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/compare"]').count(),1);
-  await search.fill('');await page.locator('[data-category=bitcoin]').click();assert.match(await page.locator('#tool-count').innerText(),/3 tools & 2 external links in bitcoin/);await page.locator('[data-category=all]').click();
+  for(const q of ['dca cost','cash app','cheapest app to buy bitcoin','strike fees','coinbase spread','compare bitcoin apps']){await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/calculator"]').count(),1,q+' finds the DCA cost calculator');}
+  await search.fill('compare bitcoin apps');assert.equal(await page.locator('#tools-grid a.directory-tool[href^="https://stackcost-pink.vercel.app"]').count(),1,'one StackCost result');assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/compare"]').count(),0);
+  await search.fill('');await page.locator('[data-category=bitcoin]').click();assert.match(await page.locator('#tool-count').innerText(),/3 tools & 1 external link in bitcoin/);await page.locator('[data-category=all]').click();
   await search.fill('zzqx');assert.equal(await page.locator('#tools-grid a.directory-tool').count(),0);assert.equal(await page.locator('.directory-empty a[href="/tools/checkup/"]').count(),1);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'no horizontal overflow at '+width);
   // Keyboard: Escape clears and restores the topic; the clear button and a topic click also clear.
@@ -73,7 +75,8 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
  assert.ok(await page.locator('#directory-search').isHidden(),'no dead search box without JavaScript');
  const links=(await page.locator('#moments noscript').innerHTML()).match(/href="\/tools\/[^"]+\/"/g)||[];
  assert.equal(links.length,sitemap.length,'every page is listed without JavaScript');
- assert.equal(((await page.locator('#moments noscript').innerHTML()).match(/href="https:\/\/stackcost-pink\.vercel\.app\/[^"]+"/g)||[]).length,ext.length,'external links listed without JavaScript');
+ assert.equal(((await page.locator('#moments noscript').innerHTML()).match(/href="https:\/\/stackcost-pink\.vercel\.app\/[^"]+"/g)||[]).length,1,'the one external link listed without JavaScript');
+ assert.ok(!(await page.locator('#moments noscript').innerHTML()).includes('stackcost-pink.vercel.app/compare'));
  await ctx.close();
  console.log('find-right-tool: ok,',sitemap.length,'pages reachable from "Find the right tool."');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});
