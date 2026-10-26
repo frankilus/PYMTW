@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src https://api.lemonsqueezy.com; img-src 'self' data:; font-src 'self'; style-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'">
 <title>Bitcoin Household Plan: Policy, Executor Letter &amp; Wallet Inventory | PYMTW</title>
 <meta name="description" content="A free, private 20-minute guide to write your Bitcoin policy, a letter for your executor and family, and a wallet inventory without secrets. Print one binder.">
 <link rel="canonical" href="https://pymtw.com/tools/bitcoin-household-plan/">
@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../tools.css"><link rel="stylesheet" href="../v7/pages.css"><link rel="stylesheet" href="plan.css">
-<script src="config.js" defer></script><script src="safety.js" defer></script><script src="binder.js" defer></script><script src="app.js" defer></script>
+<script src="config.js" defer></script><script src="license.js" defer></script><script src="safety.js" defer></script><script src="binder.js" defer></script><script src="app.js" defer></script>
 <link rel="icon" href="/assets/brand/pymtw-icon.ico?v=20261021" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/assets/brand/pymtw-icon.svg?v=20261021" type="image/svg+xml" sizes="any"><link rel="apple-touch-icon" href="/assets/brand/pymtw-icon-180.png?v=20261021">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -192,7 +192,24 @@
       <button type="button" class="button secondary" id="export-json">Save my answers (.json) ↓</button>
       <button type="button" class="button secondary" id="ics-2">Calendar reminder ↓</button>
     </div>
-    <div class="paywall" id="paywall" hidden><p id="paywall-text"></p></div>
+    <p class="small unlock-owned" id="unlock-owned" hidden><span id="unlock-owned-text"></span> <button type="button" class="text-button" id="unlock-remove">Remove the key from this device</button></p>
+    <div class="unlock-card" id="paywall" role="region" aria-labelledby="unlock-title" tabindex="-1" hidden>
+      <p class="kicker">YOUR PRINTABLE BINDER</p>
+      <h3 id="unlock-title">Keep a copy your family can hold.</h3>
+      <p id="paywall-text"></p>
+      <ul class="unlock-list"><li>Print it, or save it as a PDF</li><li>Print a fresh copy after every yearly review</li><li>One-time purchase. No account, and your answers stay on this device</li></ul>
+      <div class="actions unlock-actions">
+        <a class="button" id="unlock-buy" href="#" target="_blank" rel="noopener noreferrer">Get the binder, $29</a>
+        <button type="button" class="button secondary" id="unlock-have" aria-expanded="false" aria-controls="unlock-key-box">Have a key? Enter it</button>
+      </div>
+      <div class="unlock-key" id="unlock-key-box" hidden>
+        <p class="unlock-note" id="unlock-note" hidden><b>Thank you.</b> Your license key is in your receipt email from Lemon Squeezy. Paste it here to unlock printing. If your plan is open in another tab, it unlocks there too.</p>
+        <label class="field" for="unlock-key"><span>License key</span><input id="unlock-key" maxlength="100" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste the key from your receipt"></label>
+        <button type="button" class="button" id="unlock-submit">Unlock my binder</button>
+        <p class="unlock-status" id="unlock-status" role="status" aria-live="polite"></p>
+        <p class="small">Only the key is sent to Lemon Squeezy, our payment provider, to check it. Your answers never leave this device.</p>
+      </div>
+    </div>
     <p class="small">In the print window, choose “Save as PDF” to keep a digital copy. The answers file lets you pick up where you left off. It has names and places in it, so keep it as private as the binder.</p>
   </section>
   </form>

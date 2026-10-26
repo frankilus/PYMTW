@@ -111,7 +111,22 @@ body{background:var(--bg)}
 .alert{position:sticky;top:72px;z-index:6;background:#fff1e9;border:1px solid #e4b9a3;border-left:4px solid #9f4027;color:#6f2c19;border-radius:9px;padding:12px 14px;font-size:14px;line-height:1.6;margin-bottom:18px}
 .alert.pulse{animation:hhp-pulse .5s ease}
 @keyframes hhp-pulse{0%{transform:translateY(-4px);opacity:.3}100%{transform:none;opacity:1}}
-.paywall{background:#fff8e9;border:1px solid #e0d0ae;border-radius:10px;padding:16px;font-size:14px}
+/* Unlock panel (paywall flag on only) */
+.unlock-card{background:var(--bg-2);border:1px solid #d5e0cf;border-left:4px solid var(--accent);border-radius:12px;padding:22px 24px;margin:8px 0 18px}
+.unlock-card:focus{outline:3px solid #b9d2b7;outline-offset:2px}
+.unlock-card h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:24px;line-height:1.2;color:#213f34;margin:8px 0 8px}
+.unlock-card>p{font-size:14px;color:#3a4a40;line-height:1.65}
+.unlock-list{list-style:none;margin:12px 0 4px;display:grid;gap:6px}
+.unlock-list li{display:grid;grid-template-columns:22px 1fr;font-size:14px;color:#3a4a40;line-height:1.5}
+.unlock-list li:before{content:"✓";color:var(--accent);font-weight:700}
+.unlock-actions{margin:16px 0 4px}
+.hhp a.button,.hhp a.button:hover{color:#fff}
+.unlock-key{border-top:1px solid #cedbc9;margin-top:14px;padding-top:16px;max-width:520px}
+.unlock-key .field{margin-bottom:12px}
+.unlock-note{background:#fff;border:1px solid #d5e0cf;border-radius:9px;padding:12px 14px;font-size:14px;color:#294f41;line-height:1.6;margin-bottom:14px}
+.unlock-status{font-size:14px;line-height:1.6;margin:10px 0 0;min-height:1em;color:#3e5b48}
+.unlock-status.error{color:#87351f;background:#fff6f1;border:1px solid #e4b9a3;border-radius:8px;padding:10px 12px}
+.unlock-owned{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;color:#3e5b48}
 .preview-label{font-size:11px;letter-spacing:.12em;font-weight:700;color:#375844;margin-bottom:10px}
 .preview-card{background:var(--bg-2);border:1px solid #d5e0cf;max-height:520px;overflow:auto}
 
