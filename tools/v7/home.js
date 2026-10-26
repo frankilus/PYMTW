@@ -65,12 +65,13 @@
  const norm=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
  const checkup={title:'2-minute money checkup',desc:'Find a helpful starting point.',slug:'checkup',live:true,kw:'where do i start checkup beginner overwhelmed financial health not sure start my finances'};
  const jobGuide={title:'Just lost your job?',desc:'What to do this week and next month.',slug:'guides/lost-my-job',live:true,kw:'lost my job lost job laid off fired unemployed unemployment cobra severance'};
+ const oldPlanGuide={title:'Your old 401(k) after leaving a job',desc:'Roll it over, leave it or cash out: rules and costs.',slug:'guides/old-401k',live:true,kw:'old 401k rollover roll over cash out rule of 55 leaving a job left my job new job changing jobs switching jobs'};
  const homeGuide={title:'Buying your first home',desc:'Understand preparation, closing costs and affordability.',slug:'guides/first-home',live:true,kw:'first home afford a home buy a home buying a home house mortgage down payment first time buyer'};
  const carGuide={title:"True cost of a car",desc:"Plan beyond the sticker price.",slug:"guides/true-cost-of-a-car",live:true,kw:"car auto vehicle insurance maintenance transport"};
  const babyGuide={"title": "The true cost of having a baby", "desc": "Plan child care, birth costs and benefits.", "slug": "guides/true-cost-of-a-baby", "live": true, "kw": "baby pregnant newborn child care daycare day care parental leave maternity paternity"};
  const homeCostGuide={"title": "The true cost of owning a home", "desc": "Budget for the bills beyond the mortgage.", "slug": "guides/true-cost-of-owning-a-home", "live": true, "kw": "cost of owning homeowner property tax home insurance hoa maintenance closing cost pmi"};
  const weddingGuide={"title": "The true cost of a wedding", "desc": "Build a budget around your guest list.", "slug": "guides/true-cost-of-a-wedding", "live": true, "kw": "wedding engaged engagement marry married honeymoon wedding budget"};
- const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,homeGuide];
+ const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,oldPlanGuide,homeGuide];
  const aliases=[
   [/baby|pregnan|newborn|child care|daycare|day care|parental leave|maternity|paternity/,['guides/true-cost-of-a-baby','emergency-fund-runway']],
   [/cost of owning|homeowner|property tax|home insurance|\bhoa\b|home maintenance|house maintenance|home repair|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
@@ -78,6 +79,7 @@
   [/where do i start|not sure|start with|overwhelmed|financial health|getting started|money mind/,['checkup']],
   [/lost my job|lost job|laid off|fired|unemployed|unemployment/,['guides/lost-my-job','severance-runway','emergency-fund-runway']],
   [/afford a home|buy a home|house(?! maintenance| repair)|mortgage|first home/,['guides/first-home','rent-vs-buy']],
+  [/rollover|roll over|rolling over|old 401|cash out (my )?401|cashing out|rule of 55|left my job|leaving (a |my )?job|changing jobs|switching jobs|new job/,['guides/old-401k','explain-my-401k']],
   [/pay off|debt|credit card balance/,['debt-payoff-planner']],
   [/bitcoin|btc/,['bitcoin-dca-backtester']],
   [/retirement|ira|roth/,['roth-vs-traditional']],

@@ -11,7 +11,7 @@ class Links(HTMLParser):
 new_bad=[];existing_bad=[];checked=0
 pages=[root/'tools/index.html']+[p for p in (root/'tools').rglob('index.html') if '/preview/' not in str(p) and p!=root/'tools/index.html']
 for page in pages:
- parser=Links();parser.feed(page.read_text());old=Links();old.feed(subprocess.check_output(['git','show','a5afedc49c21fcbb83393fb6e5a7c25af504c790:'+str(page.relative_to(root))],cwd=root,text=True))
+ parser=Links();parser.feed(page.read_text());old=Links();old.feed(subprocess.run(['git','show','a5afedc49c21fcbb83393fb6e5a7c25af504c790:'+str(page.relative_to(root))],cwd=root,text=True,capture_output=True).stdout) # pages added later have no old links, so any broken link on them counts as new
  for link in parser.links:
   u=urlsplit(link)
   if u.scheme or u.netloc or not u.path:continue
