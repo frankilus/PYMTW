@@ -345,6 +345,31 @@ var PT_CATS = [
      "crypto",
      "backtest"
     ]
+   },
+   {
+    "slug": "bitcoin-household-plan",
+    "icon": "🗂️",
+    "v7icon": "file",
+    "name": "Bitcoin household plan",
+    "desc": "Write down why you hold Bitcoin, where it is and what your family should do, then print one binder. Never asks for secrets.",
+    "time": "20 min",
+    "live": true,
+    "kw": [
+     "inheritance",
+     "executor letter",
+     "estate",
+     "bitcoin will",
+     "self custody plan",
+     "wallet inventory",
+     "family",
+     "estate plan",
+     "if i die",
+     "beneficiary",
+     "letter of instruction",
+     "bitcoin policy",
+     "hardware wallet",
+     "binder"
+    ]
    }
   ]
  }
@@ -378,7 +403,7 @@ var PT_TOPICS = [
  {"id": "debt", "name": "Debt & emergencies", "desc": "Pay down balances and prepare for income changes.", "slugs": ["debt-payoff-planner", "emergency-fund-runway", "severance-runway", "guides/lost-my-job"]},
  {"id": "home", "name": "Home & big purchases", "desc": "Compare your options and see the true cost before a big commitment.", "slugs": ["rent-vs-buy", "before-you-sign", "guides/first-home", "guides/true-cost-of-owning-a-home", "guides/true-cost-of-a-car"]},
  {"id": "retirement", "name": "Retirement & investing", "desc": "Understand your plan, tax choices, investment fees and an old 401(k).", "slugs": ["explain-my-401k", "roth-vs-traditional", "fee-x-ray", "guides/old-401k"]},
- {"id": "bitcoin", "name": "Bitcoin", "desc": "Organize your records and explore historical scenarios.", "slugs": ["bitcoin-tax-lot-cleanup", "bitcoin-dca-backtester"]},
+ {"id": "bitcoin", "name": "Bitcoin", "desc": "Write a plan for your family, organize your records and explore historical scenarios.", "slugs": ["bitcoin-household-plan", "bitcoin-tax-lot-cleanup", "bitcoin-dca-backtester"]},
  {"id": "guides", "name": "Life guides & checkup", "desc": "Step-by-step guides for big life moments, plus a 2-minute checkup.", "slugs": ["checkup", "guides/lost-my-job", "guides/old-401k", "guides/first-home", "guides/true-cost-of-owning-a-home", "guides/true-cost-of-a-car", "guides/true-cost-of-a-baby", "guides/true-cost-of-a-wedding"]}
 ];
 if (typeof module !== "undefined") { module.exports = PT_CATS; module.exports.guides = PT_GUIDES; module.exports.topics = PT_TOPICS; }

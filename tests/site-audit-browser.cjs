@@ -13,7 +13,7 @@ for(const width of [320,390,1280]){await p.setViewportSize({width,height:900});
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,slug+' form overflow '+width);
   if(catalog.find(t=>t.slug===slug)?.live||slug==='checkup'){
    await p.goto(base+'/tools/'+slug+'/?demo=1');
-   if(slug==='explain-my-401k'){await p.locator('#example').click();assert.ok(await p.locator('#results').isVisible());}else if(slug==='bitcoin-tax-lot-cleanup'){await p.locator('#example').click();assert.ok((await p.locator('#review-status').innerText()).includes('need attention'));}else assert.ok(await p.locator('.result-newsletter').isVisible(),slug+' result signup');
+   if(slug==='explain-my-401k'){await p.locator('#example').click();assert.ok(await p.locator('#results').isVisible());}else if(slug==='bitcoin-tax-lot-cleanup'){await p.locator('#example').click();assert.ok((await p.locator('#review-status').innerText()).includes('need attention'));}else if(slug==='bitcoin-household-plan'){assert.ok(await p.locator('#plan').isVisible());assert.equal(await p.locator('.result-newsletter').count(),0,slug+' keeps no signup on the private plan');}else assert.ok(await p.locator('.result-newsletter').isVisible(),slug+' result signup');
    assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,slug+' result overflow '+width);
   }
  }
