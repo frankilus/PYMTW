@@ -89,3 +89,15 @@ The assessment scores answers into these three profiles and routes each to a fre
 - Every program → Security Promise + Educational Disclaimer.
 - Assessment result → free resource + paid offer matched to profile.
 - Footer links all trust/legal pages site-wide.
+
+## Bitcoin Household Plan: binder paywall (ships OFF)
+
+`/tools/bitcoin-household-plan/` is free to fill out. An optional $29 Lemon Squeezy license key unlocks "Print or save as PDF". The answers file and the calendar reminder stay free. The flag lives in `tools/bitcoin-household-plan/config.js` (`HHP_CONFIG.paywall`), with the checkout URL, store id (508088) and product id (1475812). `license.js` is the only file that makes a request.
+
+- **CSP:** the page meta CSP is `connect-src https://api.lemonsqueezy.com` and was `'none'`. Nothing else changed: `script-src 'self'`, `frame-src 'none'` and `form-action 'none'` remain. Checkout is a plain link that opens a new tab, so lemon.js and its iframe are not needed. The only request is a POST to `/v1/licenses/activate` with `license_key` and `instance_name`, sent with no cookies and no referrer. Plan answers are never sent. The response must have `meta.product_id` 1475812 and `meta.store_id` 508088, or the key is refused. With the flag OFF, no request is made. If `licenseApi` moves to another host, change `connect-src` with it. `tests/bitcoin-household-plan-paywall.cjs` fails if any other host is added.
+- **Unlocked state:** stored in `localStorage["pymtw-hhp-license-v1"]` (key, instance id, product and store ids) on that device only. It is not re-checked on load. "Remove the key from this device" clears it. "Erase everything" keeps a paid key.
+- **To turn it on:**
+  1. In Lemon Squeezy, confirm the product is published in **live** mode. If the live store or product ids differ from test mode, update `storeId`, `productId` and `checkoutUrl`.
+  2. Set the product's confirmation redirect to `https://pymtw.com/tools/bitcoin-household-plan/?unlock=1`. Keep license keys on, with unlimited activations.
+  3. In `config.js`, change the one line `enabled: false,` to `enabled: true,`.
+  4. Run `tests/bitcoin-household-plan-paywall.cjs` and `tests/bitcoin-household-plan-browser.cjs`. Both assert the flag ships OFF, so update that assertion in the same PR. Then update the page copy that says the plan is free: the JSON-LD `isAccessibleForFree` and price `0`, and the "nothing is sent anywhere" lines.

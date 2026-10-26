@@ -1,8 +1,10 @@
 /* Bitcoin Household Plan: the guided flow. Everything happens in this tab.
-   No network requests. Browser storage is used only when the person turns on "Remember". */
+   This file makes no network requests. Browser storage is used only when the person turns on "Remember".
+   When the paywall flag is on, license.js sends the typed license key (never the answers) to Lemon Squeezy. */
 (function () {
   'use strict';
-  var B = window.HHPBinder, S = window.HHPSafety, CFG = window.HHP_CONFIG || { paywall: { enabled: false } };
+  var B = window.HHPBinder, S = window.HHPSafety, LIC = window.HHPLicense, CFG = window.HHP_CONFIG || { paywall: { enabled: false } };
+  var PAY = CFG.paywall || { enabled: false }, PAYWALL = !!PAY.enabled && !!LIC;
   var KEY = 'pymtw-hhp-v1';
   var $ = function (id) { return document.getElementById(id); };
   var form = $('plan-form'), steps = [].slice.call(document.querySelectorAll('.step'));
@@ -163,7 +165,58 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
   function ics() { var t = B.buildIcs(state.review, new Date()); if (t) { download('bitcoin-household-plan-review.ics', t, 'text/calendar'); status('Calendar reminder downloaded. Open it to add it to your calendar.'); } }
-  function canExport() { return !(CFG.paywall && CFG.paywall.enabled); }
+  function canExport() { return !(PAY && PAY.enabled) || !!(LIC && LIC.load(PAY)); }
+
+  /* ---------- unlock panel (only when the paywall flag is on) ---------- */
+  function lockUI() {
+    var rec = LIC.load(PAY), open = !!rec;
+    document.documentElement.classList.toggle('hhp-locked', !open);
+    $('paywall').hidden = open;
+    $('unlock-owned').hidden = !open;
+    if (open) $('unlock-owned-text').textContent = 'Printing is unlocked on this device (key ' + LIC.mask(rec.key) + ').';
+  }
+  function showKeyBox(focus) {
+    $('unlock-key-box').hidden = false; $('unlock-have').setAttribute('aria-expanded', 'true');
+    if (focus) $('unlock-key').focus();
+  }
+  function unlockStatus(msg, kind) { var el = $('unlock-status'); el.textContent = msg; el.className = 'unlock-status' + (kind ? ' ' + kind : ''); }
+  var checking = false;
+  function submitKey() {
+    if (checking) return;
+    var key = $('unlock-key').value;
+    checking = true; $('unlock-submit').disabled = true; unlockStatus('Checking your key…', 'busy');
+    LIC.activate(key, PAY).then(function (r) {
+      checking = false; $('unlock-submit').disabled = false;
+      if (!r.ok) { unlockStatus(r.message, 'error'); $('unlock-key').setAttribute('aria-invalid', 'true'); return; }
+      $('unlock-key').removeAttribute('aria-invalid');
+      if (!LIC.save(r.record)) { unlockStatus('Your key is valid, but this browser blocks storage, so it can’t stay unlocked. Allow site storage, or print right away.', 'error'); return; }
+      $('unlock-key').value = ''; unlockStatus('', '');
+      lockUI(); renderBinder();
+      status('Unlocked. Your binder is ready to print or save as a PDF.');
+      $('print').focus();
+    });
+  }
+  function setupPaywall() {
+    $('paywall-text').textContent = PAY.message || '';
+    var buy = $('unlock-buy');
+    if (PAY.checkoutUrl) { buy.href = PAY.checkoutUrl; buy.textContent = 'Get the binder, ' + (PAY.price || '$29'); } else buy.hidden = true;
+    $('unlock-have').addEventListener('click', function () { if ($('unlock-key-box').hidden) showKeyBox(true); else { $('unlock-key-box').hidden = true; this.setAttribute('aria-expanded', 'false'); } });
+    $('unlock-submit').addEventListener('click', submitKey);
+    $('unlock-key').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); submitKey(); } });
+    $('unlock-remove').addEventListener('click', function () {
+      LIC.clear(); lockUI();
+      status('The key is removed from this device. Enter it again any time to print.');
+      $('unlock-have').focus();
+    });
+    window.addEventListener('storage', function (e) { if (e.key === LIC.STORE_KEY || e.key === null) lockUI(); });
+    lockUI();
+    if (/(^|[?&])unlock=1(&|$)/.test(location.search)) {
+      $('unlock-note').hidden = false; showKeyBox(false);
+      try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) { /* keep the URL */ }
+      return true;
+    }
+    return false;
+  }
 
   /* ---------- import / erase ---------- */
   /* Clears any value that looks like a secret; returns how many were cleared. */
@@ -207,7 +260,7 @@
   form.addEventListener('change', onEdit);
   function onEdit(e) {
     var el = e.target;
-    if (el.id === 'remember' || el.id === 'import-file') return;
+    if (el.id === 'remember' || el.id === 'import-file' || el.id === 'unlock-key') return;
     var hit = guard(el);
     if (el.hasAttribute('data-k')) { readField(el); changed(); return; }
     if (el.hasAttribute('data-list')) {
@@ -241,7 +294,10 @@
   $('secret-alert-close').addEventListener('click', function () { $('secret-alert').hidden = true; });
   $('ics').addEventListener('click', ics);
   $('ics-2').addEventListener('click', ics);
-  $('print').addEventListener('click', function () { if (!canExport()) return; renderBinder(); window.print(); });
+  $('print').addEventListener('click', function () {
+    if (!canExport()) { if (PAYWALL) { lockUI(); $('paywall').focus(); $('paywall').scrollIntoView({ block: 'center' }); } return; }
+    renderBinder(); window.print();
+  });
   $('export-json').addEventListener('click', function () { download('bitcoin-household-plan-answers.json', B.exportFile(state), 'application/json'); status('Answers file downloaded. Keep it as private as the binder.'); });
   $('erase').addEventListener('click', function () { this.hidden = true; $('erase-confirm').hidden = false; $('erase-no').focus(); });
   $('erase-no').addEventListener('click', function () { $('erase-confirm').hidden = true; $('erase').hidden = false; $('erase').focus(); });
@@ -250,11 +306,8 @@
 
   /* ---------- start ---------- */
   buildChoices(); checklistPreview();
-  if (!canExport()) {
-    document.documentElement.classList.add('hhp-locked');
-    $('paywall').hidden = false; $('paywall-text').textContent = CFG.paywall.message;
-    $('print').disabled = true;
-  }
+  var arrivedToUnlock = PAYWALL && setupPaywall();
+  if (PAY.enabled && !LIC) { document.documentElement.classList.add('hhp-locked'); $('print').disabled = true; }
   var saved = null, st = storage();
   try { saved = st && st.getItem(KEY); } catch (e) { saved = null; }
   if (saved) {
@@ -263,5 +316,7 @@
   }
   if (!state.owner.prepared) state.owner.prepared = B.ymd(new Date());
   $('plan').hidden = false;
-  fill(); go(0, false);
+  fill();
+  if (arrivedToUnlock) { go(steps.length - 1, false); if (!$('paywall').hidden) { $('paywall').scrollIntoView({ block: 'center' }); $('unlock-key').focus({ preventScroll: true }); } }
+  else go(0, false);
 })();
