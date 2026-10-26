@@ -14,9 +14,9 @@ const base = process.env.PREVIEW_URL || 'http://127.0.0.1:8781';
       await page.route('**/*', route => route.request().url().startsWith(base + '/') ? route.continue() : route.abort());
       await page.goto(base + '/tools/');
       await page.evaluate(() => document.fonts.ready);
-      const expected = await page.evaluate(() => window.PT_CATS.flatMap(c => c.tools).filter(t => t.live).map(t => t.slug).sort());
+      const expected = await page.evaluate(() => [...window.PT_CATS.flatMap(c => c.tools).filter(t => t.live), ...window.PT_GUIDES].map(t => t.slug).sort());
       const categoryLinks = new Set();
-      for (const category of ['everyday', 'debt', 'home', 'retirement', 'bitcoin']) {
+      for (const category of ['everyday', 'debt', 'home', 'retirement', 'bitcoin', 'guides']) {
         await page.locator(`[data-category="${category}"]`).focus();
         await page.keyboard.press('Enter');
         assert.equal(await page.locator('.category-button[aria-pressed=true]').count(), 1);
@@ -25,7 +25,7 @@ const base = process.env.PREVIEW_URL || 'http://127.0.0.1:8781';
         assert.ok(links.length > 0);
         links.forEach(link => categoryLinks.add(link.replace(/^\.\//, '').replace(/\/$/, '')));
       }
-      assert.deepEqual([...categoryLinks].sort(), expected, 'every live catalog tool must be discoverable');
+      assert.deepEqual([...categoryLinks].sort(), expected, 'every live catalog tool and guide must be discoverable');
       await page.locator('[data-category=all]').click();
       assert.equal(await page.locator('a.directory-tool').count(), expected.length);
       await page.locator('[data-category=everyday]').click();
