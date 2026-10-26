@@ -41,8 +41,9 @@ faq=schema[1]['@graph'][1]
 for q in faq['mainEntity']:assert q['name'] in pay and q['acceptedAnswer']['text'] in pay
 book=(r/'book/index.html').read_text();assert 'numberOfPages' not in book and 'fonts.googleapis.com' not in book and 'September 2026' in book
 assert 'assets/home/book-cover-960.webp' in book
-checkout=re.search(r'"starter-kit":\s*"([^"]+)"',(r/'pymtw-config.js').read_text())[1]
-assert f'href="{checkout}"' in (r/'starter-kit.html').read_text()
+# 2026-10-26: Frank took the Starter Kit off sale. Its checkout stays blank and no page may link to Stripe.
+assert re.search(r'"starter-kit":\s*"([^"]*)"',(r/'pymtw-config.js').read_text())[1]==''
+kit=(r/'starter-kit.html').read_text();assert 'buy.stripe.com' not in kit and 'data-checkout' not in kit and '$29' not in kit
 assert 'Direct Amazon link · not an affiliate link' in (r/'bitcoin/explore/index.html').read_text()
 assert (r/'favicon.ico').read_bytes()[:4]==b'\x00\x00\x01\x00'
 assert (r/'assets/og/pymtw.png').read_bytes()[16:24]==(1200).to_bytes(4,'big')+(630).to_bytes(4,'big')

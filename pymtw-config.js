@@ -21,7 +21,7 @@
     // the link keeps its existing href (e.g. the waitlist form).
     // Recommended post-purchase redirect: https://pymtw.com/thank-you.html?source=KEY
     checkout: {
-      "starter-kit": "https://buy.stripe.com/9B6aEW1w9O2ianE2iI57W00", // $29 Bitcoin Professional Starter Kit
+      "starter-kit": "",            // Retired 2026-10-26 (off sale); keep blank so no button reaches checkout
       "workshop-professionals": "", // $79
       "workshop-self-custody": "",  // $129
       "workshop-family": "",        // $199
