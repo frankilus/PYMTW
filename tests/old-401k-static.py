@@ -16,7 +16,7 @@ ld=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,
 assert set(g)=={'BreadcrumbList','Article','FAQPage'}
 assert g['BreadcrumbList']['itemListElement'][-1]['item']==URL and g['Article']['url']==URL and g['Article']['dateModified']=='2026-10-26'
 def text(x):return ' '.join(html.unescape(re.sub('<[^>]+>','',x)).split())
-vis=[(text(q),text(a)) for q,a in re.findall(r'<div class="qa"><h3>(.*?)</h3><p>(.*?)</p></div>',s,re.S)]
+vis=[(text(q),text(a)) for q,a in re.findall(r'<details class="qa"><summary>(.*?)</summary><p>(.*?)</p></details>',s,re.S)]
 assert 6<=len(vis)<=8 and [(q['name'],q['acceptedAnswer']['text']) for q in g['FAQPage']['mainEntity']]==vis
 # direct answer 40–60 words
 da=text(re.sub(r'<sup.*?</sup>','',re.search(r'<p class="direct-answer">(.*?)</p>',s,re.S)[1]));assert 40<=len(da.split())<=60,len(da.split())
@@ -26,7 +26,7 @@ assert refs==set(i for i,_ in ids),(refs^set(i for i,_ in ids))
 assert ids and all(re.match(r'https://(www\.irs\.gov|www\.dol\.gov|lostandfound\.dol\.gov|www\.finra\.org|www\.investor\.gov)/',u) for _,u in ids)
 assert set(g['Article']['citation'])==set(u for _,u in ids)
 # key content and the worked example
-for need in ['Rule of 55','direct rollover','60 days','20%','$7,000','$1,000 or less','qualified plan loan offset','net unrealized appreciation','Notice 2014-54','$227,000','$163,000','28%','Lost and Found','$31,500','$5,000','$11,000','$2,500','Educational only','../../fee-x-ray/','../../explain-my-401k/','../lost-my-job/','Get one clear money idea a week','https://pymtwtools.beehiiv.com/subscribe','e52526c9-fd98-4fde-bda0-ee1a61507c09']:assert need in s,need
+for need in ['Rule of 55','direct rollover','60 days','20%','$7,000','$1,000 or less','qualified plan loan offset','net unrealized appreciation','Notice 2014-54','$227,000','$163,000','28%','Lost and Found','$31,500','$5,000','$11,000','$2,500','Educational only','../../fee-x-ray/','../../explain-my-401k/','../lost-my-job/','The Next Dollar: practical money ideas, twice a week','https://pymtwtools.beehiiv.com/subscribe','e52526c9-fd98-4fde-bda0-ee1a61507c09']:assert need in s,need
 # no affiliate links / partner recommendations
 for bad in ['capitalize','amzn.to','?ref=','utm_','affiliate']:assert bad not in s.lower(),bad
 # local links exist
