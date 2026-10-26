@@ -1,5 +1,7 @@
 # PYMTW Starter Kit Launch Checklist
 
+> **Retired 2026-10-26.** The Starter Kit is off sale: the checkout URL is blank in `pymtw-config.js` and `starter-kit.html` is now a "coming soon" page for the Bitcoin Household Plan. Kept for history only; do not follow these steps.
+
 Goal: turn `starter-kit.html` from an interest-capture page into the first live paid product.
 
 ## Product Files
