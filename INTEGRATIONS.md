@@ -1,6 +1,6 @@
 # PYMTW — Integrations Setup Guide
 
-GA4 is off until configured. The Starter Kit checkout and Web3Forms inquiry endpoint are already configured; other checkout and scheduling destinations remain blank. Configuration is not evidence of successful fulfillment. Central config lives in [`pymtw-config.js`](pymtw-config.js) (loaded in the `<head>` of every page).
+GA4 is off until configured. The Web3Forms inquiry endpoint is configured; all checkout and scheduling destinations are blank. The Starter Kit was taken off sale on 2026-10-26 and its checkout URL removed (to be replaced later by the Bitcoin Household Plan). Configuration is not evidence of successful fulfillment. Central config lives in [`pymtw-config.js`](pymtw-config.js) (loaded in the `<head>` of every page).
 
 ---
 
@@ -34,16 +34,15 @@ To add tracking to any link/button: `data-track="event_name"` (optional `data-tr
 
 ```js
 checkout: {
-  "starter-kit": "https://buy.stripe.com/…",
   "workshop-professionals": "https://…",
   "membership-monthly": "https://…",
   …
 }
 ```
 
-**How it works:** any `<a data-checkout="starter-kit">…</a>` is automatically rewritten to that URL on page load, and a `checkout_started` event fires on click. **Until a URL is set, the link keeps its current href** (the waitlist/inquiry form) — so nothing breaks pre-launch.
+**How it works:** any `<a data-checkout="workshop-professionals">…</a>` is automatically rewritten to that URL on page load, and a `checkout_started` event fires on click. **Until a URL is set, the link keeps its current href** (the waitlist/inquiry form) — so nothing breaks pre-launch.
 
-**To wire a button:** add `data-checkout="<key>"` to the relevant CTA (e.g. the Starter Kit "Get the Kit" button, workshop "Request a Seat", membership "Join"). Keys already reserved in config: `starter-kit`, `workshop-professionals`, `workshop-self-custody`, `workshop-family`, `clarity`, `intensive`, `self-custody-readiness`, `membership-monthly`, `membership-annual`.
+**To wire a button:** add `data-checkout="<key>"` to the relevant CTA (e.g. workshop "Request a Seat", membership "Join"). Keys already reserved in config: `starter-kit` (retired; keep blank), `workshop-professionals`, `workshop-self-custody`, `workshop-family`, `clarity`, `intensive`, `self-custody-readiness`, `membership-monthly`, `membership-annual`.
 
 **Recommended flow:** Select → pay (checkout link) → intake form → schedule (§3) → preparation email → attend → follow-up. Use Stripe/Lemon Squeezy's post-purchase redirect to `thank-you.html?source=<checkout-key>`, which records only `checkout_return_viewed`. A redirect URL is not proof of payment; only a verified provider webhook should record completed purchases.
 
