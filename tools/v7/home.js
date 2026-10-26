@@ -47,10 +47,11 @@
  catalog.forEach(s=>{if(!toolData.some(t=>t.slug===s.slug))toolData.push({slug:s.slug,title:s.name,desc:s.desc,live:s.live,icon:s.v7icon||'wallet',kw:''});});
  toolData.forEach(t => { const source = catalog.find(s => s.slug === t.slug); if(source){t.title=source.name;t.live=source.live;t.kw+=' '+source.kw.join(' ');} delete t.demo; });
  const guideData=(window.PT_GUIDES||[]).map(g=>({slug:g.slug,title:g.name,desc:g.desc,live:true,kind:g.kind||'guide',icon:g.v7icon||'book',kw:(g.kw||[]).join(' ')}));
- const dirData=[...toolData.map(t=>({...t,kind:'tool'})),...guideData.filter(g=>!toolData.some(t=>t.slug===g.slug))];
- const kindLabel={guide:'Guide',start:'Start here'};
- function toolURL(t){const path=t.slug.split('/').map(encodeURIComponent).join('/');return './'+path+'/';}
- function markup(t){const tag=kindLabel[t.kind]?`<span class="directory-tag">${kindLabel[t.kind]}</span>`:'';const inside=`<span class="directory-tool-icon">${icon(t.icon)}</span><div>${tag}<h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p>${t.live?'':'<span class="planned-label">Coming soon</span>'}</div><span class="directory-tool-arrow" aria-hidden="true">${t.live?'↗':''}</span>`;return t.live?`<a class="directory-tool" href="${toolURL(t)}">${inside}</a>`:`<article class="directory-tool is-planned">${inside}</article>`;}
+ const extData=(window.PT_EXTERNAL||[]).map(e=>({slug:e.slug,url:e.url,title:e.name,desc:e.desc,live:true,kind:'external',icon:e.v7icon||'bitcoin',kw:(e.kw||[]).join(' ')})); // sister-site links, opened in a new tab
+ const dirData=[...toolData.map(t=>({...t,kind:'tool'})),...guideData.filter(g=>!toolData.some(t=>t.slug===g.slug)),...extData];
+ const kindLabel={guide:'Guide',start:'Start here',external:'External site'};
+ function toolURL(t){if(t.url)return t.url;const path=t.slug.split('/').map(encodeURIComponent).join('/');return './'+path+'/';}
+ function markup(t){const tag=kindLabel[t.kind]?`<span class="directory-tag">${kindLabel[t.kind]}</span>`:'';const inside=`<span class="directory-tool-icon">${icon(t.icon)}</span><div>${tag}<h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p>${t.live?'':'<span class="planned-label">Coming soon</span>'}</div><span class="directory-tool-arrow" aria-hidden="true">${t.live?'↗':''}</span>`;return t.live?`<a class="directory-tool${t.url?' is-external':''}" href="${esc(toolURL(t))}"${t.url?' target="_blank" rel="noopener"':''}>${inside}</a>`:`<article class="directory-tool is-planned">${inside}</article>`;}
  const categoryTools=category=>(category.slugs||[]).map(slug=>dirData.find(t=>t.slug===slug)).filter(Boolean);
  const topics=categories.filter(c=>c.id!=='all');
  // "All" view: each page once. Calculators in their first topic, guides and the checkup in "guides"; anything unlisted under "More".
@@ -84,8 +85,9 @@
   grid.innerHTML=groups.map(c=>`<section class="directory-group" aria-label="${esc(c.name)}">${selected==='all'?`<h4 class="directory-group-title">${esc(c.name)}</h4>`:''}<div class="directory-tool-list">${c.items.map(markup).join('')}</div></section>`).join('');
   $('#tool-list-title').textContent=category.name;
   $('#tool-list-desc').textContent=category.desc;
-  const items=groups.flatMap(c=>c.items),tools=items.filter(t=>t.kind==='tool').length,guides=items.length-tools;
-  const label=[tools?`${tools} ${tools===1?'tool':'tools'}`:'',guides?`${guides} ${guides===1?'guide':'guides'}`:''].filter(Boolean).join(' & ');
+  const items=groups.flatMap(c=>c.items),tools=items.filter(t=>t.kind==='tool').length,exts=items.filter(t=>t.kind==='external').length,guides=items.length-tools-exts;
+  const parts=[tools?`${tools} ${tools===1?'tool':'tools'}`:'',guides?`${guides} ${guides===1?'guide':'guides'}`:'',exts?`${exts} external ${exts===1?'link':'links'}`:''].filter(Boolean);
+  const label=parts.length>2?parts.slice(0,-1).join(', ')+' & '+parts[parts.length-1]:parts.join(' & ');
   $('#tool-count').textContent=`${label}${selected==='all'?' in all topics':' in '+category.name.toLowerCase()}`;
   $$('.category-button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===selected)));
  }
@@ -110,7 +112,7 @@
  const homeCostGuide={"title": "The true cost of owning a home", "desc": "Budget for the bills beyond the mortgage.", "slug": "guides/true-cost-of-owning-a-home", "live": true, "kw": "cost of owning homeowner property tax home insurance hoa maintenance closing cost pmi"};
  const weddingGuide={"title": "The true cost of a wedding", "desc": "Build a budget around your guest list.", "slug": "guides/true-cost-of-a-wedding", "live": true, "kw": "wedding engaged engagement marry married honeymoon wedding budget"};
  const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,oldPlanGuide,homeGuide];
- guideData.forEach(g=>{if(!searchPool.some(t=>t.slug===g.slug))searchPool.push(g);}); // new catalog guides join the hero search too
+ [...guideData,...extData].forEach(g=>{if(!searchPool.some(t=>t.slug===g.slug))searchPool.push(g);}); // new catalog guides join the hero search too
  const aliases=[
   [/baby|pregnan|newborn|child care|daycare|day care|parental leave|maternity|paternity/,['guides/true-cost-of-a-baby','emergency-fund-runway']],
   [/cost of owning|homeowner|property tax|home insurance|\bhoa\b|home maintenance|house maintenance|home repair|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
@@ -127,7 +129,7 @@
   [/fees|investment fee/,['fee-x-ray']]
  ];
  function search(q){const n=norm(q);if(!n)return[];const words=n.split(' ').filter(w=>w.length>=3);return searchPool.map(t=>{const hay=norm(`${t.title} ${t.desc} ${t.kw||''}`);let score=words.reduce((a,w)=>a+(hay.split(' ').includes(w)?1:0),0);aliases.forEach(([re,slugs])=>{if(re.test(n)&&slugs.includes(t.slug))score+=20-slugs.indexOf(t.slug)*3;});if(n.includes(norm(t.title)))score+=15;return {...t,score};}).filter(t=>t.score>0).sort((a,b)=>b.score-a.score).slice(0,4);}
- function resultMarkup(t){const url=toolURL(t);return `<a href="${esc(url)}"  class="result-item"><div><strong>${esc(t.title)}</strong><small>${esc(t.desc)}</small></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}
+ function resultMarkup(t){const url=toolURL(t);return `<a href="${esc(url)}"${t.url?' target="_blank" rel="noopener"':''}  class="result-item"><div><strong>${esc(t.title)}</strong><small>${esc(t.desc)}</small></div><span class="result-arrow" aria-hidden="true">↗</span></a>`;}
  function showResults(q){const matches=search(q),el=$('#finder-results');el.hidden=false;el.innerHTML=matches.length?`<div class="results-heading">HERE'S A GOOD PLACE TO BEGIN</div><div class="result-items">${matches.map(resultMarkup).join('')}</div>`:`<div class="results-heading">LET'S TRY ANOTHER WAY</div><p class="result-empty">No close match yet. Try asking a simpler question or <a href="#moments" style="text-decoration:underline;color:var(--accent)">browse tools by topic</a>.</p>`;}
  $('#finder-form').addEventListener('submit',e=>{e.preventDefault();showResults($('#finder-input').value);});
  $$('.prompt').forEach(b=>b.addEventListener('click',()=>{$('#finder-input').value=b.dataset.query;showResults(b.dataset.query);$('#finder-results').scrollIntoView({behavior:'smooth',block:'nearest'});}));

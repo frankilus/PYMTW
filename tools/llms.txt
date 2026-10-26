@@ -47,6 +47,7 @@ Pages marked "coming soon" describe tools that are not yet functional.
 
 - [Bitcoin DCA backtester](https://pymtw.com/tools/bitcoin-dca-backtester/): Dollar-cost averaging (DCA) means buying a fixed dollar amount on a regular schedule regardless of price.
 - [StackCost](https://stackcost-pink.vercel.app) (external sister site): See the real all-in cost to DCA Bitcoin by platform (fees, spread, withdrawal). Compare platforms: https://stackcost-pink.vercel.app/compare
+- [Bitcoin DCA Cost Calculator](https://stackcost-pink.vercel.app/calculator) (external, StackCost): Enter any weekly or monthly amount and see what 8 apps (Cash App, Strike, River, Robinhood, Swan, Kraken, Coinbase, PayPal) really cost per year in fees and spread, ranked cheapest first. Example: https://stackcost-pink.vercel.app/calculator?amount=100&freq=weekly
 - [Bitcoin tax-lot cleanup](https://pymtw.com/tools/bitcoin-tax-lot-cleanup/): Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell.
 - [Bitcoin household plan](https://pymtw.com/tools/bitcoin-household-plan/): A Bitcoin household plan writes down why you hold Bitcoin, how much and how you buy and sell, where every account and wallet is (without recovery words, keys or passwords), who your executor and helpers are, and when you review it each year, in one printable binder. Everything stays in your browser.
 
