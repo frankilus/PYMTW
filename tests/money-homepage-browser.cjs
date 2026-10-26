@@ -21,13 +21,13 @@ const base = process.env.PREVIEW_URL || 'http://127.0.0.1:8781';
         await page.keyboard.press('Enter');
         assert.equal(await page.locator('.category-button[aria-pressed=true]').count(), 1);
         assert.equal(await page.locator(`[data-category="${category}"]`).getAttribute('aria-pressed'), 'true');
-        const links = await page.locator('a.directory-tool').evaluateAll(els => els.map(el => el.getAttribute('href')));
+        const links = await page.locator('a.directory-tool:not(.is-external)').evaluateAll(els => els.map(el => el.getAttribute('href')));
         assert.ok(links.length > 0);
         links.forEach(link => categoryLinks.add(link.replace(/^\.\//, '').replace(/\/$/, '')));
       }
       assert.deepEqual([...categoryLinks].sort(), expected, 'every live catalog tool and guide must be discoverable');
       await page.locator('[data-category=all]').click();
-      assert.equal(await page.locator('a.directory-tool').count(), expected.length);
+      assert.equal(await page.locator('a.directory-tool:not(.is-external)').count(), expected.length);
       await page.locator('[data-category=everyday]').click();
       assert.equal(await page.locator('#moments > .photo-moment').count(), 1);
       assert.equal(await page.evaluate(() => document.querySelector('#moments').nextElementSibling.id), 'guides');
