@@ -113,7 +113,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="v7/home.css?v=2b5dac35ad0d">
+<link rel="stylesheet" href="v7/home.css?v=9b01dd7fc21c">
 <link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -154,8 +154,9 @@
     <div class="photo-copy"><span class="section-kicker">A MORE HUMAN WAY TO TALK ABOUT MONEY</span><h2 id="photo-title">Life moves.<br><em>We'll help you find<br>your footing.</em></h2><p>Plain-English questions, useful numbers, and practical guides for whatever comes next.</p><a class="inline-link" href="#tool-topics">Browse tools by topic <span aria-hidden="true">↓</span></a></div>
     <div class="photo-pane"><img src="v7/image-1-560.webp" srcset="v7/image-1-560.webp 560w, v7/image-1.webp 1433w" sizes="(max-width:590px) calc(100vw - 36px), 55vw" width="1448" height="1086" alt="Sunlit desk with black coffee mug, notebook, laptop and plant" loading="lazy" decoding="async"><div class="photo-caption"><span class="photo-caption-line"></span>CLARITY FOR REAL LIFE</div></div>
   </section>
-    <div class="directory-heading" id="tool-topics"><div><p class="eyebrow">MONEY TOOLS</p><h2 id="moments-title">Find the right tool.</h2></div><p>Choose a topic. Start with what matters to you.</p></div>
+    <div class="directory-heading" id="tool-topics"><div><p class="eyebrow">MONEY TOOLS</p><h2 id="moments-title">Find the right tool.</h2></div><p>Search or choose a topic. Every tool and guide is here.</p></div>
     <div class="directory-layout">
+      <form class="directory-search" id="directory-search" role="search" aria-label="Tools and guides" hidden><label for="directory-search-input">Search tools &amp; guides</label><div class="directory-search-field"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg><input id="directory-search-input" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="rollover, Roth, rent…" aria-controls="tools-grid"><button type="button" class="directory-search-clear" id="directory-search-clear" aria-label="Clear search" hidden><span aria-hidden="true">×</span></button></div></form>
       <div class="tool-categories" role="group" aria-label="Filter tools by topic" id="tool-categories"></div>
       <div id="tools" class="directory-results">
         <div class="directory-results-heading"><h3 id="tool-list-title">Everyday money</h3><p id="tool-count" role="status" aria-live="polite" aria-atomic="true"></p></div>
@@ -164,7 +165,7 @@
       </div>
     </div>
     <p class="directory-help" id="checkup">Not sure where to start? <a href="/tools/checkup/">Take the 2-minute money checkup <span aria-hidden="true">↗</span></a></p>
-    <noscript><p>Browse <a href="/tools/paycheck-decoder/">your paycheck</a>, <a href="/tools/debt-payoff-planner/">debt payoff</a>, <a href="/tools/rent-vs-buy/">rent vs. buy</a>, <a href="/tools/explain-my-401k/">your 401(k)</a>, or <a href="/tools/bitcoin-tax-lot-cleanup/">Bitcoin records</a>. Enable JavaScript to browse all categories and run the calculators.</p></noscript>
+    <noscript><div class="directory-noscript"><p>Every tool and guide is listed below. Enable JavaScript to search, filter by topic and run the calculators.</p><ul><li><a href="/tools/paycheck-decoder/">Paycheck decoder</a></li><li><a href="/tools/subscription-leak-finder/">Subscription leak finder</a></li><li><a href="/tools/credit-card-optimizer/">Credit card optimizer</a></li><li><a href="/tools/money-timeline/">Money timeline</a></li><li><a href="/tools/debt-payoff-planner/">Debt payoff planner</a></li><li><a href="/tools/emergency-fund-runway/">Emergency fund runway</a></li><li><a href="/tools/severance-runway/">Severance &amp; job-loss runway</a></li><li><a href="/tools/rent-vs-buy/">Rent vs. buy</a></li><li><a href="/tools/before-you-sign/">Before you sign</a></li><li><a href="/tools/explain-my-401k/">Explain my 401(k)</a></li><li><a href="/tools/roth-vs-traditional/">Roth vs. traditional</a></li><li><a href="/tools/fee-x-ray/">Fee x-ray</a></li><li><a href="/tools/bitcoin-tax-lot-cleanup/">Bitcoin tax-lot cleanup</a></li><li><a href="/tools/bitcoin-dca-backtester/">Bitcoin DCA backtester</a></li><li><a href="/tools/checkup/">2-minute money checkup</a></li><li><a href="/tools/guides/lost-my-job/">Guide: Just lost your job?</a></li><li><a href="/tools/guides/old-401k/">Guide: Your old 401(k) after leaving a job</a></li><li><a href="/tools/guides/first-home/">Guide: Buying your first home</a></li><li><a href="/tools/guides/true-cost-of-owning-a-home/">Guide: The true cost of owning a home</a></li><li><a href="/tools/guides/true-cost-of-a-car/">Guide: The true cost of a car</a></li><li><a href="/tools/guides/true-cost-of-a-baby/">Guide: The true cost of having a baby</a></li><li><a href="/tools/guides/true-cost-of-a-wedding/">Guide: The true cost of a wedding</a></li></ul></div></noscript>
   </section>
 
   <section class="life-guides-section" id="guides" aria-labelledby="guides-title">
@@ -228,7 +229,7 @@
  <details class="footer-privacy"><summary>Privacy and newsletter details</summary><p>Calculator numbers and imported files stay on your device. We use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a> for anonymous, cookieless page counts; analytics are off on Paycheck Decoder, Explain My 401(k), and Bitcoin Tax-Lot Cleanup. <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener">How GoatCounter handles GDPR</a>.</p><p>Optional newsletter signup is handled by <a href="https://www.beehiiv.com/" target="_blank" rel="noopener">Beehiiv</a>. Your email goes to Beehiiv; financial numbers do not. The site uses no cookies unless you open the newsletter signup form.</p></details>
 </div></footer>
 
-<script src="catalog.js" defer></script><script src="v7/home.js?v=f452b67c7f7a" defer></script><script src="v7/newsletter.js" defer></script>
+<script src="catalog.js?v=9970979c2ce0" defer></script><script src="v7/home.js?v=f1102019e4ef" defer></script><script src="v7/newsletter.js" defer></script>
 <script src="/assets/site-analytics.js" defer></script>
 </body>
 </html>

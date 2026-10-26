@@ -8,6 +8,7 @@
 - Existing education pages keep their `.html` routes; navigation links back to both the parent and Bitcoin section.
 - Existing root Bitcoin fragments are forwarded by `assets/home/legacy-links.js`; new homepage fragments stay on the parent.
 - Add a new section by adding a real linked card to the homepage directory; the grid wraps to additional rows.
+- `/tools/` "Find the right tool." directory and its search read one data source, `tools/catalog.js`: calculators in `PT_CATS`, guides and the checkup in `PT_GUIDES`, topics in `PT_TOPICS`. When the daily build adds a tool or guide, add it there (with plain-English `kw` keywords and at least one topic), add the same link to the `<noscript>` list in `tools/index.html`, add it to `tools/sitemap.xml` and `tools/llms.txt`, then bump the `?v=` tokens on `catalog.js` and `v7/home.js`. `tests/find-right-tool.cjs` fails if any sitemap page is missing from the data, the directory, its search or the no-JavaScript list.
 
 The remaining education funnel below applies to the Bitcoin section.
 
