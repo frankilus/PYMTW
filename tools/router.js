@@ -7,6 +7,9 @@ ALL.push(CHECKUP);
 var GUIDE_JOB = { slug: 'guides/lost-my-job', icon: '📘', name: 'Guide: Just lost your job?', desc: 'What to do this week, this month and this year: unemployment, COBRA vs. Marketplace, your 401(k).', time: '5 min read', live: true, boost: 2,
   kw: ['lost my job', 'just lost', 'laid off', 'layoff', 'fired', 'let go', 'job loss', 'lost job', 'terminated', 'unemployed', 'what do i do now', 'cobra', 'unemployment'] };
 ALL.push(GUIDE_JOB);
+var GUIDE_401K = { slug: 'guides/old-401k', icon: '📘', name: 'Guide: What to do with your old 401(k)', desc: 'Leave it, move it to a new plan, roll it to an IRA or Roth IRA, or cash out: rules, costs and a rollover checklist.', time: '7 min read', live: true, boost: 2,
+  kw: ['old 401k', 'old 401(k)', 'rollover', 'roll over', 'rolling over', '401k rollover', 'rollover ira', 'roll over 401k', 'cash out 401k', 'cash out my 401k', 'cashing out', 'withdraw 401k', 'rule of 55', 'leaving a job', 'left my job', 'new job', 'changing jobs', 'switching jobs', 'job change', 'lost 401k'] };
+ALL.push(GUIDE_401K);
 var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
   kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
 ALL.push(GUIDE_HOME);

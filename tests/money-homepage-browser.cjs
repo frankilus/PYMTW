@@ -32,7 +32,7 @@ const base = process.env.PREVIEW_URL || 'http://127.0.0.1:8781';
       assert.equal(await page.locator('#moments > .photo-moment').count(), 1);
       assert.equal(await page.evaluate(() => document.querySelector('#moments').nextElementSibling.id), 'guides');
       assert.equal(await page.locator('.life-guides-grid > .life-guide-choice').count(), 6);
-      assert.equal(await page.locator('#guides a').count(), 7);
+      assert.equal(await page.locator('#guides a').count(), 8); // the job card links to both lost-my-job and old-401k
       for (const img of await page.locator('#guides img').all()) {
         await img.scrollIntoViewIfNeeded();
         await img.evaluate(el => el.decode());
