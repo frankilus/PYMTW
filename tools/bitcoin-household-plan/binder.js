@@ -262,7 +262,7 @@
   function sources() {
     return '<section class="b-section b-sources" id="b-sources"><header class="b-head"><p class="b-num">Sources & notes</p><h2>Where this comes from</h2></header><ul class="b-src">' +
       SOURCES.map(function (x) { return '<li>' + esc(x[0]) + '<br><a href="' + esc(x[1]) + '">' + esc(x[1]) + '</a></li>'; }).join('') + '</ul>' +
-      '<p class="b-muted">Made with the free Bitcoin Household Plan from Put Your Money to Work (pymtw.com/tools/bitcoin-household-plan/). Educational only, not financial, tax or legal advice. It does not replace a will, trust or advice from an estate attorney or tax professional. It offers no opinion on whether to buy or sell Bitcoin.</p></section>';
+      '<p class="b-muted">Made with the Bitcoin Household Plan from Put Your Money to Work (pymtw.com/tools/bitcoin-household-plan/). Educational only, not financial, tax or legal advice. It does not replace a will, trust or advice from an estate attorney or tax professional. It offers no opinion on whether to buy or sell Bitcoin.</p></section>';
   }
 
   function renderBinder(state, today) {

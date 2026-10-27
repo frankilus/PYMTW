@@ -43,7 +43,7 @@ book=(r/'book/index.html').read_text();assert 'numberOfPages' not in book and 'f
 assert 'assets/home/book-cover-960.webp' in book
 # 2026-10-26: Frank took the Starter Kit off sale. Its checkout stays blank and no page may link to Stripe.
 assert re.search(r'"starter-kit":\s*"([^"]*)"',(r/'pymtw-config.js').read_text())[1]==''
-kit=(r/'starter-kit.html').read_text();assert 'buy.stripe.com' not in kit and 'data-checkout' not in kit and '$29' not in kit
+kit=(r/'starter-kit.html').read_text();assert 'buy.stripe.com' not in kit and 'data-checkout' not in kit and '$29' not in kit.replace('$29 to print the binder','') # the only $29 is the Household Plan binder, never the retired kit
 assert 'Direct Amazon link · not an affiliate link' in (r/'bitcoin/explore/index.html').read_text()
 assert (r/'favicon.ico').read_bytes()[:4]==b'\x00\x00\x01\x00'
 assert (r/'assets/og/pymtw.png').read_bytes()[16:24]==(1200).to_bytes(4,'big')+(630).to_bytes(4,'big')

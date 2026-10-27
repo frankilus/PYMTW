@@ -1,6 +1,6 @@
 # PYMTW Tools
 
-> Free, private, plain-English personal finance calculators and guides from Put Your Money to Work (pymtw.com). Every calculation runs in the visitor's browser; there is no signup, no ads, and entered numbers or uploaded files are not sent to a server. Educational only, not financial, tax or legal advice.
+> Free, private, plain-English personal finance calculators and guides from Put Your Money to Work (pymtw.com). Every calculation runs in the visitor's browser; there is no signup, no ads, and entered numbers or uploaded files are not sent to a server. The one exception to "free" is the Bitcoin household plan: free to build, $29 to print the binder. Educational only, not financial, tax or legal advice.
 
 Pages marked "coming soon" describe tools that are not yet functional.
 
@@ -48,7 +48,7 @@ Pages marked "coming soon" describe tools that are not yet functional.
 - [Bitcoin DCA backtester](https://pymtw.com/tools/bitcoin-dca-backtester/): Dollar-cost averaging (DCA) means buying a fixed dollar amount on a regular schedule regardless of price.
 - [Bitcoin DCA Cost Calculator](https://stackcost-pink.vercel.app/calculator) (external, StackCost): Enter any weekly or monthly amount and see what 8 apps (Cash App, Strike, River, Robinhood, Swan, Kraken, Coinbase, PayPal) really cost per year in fees and spread, ranked cheapest first. Example: https://stackcost-pink.vercel.app/calculator?amount=100&freq=weekly
 - [Bitcoin tax-lot cleanup](https://pymtw.com/tools/bitcoin-tax-lot-cleanup/): Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell.
-- [Bitcoin household plan](https://pymtw.com/tools/bitcoin-household-plan/): A Bitcoin household plan writes down why you hold Bitcoin, how much and how you buy and sell, where every account and wallet is (without recovery words, keys or passwords), who your executor and helpers are, and when you review it each year, in one printable binder. Everything stays in your browser.
+- [Bitcoin household plan](https://pymtw.com/tools/bitcoin-household-plan/): A Bitcoin household plan writes down why you hold Bitcoin, how much and how you buy and sell, where every account and wallet is (without recovery words, keys or passwords), who your executor and helpers are, and when you review it each year, in one printable binder. It is free to build and $29 to print the binder. Your answers never leave your browser; only a license key you enter is checked with Lemon Squeezy, the payment provider.
 
 ## Optional
 
