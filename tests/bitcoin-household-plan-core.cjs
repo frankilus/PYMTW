@@ -20,3 +20,12 @@ const html=B.renderBinder(s,new Date(2026,9,26));
 for(const id of ['b-policy','b-letter','b-inventory','b-review','b-records'])assert.ok(html.includes('id="'+id+'"'),id);
 assert.ok(B.renderBinder(Object.assign(B.blank(),{owner:{name:'<img src=x onerror=1>'}}),new Date()).includes('&lt;img'),'escaped');
 console.log('bitcoin household plan core checks passed');
+// Readiness is persisted in answer files; old files receive safe unchecked defaults.
+const family=B.blank(); family.ready.aware=true;family.ready.incapacity='Example adviser';
+assert.equal(B.parseFile(B.exportFile(family)).ready.incapacity,'Example adviser');
+assert.equal(B.sanitize({owner:{name:'Old file'}}).ready.aware,false);
+assert.ok(B.readinessGaps(B.blank()).length>=6);
+assert.match(B.renderBinder(family),/Example adviser/);
+assert.match(B.renderBinder(family),/Still to review/);
+family.ready.incapacity='<script>bad</script>';
+assert.ok(!B.renderBinder(family).includes('<script>bad</script>'));

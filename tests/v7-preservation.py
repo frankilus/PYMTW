@@ -60,6 +60,14 @@ for name in paths:
      faq=next(x for x in new_schema['@graph'] if x['@type']=='FAQPage')
      added=faq['mainEntity'].pop(0)
      assert added['name']=='How do I use the tools?'
+     # Approved 2026-10-26 (Household Plan paywall ON): two answers gain the plan's exception; their original sentences stay verbatim.
+     for q in new_schema['@graph'][[x['@type'] for x in new_schema['@graph']].index('FAQPage')]['mainEntity']:
+      oq=next(x for x in old_schema['@graph'] if x['@type']=='FAQPage')['mainEntity']
+      oq=next((x for x in oq if x['name']==q['name']),None)
+      if oq and q['name']=='Are PYMTW Tools really free?':
+       assert 'Every calculator and guide is free to use, with no signup and no ads.' in q['acceptedAnswer']['text'] and '$29' in q['acceptedAnswer']['text'];q['acceptedAnswer']['text']=oq['acceptedAnswer']['text']
+      if oq and q['name']=='Is my financial data uploaded anywhere?':
+       assert 'Lemon Squeezy' in q['acceptedAnswer']['text'] and q['acceptedAnswer']['text'].startswith('No. The calculators run entirely in your browser');q['acceptedAnswer']['text']=oq['acceptedAnswer']['text']
      assert new_schema==old_schema,name+' original schema changed beyond FAQ addition'
     else:assert block in after,name+' original SEO/form/schema changed'
   # Existing visible copy survives outside the explicitly revised homepage copy.

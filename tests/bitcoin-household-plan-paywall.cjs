@@ -1,6 +1,7 @@
 // Bitcoin Household Plan license-key paywall (/tools/bitcoin-household-plan/).
-// Flag OFF (shipped): behaviour identical to the free tool. Flag ON (config.js served with the one-line flip):
-// unlock panel, Lemon Squeezy License API mocked by route interception (success and every failure),
+// Flag ON (shipped since 2026-10-26): unlock panel, print locked until a key is entered. Flag OFF (config.js served with the
+// one-line flip back) behaves like the free tool. In both cases:
+// Lemon Squeezy License API mocked by route interception (success and every failure),
 // unlock persists and can be removed, ?unlock=1 opens the key field, CSP allows only api.lemonsqueezy.com,
 // and no request ever carries the plan's answers.
 const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');const {execFileSync}=require('node:child_process');
@@ -16,11 +17,24 @@ const MARK='Quillfeather-7Q';  // a plan answer that must never appear in any re
 // ---------- static: config, CSP, where network code lives ----------
 const configSrc=read(dir+'config.js');
 const flagLines=configSrc.split('\n').filter(l=>/^\s*enabled:\s*(true|false),\s*$/.test(l));
-assert.equal(flagLines.length,1,'exactly one flag line');assert.equal(flagLines[0].trim(),'enabled: false,','paywall flag ships OFF');
+assert.equal(flagLines.length,1,'exactly one flag line');assert.equal(flagLines[0].trim(),'enabled: true,','paywall flag ships ON');
 global.window={};new Function('window',configSrc)(global.window);const PAY=global.window.HHP_CONFIG.paywall;
 assert.equal(PAY.checkoutUrl,CHECKOUT);assert.equal(PAY.productId,1475812);assert.equal(PAY.storeId,508088);
 assert.equal(PAY.licenseApi,API);assert.equal(new URL(PAY.licenseApi).origin,'https://api.lemonsqueezy.com');
 const html=read(dir+'index.html');
+// ---------- static: the page and the pages that describe it say what is true ----------
+{const ld=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j];});
+ const app=ld.find(x=>x['@type']==='WebApplication');assert.ok(app,'WebApplication JSON-LD');
+ assert.equal(app.offers.price,'29');assert.equal(app.offers.priceCurrency,'USD');assert.equal('isAccessibleForFree' in app,false,'not marked free while the binder costs $29');
+ assert.doesNotMatch(app.description,/\bFree\.$/,'description does not end in a bare "Free."');assert.match(app.description,/Free to build, \$29 to print the binder/);
+ assert.match(html,/<meta name="description" content="[^"]*\$29 to print the binder/);assert.match(html,/<meta property="og:description" content="[^"]*\$29 to print/);
+ assert.doesNotMatch(html,/nothing (is )?(ever )?sent (anywhere|to a server)|Nothing is uploaded/i,'no "nothing is sent" claim: a license key is checked with Lemon Squeezy');
+ assert.match(html,/never leave your browser/);assert.match(html,/license key you enter is checked with Lemon Squeezy/);
+ for(const f of ['starter-kit.html','programs.html','resources.html','bitcoin/explore/index.html','tools/llms.txt','tools/catalog.js','tools/bitcoin-tax-lot-cleanup/index.html','tools/index.html']){
+  const s=read(f);assert.doesNotMatch(s,/\bfree,? (private,? )?(in-browser )?(<a[^>]*>)?Bitcoin Household Plan/i,f+' calls the plan free');
+  assert.doesNotMatch(s,/Household Plan<\/a>\); it’s free\./,f+' calls the plan free');
+  if(f!=='tools/index.html')assert.match(s,/free to build,? (and |, )?\$29 to print( the)? binder/i,f+' says free to build, $29 to print the binder');}
+}
 const csp=html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/)[1];
 const directives=Object.fromEntries(csp.split(';').map(d=>d.trim().split(/\s+/)).map(([k,...v])=>[k,v.join(' ')]));
 assert.equal(directives['connect-src'],'https://api.lemonsqueezy.com','connect-src allows only the License API');
@@ -53,14 +67,14 @@ assert.equal(L.interpret(429,{},PAY,KEY).reason,'busy');assert.equal(L.interpret
 assert.equal(L.looksLikeKey(L.normalize(' '+KEY+'\n')),true);assert.equal(L.looksLikeKey('abc'),false);assert.equal(L.mask(KEY),'••••4D51');
 
 // ---------- browser ----------
-const flipOn=src=>{const out=src.replace(/^(\s*)enabled: false,$/m,'$1enabled: true,');assert.notEqual(out,src,'the one-line flip applies');return out;};
+const flipOff=src=>{const out=src.replace(/^(\s*)enabled: true,$/m,'$1enabled: false,');assert.notEqual(out,src,'the one-line flip applies');return out;};
 async function setup(browser,{on,api}){
  const ctx=await browser.newContext({viewport:{width:1280,height:900},reducedMotion:'reduce'});
  const requests=[],errors=[],csp=[];
  await ctx.addInitScript(()=>{window.__prints=0;window.print=()=>{window.__prints++;};document.addEventListener('securitypolicyviolation',e=>{(window.__csp=window.__csp||[]).push(e.blockedURI+' '+e.violatedDirective);});});
  ctx.on('request',r=>requests.push({url:r.url(),method:r.method(),body:r.postData()||'',headers:r.headers()}));
  await ctx.route('**/*',async r=>{const u=r.request().url();
-  if(on&&u.startsWith(url+'config.js')){const res=await r.fetch();return r.fulfill({response:res,body:flipOn(await res.text())});}
+  if(!on&&u.startsWith(url+'config.js')){const res=await r.fetch();return r.fulfill({response:res,body:flipOff(await res.text())});}
   if(u.startsWith(base+'/'))return r.continue();
   if(u===API&&api)return api(r);
   return r.abort();});
@@ -72,7 +86,7 @@ async function toBinder(page){await page.evaluate(()=>{document.querySelector('#
 async function fillSome(page){await page.click('#next');await page.fill('[data-k="owner.name"]','Jordan '+MARK);await page.fill('[data-k="owner.household"]','The '+MARK+' household');}
 
 (async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
- // Flag OFF: identical to the free tool, even with ?unlock=1 and a stored key
+ // Flag OFF (served with the flip back to false): identical to the free tool, even with ?unlock=1 and a stored key
  {const {ctx,page,requests,errors}=await setup(browser,{on:false});
   await page.goto(url+'?unlock=1');await page.waitForSelector('#plan:not([hidden])');
   assert.match(await page.locator('#step-count').innerText(),/Step 1 of 12/,'?unlock=1 does nothing when OFF');
@@ -85,7 +99,7 @@ async function fillSome(page){await page.click('#next');await page.fill('[data-k
   assert.deepEqual(requests.filter(r=>!r.url.startsWith(base+'/')).map(r=>r.url),[],'no outside requests when OFF');
   assert.ok(requests.every(r=>r.method==='GET'));assert.deepEqual(errors,[]);await ctx.close();}
 
- // Flag ON
+ // Flag ON, as shipped (no override)
  let api=lsReply(404,{activated:false,error:'license_key not found.'});
  const {ctx,page,requests,errors}=await setup(browser,{on:true,api:r=>api(r)});
  await page.goto(url);await page.waitForSelector('#plan:not([hidden])');

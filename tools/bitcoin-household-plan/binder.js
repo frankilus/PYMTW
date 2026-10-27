@@ -76,6 +76,7 @@
 
   function blank() {
     return {
+      ready: { aware: false, locate: false, contacts: false, walkthrough: false, incapacity: '' },
       owner: { name: '', household: '', prepared: '' },
       why: { reasons: [], words: '', horizon: '', revisit: '' },
       alloc: { target: '', cap: '', emergencyFirst: true, shortTerm: true, overCap: '', notes: '' },
@@ -262,9 +263,24 @@
   function sources() {
     return '<section class="b-section b-sources" id="b-sources"><header class="b-head"><p class="b-num">Sources & notes</p><h2>Where this comes from</h2></header><ul class="b-src">' +
       SOURCES.map(function (x) { return '<li>' + esc(x[0]) + '<br><a href="' + esc(x[1]) + '">' + esc(x[1]) + '</a></li>'; }).join('') + '</ul>' +
-      '<p class="b-muted">Made with the free Bitcoin Household Plan from Put Your Money to Work (pymtw.com/tools/bitcoin-household-plan/). Educational only, not financial, tax or legal advice. It does not replace a will, trust or advice from an estate attorney or tax professional. It offers no opinion on whether to buy or sell Bitcoin.</p></section>';
+      '<p class="b-muted">Made with the Bitcoin Household Plan from Put Your Money to Work (pymtw.com/tools/bitcoin-household-plan/). Educational only, not financial, tax or legal advice. It does not replace a will, trust or advice from an estate attorney or tax professional. It offers no opinion on whether to buy or sell Bitcoin.</p></section>';
   }
 
+  function readinessGaps(s) {
+    s = sanitize(s); var gaps=[];
+    if(!s.owner.name.trim()) gaps.push('add your name');
+    if(!s.accounts.some(function(a){return a.type && a.provider.trim();})) gaps.push('identify holdings and their provider or wallet label');
+    if(!s.people.executor.trim() || !s.people.executorContact.trim()) gaps.push('record a lead contact and how to reach them');
+    if(!s.ready.incapacity.trim()) gaps.push('record an incapacity contact');
+    if(!s.records.exports.trim()) gaps.push('locate your records');
+    if(!s.review.month || !s.review.day) gaps.push('set a review date');
+    if(!s.ready.aware || !s.ready.locate || !s.ready.contacts || !s.ready.walkthrough) gaps.push('complete the family readiness checks');
+    return gaps;
+  }
+  function sectionReadiness(s) {
+    var labels = {aware:'A trusted person knows this plan exists',locate:'They can locate the plan securely',contacts:'Contacts and roles are current',walkthrough:'We walked through the first steps without secrets'};
+    return '<section class="b-section"><h2>Family readiness &amp; next steps</h2><ul>' + Object.keys(labels).map(function(k){return '<li>'+(s.ready[k]?'Reviewed: ':'Still to review: ')+labels[k]+'</li>';}).join('')+'</ul><p>Incapacity contact: '+esc(s.ready.incapacity || 'Not yet recorded')+'</p><p>This plan does not grant legal authority. Incapacity and death require different authority and provider procedures. Keep secure recovery instructions separate. Review the plan with your household and appropriate professionals.</p></section>';
+  }
   function renderBinder(state, today) {
     var s = sanitize(state); today = today || new Date();
     var prepared = parseDate(s.owner.prepared) || today, next = nextReview(s.review, today);
@@ -273,12 +289,12 @@
       '<dl class="b-cover-meta">' + row('Prepared', esc(longDate(prepared))) + row('Next review', next ? esc(longDate(next)) : 'Not set') + '</dl>' +
       '<p class="b-cover-safe"><strong>This binder contains no passwords, PINs, recovery words or private keys.</strong> Keep it that way. Store it somewhere private, like your will.</p>' +
       '<ol class="b-toc"><li><span>1</span>My Bitcoin policy</li><li><span>2</span>Letter to my executor &amp; family</li><li><span>3</span>Wallet &amp; account inventory</li><li><span>4</span>Yearly review checklist</li><li><span>5</span>Records &amp; cost basis</li></ol></section>';
-    return '<article class="binder-doc" aria-label="Your Household Bitcoin Plan binder">' + cover + sectionPolicy(s) + sectionLetter(s) + sectionInventory(s) + sectionReview(s, today) + sectionRecords(s) + sources() + '</article>';
+    return '<article class="binder-doc" aria-label="Your Household Bitcoin Plan binder">' + cover + sectionPolicy(s) + sectionLetter(s) + sectionInventory(s) + sectionReadiness(s) + sectionReview(s, today) + sectionRecords(s) + sources() + '</article>';
   }
 
   function renderLetter(state) { return sectionLetter(sanitize(state)); }
   function used(o) { return Object.keys(o).some(function (k) { return String(o[k] || '').trim(); }); }
 
-  var api = { renderLetter: renderLetter, used: used, APP: APP, VERSION: VERSION, L: L, SELF: SELF, MONTHS: MONTHS, CHECKLIST: CHECKLIST, SOURCES: SOURCES, blank: blank, account: account, contact: contact, sanitize: sanitize, strings: strings, exportFile: exportFile, parseFile: parseFile, nextReview: nextReview, longDate: longDate, buildIcs: buildIcs, renderBinder: renderBinder, esc: esc, ymd: ymd };
+  var api = { readinessGaps: readinessGaps, renderLetter: renderLetter, used: used, APP: APP, VERSION: VERSION, L: L, SELF: SELF, MONTHS: MONTHS, CHECKLIST: CHECKLIST, SOURCES: SOURCES, blank: blank, account: account, contact: contact, sanitize: sanitize, strings: strings, exportFile: exportFile, parseFile: parseFile, nextReview: nextReview, longDate: longDate, buildIcs: buildIcs, renderBinder: renderBinder, esc: esc, ymd: ymd };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.HHPBinder = api;
 })(this);
