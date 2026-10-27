@@ -13,6 +13,9 @@ ALL.push(GUIDE_401K);
 var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
   kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
 ALL.push(GUIDE_HOME);
+var GUIDE_HOME_CHECKLIST = { slug: 'guides/first-home/checklist', icon: '🖨️', name: 'Printable first-time home buyer checklist', desc: 'Six phases from credit and savings to closing and year one. Tick items off, then print or save as a PDF.', time: 'Printable', live: true, boost: 1,
+  kw: ['first time home buyer checklist', 'home buying checklist', 'homebuyer checklist', 'printable checklist', 'printable', 'checklist', 'pdf', 'closing checklist', 'wire fraud', 'rate lock', 'final walkthrough', 'walk-through'] };
+ALL.push(GUIDE_HOME_CHECKLIST);
 var GUIDE_CAR = { slug: 'guides/true-cost-of-a-car', icon: '🚗', name: 'Guide: The true cost of owning a car', desc: 'Where AAA’s $12,863 a year goes, a 5-year cost calculator, and what to ask before you sign.', time: '7 min read', live: true, boost: 1,
   kw: ['true cost of a car', 'cost of owning a car', 'cost to own a car', 'owning a car', 'own a car', 'buy a car', 'buying a car', 'new car', 'used car', 'new or used', 'car insurance', 'afford a car', 'car can i afford', 'car budget', 'car cost', 'cost per mile', 'depreciation', 'lease or buy', '20/4/10', '20 4 10'] };
 ALL.push(GUIDE_CAR);

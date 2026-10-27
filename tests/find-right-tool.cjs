@@ -45,7 +45,7 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   for(const e of ext){const a=page.locator(`#tools-grid a.directory-tool[href="${e.url}"]`);assert.equal(await a.getAttribute('target'),'_blank');assert.equal(await a.getAttribute('rel'),'noopener');assert.equal(await a.locator('.directory-tag').innerText(),'External site');}
   const all=hrefs.filter(h=>!/^https:/.test(h)).map(h=>h.replace(/^\.\//,'').replace(/\/$/,'')).sort();
   assert.deepEqual(all,sitemap,'the All view shows every sitemap page exactly once');
-  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 8 guides & 1 external link in all topics/);
+  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 9 guides & 1 external link in all topics/);
   for(const s of sitemap){await search.fill('');await search.fill(items.find(t=>t.slug===s).name);
    assert.equal(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count(),1,'searching its name finds '+s);}
   for(const q of ['rollover','old 401k','IRA','Roth IRA','leaving job','cash out','401k','401(k) rollover','what should I do with my old 401(k)']){

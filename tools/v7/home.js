@@ -114,6 +114,7 @@
  const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,oldPlanGuide,homeGuide];
  [...guideData,...extData].forEach(g=>{if(!searchPool.some(t=>t.slug===g.slug))searchPool.push(g);}); // new catalog guides join the hero search too
  const aliases=[
+  [/(home|house|buyer|buying|closing|mortgage)[a-z ]*checklist|checklist[a-z ]*(home|house|buyer)|printable home/,['guides/first-home/checklist','guides/first-home']],
   [/baby|pregnan|newborn|child care|daycare|day care|parental leave|maternity|paternity/,['guides/true-cost-of-a-baby','emergency-fund-runway']],
   [/cost of owning|homeowner|property tax|home insurance|\bhoa\b|home maintenance|house maintenance|home repair|closing cost|pmi/,['guides/true-cost-of-owning-a-home','rent-vs-buy','guides/first-home']],
   [/wedding|engaged|engagement|marry|married|honeymoon/,['guides/true-cost-of-a-wedding','money-timeline']],
