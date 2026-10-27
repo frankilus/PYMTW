@@ -194,3 +194,8 @@ h1{font-size:clamp(37px,8.8vw,60px);line-height:1.1;letter-spacing:-.048em}
 .no-script { padding: 18px; border: 1px solid var(--line); border-radius: 7px; }
 
 .no-script a { color: var(--orange); text-decoration: underline; }
+
+/* Visible product entry point, independent of the selected learning path. */
+.starter-feature{margin-top:40px;padding:30px;border:1px solid #d9b99d;border-radius:12px;background:#f5eee4;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+.starter-feature h2{font:32px/1.2 Georgia,serif;margin:10px 0 14px}.starter-feature p{max-width:700px;line-height:1.65}.starter-feature .starter-note{font-size:13px;margin-top:12px}.starter-feature>a{padding:14px 0}
+@media(max-width:720px){.starter-feature{grid-template-columns:1fr;padding:22px;gap:12px}.starter-feature h2{font-size:28px}}

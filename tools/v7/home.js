@@ -45,13 +45,13 @@
  let selected='everyday',query='';
  const catalog = window.PT_CATS.flatMap(c => c.tools);
  catalog.forEach(s=>{if(!toolData.some(t=>t.slug===s.slug))toolData.push({slug:s.slug,title:s.name,desc:s.desc,live:s.live,icon:s.v7icon||'wallet',kw:''});});
- toolData.forEach(t => { const source = catalog.find(s => s.slug === t.slug); if(source){t.title=source.name;t.live=source.live;t.kw+=' '+source.kw.join(' ');} delete t.demo; });
+ toolData.forEach(t => { const source = catalog.find(s => s.slug === t.slug); if(source){t.title=source.name;t.live=source.live;t.featured=source.featured;t.kw+=' '+source.kw.join(' ');} delete t.demo; });
  const guideData=(window.PT_GUIDES||[]).map(g=>({slug:g.slug,title:g.name,desc:g.desc,live:true,kind:g.kind||'guide',icon:g.v7icon||'book',kw:(g.kw||[]).join(' ')}));
  const extData=(window.PT_EXTERNAL||[]).map(e=>({slug:e.slug,url:e.url,title:e.name,desc:e.desc,live:true,kind:'external',icon:e.v7icon||'bitcoin',kw:(e.kw||[]).join(' ')})); // sister-site links, opened in a new tab
  const dirData=[...toolData.map(t=>({...t,kind:'tool'})),...guideData.filter(g=>!toolData.some(t=>t.slug===g.slug)),...extData];
  const kindLabel={guide:'Guide',start:'Start here',external:'External site'};
  function toolURL(t){if(t.url)return t.url;const path=t.slug.split('/').map(encodeURIComponent).join('/');return './'+path+'/';}
- function markup(t){const tag=kindLabel[t.kind]?`<span class="directory-tag">${kindLabel[t.kind]}</span>`:'';const inside=`<span class="directory-tool-icon">${icon(t.icon)}</span><div>${tag}<h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p>${t.live?'':'<span class="planned-label">Coming soon</span>'}</div><span class="directory-tool-arrow" aria-hidden="true">${t.live?'↗':''}</span>`;return t.live?`<a class="directory-tool${t.url?' is-external':''}" href="${esc(toolURL(t))}"${t.url?' target="_blank" rel="noopener"':''}>${inside}</a>`:`<article class="directory-tool is-planned">${inside}</article>`;}
+ function markup(t){const tag=t.featured?`<span class="directory-tag">${esc(t.featured)}</span>`:kindLabel[t.kind]?`<span class="directory-tag">${kindLabel[t.kind]}</span>`:'';const inside=`<span class="directory-tool-icon">${icon(t.icon)}</span><div>${tag}<h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p>${t.live?'':'<span class="planned-label">Coming soon</span>'}</div><span class="directory-tool-arrow" aria-hidden="true">${t.live?'↗':''}</span>`;return t.live?`<a class="directory-tool${t.featured?' is-featured':''}${t.url?' is-external':''}" href="${esc(toolURL(t))}"${t.url?' target="_blank" rel="noopener"':''}>${inside}</a>`:`<article class="directory-tool is-planned">${inside}</article>`;}
  const categoryTools=category=>(category.slugs||[]).map(slug=>dirData.find(t=>t.slug===slug)).filter(Boolean);
  const topics=categories.filter(c=>c.id!=='all');
  // "All" view: each page once. Calculators in their first topic, guides and the checkup in "guides"; anything unlisted under "More".
