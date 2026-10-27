@@ -122,9 +122,18 @@
   function parts() { return [['Policy', state.why.reasons.length || state.why.words || state.buy.method, 'policy'], ['Letter', state.letter.to || state.people.executor, 'letter'], ['Inventory', state.accounts.some(B.used), 'inventory'], ['Review date', state.review.month, 'review'], ['Records', state.records.exports || state.records.basis, 'records']]; }
   function renderBinder() {
     $('binder').innerHTML = B.renderBinder(state, new Date());
-    var p = parts(), done = p.filter(function (p) { return p[1]; }).length;
-    $('completeness').textContent = done === 5 ? 'All five sections have your answers.' : done + ' of 5 sections have your answers. Still blank: ' + p.filter(function (p) { return !p[1]; }).map(function (p) { return p[0]; }).join(', ') + '.';
+    var p = parts(), done = p.filter(function (p) { return p[1]; }).length, missing = B.readinessGaps(state);
+    $('h-binder').textContent = missing.length === 0 ? 'Review your household plan.' : 'Your plan has unfinished sections.';
+    $('completeness').textContent = done === 5 ? 'All five sections contain some answers. Review them for accuracy and missing details; this is not a readiness certification.' : done + ' of 5 sections have your answers. Still blank: ' + p.filter(function (p) { return !p[1]; }).map(function (p) { return p[0]; }).join(', ') + '.';
+    $('completeness').textContent += missing.length ? ' Next steps: ' + missing.join('; ') + '.' : ' Family checks marked reviewed. Recheck after any change.';
   }
+  function choosePath(family) {
+    var order = family ? ['start','you','inventory','people','letter','records','review','why','amount','buying','selling','binder'] : ['start','you','why','amount','buying','selling','inventory','people','letter','review','records','binder'];
+    steps.sort(function(a,b){return order.indexOf(a.dataset.step)-order.indexOf(b.dataset.step);});
+    steps.forEach(function(s){form.appendChild(s);});
+    buildStepList(); go(1,true);
+  }
+  function buildStepList(){ $('step-list').innerHTML = steps.map(function(s,i){return '<li><button type="button" data-go="'+i+'">'+B.esc(s.getAttribute('data-title'))+'</button></li>';}).join(''); }
   function checklistPreview() {
     $('checklist-preview').innerHTML = '<h3>What you’ll check each year</h3>' + B.CHECKLIST.map(function (g) { return '<details><summary>' + B.esc(g[0]) + '</summary><ul>' + g[1].map(function (i) { return '<li>' + B.esc(i) + '</li>'; }).join('') + '</ul></details>'; }).join('');
   }
@@ -306,6 +315,10 @@
 
   /* ---------- start ---------- */
   buildChoices(); checklistPreview();
+  $('family-first').addEventListener('click',function(){choosePath(true);});
+  $('policy-first').addEventListener('click',function(){choosePath(false);});
+  var sample = B.blank(); sample.owner.name='Alex Example (fictional)'; sample.owner.household='Example household — demonstration only'; sample.why.words='Bitcoin is one part of our long-term investments, not our emergency fund.'; sample.people.executor='Morgan Example'; sample.letter.note='Please take your time. Contact our professional advisers before acting.'; sample.accounts=[B.account()]; sample.accounts[0].type='brokerage'; sample.accounts[0].provider='Example brokerage (fictional)'; sample.records.exports='Fictional example: annual tax folder held with our adviser'; sample.people.executorContact='Contact details held with our estate documents (example)'; sample.ready.incapacity='Authorized adviser named in our legal documents (example)'; sample.review.month='6'; sample.review.day='1'; sample.ready.aware=true; sample.ready.locate=true;
+  $('sample-binder').innerHTML=B.renderBinder(sample,new Date()).replace(/id="([^"]+)"/g,'id="sample-$1"');
   var arrivedToUnlock = PAYWALL && setupPaywall();
   if (PAY.enabled && !LIC) { document.documentElement.classList.add('hhp-locked'); $('print').disabled = true; }
   var saved = null, st = storage();

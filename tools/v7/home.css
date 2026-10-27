@@ -174,3 +174,5 @@ a.life-guide-choice:hover{background:#fff;border-color:#779a85}.life-guide-icon{
 .plan-feature-action{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex-shrink:0;max-width:260px}.plan-feature-link{display:flex;justify-content:space-between;align-items:center;gap:18px;width:100%;min-height:53px;padding:15px 21px;background:var(--accent-dark);color:#fff;border-radius:8px;font-size:14px;font-weight:800;transition:background .2s,transform .2s}.plan-feature-link:hover{background:#213f34;transform:translateY(-1px)}.plan-feature-link span{font-size:19px;line-height:1}.plan-feature-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.plan-feature-note{font-size:13px;color:var(--muted);line-height:1.5}
 @media(max-width:850px){.plan-feature-inner{gap:28px;padding:32px}}
 @media(max-width:590px){.plan-feature{padding-bottom:40px}.plan-feature-inner{display:block;padding:26px 22px}.plan-feature h2{font-size:34px}.plan-feature-copy>p:not(.eyebrow){font-size:14px}.plan-feature-action{max-width:none;margin-top:20px}}
+
+.directory-tool.is-featured{background:#e5eee5;border:1px solid #91ad99;box-shadow:inset 4px 0 #285b49}

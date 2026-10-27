@@ -16,7 +16,7 @@
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PYMTW","item":"https://pymtw.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pymtw.com/tools/"},{"@type":"ListItem","position":3,"name":"Bitcoin Household Plan","item":"https://pymtw.com/tools/bitcoin-household-plan/"}]},
 {"@type":"WebApplication","name":"Bitcoin Household Plan","url":"https://pymtw.com/tools/bitcoin-household-plan/","description":"A private, guided way to write a personal Bitcoin policy, a letter for your executor and family, a wallet and account inventory without secrets, and a yearly review. Ends in one printable binder. Free to build, $29 to print the binder.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","name":"Binder print and PDF export","description":"One-time license key to print or save the binder as a PDF. Filling out the plan, saving your answers and the calendar reminder are free.","price":"29","priceCurrency":"USD","availability":"https://schema.org/InStock"},"publisher":{"@type":"Organization","name":"Put Your Money to Work","url":"https://pymtw.com/"}},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Will this tool ask for my seed phrase or passwords?","acceptedAnswer":{"@type":"Answer","text":"No. It never asks for recovery words, private keys, passwords, PINs, passphrases or 2FA codes, and it removes anything that looks like a recovery phrase or private key if one is typed or pasted."}},
+{"@type":"Question","name":"Will this tool ask for my seed phrase or passwords?","acceptedAnswer":{"@type":"Answer","text":"No. It never asks for recovery words, private keys, passwords, PINs, passphrases or 2FA codes, and it attempts to block common recovery-phrase and private-key formats. Detection is not a guarantee; never enter secrets."}},
 {"@type":"Question","name":"Where are my answers stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your browser. Your answers never leave it. The only thing ever checked with Lemon Squeezy, our payment provider, is a license key you enter to unlock printing. You can choose to remember answers on your device, save them to a file to resume later, and erase everything with one button."}},
 {"@type":"Question","name":"Is the Bitcoin Household Plan free?","acceptedAnswer":{"@type":"Answer","text":"It is free to build. Filling out the plan, saving your answers and the calendar reminder cost nothing. Printing or saving the binder as a PDF is a one-time $29 purchase that gives you a license key."}},
 {"@type":"Question","name":"What is a Bitcoin executor letter?","acceptedAnswer":{"@type":"Answer","text":"A plain-language letter that tells your executor and family what Bitcoin you own, where the records and devices are kept, who to contact and the first safe steps, without revealing any secrets."}},
@@ -27,10 +27,11 @@
 <a class="skip" href="#plan">Skip to your plan</a>
 <nav aria-label="Main navigation"><div class="wrap"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a><div class="nav-links"><a href="/tools/">All money tools</a></div></div></nav>
 <main class="hhp">
-<header class="hero"><p class="eyebrow">BITCOIN HOUSEHOLD PLAN</p><h1>Your Bitcoin, written down.<br><em>Calmly, for the people you love.</em></h1><p class="sub">In about 20 minutes, write why you hold Bitcoin, where it is and what your family should do, then print one binder. Answers, not homework.</p><p class="privacy-note">On your device. No account, no tracking. Your answers never leave your browser. Free to build, $29 to print the binder.</p></header>
+<header class="hero"><p class="eyebrow">BITCOIN HOUSEHOLD PLAN</p><h1>You’ve made Bitcoin part of your family’s wealth.<br><em>Make the plan part of it, too.</em></h1><p class="sub">Help the people you trust understand what exists, where to find records, and who to call if you cannot guide them. Build a first draft in about 20 minutes, then review it together.</p><p class="privacy-note">On your device. No account, no tracking. Your answers never leave your browser. Free to build, $29 to print the binder.</p></header>
 
 <noscript><div class="panel"><p>This guide runs in your browser and needs JavaScript. Your answers never leave your browser. Meanwhile, read the <a href="#learn">plain-English notes below</a>.</p></div></noscript>
 
+<section class="panel product-preview" aria-labelledby="sample-title"><h2 id="sample-title">See what your family receives</h2><p>A policy, a family letter, a no-secrets inventory, a review checklist, and a map to your records. Building and saving your answers is free. Printing or PDF export costs $29 once.</p><details><summary>View a fictional binder example</summary><div class="binder" id="sample-binder"></div></details><p class="small">An organizational aid, not a will, proof of legal authority, or a guarantee of access or recovery.</p></section>
 <div class="flow" id="plan" hidden>
  <div class="flow-main">
   <div class="flow-top">
@@ -43,17 +44,17 @@
   <form class="steps" id="plan-form" novalidate autocomplete="off">
 
   <section class="step" data-step="start" data-title="Welcome" aria-labelledby="h-start">
-    <h2 id="h-start" tabindex="-1">Let’s write it down.</h2>
+    <h2 id="h-start" tabindex="-1">Choose where to begin.</h2><p>Already own Bitcoin? Start with the people and information your household may need. You can complete your investment policy afterward.</p><div class="actions"><button type="button" class="button" id="family-first">Prepare my family first</button><button type="button" class="button secondary" id="policy-first">Start with my Bitcoin policy</button></div>
     <p class="lede">You’ll answer a few short questions. Each step explains why it matters, in plain language. At the end you get one printable binder with five sections:</p>
     <ol class="mini-toc"><li><b>Your Bitcoin policy</b> why you hold it, how much, how you buy, when you’d sell</li><li><b>A letter to your executor and family</b> what Bitcoin is, where it is, first safe steps</li><li><b>An inventory without secrets</b> accounts, wallet types, where things are kept, who to call</li><li><b>A yearly review</b> a checklist and a calendar reminder</li><li><b>Records</b> where your cost-basis records live</li></ol>
     <div class="safe-card" id="never-ask">
       <h3>What we will never ask for</h3>
       <p>Not your recovery words (seed phrase), private keys, passwords, PINs, passphrases or two-step login codes. Not here, not by email, not ever. Nobody legitimate needs them, and this plan works without them.</p>
-      <p>If something that looks like a recovery phrase or private key is typed or pasted anywhere on this page, we remove it immediately and don’t save it.</p>
+      <p>If something that looks like a recovery phrase or private key is typed or pasted anywhere on this page, we try to block it before saving. Detection cannot catch every secret; never rely on it to make entering secrets safe.</p>
     </div>
     <div class="privacy-card">
       <h3>Your answers stay on this device</h3>
-      <p>Your answers are never uploaded. By default, they live only in this tab and vanish when you close it.</p>
+      <p>Your answers and saved files are not automatically encrypted. Device access and secure storage matter. Your answers are never uploaded. By default, they live only in this tab and vanish when you close it.</p>
       <label class="check big"><input type="checkbox" id="remember"><span><b>Remember my answers on this device</b><small>Saved in this browser only, so you can come back. Turn off on a shared computer.</small></span></label>
       <div class="file-row"><label class="button secondary file-btn" for="import-file">Resume from a saved file</label><input type="file" id="import-file" accept=".json,application/json" class="sr-only"><p class="small" id="import-status" role="status"></p></div>
     </div>
@@ -157,7 +158,7 @@
   </section>
 
   <section class="step" data-step="review" data-title="Yearly review" aria-labelledby="h-review" hidden>
-    <h2 id="h-review" tabindex="-1">Pick a day to check in each year.</h2>
+    <div class="readiness"><h3>Family readiness check</h3><p>These are practical checks, not a certification. Revisit them together without exposing secrets.</p><label class="check"><input type="checkbox" data-k="ready.aware" data-bool><span>Someone I trust knows this plan exists.</span></label><label class="check"><input type="checkbox" data-k="ready.locate" data-bool><span>They know how to locate the plan securely.</span></label><label class="check"><input type="checkbox" data-k="ready.contacts" data-bool><span>Our trusted contacts and their roles are current.</span></label><label class="check"><input type="checkbox" data-k="ready.walkthrough" data-bool><span>We have walked through the first steps without sharing secrets.</span></label><h3>If I cannot act</h3><p>During illness or incapacity, ask the appropriate professional to confirm who has authority; an executor’s role after death is different. After death, follow the estate process and provider requirements. This binder grants neither access nor authority.</p><label class="field"><span>Contact for temporary incapacity or urgent guidance</span><input data-k="ready.incapacity" maxlength="200" placeholder="Name or role and how to reach them; no credentials"></label><h3>Match the instructions to the holding</h3><ul><li>Exchange account: use the provider’s verified estate or authorized-representative process.</li><li>Bitcoin ETF: this is a brokerage holding, not a wallet to recover. Follow the broker’s process.</li><li>Self-custody: keep recovery instructions separate and secure; do not experiment with transfers.</li><li>Multisig: identify the coordinator and document where the separate recovery procedure is held. Do not bring keys together in this binder.</li></ul></div><h2 id="h-review" tabindex="-1">Pick a day to check in each year.</h2>
     <p class="lede">A plan is only useful if it’s current. Once a year, about 30 minutes: check security, backups, records and contacts, then print a fresh copy. Pick a date you’ll remember, like a birthday month or tax season.</p>
     <div class="fields two">
       <label class="field"><span>Month</span><select data-k="review.month" id="review-month"><option value="">Choose…</option></select></label>
@@ -185,7 +186,7 @@
   </section>
 
   <section class="step" data-step="binder" data-title="Your binder" aria-labelledby="h-binder" hidden>
-    <h2 id="h-binder" tabindex="-1">Your binder is ready.</h2>
+    <h2 id="h-binder" tabindex="-1">Review your household plan.</h2>
     <p class="lede">Printing or saving it as a PDF is a one-time $29 purchase; building the plan, saving your answers and the calendar reminder stay free. Keep the binder somewhere private, like where you keep your will. Blank lines are fine: fill them in by hand or come back later.</p>
     <p class="small" id="completeness" role="status"></p>
     <div class="actions" id="binder-actions">
@@ -211,7 +212,7 @@
         <p class="small">Only the key is sent to Lemon Squeezy, our payment provider, to check it. Your answers never leave this device.</p>
       </div>
     </div>
-    <p class="small">In the print window, choose “Save as PDF” to keep a digital copy. The answers file lets you pick up where you left off. It has names and places in it, so keep it as private as the binder.</p>
+    <p class="small">In the print window, choose “Save as PDF” to keep a digital copy. The answers file lets you pick up where you left off. It has names and places in it and is not automatically encrypted. Store it securely, separately from recovery secrets.</p>
   </section>
   </form>
 
@@ -228,7 +229,7 @@
  </div>
  <aside class="flow-side" aria-label="What you’re building">
   <p class="kicker">YOUR BINDER</p>
-  <h2>Five calm pages your family can follow.</h2>
+  <h2>Five practical sections your family can follow.</h2>
   <ol class="side-list" id="side-list">
    <li data-part="policy"><b>My Bitcoin policy</b><small>Why, how much, how I buy and sell</small></li>
    <li data-part="letter"><b>Letter to my executor &amp; family</b><small>What it is, where it is, first safe steps</small></li>
@@ -243,7 +244,7 @@
 <section class="binder-wrap" id="binder-wrap" aria-label="Binder preview" hidden><div id="binder" class="binder"></div></section>
 
 <section class="guide" id="learn"><p class="eyebrow">PLAIN ENGLISH</p><h2>Good intentions, written down.</h2>
-<details><summary>Why write a Bitcoin plan at all?</summary><p>Bitcoin you control yourself can be lost for good if nobody knows it exists or where the backup is. Bitcoin at a company can sit unclaimed if nobody knows which company. A short, calm document fixes both, and gives you a steady rulebook for the days the price makes headlines.</p></details>
+<details><summary>Why write a Bitcoin plan at all?</summary><p>Bitcoin you control yourself can be lost for good if nobody knows it exists or where the backup is. Bitcoin at a company can sit unclaimed if nobody knows which company. A clear, current document helps your family discover accounts and locate the right support, and gives you a steady rulebook for the days the price makes headlines.</p></details>
 <details><summary>Why not just write down my recovery words for my family?</summary><p>Anyone who sees those words can take the Bitcoin, and a binder can be seen by many people over the years. Keep the backup itself secure and separate, and use this binder to say where it is and who can help. Your attorney can advise on secure ways to pass on access, such as sealed instructions or a collaborative custody setup.</p></details>
 <details><summary>Is this a will?</summary><p>No. Your will and estate documents decide who inherits. This binder helps the people you trust find things and avoid mistakes. Review it with an estate attorney.</p></details>
 <details><summary>What happens to my answers?</summary><p>They stay in this browser tab. If you turn on “Remember my answers,” they’re also saved in this browser on this device. You can save a file to resume, and “Erase everything” removes all of it. There are no analytics on this page, no accounts and no uploads.</p></details>
