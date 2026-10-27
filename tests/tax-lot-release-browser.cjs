@@ -4,7 +4,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8777';
  const p=await b.newPage({reducedMotion:'reduce'});await p.route('**/*',r=>r.request().url().startsWith(base+'/')?r.continue():r.abort());
  for(const width of [390,1280]){
   await p.setViewportSize({width,height:950});await p.goto(base+'/tools/');
-  await p.locator('[data-category=all]').click();assert.equal(await p.locator('a.directory-tool:not(.is-external)').count(),23);
+  await p.locator('[data-category=all]').click();assert.equal(await p.locator('a.directory-tool:not(.is-external)').count(),24);
   assert.ok(!(await p.locator('main').innerText()).match(/coming soon|planned/i));
   const card=p.locator('a.directory-tool[href="./bitcoin-tax-lot-cleanup/"]');assert.equal(await card.count(),1);
   assert.equal(await card.locator('h4').innerText(),'Bitcoin tax-lot cleanup');assert.ok(!(await card.innerText()).includes('Coming soon'));
