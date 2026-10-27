@@ -67,6 +67,10 @@
         "href": "/compare-collaborative-vs-multisig.html"
       },
       {
+        "label": "Bitcoin Household Plan",
+        "href": "/tools/bitcoin-household-plan/"
+      },
+      {
         "label": "Our security promise",
         "href": "/security-promise.html"
       }
