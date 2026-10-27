@@ -351,7 +351,7 @@ var PT_CATS = [
     "icon": "🗂️",
     "v7icon": "file",
     "name": "Bitcoin household plan",
-    "desc": "Write down why you hold Bitcoin, where it is and what your family should do, then print one binder. Never asks for secrets.",
+    "desc": "Write down why you hold Bitcoin, where it is and what your family should do, then print one binder. Free to build, $29 to print the binder. Never asks for secrets.",
     "time": "20 min",
     "live": true,
     "kw": [
