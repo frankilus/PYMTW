@@ -17,7 +17,7 @@ strip_related=lambda s:re.sub(r'<nav class="related".*?</nav>','',s,flags=re.S)
 assert strip_related(car)==strip_related(oldcar) or matches('tools/guides/true-cost-of-a-car/index.html',b''),'Car changes exceed related nav and approved reference/newsletter styling'
 home=(R/'tools/index.html').read_text()
 grid=re.search(r'<div class="life-guides-grid">(.*?)</section>',home,re.S)[1]
-expected=['true-cost-of-a-car',*slugs,'first-home','lost-my-job']
+expected=['true-cost-of-a-car',*slugs,'first-home','lost-my-job','old-401k']  # old-401k: owner-approved guide added by PR #40
 assert sorted(re.findall(r'href="/tools/guides/([^"/]+)/"',grid))==sorted(expected)
 visible=[(clean(q),clean(a)) for q,a in re.findall(r'<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>',home,re.S) if clean(q)!='Privacy and newsletter details']
 faq=next(x for x in json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',home,re.S)[1])['@graph'] if x['@type']=='FAQPage')
