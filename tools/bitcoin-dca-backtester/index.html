@@ -120,10 +120,11 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/assets/brand/pymtw-icon.ico?v=20261021" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/assets/brand/pymtw-icon.svg?v=20261021" type="image/svg+xml" sizes="any"><link rel="apple-touch-icon" href="/assets/brand/pymtw-icon-180.png?v=20261021">
+<link rel="stylesheet" href="/assets/brand/site-header.css?v=20261028">
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="logo" href="/" title="PYMTW · Put Your Money To Work"><span class="logo-mark" aria-hidden="true">P</span>PYMTW <span class="dim">Tools</span></a>
+  <a class="logo pymtw-brand" href="/" title="PYMTW · Put Your Money To Work"><img class="pymtw-brand-icon" src="/assets/brand/pymtw-icon.svg" width="36" height="36" alt="" aria-hidden="true"><span class="pymtw-brand-name">PYMTW</span></a>
   <div class="nav-links"><a href="../#tools">All tools</a><a href="https://pymtw.com/">pymtw.com ↗</a></div>
 </div></nav>
 <header class="tool-hero"><div class="narrow"><div class="eyebrow">₿ Bitcoin</div><h1>What if you’d bought <em>a little every month?</em></h1><p class="sub">Backtest dollar-cost averaging into bitcoin with real historical prices, and compare it with the S&P 500.</p><p class="direct-answer">Dollar-cost averaging (DCA) means buying a fixed dollar amount on a regular schedule regardless of price. This backtester shows what monthly bitcoin purchases would have been worth using historical monthly average prices, next to the same plan in the S&amp;P 500; past results do not predict future returns.</p><div class="privacy">Runs entirely in your browser. Nothing is uploaded.</div></div></header><main class="narrow"><form class="wizard" id="wiz" novalidate><div class="progress"><i></i></div><fieldset class="step" ><legend>How much each month?</legend><label class="field"><span>Monthly buy</span><div class="inp"><b>$</b><input name="amount" inputmode="decimal" value="100" required ></div></label></fieldset><fieldset class="step" ><legend>When would you have started?</legend><p class="hint">Bitcoin data starts January 2015. S&P 500 data starts November 2016.</p><div class="row2"><label class="field"><span>Start month</span><div class="inp"><input type="month" name="start" value="2019-01" min="2015-01" required></div></label><label class="field"><span>End month</span><div class="inp"><input type="month" name="end" value="" required></div></label></div></fieldset>

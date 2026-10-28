@@ -1,0 +1,54 @@
+/* Shared PYMTW identity and header geometry across the parent, Bitcoin and tools. */
+.pymtw-brand.pymtw-brand {
+  display:inline-flex; flex-direction:row; align-items:center; justify-content:flex-start;
+  gap:10px; flex-shrink:0; margin:0; padding:0; border:0; height:36px;
+  font:800 24px/1 Arial,Helvetica,sans-serif; letter-spacing:-1px;
+  color:#292b29; text-decoration:none; background:none;
+  -webkit-text-fill-color:#292b29;
+}
+.pymtw-brand .pymtw-brand-icon { display:block; width:36px; height:36px; max-width:none; flex:none; }
+.pymtw-brand .pymtw-brand-name { font:inherit; color:inherit; letter-spacing:inherit; }
+header.shell.header, .header > .header-inner, .nav-container, .bk-nav-inner, .pb-nav-inner,
+body > nav > .wrap:has(> .pymtw-brand) {
+  box-sizing:border-box; width:100%; max-width:1200px; margin-inline:auto;
+  padding:0 24px; height:76px; min-height:76px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.navbar, .navbar.scrolled, body.pymtw-page .navbar, body.pymtw-page .navbar.scrolled,
+.bk-nav, .pb-nav { padding-block:0; }
+body.pymtw-page #site-header, body.bitcoin-with-price #site-header, .navbar { top:0; }
+/* Put the price strip below the common logo row instead of shifting the brand. */
+.btc-price-bar { top:76px; }
+.bitcoin-with-price .trust-bar { margin-top:38px; }
+.header .nav { top:76px; }
+@media(max-width:768px) {
+  header.shell.header, .header > .header-inner, .nav-container, .bk-nav-inner, .pb-nav-inner,
+  body > nav > .wrap:has(> .pymtw-brand) { height:68px; min-height:68px; }
+  .btc-price-bar { top:68px; }
+  .header .nav { top:68px; }
+  body > nav > .wrap:has(> .pymtw-brand) { flex-wrap:nowrap; gap:12px; }
+  body > nav > .wrap > .nav-links { gap:10px; font-size:12px; }
+  .brand-note { max-width:140px; text-align:right; }
+}
+/* Keep the alignment independent of older custom scrollbar and touch-target rules. */
+html { scrollbar-gutter:stable; }
+::-webkit-scrollbar { width:15px; }
+.pymtw-brand.pymtw-brand { min-height:36px; }
+header.shell.header { height:77px; min-height:77px; }
+@media(max-width:768px) {
+  header.shell.header { height:69px; min-height:69px; }
+}
+@media(max-width:768px) {
+  /* Bitcoin's section links get their own row; the brand stays in the common first row. */
+  header.shell.header:has(> nav) {
+    display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:68px auto;
+    height:auto; min-height:69px; gap:0; justify-items:start;
+  }
+  header.shell.header > nav { padding-bottom:12px; }
+  .bitcoin-with-price .trust-bar { margin-top:34px; }
+}
+@media(max-width:400px) {
+  .header > .header-inner { gap:12px; }
+  .header-right { gap:12px; }
+  .header .private { font-size:0; gap:0; }
+}
