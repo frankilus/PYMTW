@@ -399,6 +399,8 @@ img { max-width: 100%; display: block; }
 /* Floating badges */
 .bk-float-badge {
   position: absolute;
+  /* Keep the complete labels above the real cover (z-index: 2). */
+  z-index: 3;
   display: flex;
   align-items: center;
   gap: 8px;
