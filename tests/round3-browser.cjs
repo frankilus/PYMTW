@@ -33,7 +33,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8776';
   }
   // Intercept only the explicit signup click; do not submit data or contact Beehiiv.
   let outgoing;
-  await context.route('https://pymtwtools.beehiiv.com/**',async route=>{
+  await context.route('https://pymtw.beehiiv.com/**',async route=>{
    outgoing={url:route.request().url(),headers:await route.request().allHeaders(),body:route.request().postData()};
    await route.fulfill({status:200,contentType:'text/html',body:'Hosted newsletter destination'});
   });
@@ -42,7 +42,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8776';
   const popupPromise=page.waitForEvent('popup');
   await page.locator('.result-newsletter a').click();
   const popup=await popupPromise;await popup.waitForLoadState();
-  assert.equal(outgoing.url,'https://pymtwtools.beehiiv.com/subscribe');
+  assert.equal(outgoing.url,'https://pymtw.beehiiv.com/subscribe');
   assert.equal(outgoing.body,null);assert.equal(outgoing.headers.referer,undefined);
   assert.equal(await popup.evaluate(()=>window.opener),null);
   await popup.close();

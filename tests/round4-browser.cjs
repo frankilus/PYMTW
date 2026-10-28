@@ -6,14 +6,14 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8778';
   const tiny=await p.evaluate(()=>[...document.body.querySelectorAll('*')].filter(e=>e.checkVisibility()&&[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&parseFloat(getComputedStyle(e).fontSize)<12).map(e=>({text:e.textContent.trim().slice(0,90),size:getComputedStyle(e).fontSize})));
   assert.deepEqual(tiny,[],route+' tiny text at '+width);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,route+' overflow');
  }
- await p.goto(base+'/tools/');assert.equal((await p.locator('#newsletter-title').innerText()).replace(/\s+/g,' '),'Get one clear money idea a week');
+ await p.goto(base+'/tools/');assert.equal((await p.locator('#newsletter-title').innerText()).replace(/\s+/g,' '),'Smarter money decisions. A longer perspective.');assert.equal(await p.locator('#newsletter a.newsletter-subscribe-link').getAttribute('href'),'https://pymtw.beehiiv.com/subscribe');
  
  if(process.env.SCREENSHOT_DIR&&width!==320){await p.locator('#newsletter').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'round4-newsletter-'+width+'.png')});}
- await p.goto(base+'/bitcoin/');assert.equal(await p.locator('#newsletter-title').innerText(),'Get one clear money idea a week');assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ await p.goto(base+'/bitcoin/');assert.equal(await p.locator('#newsletter-title').innerText(),'Personal finance Tuesdays. Bitcoin Fridays.');assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await p.goto(base+'/tools/emergency-fund-runway/');assert.ok((await p.locator('footer .brand a').boundingBox()).height>=24);assert.equal(await p.locator('footer .brand a').getAttribute('href'),'https://pymtw.com/');
  await p.goto(base+'/tools/paycheck-decoder/');for(const a of await p.locator('.pd-import .pd-mini a[download]').all()){assert.ok((await a.boundingBox()).height>=24);const url=new URL(await a.getAttribute('href'),p.url()).href;assert.equal((await p.request.get(url)).status(),200);}
- assert.equal(await p.locator('#paycheck-newsletter-title').textContent(),'Get one clear money idea a week');
- await p.goto(base+'/tools/explain-my-401k/');await p.locator('#example').click();assert.equal(await p.locator('#plan-newsletter-title').innerText(),'Get one clear money idea a week');assert.equal(await p.locator('#total-balance').innerText(),'$60,000.00');
+ assert.equal(await p.locator('#paycheck-newsletter-title').textContent(),'Personal finance Tuesdays. Bitcoin Fridays.');
+ await p.goto(base+'/tools/explain-my-401k/');await p.locator('#example').click();assert.equal(await p.locator('#plan-newsletter-title').innerText(),'Personal finance Tuesdays. Bitcoin Fridays.');assert.equal(await p.locator('#total-balance').innerText(),'$60,000.00');
  }
  const root=path.resolve(__dirname,'..'),notes=fs.readdirSync(root).filter(n=>n.endsWith('.md'));
  for(const note of notes){for(const url of [note,note.replace(/\.md$/,'.html')])assert.equal((await p.request.get(base+'/'+url)).status(),404,url);}

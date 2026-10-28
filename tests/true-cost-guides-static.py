@@ -49,7 +49,7 @@ for slug in slugs:
  answer=re.search(r'<p class="direct-answer">(.*?)</p>',s,re.S)[1];answer=clean(re.sub(r'<sup.*?</sup>','',answer));assert 40<=len(answer.split())<=60,(slug,len(answer.split()))
  ids=re.findall(r'id="([^"]+)"',s);assert len(ids)==len(set(ids)),slug+' duplicate ids'
  for ref in re.findall('href="#(src-\d+)"',s):assert re.search(r'<li id="'+ref+'"',s),ref
- assert '<h2>Get one clear money idea a week</h2>' in s and 'https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener">Subscribe to the newsletter ↗' in s
+ assert '<h2>Personal finance Tuesdays. Bitcoin Fridays.</h2>' in s and 'https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener">Subscribe to The Long Game ↗' in s and 'pymtwtools.beehiiv.com' not in s and 'subscribe-forms.beehiiv.com' not in s
  assert '/assets/site-analytics.js' in s and 'rel="sponsored' not in s
  assert all(float(v)>=12 for v in re.findall(r'font-size:([\d.]+)px',s))
  assert s.count('rel="preload"')==3
