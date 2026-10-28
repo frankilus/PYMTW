@@ -885,3 +885,8 @@ img { max-width: 100%; display: block; }
     flex-direction: column;
   }
 }
+
+/* Keep floating labels inside the page at compact desktop widths. */
+@media (min-width:901px) and (max-width:1100px) {
+  .bk-float-1, .bk-float-3 { right:0; }
+}
