@@ -2,7 +2,7 @@
 from pathlib import Path
 import subprocess,re,json,hashlib
 root=Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either,FOOTER_PRIVACY_EDITS
 # PRs 10–12 intentionally superseded the original V7 snapshot. Protect current main.
 base='876fcc6827857ceca9d5b5d6798bbb62fb9b08c9'
 def original(path):return subprocess.check_output(['git','show',base+':'+path],cwd=root)
@@ -73,7 +73,9 @@ for name in paths:
   # Existing visible copy survives outside the explicitly revised homepage copy.
   if name!='tools/index.html':
    for block in re.findall(r'<p\b[^>]*>.*?</p>',before,re.S):
-    block=block.replace('href="https://pymtwtools.beehiiv.com"','href="https://pymtwtools.beehiiv.com/subscribe"').replace('Browse the archive ↗','Subscribe to the newsletter ↗')
+    block=block.replace('href="https://pymtwtools.beehiiv.com"','href="https://pymtw.beehiiv.com/subscribe"').replace('Browse the archive ↗','Subscribe to The Long Game ↗')  # PR #55 (owner): Long Game link
+    if name.startswith('tools/guides/'):
+     for _o,_n in FOOTER_PRIVACY_EDITS:block=block.replace(_o,_n)  # 2026-10-28: footer no longer describes the removed on-page form
     assert block in after,name+' original paragraph changed'
 # Preserve privacy disclosures verbatim; only hostname and analytics loader additions are allowed.
 old=original('legal.html').decode().replace('https://www.pymtw.com','https://pymtw.com')

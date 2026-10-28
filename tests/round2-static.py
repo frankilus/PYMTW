@@ -31,11 +31,11 @@ assert 'noindex' not in plan and 'DESIGN PREVIEW' not in plan
 assert all(term not in plan for term in ['site-analytics','gc.zgo.at','goatcounter.com','<iframe'])
 assert re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',plan)[0]=='<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; script-src \'self\' \'wasm-unsafe-eval\'; worker-src \'self\' blob:; connect-src \'self\'; img-src \'self\' data: blob:; font-src \'self\' data: blob:; style-src \'self\' \'unsafe-inline\'; object-src \'none\'; frame-src \'none\'; base-uri \'none\'; form-action \'none\'">'
 for slug in ['first-home','lost-my-job','true-cost-of-a-car','true-cost-of-a-baby','true-cost-of-owning-a-home','true-cost-of-a-wedding']:
- s=(r/f'tools/guides/{slug}/index.html').read_text();assert '/archive' not in s;assert 'Subscribe to the newsletter' in s
+ s=(r/f'tools/guides/{slug}/index.html').read_text();assert '/archive' not in s;assert 'Subscribe to The Long Game' in s and 'href="https://pymtw.beehiiv.com/subscribe"' in s and 'pymtwtools.beehiiv.com' not in s
 pay=(r/'tools/paycheck-decoder/index.html').read_text()
 assert 'site-analytics' not in pay and 'gc.zgo.at' not in pay and 'goatcounter.com' not in pay and '<iframe' not in pay
 assert re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',pay)[0]==re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',old('tools/paycheck-decoder/index.html').decode())[0]
-assert 'rel="noopener noreferrer">Subscribe to the newsletter' in pay
+assert 'href="https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe to the newsletter' in pay
 schema=[json.loads(s) for s in re.findall(r'<script type="application/ld\+json">(.*?)</script>',pay,re.S)]
 faq=schema[1]['@graph'][1]
 for q in faq['mainEntity']:assert q['name'] in pay and q['acceptedAnswer']['text'] in pay

@@ -33,7 +33,7 @@ assert set(graph)=={'BreadcrumbList','WebApplication','FAQPage'}
 def text(s):return ' '.join(html.unescape(re.sub('<[^>]+>','',s)).split())
 visible=[(text(re.search('<summary>(.*?)</summary>',s,re.S)[1]),text(re.search('<p>(.*?)</p>',s,re.S)[1])) for s in re.findall(r'<details class="term">(.*?)</details>',plan,re.S)]
 assert [(q['name'],q['acceptedAnswer']['text']) for q in graph['FAQPage']['mainEntity']]==visible
-assert 'href="https://pymtwtools.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"' in plan
+assert 'href="https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"' in plan and 'pymtwtools.beehiiv.com' not in plan
 book=(r/'book/index.html').read_text();before=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',original('book/index.html').decode(),re.S)[1]);after=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',book,re.S)[1])
 assert after.pop('datePublished')=='2026-09'
 assert after.pop('isbn')=='9798174357846'

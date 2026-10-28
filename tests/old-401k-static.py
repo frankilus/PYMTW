@@ -26,7 +26,8 @@ assert refs==set(i for i,_ in ids),(refs^set(i for i,_ in ids))
 assert ids and all(re.match(r'https://(www\.irs\.gov|www\.dol\.gov|lostandfound\.dol\.gov|www\.finra\.org|www\.investor\.gov)/',u) for _,u in ids)
 assert set(g['Article']['citation'])==set(u for _,u in ids)
 # key content and the worked example
-for need in ['Rule of 55','direct rollover','60 days','20%','$7,000','$1,000 or less','qualified plan loan offset','net unrealized appreciation','Notice 2014-54','$227,000','$163,000','28%','Lost and Found','$31,500','$5,000','$11,000','$2,500','Educational only','../../fee-x-ray/','../../explain-my-401k/','../lost-my-job/','Get one clear money idea a week','https://pymtwtools.beehiiv.com/subscribe','e52526c9-fd98-4fde-bda0-ee1a61507c09']:assert need in s,need
+for need in ['Rule of 55','direct rollover','60 days','20%','$7,000','$1,000 or less','qualified plan loan offset','net unrealized appreciation','Notice 2014-54','$227,000','$163,000','28%','Lost and Found','$31,500','$5,000','$11,000','$2,500','Educational only','../../fee-x-ray/','../../explain-my-401k/','../lost-my-job/','Personal finance Tuesdays. Bitcoin Fridays.','https://pymtw.beehiiv.com/subscribe','Subscribe to The Long Game']:assert need in s,need
+for gone in ['pymtwtools.beehiiv.com','e52526c9-fd98-4fde-bda0-ee1a61507c09','subscribe-forms.beehiiv.com','class="newsletter-form"']:assert gone not in s,gone  # PR #55: no embedded form, Long Game only
 # no affiliate links / partner recommendations
 for bad in ['capitalize','amzn.to','?ref=','utm_','affiliate']:assert bad not in s.lower(),bad
 # local links exist

@@ -19,5 +19,7 @@ t=setup(true);t.scripts[0].onload();assert.match(t.status.textContent,/If it sta
 [...t.timers.values()][0]();assert.match(t.status.textContent,/has not appeared/,'loader loaded but rendered no iframe');
 t=setup(true);t.scripts[0].onload();t.box.iframe={};[...t.timers.values()][0]();assert.match(t.status.textContent,/If it stalls/,'no fallback once iframe rendered');assert.doesNotMatch(t.status.textContent,/success|subscribed/i);
 t=setup(true);[...t.timers.values()][0]();assert.match(t.status.textContent,/has not appeared/);
-const html=fs.readFileSync(path.join(__dirname,'../tools/index.html'),'utf8');assert.match(html,/href="https:\/\/pymtwtools.beehiiv.com\/subscribe"/);assert.ok(html.indexOf('Subscribe free on Beehiiv')<html.indexOf('id="newsletter-inline"'));
+const html=fs.readFileSync(path.join(__dirname,'../tools/index.html'),'utf8');assert.match(html,/href="https:\/\/pymtw.beehiiv.com\/subscribe"/);assert.ok(html.includes('Subscribe free on Beehiiv'));assert.ok(!html.includes('pymtwtools.beehiiv.com'),'no Next Dollar links since PR #55');
+// PR #55 removed the optional embedded form; the loader must stay inert on the page (no elements, no provider request).
+assert.ok(!html.includes('id="newsletter-inline"')&&!html.includes('data-form-id='));{const scripts=[];vm.runInNewContext(source,{document:{getElementById:()=>null,createElement:()=>{const o={setAttribute(){}};scripts.push(o);return o;},body:{appendChild(){}}},window:{setTimeout(){},clearTimeout(){}}});assert.equal(scripts.length,0,'inert without the form');}
 console.log('Newsletter checks passed: explicit opt-in load, duplicate protection, failure/timeout guidance, no false success, direct hosted signup.');
