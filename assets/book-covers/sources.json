@@ -1,0 +1,55 @@
+{
+  "inventing.png": {
+    "source": "https://www.swanbitcoin.com/inventing-bitcoin/",
+    "image": "https://www.datocms-assets.com/65699/1664430725-inventingbitcoin.png?auto=format&dpr=0.24&w=3584",
+    "bytes": 372760,
+    "type": "image/png"
+  },
+  "mastering.png": {
+    "source": "https://github.com/bitcoinbook/bitcoinbook",
+    "image": "https://raw.githubusercontent.com/bitcoinbook/bitcoinbook/develop/images/cover.png",
+    "bytes": 1934367,
+    "type": "image/png"
+  },
+  "gradually.png": {
+    "source": "https://thesaifhouse.com/products/gradually-then-suddenly-hardcover",
+    "image": "https://thesaifhouse.com/cdn/shop/files/tsh-GTS_shop.png?v=1791176534&width=500",
+    "bytes": 57949,
+    "type": "image/png"
+  },
+  "everyone.jpg": {
+    "source": "https://www.panmacmillan.com/authors/natalie-brunell/bitcoin-is-for-everyone/9781804091135",
+    "image": "https://ik.imagekit.io/panmac/tr:f-jpg,di-placeholder_portrait_aMjPtD9YZ.jpg,w-350/edition/9781804091135.jpg",
+    "bytes": 31333,
+    "type": "image/jpeg"
+  },
+  "big-print.jpg": {
+    "source": "https://www.thebigprintbook.com/",
+    "image": "https://www.thebigprintbook.com/wp-content/uploads/elementor/thumbs/Hi-RES-B-r3jvezsy7hsu1ntuot1cp6hxi42lfrlpmqt8s0ey26.jpg",
+    "bytes": 47921,
+    "type": "image/jpeg"
+  },
+  "standard.png": {
+    "source": "https://thesaifhouse.com/products/tbs-hardcover",
+    "image": "https://thesaifhouse.com/cdn/shop/files/tsh-cover-the-bitcoin-standard.avif?v=1791177104&width=600",
+    "bytes": 243649,
+    "type": "image/png"
+  },
+  "broken.png": {
+    "source": "https://www.lynalden.com/broken-money/",
+    "image": "https://thesaifhouse.com/cdn/shop/files/tsh-cover-broken-money.avif?v=1791177113&width=600",
+    "bytes": 447031,
+    "type": "image/png"
+  },
+  "hard-money.jpg": {
+    "source": "https://www.businessinsider.com/crypto-investing-best-books-list-recommendations-bitcoin-blockchain-ethereum-strategy-2021-7",
+    "image": "https://i.insider.com/60e6aeec85fa170018522a40?auto=webp&format=jpeg&width=600",
+    "type": "image/jpeg",
+    "bytes": 44264
+  },
+  "credit.png": {
+    "source": "User-supplied approved Digital Credit cover, October 29, 2026",
+    "type": "image/png",
+    "bytes": 403184
+  }
+}
