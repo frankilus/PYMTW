@@ -1,4 +1,4 @@
-"""Programs offer, navigation and no-checkout regression checks (no form submissions)."""
+"""Programs offer, detail navigation and payment-link regression checks (no form submissions)."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
@@ -47,6 +47,21 @@ options = [a for t,a in page.nodes if t == 'option' and 'data-consultation' in a
 assert len(links) == len(options) == 3
 assert {a['data-consultation'] for a in links} == {a['data-consultation'] for a in options}
 assert all(a['href'] == '#request' for a in links)
+# Discovery links must open the matching detail page while inquiry and payment actions stay separate.
+bitcoin_text = (ROOT / 'bitcoin/index.html').read_text()
+for card_id, route in (
+    ('busy-professionals', '/workshop-professionals.html'),
+    ('self-custody', '/workshop-self-custody.html'),
+    ('couples-families', '/workshop-family.html'),
+):
+    card = text.split('<article class="choice" id="' + card_id + '">')[1].split('</article>')[0]
+    card_page = Page(card)
+    detail_links = [a for t,a in card_page.nodes if t == 'a' and a.get('class') == 'consultation-details-link']
+    assert len(detail_links) == 1 and detail_links[0]['href'] == route
+    assert 'View consultation details' in card
+    assert 'href="' + route + '"' in bitcoin_text
+    assert 'href="/programs.html#' + card_id + '"' not in bitcoin_text
+assert len([a for t,a in page.nodes if t == 'a' and a.get('class') == 'consultation-details-link']) == 3
 for amount in ('79', '129', '199'):
     assert '$' + amount in text
 for obsolete in ('$149', '$399', '$499', 'Seats are limited', 'Workshops are recorded', 'View Workshop'):
