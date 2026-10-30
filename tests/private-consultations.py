@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = '297cba3'
+BASE = '864a189'
 
 class Page(HTMLParser):
     def __init__(self, text):
@@ -32,7 +32,6 @@ assert any(t == 'input' and a.get('type') == 'email' and 'required' in a for t,a
 for tag, attrs in page.nodes:
     assert 'data-checkout' not in attrs
     href = attrs.get('href', attrs.get('src', ''))
-    assert 'stripe.com' not in href
     url = urlsplit(href)
     if url.scheme or url.netloc or not href:
         continue
@@ -55,11 +54,18 @@ for obsolete in ('$149', '$399', '$499', 'Seats are limited', 'Workshops are rec
 assert '75 minutes · One client' in text
 assert '90 minutes · One client' in text
 assert '90 minutes · One household' in text
-assert 'Online checkout is not open yet' in text
+assert 'Payment links are for agreed appointments only' in text
+expected_payments = {
+    'https://buy.stripe.com/fZu6oJgNu0Mq2EyeyM6EU00',
+    'https://buy.stripe.com/cNi3cxdBi8eS7YSaiw6EU01',
+    'https://buy.stripe.com/bJeaEZfJqgLo92W62g6EU02',
+}
+assert {a['href'] for t,a in page.nodes if t == 'a' and 'buy.stripe.com' in a.get('href', '')} == expected_payments
+assert 'Payment does not select or confirm an appointment time' in text
 assert '/assets/site-analytics.js' in text
 for tool in ('paycheck-decoder', 'explain-my-401k', 'bitcoin-tax-lot-cleanup', 'bitcoin-household-plan'):
     name = 'tools/' + tool + '/index.html'
     current = (ROOT / name).read_bytes()
     assert current == subprocess.check_output(['git', 'show', BASE + ':' + name], cwd=ROOT), name
     assert b'site-analytics.js' not in current and b'googletagmanager' not in current, name
-print('PASS: 3 consultation offers, preserved form configuration and legacy anchors, valid local links, inquiry-only CTAs, no checkout, 4 private tools unchanged and analytics-free.')
+print('PASS: 3 consultation offers, preserved form configuration and legacy anchors, valid local links, inquiry-first CTAs, 3 approved Stripe links, 4 private tools unchanged and analytics-free.')
