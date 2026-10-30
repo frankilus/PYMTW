@@ -92,7 +92,7 @@
         "href": "/newsletter.html"
       },
       {
-        "label": "Programs & workshops",
+        "label": "Consultations & programs",
         "href": "/programs.html"
       },
       {
@@ -165,7 +165,7 @@
   }
 
   function buildFooter() {
-    return "<footer class=\"footer\"><div class=\"container\"><div class=\"simple-footer-links\"><a href=\"/bitcoin/\">Bitcoin home</a><a href=\"/resources.html\">All resources</a><a href=\"/programs.html\">Programs &amp; workshops</a><a href=\"/newsletter.html\">Newsletter</a><a href=\"/about.html\">About &amp; contact</a><a href=\"/legal.html#privacy\">Privacy</a><a href=\"/legal.html#affiliate\">Affiliate disclosure</a><a href=\"/legal.html#terms\">Terms &amp; policies</a><a href=\"/\">PYMTW home</a></div><div class=\"footer-bottom\"><p><strong>Educational disclaimer:</strong> PYMTW provides general educational information about Bitcoin, technology, custody, and financial concepts. Nothing on this website constitutes individualized investment, tax, legal, accounting, or financial advice. Bitcoin is volatile and can decline substantially in value. Past performance does not predict future results.</p><p class=\"footer-copy\">Put Your Money to Work \u00b7 Frank W. Jerome</p></div></div></footer>";
+    return "<footer class=\"footer\"><div class=\"container\"><div class=\"simple-footer-links\"><a href=\"/bitcoin/\">Bitcoin home</a><a href=\"/resources.html\">All resources</a><a href=\"/programs.html\">Consultations &amp; programs</a><a href=\"/newsletter.html\">Newsletter</a><a href=\"/about.html\">About &amp; contact</a><a href=\"/legal.html#privacy\">Privacy</a><a href=\"/legal.html#affiliate\">Affiliate disclosure</a><a href=\"/legal.html#terms\">Terms &amp; policies</a><a href=\"/\">PYMTW home</a></div><div class=\"footer-bottom\"><p><strong>Educational disclaimer:</strong> PYMTW provides general educational information about Bitcoin, technology, custody, and financial concepts. Nothing on this website constitutes individualized investment, tax, legal, accounting, or financial advice. Bitcoin is volatile and can decline substantially in value. Past performance does not predict future results.</p><p class=\"footer-copy\">Put Your Money to Work \u00b7 Frank W. Jerome</p></div></div></footer>";
   }
 
   /* ---------- Behaviors: scroll state, mobile toggle, dropdowns ---------- */
