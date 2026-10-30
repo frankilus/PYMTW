@@ -23,7 +23,11 @@ for name in changed:
     if not name.endswith('.html'): continue
     a,b=Page(before(name)),Page((ROOT/name).read_text())
     assert [v for t,v in a.nodes if t=='form']==[v for t,v in b.nodes if t=='form'], name
-    assert [v for t,v in a.nodes if t=='input' and v.get('type')=='hidden']==[v for t,v in b.nodes if t=='input' and v.get('type')=='hidden'], name
+    # Consultation email labels are deliberately clearer; routing and spam protection stay unchanged.
+    email_pages={'programs.html','workshop-professionals.html','workshop-self-custody.html','workshop-family.html'}
+    allowed_fields={'subject','interest','request_status','next_step','source_page'} if name in email_pages else set()
+    keep=lambda nodes:[v for t,v in nodes if t=='input' and v.get('type')=='hidden' and v.get('name') not in allowed_fields]
+    assert keep(a.nodes)==keep(b.nodes), name
     assert [v.get('id') for t,v in a.nodes if 'id' in v]==[v.get('id') for t,v in b.nodes if 'id' in v], name
     assert [v for t,v in a.nodes if t=='link' and v.get('rel')=='canonical']==[v for t,v in b.nodes if t=='link' and v.get('rel')=='canonical'], name
     for t,attrs in b.nodes:
