@@ -1,0 +1,40 @@
+/* Programs page only: the approved private-consultation layout. */
+.consultation-grid .choice{transition:none}
+.consultation-grid .choice:hover{transform:none}
+.consultation-grid .choice h2{font-size:29px}
+.consultation-grid .choice>.eyebrow{margin:0 0 8px;font-size:10px}
+.consultation-price{border-top:1px solid #d4c8b5;padding:20px 0}
+.consultation-price strong{display:block;font:38px/1.2 Georgia,serif;white-space:nowrap}
+.consultation-price small{display:block;color:var(--muted);font-size:12px;line-height:1.7;margin-top:8px}
+.consultation-grid .choice .consultation-description{font-size:13px;margin-bottom:0}
+.consultation-grid .simple-details{margin-top:auto;padding-top:16px}
+.consultation-grid .btn{margin-top:auto}
+.consultation-grid .simple-details+ .btn{margin-top:20px}
+.consultation-grid .check-list{font-size:13px;margin:0 0 20px;padding-left:18px}
+.consultation-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px;padding:0;list-style:none;counter-reset:step}
+.consultation-steps li{border-top:1px solid #d4c8b5;padding-top:17px;counter-increment:step}
+.consultation-steps li:before{content:"0" counter(step);color:var(--orange);font-size:12px}
+.consultation-steps h3{font:22px/1.25 Georgia,serif;margin:15px 0 10px}
+.consultation-steps p,.detail-body>p{color:var(--muted);font-size:14px}
+.consultation-process .callout-security{margin-top:30px}
+.legacy-anchor{display:block}
+.bitcoin-learning #request .section-head{max-width:720px}
+.bitcoin-learning #request form{max-width:720px}
+.bitcoin-learning #request select{max-width:100%}
+.detail-body>p a{color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+.consultation-grid .btn:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+
+@media(max-width:1000px){.consultation-grid .choice{padding:22px 18px}
+.consultation-grid .choice h2{font-size:26px}
+.consultation-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:768px){.consultation-grid .choice{padding:25px}
+.consultation-grid .choice h2{font-size:32px;max-width:none}
+.consultation-grid .choice>.eyebrow{font-size:11px}
+.consultation-steps{grid-template-columns:1fr;gap:12px}
+.consultation-grid .btn{width:100%}
+.consultation-price strong{font-size:36px}
+.bitcoin-learning #request .section-head h2{font-size:29px}
+}
+
