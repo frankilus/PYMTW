@@ -1,0 +1,47 @@
+/* Consultation discovery on the Bitcoin homepage only. */
+.hero .consultation-jump {
+  display: inline-block;
+  margin-top: 22px;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.consultation-feature {
+  border-top: 3px solid var(--orange);
+}
+.consultation-feature h2 em {
+  color: var(--orange);
+  font-weight: 400;
+}
+.consultation-feature .guidance-list > a > span:first-child {
+  font-size: 10px;
+  letter-spacing: .06em;
+}
+.consultation-feature .guidance-list b {
+  font: 22px/1.35 Georgia, serif;
+  padding-right: 20px;
+  position: relative;
+}
+.consultation-feature .guidance-list i {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.consultation-feature .guidance-list .consultation-meta {
+  margin-top: 9px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px;
+  font-size: 12px;
+}
+.consultation-meta strong { white-space: nowrap; color: var(--ink); }
+.consultation-feature a:focus-visible, .consultation-jump:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 5px;
+}
+@media (max-width: 768px) {
+  .hero .consultation-jump { font-size: 13px; margin-top: 18px; }
+  .consultation-feature .guidance-list b { font-size: 23px; }
+}
