@@ -40,3 +40,7 @@
 
 
 .consultation-grid .choice .confirmed-payment{margin:18px 0 0;font-size:12px;line-height:1.7}.confirmed-payment span{display:block}.confirmed-payment a{display:inline-block;color:var(--orange);text-decoration:underline;text-underline-offset:3px;padding:6px 0;min-height:36px}.confirmed-payment a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+.consultation-details-link{display:block;padding:10px 0;margin:10px 0 12px;color:var(--orange);font-size:13px;font-weight:600;line-height:1.6;text-decoration:underline;text-underline-offset:4px;min-height:44px}
+.consultation-grid .consultation-details-link+.btn{margin-top:0}
+.consultation-details-link:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
