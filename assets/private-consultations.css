@@ -38,3 +38,5 @@
 .bitcoin-learning #request .section-head h2{font-size:29px}
 }
 
+
+.consultation-grid .choice .confirmed-payment{margin:18px 0 0;font-size:12px;line-height:1.7}.confirmed-payment span{display:block}.confirmed-payment a{display:inline-block;color:var(--orange);text-decoration:underline;text-underline-offset:3px;padding:6px 0;min-height:36px}.confirmed-payment a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
