@@ -10,6 +10,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - tests/
+  - scripts/
   - CONTENT_AND_COPY_PLAN.md
   - IMPLEMENTATION_SUMMARY.md
   - INTEGRATIONS.md
