@@ -22,6 +22,9 @@ ALL.push(GUIDE_HOME_CHECKLIST);
 var GUIDE_CAR = { slug: 'guides/true-cost-of-a-car', icon: '🚗', name: 'Guide: The true cost of owning a car', desc: 'Where AAA’s $12,863 a year goes, a 5-year cost calculator, and what to ask before you sign.', time: '7 min read', live: true, boost: 1,
   kw: ['true cost of a car', 'cost of owning a car', 'cost to own a car', 'owning a car', 'own a car', 'buy a car', 'buying a car', 'new car', 'used car', 'new or used', 'car insurance', 'afford a car', 'car can i afford', 'car budget', 'car cost', 'cost per mile', 'depreciation', 'lease or buy', '20/4/10', '20 4 10'] };
 ALL.push(GUIDE_CAR);
+var GUIDE_CAR_CHECKLIST = { slug: 'guides/true-cost-of-a-car/checklist', icon: '🖨️', name: 'Printable car-buying checklist', desc: 'Four phases from budget and pre-approval to signing: insurance quotes, recalls, the out-the-door price, add-ons and yo-yo financing. Tick items off, then print.', time: 'Printable', live: true, boost: 1,
+  kw: ['car buying checklist', 'car checklist', 'buying a car checklist', 'new car checklist', 'used car checklist', 'dealer checklist', 'auto loan checklist', 'printable checklist', 'printable', 'checklist', 'pdf', 'out the door price', 'yo-yo financing', 'test drive'] };
+ALL.push(GUIDE_CAR_CHECKLIST);
 var GUIDE_BABY = { slug: 'guides/true-cost-of-a-baby', icon: '👶', name: 'Guide: The true cost of having a baby', desc: 'Where the money goes in year one and after, a calculator for your own numbers, and the benefits to claim. Every figure links to its source.', time: '7 min read', live: true, boost: 1,
   kw: ['baby', 'pregnant', 'newborn', 'child', 'daycare', 'child care', 'day care', 'parental leave', 'maternity', 'paternity'] };
 ALL.push(GUIDE_BABY);
