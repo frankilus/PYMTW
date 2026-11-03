@@ -55,6 +55,10 @@
     "label": "Protect",
     "children": [
       {
+        "label": "Bitcoin security guide",
+        "href": "/bitcoin/security/"
+      },
+      {
         "label": "Exchange or self-custody?",
         "href": "/bitcoin-on-exchange.html"
       },
