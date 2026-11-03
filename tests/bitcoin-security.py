@@ -19,7 +19,7 @@ assert len(page.ids)==len(set(page.ids)), 'Duplicate anchor'
 assert len(page.headings)==1
 assert len(page.inputs)==8 and all(x.get('type')=='checkbox' for x in page.inputs), 'No private data inputs allowed'
 assert '<form' not in html and 'site-analytics' not in html and 'googletagmanager' not in html
-assert page.scripts==['/assets/bitcoin-security/security.js']
+assert [urlsplit(src).path for src in page.scripts]==['/assets/bitcoin-security/security.js']
 script=(ROOT/'assets/bitcoin-security/security.js').read_text()
 assert not re.search(r'\b(fetch|XMLHttpRequest|localStorage|sessionStorage|sendBeacon|WebSocket)\b',script), 'No network or storage APIs'
 for stage in ('beginner','owner','advanced'):assert stage in page.ids

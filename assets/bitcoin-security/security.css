@@ -78,7 +78,27 @@ summary::-webkit-details-marker{display:none}.ownership-card summary::marker{con
 .sources{margin-block:45px 65px}.sources>details{border-block:1px solid var(--line)}.sources summary{font-size:13px;font-weight:600;cursor:pointer;padding:19px 0}.sources summary span{font-size:11px;font-weight:400;color:var(--muted);margin-left:13px}.sources p,.sources li,.glossary{font-size:12px;color:var(--muted);line-height:1.9}.sources ol{padding-left:20px;margin-bottom:25px}.sources li{padding:6px 0}.sources a{color:var(--orange);text-decoration:underline;text-underline-offset:3px}.sources li:target{background:#f5e6d3}.glossary{display:grid;grid-template-columns:200px 1fr;gap:12px 30px;margin:25px 0}.glossary dt{font-weight:700;color:var(--ink)}.glossary dd{margin:0}
 @media(max-width:1000px){.security-hero{gap:40px}.setup-layout,.current-guidance{gap:45px}.stage{padding:22px}.stage h3{font-size:25px}.stage-panel{gap:30px}.carry-forward{gap:35px}.upgrade-rows article{grid-template-columns:165px 1fr;gap:30px}}
 @media(max-width:720px){.security-page [id]{scroll-margin-top:145px}.security-page .header nav{gap:16px}.security-hero{grid-template-columns:1fr;gap:28px;padding-block:28px 34px}.back{margin-bottom:25px}.security-hero h1{font-size:clamp(39px,10vw,54px)}.desktop-break{display:none}.security-hero .intro{font-size:17px}.control-note{padding:25px;display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.note-kicker{grid-column:1/-1}.control-note svg{grid-column:2;grid-row:2/4;align-self:center;margin:0}.control-note h2{font-size:29px;margin-top:22px}.control-note>p{grid-column:1/-1}.control-note .citations{grid-column:1/-1}.note-rule{grid-column:1/-1;font-size:17px;margin-top:15px;padding-top:15px}.guide-nav .shell{gap:0 20px;justify-content:flex-start;flex-wrap:wrap;padding-block:8px}.guide-nav a{font-size:11px;padding-block:7px}.advisory{padding-block:16px}.section{margin-top:44px}.section h2{font-size:31px}.section-heading{margin-bottom:23px}.stage-grid{grid-template-columns:1fr;gap:10px}.stage{padding:20px}.stage h3{font-size:27px;margin:12px 0 8px}.stage p{margin-bottom:16px}.stage.active{box-shadow:inset 3px 0 var(--orange)}.stage-panel{grid-template-columns:1fr;gap:19px;padding:25px}.stage-panel h3{font-size:27px}.stage-panel ul{margin-top:10px}.ownership-grid{grid-template-columns:1fr;gap:12px}.ownership-card summary{padding:21px 18px;gap:12px;grid-template-columns:20px minmax(0,1fr) 16px}.ownership-card h3{font-size:24px}.option-body{padding:0 20px 22px 50px}.setup-section{padding-block:33px}.setup-layout{grid-template-columns:1fr;gap:35px}.setup-intro{position:static}.setup-intro h2{font-size:35px}.setup-intro h2 br{display:none}.setup-steps>li>p{margin-left:0}.setup-steps>li>.text-link{margin-left:0}.step-top{gap:10px;grid-template-columns:23px minmax(0,1fr) 22px}.step-top h3{font-size:25px}.upgrade-rows article{grid-template-columns:1fr;gap:12px;padding-block:24px}.upgrade-rows h3{font-size:26px}.current-guidance{grid-template-columns:1fr;gap:16px;padding-block:28px}.current-guidance h2 br{display:none}.current-guidance h3{font-size:26px}.incident summary{font-size:21px}.carry-forward{grid-template-columns:1fr;gap:20px;padding:27px 23px}.glossary{grid-template-columns:1fr;gap:4px}.glossary dd{margin-bottom:12px}.sources summary span{display:block;margin:6px 0 0}.sources{margin-bottom:40px}}
-@media print{.header,.guide-nav,.advisory,.stage-grid,.stage-panels,.print-guide,.step-check,.check-progress,.carry-forward,.footer,.citations{display:none!important}.shell{width:100%;max-width:none}.section{margin-top:25px}.security-hero{display:block;padding:0}.security-hero h1{font-size:30px}.security-hero .control-note{display:none}.setup-section{background:white;padding:0}.setup-layout,.current-guidance{display:block}.setup-intro{position:static}.ownership-grid{display:block}.ownership-card,.setup-steps li,.upgrade-rows article{break-inside:avoid}.setup-steps p{margin-left:0!important}body{font-size:11px}a{color:inherit}details{break-inside:avoid}}
+.print-only{display:none}
+@media print{
+ @page{margin:16mm}
+ body{background:white!important;color:#111!important;font-size:11pt}
+ body> :not(main),main> :not(#self-custody){display:none!important}
+ #self-custody{display:block!important;background:white;margin:0;padding:0}
+ #self-custody .shell{width:100%;max-width:none;padding:0}
+ .setup-layout{display:block}.setup-intro{position:static}
+ .setup-intro h2{display:none}
+ .setup-intro>p,.setup-steps>li>p{font-size:10pt;line-height:1.5;color:#111!important}
+ .setup-intro>.eyebrow,.print-guide,.check-progress,.citations,.setup-steps>li>.text-link{display:none!important}
+ .print-only{display:block;font-size:11pt;line-height:1.5;margin-bottom:12pt}
+ .print-only small{display:block;font-size:9pt}
+ .setup-steps>li{break-inside:avoid;padding:14pt 0}
+ .step-top{grid-template-columns:22pt minmax(0,1fr) 18pt;gap:8pt}
+ .step-top h3{font-size:15pt;line-height:1.25}.step-num{font-size:12pt}
+ .step-check{display:block;width:13pt;height:13pt;margin-top:2pt}
+ .setup-steps>li>p{margin:8pt 0 0 30pt}
+ .stop-note{margin:10pt 0;padding-left:10pt}
+}
+
 @media(max-width:720px){.security-hero .intro br{display:initial}.control-note{display:block}.control-note svg{width:210px;max-width:100%;margin:10px 0}.control-note h2{font-size:29px;margin:8px 0 16px}.control-note .citations{display:inline-flex}}
 /* Keep the rotated disclosure marker from stretching to the summary height. */
 .disclosure{align-self:start;justify-self:end;width:20px;height:24px;line-height:1;text-align:center;transform-origin:center}
