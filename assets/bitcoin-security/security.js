@@ -48,12 +48,4 @@
  const print = document.querySelector('.print-guide');
  print.hidden = false;
  print.addEventListener('click', () => window.print());
- let previousDetails;
- window.addEventListener('beforeprint', () => {
-  previousDetails = [...document.querySelectorAll('details')].map(detail => [detail,detail.open]);
-  previousDetails.forEach(([detail]) => { detail.open = true; });
- });
- window.addEventListener('afterprint', () => {
-  (previousDetails || []).forEach(([detail,open]) => { detail.open = open; });
- });
 })();
