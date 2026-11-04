@@ -176,3 +176,5 @@ a.life-guide-choice:hover{background:#fff;border-color:#779a85}.life-guide-icon{
 @media(max-width:590px){.plan-feature{padding-bottom:40px}.plan-feature-inner{display:block;padding:26px 22px}.plan-feature h2{font-size:34px}.plan-feature-copy>p:not(.eyebrow){font-size:14px}.plan-feature-action{max-width:none;margin-top:20px}}
 
 .directory-tool.is-featured{background:#e5eee5;border:1px solid #91ad99;box-shadow:inset 4px 0 #285b49}
+/* Footer wordmark: light on the dark green footer (2026-11-04 contrast fix). */
+.simple-footer .footer-logo{color:#fff}
