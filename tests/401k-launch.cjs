@@ -9,7 +9,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8775';
    await page.setViewportSize({width,height:950});
    await page.goto(base+'/tools/');
    await page.locator('[data-category=all]').click();
-   assert.equal(await page.locator('a.directory-tool:not(.is-external)').count(),26); // 15 calculators + checkup + 10 guides (incl. first-home, lost-my-job and car checklists)
+   assert.equal(await page.locator('a.directory-tool:not(.is-external)').count(),27); // 15 calculators + checkup + 11 guides (incl. first-home, lost-my-job, car and old-401k checklists)
    assert.ok(!(await page.locator('main').innerText()).match(/coming soon|planned/i));
    const card=page.locator('a.directory-tool[href="./explain-my-401k/"]');
    assert.equal(await card.count(),1);
