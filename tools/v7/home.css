@@ -177,4 +177,4 @@ a.life-guide-choice:hover{background:#fff;border-color:#779a85}.life-guide-icon{
 
 .directory-tool.is-featured{background:#e5eee5;border:1px solid #91ad99;box-shadow:inset 4px 0 #285b49}
 /* Footer wordmark: light on the dark green footer (2026-11-04 contrast fix). */
-.simple-footer .footer-logo.pymtw-brand.pymtw-brand{color:#fff}
+.simple-footer .footer-logo.pymtw-brand.pymtw-brand{color:#fff;-webkit-text-fill-color:#fff}
