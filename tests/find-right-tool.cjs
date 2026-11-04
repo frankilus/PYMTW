@@ -45,14 +45,14 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   for(const e of ext){const a=page.locator(`#tools-grid a.directory-tool[href="${e.url}"]`);assert.equal(await a.getAttribute('target'),'_blank');assert.equal(await a.getAttribute('rel'),'noopener');assert.equal(await a.locator('.directory-tag').innerText(),'External site');}
   const all=hrefs.filter(h=>!/^https:/.test(h)).map(h=>h.replace(/^\.\//,'').replace(/\/$/,'')).sort();
   assert.deepEqual(all,sitemap,'the All view shows every sitemap page exactly once');
-  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 11 guides & 1 external link in all topics/);
+  assert.match(await page.locator('#tool-count').innerText(),/15 tools, 12 guides & 1 external link in all topics/);
   for(const s of sitemap){await search.fill('');await search.fill(items.find(t=>t.slug===s).name);
    assert.equal(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count(),1,'searching its name finds '+s);}
   for(const q of ['rollover','old 401k','IRA','Roth IRA','leaving job','cash out','401k','401(k) rollover','what should I do with my old 401(k)']){
    await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="./guides/old-401k/"]').count(),1,'old-401k for '+q);
    assert.equal(await page.locator('.category-button[aria-pressed=true]').count(),0);}
   await search.fill('rollover');assert.equal(await page.locator('#tools-grid a.directory-tool').first().getAttribute('href'),'./guides/old-401k/');
-  assert.match(await page.locator('#tool-count').innerText(),/1 match for “rollover”/);
+  assert.match(await page.locator('#tool-count').innerText(),/2 matches for “rollover”/);
   for(const [q,s] of [['checkup','checkup'],['laid off','guides/lost-my-job'],['daycare','guides/true-cost-of-a-baby'],['wedding','guides/true-cost-of-a-wedding'],['car insurance','guides/true-cost-of-a-car'],['property tax','guides/true-cost-of-owning-a-home'],['down payment','guides/first-home'],['bitcoin taxes','bitcoin-tax-lot-cleanup'],['pay stub','paycheck-decoder']]){
    await search.fill(q);assert.ok(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count()===1,q+' finds '+s);}
   for(const q of ['dca cost','cash app','cheapest app to buy bitcoin','strike fees','coinbase spread','compare bitcoin apps']){await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/calculator"]').count(),1,q+' finds the DCA cost calculator');}

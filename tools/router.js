@@ -13,6 +13,9 @@ ALL.push(GUIDE_JOB_CHECKLIST);
 var GUIDE_401K = { slug: 'guides/old-401k', icon: '📘', name: 'Guide: What to do with your old 401(k)', desc: 'Leave it, move it to a new plan, roll it to an IRA or Roth IRA, or cash out: rules, costs and a rollover checklist.', time: '7 min read', live: true, boost: 2,
   kw: ['old 401k', 'old 401(k)', 'rollover', 'roll over', 'rolling over', '401k rollover', 'rollover ira', 'roll over 401k', 'cash out 401k', 'cash out my 401k', 'cashing out', 'withdraw 401k', 'rule of 55', 'leaving a job', 'left my job', 'new job', 'changing jobs', 'switching jobs', 'job change', 'lost 401k'] };
 ALL.push(GUIDE_401K);
+var GUIDE_401K_CHECKLIST = { slug: 'guides/old-401k/checklist', icon: '🖨️', name: 'Printable old 401(k) checklist', desc: 'Four phases for a direct rollover: vested balance, loans and company stock, Roth and after-tax splits, the 20% withholding and 60-day rule, then 1099-R and 5498. Tick items off, then print.', time: 'Printable', live: true, boost: 1,
+  kw: ['old 401k checklist', '401k checklist', '401(k) checklist', 'rollover checklist', '401k rollover checklist', 'ira rollover checklist', 'direct rollover checklist', 'direct rollover', 'rollover', 'printable checklist', 'printable', 'checklist', 'pdf', '60-day rule', '1099-r', '5498', 'nua', 'loan offset'] };
+ALL.push(GUIDE_401K_CHECKLIST);
 var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
   kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
 ALL.push(GUIDE_HOME);
