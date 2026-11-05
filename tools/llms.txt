@@ -54,6 +54,11 @@ Pages marked "coming soon" describe tools that are not yet functional.
 - [Bitcoin tax-lot cleanup](https://pymtw.com/tools/bitcoin-tax-lot-cleanup/): Your bitcoin cost basis is what you paid for each purchase (each “tax lot”), and you need it to work out gains or losses when you sell.
 - [Bitcoin household plan](https://pymtw.com/tools/bitcoin-household-plan/): A Bitcoin household plan writes down why you hold Bitcoin, how much and how you buy and sell, where every account and wallet is (without recovery words, keys or passwords), who your executor and helpers are, and when you review it each year, in one printable binder. The plan is free to build; the printable binder is a one-time $29, paid through Stripe. Your answers never leave your browser.
 
+## Newsletters
+
+- [The Long Game — subscribe](https://pymtw.beehiiv.com/subscribe): Free weekly notes on personal finance (Tuesdays) and Bitcoin (Fridays), in plain English.
+- [The Long Game — archive](https://pymtw.beehiiv.com/archive): Published Long Game posts.
+
 ## Optional
 
 - [Sitemap](https://pymtw.com/tools/sitemap.xml): every tools page with last-modified dates.

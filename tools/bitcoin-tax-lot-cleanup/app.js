@@ -28,11 +28,11 @@ function render(){
  const wrap=el('div',undefined,'table-wrap');wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Editable transaction records');wrap.append(table(['Record & source','Account','BTC','USD amount','Review & actions'],rows));list.append(wrap);
  $('pager').hidden=records.length<=25;$('prev').disabled=page===0;$('next').disabled=(page+1)*25>=records.length;$('page-label').textContent=`Page ${page+1} of ${Math.ceil(records.length/25)}`;
 }
-function invalidate(){const had=analysis!==null;analysis=null;$('results').hidden=true;$('results').replaceChildren();$('export-lots').hidden=true;$('review-status').textContent='';$('stale').hidden=!(had||!$('stale').hidden);$('fifo-confirm').checked=false;render();}
+function invalidate(){const had=analysis!==null;analysis=null;$('results').hidden=true;$('results').replaceChildren();$('export-lots').hidden=true;$('result-newsletter').hidden=true;$('review-status').textContent='';$('stale').hidden=!(had||!$('stale').hidden);$('fifo-confirm').checked=false;render();}
 function openEditor(i){if(i===null&&records.length>=C.MAX_ROWS){$('review-status').textContent='The tool supports up to 500 records. Clear entries to begin another set.';return;}editing=i;$('editor').hidden=false;$('editor-title').textContent=i===null?'Add a record':'Edit record '+(i+1);for(const f of C.fields)$('f-'+f).value=i===null?(f==='type'?'buy':''):(records[i][f]||'');if(!$('f-type').value)$('f-type').value='other';scrollTo('editor');$('f-timestamp').focus({preventScroll:true});}
 function closeEditor(){editing=null;$('editor').hidden=true;$('editor').reset();}
 function cancelImport(){generation++;pending=null;$('mapping').hidden=true;$('mapping-fields').replaceChildren();$('csv-sample').replaceChildren();$('file').value='';$('map-confirm').checked=false;}
-function clear(){records=[];analysis=null;page=0;cancelImport();closeEditor();$('results').replaceChildren();$('results').hidden=true;$('export-lots').hidden=true;$('review-status').textContent='';$('import-status').textContent='';$('import-error').hidden=true;$('import-error').textContent='';$('fifo-confirm').checked=false;$('stale').hidden=true;$('example-note').hidden=true;$('pager').hidden=true;render();}
+function clear(){records=[];analysis=null;page=0;cancelImport();closeEditor();$('results').replaceChildren();$('results').hidden=true;$('export-lots').hidden=true;$('result-newsletter').hidden=true;$('review-status').textContent='';$('import-status').textContent='';$('import-error').hidden=true;$('import-error').textContent='';$('fifo-confirm').checked=false;$('stale').hidden=true;$('example-note').hidden=true;$('pager').hidden=true;render();}
 function importError(message){$('import-error').textContent=message;$('import-error').hidden=false;}
 $('file').addEventListener('change',async()=>{
  const file=$('file').files[0];cancelImport();const token=generation;if(!file)return;
@@ -82,7 +82,7 @@ $('example').addEventListener('click',()=>{
 function resultTable(title,headers,rows){$('results').append(el('h3',title));const wrap=el('div',undefined,'table-wrap');wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label',title);wrap.append(table(headers,rows));$('results').append(wrap);}
 function check(){
  if(!$('editor').hidden){$('review-status').textContent='Save or cancel your open record before checking the worksheet.';return;}
- analysis=C.analyze(records);$('results').replaceChildren();$('results').hidden=true;$('export-lots').hidden=true;$('stale').hidden=true;render();
+ analysis=C.analyze(records);$('results').replaceChildren();$('results').hidden=true;$('export-lots').hidden=true;$('result-newsletter').hidden=true;$('stale').hidden=true;render();
  if(!analysis.active){$('review-status').textContent='Add and include at least one record to begin.';return;}
  if(analysis.issues.length){const n=new Set(analysis.issues.map(i=>i.row)).size;$('review-status').textContent=`${n} record${n===1?'':'s'} need attention. Review the notes beside each record. Gains are withheld until these issues are resolved.`;page=Math.floor((analysis.issues[0].row-1)/25);render();return;}
  if(!$('fifo-confirm').checked){$('review-status').textContent='No structural issues found in the included records. Confirm the FIFO illustration above to see the worksheet; this does not verify that your history is complete.';return;}
@@ -92,10 +92,10 @@ function check(){
  resultTable('What remains in each account',['Account','BTC remaining','Remaining basis'],analysis.wallets.map(w=>[w.account,C.fixed(w.qty,8),money(w.basis)]));
  if(analysis.sales.length)resultTable('How sales used your lots',['Sale / source lot','Account','Acquired → sold (UTC)','BTC','Basis','Net proceeds','Gain / loss'],analysis.sales.map(s=>['Record '+s.record+' / lot '+s.origin,s.account,s.acquired+' → '+s.sold,C.fixed(s.qty,8),money(s.basis),money(s.proceeds),money(s.gain)]));
  else $('results').append(el('p','No sales were included. Remaining lots are available in the worksheet.','notice'));
- $('export-lots').hidden=false;
+ $('export-lots').hidden=false;$('result-newsletter').hidden=false;
 }
 $('analyze').addEventListener('click',check);
-$('fifo-confirm').addEventListener('change',()=>{$('results').hidden=true;$('export-lots').hidden=true;$('review-status').textContent='Select “Check my records” to update the worksheet.';});
+$('fifo-confirm').addEventListener('change',()=>{$('results').hidden=true;$('export-lots').hidden=true;$('result-newsletter').hidden=true;$('review-status').textContent='Select “Check my records” to update the worksheet.';});
 function download(name,rows){const url=URL.createObjectURL(new Blob([C.csv(rows)],{type:'text/csv;charset=utf-8'}));const a=el('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('export-records').addEventListener('click',()=>{const audit=C.analyze(records);download('bitcoin-records-review.csv',[
  ['record','included',...C.fields,'source','issues','original_values','worksheet_scope'],
