@@ -1,10 +1,10 @@
 /* Bitcoin Household Plan: the guided flow. Everything happens in this tab.
    This file makes no network requests. Browser storage is used only when the person turns on "Remember".
-   When the paywall flag is on, license.js sends the typed license key (never the answers) to Lemon Squeezy. */
+   The paywall flag is OFF (since 2026-11-04) and license.js is not loaded, so nothing is sent anywhere. */
 (function () {
   'use strict';
   var B = window.HHPBinder, S = window.HHPSafety, LIC = window.HHPLicense, CFG = window.HHP_CONFIG || { paywall: { enabled: false } };
-  var PAY = CFG.paywall || { enabled: false }, PAYWALL = !!PAY.enabled && !!LIC;
+  var PAY = CFG.paywall || { enabled: false }, PAYWALL = !!PAY.enabled && !!LIC && !!document.getElementById('paywall');
   var KEY = 'pymtw-hhp-v1';
   var $ = function (id) { return document.getElementById(id); };
   var form = $('plan-form'), steps = [].slice.call(document.querySelectorAll('.step'));
