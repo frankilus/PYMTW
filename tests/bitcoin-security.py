@@ -50,8 +50,9 @@ for slug in ('paycheck-decoder','explain-my-401k','bitcoin-tax-lot-cleanup','bit
     baseline=subprocess.check_output(['git','show','b7c4ae0:'+name],cwd=ROOT)
     current=(ROOT/name).read_bytes()
     if slug in ('bitcoin-tax-lot-cleanup','bitcoin-household-plan'):
-        # Approved 2026-11-04 (Household Plan paywall OFF): $29/checkout copy removed; still analytics-free.
-        assert b'$29' not in current and b'lemonsqueezy' not in current.lower(),'Paywall copy back: '+slug
+        # Approved 2026-11-04 (Household Plan paywall ON with Stripe): Lemon Squeezy is gone; still analytics-free.
+        assert b'lemonsqueezy' not in current.lower(),'Lemon Squeezy copy back: '+slug
+        if slug=='bitcoin-household-plan': assert b'https://buy.stripe.com/bJe6oJfJqgLo0wq3U86EU03' in current,'Stripe buy link missing'
         assert not re.search(r'<script[^>]+(?:analytics|googletagmanager)',current.decode(),re.I)
     else:
         assert current==baseline,'Private tool changed: '+slug
