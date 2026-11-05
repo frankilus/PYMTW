@@ -60,12 +60,12 @@ for name in paths:
      faq=next(x for x in new_schema['@graph'] if x['@type']=='FAQPage')
      added=faq['mainEntity'].pop(0)
      assert added['name']=='How do I use the tools?'
-     # Approved 2026-10-26 (Household Plan paywall ON) and reverted 2026-11-04 (paywall OFF): the plan's exception is gone, so neither answer mentions $29 or Lemon Squeezy; their original sentences stay verbatim.
+     # Approved 2026-10-26 (Household Plan paywall ON) and switched to Stripe 2026-11-04: the free answer names the $29 binder, neither answer mentions Lemon Squeezy, and their original sentences stay verbatim.
      for q in new_schema['@graph'][[x['@type'] for x in new_schema['@graph']].index('FAQPage')]['mainEntity']:
       oq=next(x for x in old_schema['@graph'] if x['@type']=='FAQPage')['mainEntity']
       oq=next((x for x in oq if x['name']==q['name']),None)
       if oq and q['name']=='Are PYMTW Tools really free?':
-       assert 'Every calculator and guide is free to use, with no signup and no ads.' in q['acceptedAnswer']['text'] and '$29' not in q['acceptedAnswer']['text'];q['acceptedAnswer']['text']=oq['acceptedAnswer']['text']
+       assert 'Every calculator and guide is free to use, with no signup and no ads.' in q['acceptedAnswer']['text'] and 'the plan is free to build, and its printable binder is a one-time $29.' in q['acceptedAnswer']['text'];q['acceptedAnswer']['text']=oq['acceptedAnswer']['text']
       if oq and q['name']=='Is my financial data uploaded anywhere?':
        assert 'Lemon Squeezy' not in q['acceptedAnswer']['text'] and q['acceptedAnswer']['text'].startswith('No. The calculators run entirely in your browser');q['acceptedAnswer']['text']=oq['acceptedAnswer']['text']
      assert new_schema==old_schema,name+' original schema changed beyond FAQ addition'

@@ -20,16 +20,17 @@ assert.match(read('tools/llms.txt'),/https:\/\/pymtw\.com\/tools\/bitcoin-househ
 assert.match(read('tools/index.html'),/<li><a href="\/tools\/bitcoin-household-plan\/">/);
 const html=read('tools/bitcoin-household-plan/index.html');
 assert.match(html,/<link rel="canonical" href="https:\/\/pymtw\.com\/tools\/bitcoin-household-plan\/">/);
-assert.match(html,/connect-src 'none';/,'CSP blocks all network requests (paywall OFF, see bitcoin-household-plan-paywall.cjs)');
+assert.match(html,/connect-src 'none';/,'CSP blocks all network requests (Stripe paywall ON is a plain link, see bitcoin-household-plan-paywall.cjs)');
 assert.doesNotMatch(html,/amzn\.to|amazon\./i,'no affiliate links');
 for(const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(m[1]);
-assert.equal(JSON.parse(read('tools/bitcoin-household-plan/config.js').match(/enabled:\s*(true|false)/)[1]),false,'paywall flag ships OFF');
+assert.equal(JSON.parse(read('tools/bitcoin-household-plan/config.js').match(/enabled:\s*(true|false)/)[1]),true,'paywall flag ships ON (Stripe)');
 for(const f of ['index.html','app.js','binder.js','safety.js','config.js'])assert.doesNotMatch(read('tools/bitcoin-household-plan/'+f),/fetch\(|XMLHttpRequest|sendBeacon|WebSocket/,f+' makes no network calls');
 
 (async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
  const ctx=await browser.newContext({viewport:{width:1280,height:900},acceptDownloads:true,reducedMotion:'reduce'});
- // The paywall ships OFF (since 2026-11-04), so this walk-through (including print) runs as a new visitor with no license record.
- // The OFF state (no unlock panel, no buy link, no outside requests) is covered in bitcoin-household-plan-paywall.cjs.
+ // The paywall ships ON with Stripe (since 2026-11-04). This walk-through (including print) runs with an unlock record;
+ // the locked state, the ?unlock=1&session_id redirect and the Buy link are covered in bitcoin-household-plan-paywall.cjs.
+ await ctx.addInitScript(()=>{try{if(!localStorage.getItem('pymtw-hhp-unlock-v1'))localStorage.setItem('pymtw-hhp-unlock-v1',JSON.stringify({v:1,session:'cs_test_walkthrough',at:Date.now()}));}catch(e){}});
  const page=await ctx.newPage();const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  page.on('request',r=>requests.push({url:r.url(),method:r.method(),body:r.postData()||''}));
