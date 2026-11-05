@@ -20,17 +20,16 @@ assert.match(read('tools/llms.txt'),/https:\/\/pymtw\.com\/tools\/bitcoin-househ
 assert.match(read('tools/index.html'),/<li><a href="\/tools\/bitcoin-household-plan\/">/);
 const html=read('tools/bitcoin-household-plan/index.html');
 assert.match(html,/<link rel="canonical" href="https:\/\/pymtw\.com\/tools\/bitcoin-household-plan\/">/);
-assert.match(html,/connect-src https:\/\/api\.lemonsqueezy\.com;/,'CSP allows only the license API (see bitcoin-household-plan-paywall.cjs)');
+assert.match(html,/connect-src 'none';/,'CSP blocks all network requests (paywall OFF, see bitcoin-household-plan-paywall.cjs)');
 assert.doesNotMatch(html,/amzn\.to|amazon\./i,'no affiliate links');
 for(const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(m[1]);
-assert.equal(JSON.parse(read('tools/bitcoin-household-plan/config.js').match(/enabled:\s*(true|false)/)[1]),true,'paywall flag ships ON');
+assert.equal(JSON.parse(read('tools/bitcoin-household-plan/config.js').match(/enabled:\s*(true|false)/)[1]),false,'paywall flag ships OFF');
 for(const f of ['index.html','app.js','binder.js','safety.js','config.js'])assert.doesNotMatch(read('tools/bitcoin-household-plan/'+f),/fetch\(|XMLHttpRequest|sendBeacon|WebSocket/,f+' makes no network calls');
 
 (async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
  const ctx=await browser.newContext({viewport:{width:1280,height:900},acceptDownloads:true,reducedMotion:'reduce'});
- // The paywall ships ON, so this walk-through (including print) runs as a returning buyer: a stored license record, which is never re-checked on load.
- // The locked state, key entry and the mocked License API are covered in bitcoin-household-plan-paywall.cjs.
- await ctx.addInitScript(()=>{try{localStorage.setItem('pymtw-hhp-license-v1',JSON.stringify({v:1,key:'38B1460A-5104-4067-A91D-77B872934D51',instance:'test',productId:1475812,storeId:508088,at:'2026-10-26T00:00:00.000Z'}));}catch(e){}});
+ // The paywall ships OFF (since 2026-11-04), so this walk-through (including print) runs as a new visitor with no license record.
+ // The OFF state (no unlock panel, no buy link, no outside requests) is covered in bitcoin-household-plan-paywall.cjs.
  const page=await ctx.newPage();const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  page.on('request',r=>requests.push({url:r.url(),method:r.method(),body:r.postData()||''}));

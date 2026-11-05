@@ -48,6 +48,12 @@ assert 'https://pymtw.com/bitcoin/security/' in (ROOT/'sitemap.xml').read_text()
 for slug in ('paycheck-decoder','explain-my-401k','bitcoin-tax-lot-cleanup','bitcoin-household-plan'):
     name='tools/'+slug+'/index.html'
     baseline=subprocess.check_output(['git','show','b7c4ae0:'+name],cwd=ROOT)
-    assert (ROOT/name).read_bytes()==baseline,'Private tool changed: '+slug
+    current=(ROOT/name).read_bytes()
+    if slug in ('bitcoin-tax-lot-cleanup','bitcoin-household-plan'):
+        # Approved 2026-11-04 (Household Plan paywall OFF): $29/checkout copy removed; still analytics-free.
+        assert b'$29' not in current and b'lemonsqueezy' not in current.lower(),'Paywall copy back: '+slug
+        assert not re.search(r'<script[^>]+(?:analytics|googletagmanager)',current.decode(),re.I)
+    else:
+        assert current==baseline,'Private tool changed: '+slug
     assert not re.search(r'<script[^>]+(?:analytics|googletagmanager)',baseline.decode(),re.I)
 print(f'PASS: {checked} local destinations/anchors; 15 primary references; all stages, six custody approaches, eight non-sensitive checklist inputs; advisory/recovery guardrails; homepage/shared-nav discovery; four private tools unchanged and analytics-free.')
