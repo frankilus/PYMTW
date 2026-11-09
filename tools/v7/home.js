@@ -114,6 +114,7 @@
  const searchPool=[carGuide,babyGuide,homeCostGuide,weddingGuide,...toolData.filter(t=>t.live),checkup,jobGuide,oldPlanGuide,homeGuide];
  [...guideData,...extData].forEach(g=>{if(!searchPool.some(t=>t.slug===g.slug))searchPool.push(g);}); // new catalog guides join the hero search too
  const aliases=[
+  [/severance (agreement|package|offer|contract|terms|review|release|checklist)|separation agreement|release of claims|general release|waiver of claims|owbpa|non ?compete|non ?solicit|non ?disparage|clawback/,['guides/lost-my-job/severance-review','guides/lost-my-job']],
   [/(401|403|rollover|roll over|ira)[a-z0-9 ()]*checklist|checklist[a-z0-9 ()]*(401|403|rollover|roll over|ira)/,['guides/old-401k/checklist','guides/old-401k']],
   [/(car|auto|vehicle|dealer)[a-z ]*checklist|checklist[a-z ]*(car|auto|vehicle|dealer)/,['guides/true-cost-of-a-car/checklist','guides/true-cost-of-a-car']],
   [/(job loss|laid off|layoff|lost (my )?job|unemploy|severance)[a-z ]*checklist|checklist[a-z ]*(job|layoff|laid off|unemploy)/,['guides/lost-my-job/checklist','guides/lost-my-job']],
