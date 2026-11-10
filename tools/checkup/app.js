@@ -3,6 +3,19 @@ var C = window.PT_CHECKUP, KEY = 'pymtw-checkup-v1', a = {}, i = 0;
 var $ = function (s) { return document.querySelector(s); };
 var remember = $('#remember');
 try { var saved = localStorage.getItem(KEY); if (saved) { a = JSON.parse(saved); remember.checked = true; } } catch (e) {}
+// One-time homepage handoff: validate, consume and clear it before rendering.
+// It stays within this browser tab and is never read from the URL.
+try {
+  var entryKey = 'pymtw-checkup-entry-v1', entryRaw = sessionStorage.getItem(entryKey);
+  sessionStorage.removeItem(entryKey);
+  if (entryRaw) {
+    var entry = JSON.parse(entryRaw), age = Date.now() - entry.created;
+    if (entry.version === 1 && typeof entry.created === 'number' && age >= 0 && age <= 600000 &&
+        ['lt1', '1to3', '3to6', '6plus'].indexOf(entry.answer) !== -1) {
+      a.ef = entry.answer; i = 1;
+    }
+  }
+} catch (e) {}
 function save() { try { if (remember.checked) localStorage.setItem(KEY, JSON.stringify(a)); else localStorage.removeItem(KEY); } catch (e) {} }
 remember.onchange = save;
 function list() { return C.visible(a); }
