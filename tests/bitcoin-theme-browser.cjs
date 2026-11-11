@@ -30,8 +30,16 @@ assert.ok(contrast([255,255,255],[165,68,21])>=4.5,'button contrast');
    await page.goto(base+route,{waitUntil:'domcontentloaded'});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${width} ${route}`);
   }
  }
- await page.goto(base+'/start-here.html',{waitUntil:'domcontentloaded'});await page.locator('.skip-link').focus();assert.equal(await page.locator('.skip-link').evaluate(e=>getComputedStyle(e).color),'rgb(255, 255, 255)');
- await page.locator('#nav-toggle').click();assert.equal(await page.locator('#nav-links').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 252, 247)');
+ await page.goto(base+'/start-here.html',{waitUntil:'domcontentloaded'});
+ // Learning pages ship a skip link as class="skip" (not .skip-link) and wrap the header instead of a #nav-toggle hamburger.
+ const skip=page.locator('a.skip, a.skip-link');
+ await skip.focus();
+ assert.ok(await skip.evaluate(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&r.top>=0;}),'skip link is visible on focus');
+ if(await page.locator('#nav-toggle').count()){
+  await page.locator('#nav-toggle').click();assert.equal(await page.locator('#nav-links').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 252, 247)');
+ }else{
+  assert.ok(await page.locator('header.shell.header nav[aria-label="Main"]').isVisible());
+ }
  if(process.env.SCREENSHOT_DIR){
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:900});

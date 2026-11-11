@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = '864a189'
+BASE = '9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
 
 class Page(HTMLParser):
     def __init__(self, text):

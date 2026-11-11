@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import subprocess, json, re, html
 ROOT=Path(__file__).resolve().parents[1]
-BASE='5a6e4b5984bb4190afb4b1753889b4fd20d375ac'
+BASE='9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
 class Page(HTMLParser):
     def __init__(self,text):
         super().__init__(); self.nodes=[]; self.text=[]; self.skip=0; self.feed(text)
@@ -21,7 +21,12 @@ checked=0
 for name in changed:
     assert not name.startswith('tools/'), 'Private tool changed: '+name
     if not name.endswith('.html'): continue
-    a,b=Page(before(name)),Page((ROOT/name).read_text())
+    # Pages added after the wording baseline (e.g. bitcoin/history from PR #71) have no ancestor to diff.
+    try:
+        earlier=before(name)
+    except subprocess.CalledProcessError:
+        continue
+    a,b=Page(earlier),Page((ROOT/name).read_text())
     assert [v for t,v in a.nodes if t=='form']==[v for t,v in b.nodes if t=='form'], name
     # Consultation email labels are deliberately clearer; routing and spam protection stay unchanged.
     email_pages={'programs.html','workshop-professionals.html','workshop-self-custody.html','workshop-family.html'}

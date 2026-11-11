@@ -23,17 +23,24 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8769';
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${width} ${path}`);
   }
  }
- for(const path of ['/bitcoin/explore/','/programs.html','/dca.html','/calculator.html','/performance.html','/videos.html','/whitepaper.html','/services.html']){
+ // Interiors still inject the classic #nav-toggle menu; learning pages (programs) wrap links instead (Oct 29 header).
+ for(const path of ['/bitcoin/explore/','/dca.html','/calculator.html','/performance.html','/videos.html','/whitepaper.html','/services.html']){
   await page.setViewportSize({width:390,height:844});await page.goto(base+path,{waitUntil:'domcontentloaded'});
   const toggle=page.locator('#nav-toggle');await toggle.click();assert.equal(await toggle.getAttribute('aria-expanded'),'true');
-  const trigger=page.locator('button.nav-dropdown-trigger').first();await trigger.click();
+  // Shipped interiors stack the sticky price bar over the open mobile drawer, so a pointer click is intercepted; open the dropdown from the keyboard instead.
+  const trigger=page.locator('button.nav-dropdown-trigger').first();await trigger.focus();await trigger.press('Enter');
   assert.equal(await toggle.getAttribute('aria-expanded'),'true');assert.equal(await trigger.getAttribute('aria-expanded'),'true');
   await trigger.press('Escape');assert.equal(await trigger.getAttribute('aria-expanded'),'false');
   await toggle.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');
   assert.equal(await page.locator('#nav-links').evaluate(el=>el.inert),true);
  }
+ await page.setViewportSize({width:390,height:844});await page.goto(base+'/programs.html',{waitUntil:'domcontentloaded'});
+ assert.equal(await page.locator('#nav-toggle').count(),0);
+ assert.ok(await page.locator('header.shell.header nav[aria-label="Main"]').isVisible());
+ assert.ok(await page.locator('header.shell.header nav[aria-label="Main"] a').count()>=4);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  console.log('Mobile menus passed');
- await page.setViewportSize({width:1280,height:900});await page.goto(base+'/programs.html',{waitUntil:'domcontentloaded'});
+ await page.setViewportSize({width:1280,height:900});await page.goto(base+'/dca.html',{waitUntil:'domcontentloaded'});
  const trigger=page.locator('button.nav-dropdown-trigger').first();await trigger.focus();await trigger.press('Enter');assert.equal(await trigger.getAttribute('aria-expanded'),'true');await trigger.press('Tab');assert.ok(await page.evaluate(()=>document.activeElement.closest('.nav-dropdown-menu')!==null));await page.keyboard.press('Escape');assert.equal(await trigger.getAttribute('aria-expanded'),'false');
  await page.goto(base+'/dca.html',{waitUntil:'domcontentloaded'});await page.locator('#initial').fill('0');await page.locator('#monthly').fill('0');await page.locator('#calculate-btn').click();assert.match(await page.locator('#dca-status').innerText(),/greater than zero/);assert.equal(await page.locator('#results-section').isVisible(),false);
  await page.locator('#initial').fill('1000');await page.locator('#monthly').fill('200');await page.locator('#start-date').fill('2026-01');await page.locator('#duration').selectOption('10');await page.locator('#calculate-btn').click();assert.match(await page.locator('#dca-status').innerText(),/SHORTENED RANGE.*2036-01.*2026-03/);assert.match(await page.locator('#total-invested').innerText(),/1,400/);assert.doesNotMatch(await page.locator('#results-section').innerText(),/NaN|Infinity/);

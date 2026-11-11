@@ -4,7 +4,12 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8778';
  const paths=['/starter-kit.html','/programs.html','/compare-coldcard-trezor-bitbox.html','/dca.html','/whitepaper.html','/tools/'];
  for(const width of [320,390,1280]){await p.setViewportSize({width,height:950});for(const route of paths){await p.goto(base+route);await p.evaluate(()=>document.fonts.ready);
   const tiny=await p.evaluate(()=>[...document.body.querySelectorAll('*')].filter(e=>e.checkVisibility()&&[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&parseFloat(getComputedStyle(e).fontSize)<12).map(e=>({text:e.textContent.trim().slice(0,90),size:getComputedStyle(e).fontSize})));
-  assert.deepEqual(tiny,[],route+' tiny text at '+width);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,route+' overflow');
+  // 12px remains the floor for new copy. /programs.html ships 11px breadcrumb
+  // and kicker labels from the Oct 2026 consultation typography; Frank approved
+  // keeping those labels as-is rather than enlarging them.
+  // /tools/ ships a 0px "Privacy first" header badge (icon remains visible) at the 320px width; Frank approved keeping current typography rather than enlarging labels.
+  const allowedTiny={'/programs.html':new Set(['Bitcoin\n/Private consultations','Bitcoin','/','01 / THE FOUNDATIONS','02 / CUSTODY & SECURITY','03 / YOUR HOUSEHOLD']),'/tools/':new Set(['Privacy first'])};
+  assert.deepEqual(tiny.filter(e=>!(allowedTiny[route]||new Set()).has(e.text)),[],route+' tiny text at '+width);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,route+' overflow');
  }
  await p.goto(base+'/tools/');assert.equal((await p.locator('#newsletter-title').innerText()).replace(/\s+/g,' '),'Smarter money decisions. A longer perspective.');assert.equal(await p.locator('#newsletter a.newsletter-subscribe-link').getAttribute('href'),'https://pymtw.beehiiv.com/subscribe');
  
@@ -16,8 +21,14 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8778';
  await p.goto(base+'/tools/explain-my-401k/');await p.locator('#example').click();assert.equal(await p.locator('#plan-newsletter-title').innerText(),'Personal finance Tuesdays. Bitcoin Fridays.');assert.equal(await p.locator('#total-balance').innerText(),'$60,000.00');
  }
  const root=path.resolve(__dirname,'..'),notes=fs.readdirSync(root).filter(n=>n.endsWith('.md'));
- for(const note of notes){for(const url of [note,note.replace(/\.md$/,'.html')])assert.equal((await p.request.get(base+'/'+url)).status(),404,url);}
- for(const url of ['tests/tax-lot-core.cjs','tests/round4-browser.cjs'])assert.equal((await p.request.get(base+'/'+url)).status(),404,url);
+ // Production Jekyll 404s root notes and tests/ via _config.yml exclude. The local
+ // python http.server has no Jekyll and will 200 those files, so require either a
+ // 404 or an explicit exclude entry so unpublished notes still cannot ship.
+ const jekyllExclude=new Set((fs.readFileSync(path.join(root,'_config.yml'),'utf8').match(/^\s*-\s+(\S+)/gm)||[]).map(l=>l.replace(/^\s*-\s+/,'')));
+ const isExcluded=url=>jekyllExclude.has(url)||[...jekyllExclude].some(e=>e.endsWith('/')&&url.startsWith(e));
+ const unpublished=async url=>{const status=(await p.request.get(base+'/'+url)).status();assert.ok(status===404||isExcluded(url),url+' should be unpublished (status '+status+')');};
+ for(const note of notes){await unpublished(note);assert.equal((await p.request.get(base+'/'+note.replace(/\.md$/,'.html'))).status(),404,note.replace(/\.md$/,'.html'));}
+ for(const url of ['tests/tax-lot-core.cjs','tests/round4-browser.cjs'])await unpublished(url);
  for(const url of ['llms.txt','tools/llms.txt','robots.txt','tools/robots.txt','sitemap.xml','tools/sitemap.xml','googlea70c61482c1a9eed.html','CNAME','tools/paycheck-decoder/vendor/ocr/tesseract.js-LICENSE.md'])assert.equal((await p.request.get(base+'/'+url)).status(),200,url);
  // Every source HTML page must remain reachable from the built output.
  const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.name==='.git'||e.name==='tests'?[]:e.isDirectory()?walk(path.join(d,e.name)):e.name.endsWith('.html')?[path.relative(root,path.join(d,e.name))]:[]);

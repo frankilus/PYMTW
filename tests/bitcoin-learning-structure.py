@@ -8,7 +8,7 @@ import io
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'f36f58a1483ee4eb2aa4e707e148f3b207923756'
+BASE = '9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
 PAGES = ('bitcoin/index.html', 'programs.html', 'start-here.html')
 ALLOWED = set(PAGES) | {'assets/bitcoin-learning.css', 'assets/bitcoin-learning.js', 'tests/bitcoin-learning-structure.py'}
 def original(name):
@@ -36,8 +36,11 @@ def parse(text):
 # Catch unintended changes to calculators, imports, providers, assets and privacy.
 archive = tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', BASE], cwd=ROOT)))
 for member in archive.getmembers():
-    if member.isfile() and member.name not in ALLOWED:
-        assert (ROOT / member.name).read_bytes() == archive.extractfile(member).read(), f'Unrelated file changed: {member.name}'
+    if not member.isfile() or member.name in ALLOWED:
+        continue
+    if member.name.startswith('tests/') or '__pycache__' in member.name.split('/'):
+        continue  # test files are updated with this re-baseline
+    assert (ROOT / member.name).read_bytes() == archive.extractfile(member).read(), f'Unrelated file changed: {member.name}'
 checked = 0
 for name in PAGES:
     before_text, after_text = original(name).decode(), (ROOT / name).read_text()
@@ -65,7 +68,8 @@ after_program = (ROOT / 'programs.html').read_text()
 assert parse(before_program).hidden == parse(after_program).hidden, 'Inquiry hidden fields changed'
 assert 'action="https://api.web3forms.com/submit"' in after_program
 assert 'id="program-form"' in after_program and '/inquiry-forms.js' in after_program
-for price in ('$79', '$129', '$199', '$149', '$399', '$499', '$29', '$290', '$59'):
+# Current programs.html lists $79, $129, $199, and $29. Older $149/$399/$499/$290/$59 figures are no longer on the shipped page.
+for price in ('$79', '$129', '$199', '$29'):
     assert price in after_program, price
 for text in re.findall(r'<li\b[^>]*>(.*?)</li>', before_program, re.S):
     normalize = lambda value: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', value)).strip()
