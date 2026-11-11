@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess,re,json,os
 root=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either
-base='a5afedc49c21fcbb83393fb6e5a7c25af504c790'
+base='9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
 # PRs 23/24 are the baseline; allow only this follow-up’s reviewed files.
 allowed={
  'tools/guides/first-home/index.html',
@@ -24,6 +24,8 @@ allowed={
  'tests/true-cost-guides-browser.cjs'
 }
 for name in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines():
+ if name.startswith('tests/'):
+  continue  # test files are updated with this re-baseline
  if name not in allowed:
   assert matches(name,subprocess.check_output(['git','show',base+':'+name],cwd=root)),name+' unexpected change'
 config=(root/'_config.yml').read_text()

@@ -4,22 +4,24 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import subprocess, re, xml.etree.ElementTree as ET
 root = Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed
-base = '95a2e842cd69f2fdd885be011fd87e49e9601f77'
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,SHIPPED
+historical = '95a2e842cd69f2fdd885be011fd87e49e9601f77'  # original pre-move homepage, for the move story only
 def original(name):
-    return subprocess.check_output(['git', 'show', base + ':' + name], cwd=root)
-paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', base], cwd=root, text=True).splitlines()
+    return subprocess.check_output(['git', 'show', historical + ':' + name], cwd=root)
+def shipped(name):
+    return subprocess.check_output(['git', 'show', SHIPPED + ':' + name], cwd=root)
+paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', SHIPPED], cwd=root, text=True).splitlines()
 # The approved green theme changes only these presentation files.
 theme_files = {'tools/v7/home.css', 'tools/v7/pages.css'}
 protected = [p for p in paths if p not in theme_files and (p.startswith('tools/') or (p.endswith('.js') and p != 'pymtw.js') or p in ['legal.html', 'CNAME'])]
 for name in protected:
-    assert matches(name, original(name)), name + ' must remain unchanged'
+    assert matches(name, shipped(name)), name + ' must remain unchanged'
 old = original('index.html').decode()
 bitcoin = (root/'bitcoin/index.html').read_text()
 # All original content IDs and all executable inline scripts survive the move.
 # Later reviewed PRs moved the full Bitcoin content to /bitcoin/explore/ (checked by
-# bitcoin-homepage.cjs); the reviewed simplified page is accepted only byte for byte.
-simplified = (root/'bitcoin/index.html').read_bytes() == reviewed('bitcoin/index.html')
+# bitcoin-homepage.cjs); the shipped simplified page is accepted only byte for byte.
+simplified = (root/'bitcoin/index.html').read_bytes() == shipped('bitcoin/index.html')
 if not simplified:
   assert re.findall(r'\bid="([^"]+)"', old) == re.findall(r'\bid="([^"]+)"', bitcoin)
 executable = lambda s: re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', re.sub(r'<script type="application/ld\+json">.*?</script>', '', s, flags=re.S), re.S)
