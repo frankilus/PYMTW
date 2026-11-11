@@ -42,6 +42,13 @@ PT.track = function (name, title) {
   try { goatcounter.count({ path: 'event/' + slug + '/' + name, title: title || name, event: true }); } catch (e) {}
 };
 
+/* Count clicks on newsletter (The Long Game) links per page, so we can see which pages send subscribers.
+   Records only event/<page>/nl-click, never anything typed. */
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest ? e.target.closest('a[href*="beehiiv.com"]') : null;
+  if (a) PT.track('nl-click', 'Newsletter link clicked');
+}, true);
+
 /* Fire once when the newsletter section scrolls into view. */
 (function () {
   function watch() {

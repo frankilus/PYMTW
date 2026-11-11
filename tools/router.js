@@ -19,6 +19,9 @@ ALL.push(GUIDE_401K);
 var GUIDE_401K_CHECKLIST = { slug: 'guides/old-401k/checklist', icon: '🖨️', name: 'Printable old 401(k) checklist', desc: 'Four phases for a direct rollover: vested balance, loans and company stock, Roth and after-tax splits, the 20% withholding and 60-day rule, then 1099-R and 5498. Tick items off, then print.', time: 'Printable', live: true, boost: 1,
   kw: ['old 401k checklist', '401k checklist', '401(k) checklist', 'rollover checklist', '401k rollover checklist', 'ira rollover checklist', 'direct rollover checklist', 'direct rollover', 'rollover', 'printable checklist', 'printable', 'checklist', 'pdf', '60-day rule', '1099-r', '5498', 'nua', 'loan offset'] };
 ALL.push(GUIDE_401K_CHECKLIST);
+var GUIDE_CHECKLISTS = { slug: 'checklists', icon: '🖨️', name: 'All printable checklists', desc: 'Five free checklists in one place: lost my job, severance agreement, old 401(k), first home and car buying. Tick items off, then print. No email needed.', time: 'Printable', live: true, boost: 0,
+  kw: ['checklists', 'all checklists', 'printable checklists', 'free checklists', 'money checklist', 'financial checklist', 'personal finance checklist', 'free printable'] };
+ALL.push(GUIDE_CHECKLISTS);
 var GUIDE_HOME = { slug: 'guides/first-home', icon: '🏠', name: 'Guide: Buying your first home', desc: 'The real upfront cash, affordability, rates, PMI, pre-approval, inspections, escrow and year-one costs.', time: '6 min read', live: true, boost: 1,
   kw: ['first home', 'first-time', 'first time buyer', 'buying a home', 'buy a home', 'buy a house', 'buying a house', 'home', 'house', 'mortgage', 'pmi', 'closing costs', 'down payment', 'pre-approval', 'preapproval', 'prequalification', 'home inspection', 'escrow'] };
 ALL.push(GUIDE_HOME);
