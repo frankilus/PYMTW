@@ -33,7 +33,7 @@ for bad in ['capitalize','amzn.to','?ref=','utm_','affiliate']:assert bad not in
 # local links exist
 for h in re.findall(r'href="(\.\./[^"#]*)"',s):assert (p.parent/h).resolve().joinpath('index.html').exists() or (p.parent/h).resolve().exists(),h
 # wiring
-assert f'<url><loc>{URL}</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq></url>' in (R/'tools/sitemap.xml').read_text()
+assert re.search(re.escape(f'<url><loc>{URL}</loc><lastmod>')+r'20\d\d-\d\d-\d\d'+re.escape('</lastmod><changefreq>monthly</changefreq></url>'),(R/'tools/sitemap.xml').read_text())  # lastmod tracks the page's real last change
 llms=(R/'tools/llms.txt').read_text();sec=llms.split('## Guides')[1].split('\n## ')[0];assert f'({URL})' in sec
 assert "slug: 'guides/old-401k'" in (R/'tools/router.js').read_text() and "slug:'guides/old-401k'" in (R/'tools/v7/home.js').read_text()
 home=(R/'tools/index.html').read_text();grid=re.search(r'<div class="life-guides-grid">(.*?)</section>',home,re.S)[1]
