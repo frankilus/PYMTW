@@ -1,16 +1,18 @@
 /* Shared PYMTW identity and header geometry across the parent, Bitcoin and tools. */
 .pymtw-brand.pymtw-brand {
   display:inline-flex; flex-direction:row; align-items:center; justify-content:flex-start;
-  gap:10px; flex-shrink:0; margin:0; padding:0; border:0; height:36px;
-  font:800 24px/1 Arial,Helvetica,sans-serif; letter-spacing:-1px;
-  color:#292b29; text-decoration:none; background:none;
-  -webkit-text-fill-color:#292b29;
+  gap:10px; flex-shrink:0; margin:0; padding:0; border:0; height:44px;
+  font:700 22px/1.05 Arial,Helvetica,sans-serif; letter-spacing:.04em;
+  color:#1b1f1d; text-decoration:none; background:none;
+  -webkit-text-fill-color:currentColor;
 }
 .pymtw-brand .pymtw-brand-icon { display:block; width:36px; height:36px; max-width:none; flex:none; }
-.pymtw-brand .pymtw-brand-name { font:inherit; color:inherit; letter-spacing:inherit; }
+.pymtw-brand.pymtw-brand .pymtw-brand-words { display:grid; gap:3px; text-align:left; white-space:nowrap; }
+.pymtw-brand .pymtw-brand-name { display:block; font:700 22px/1.05 Arial,Helvetica,sans-serif; color:#1b1f1d; letter-spacing:.04em; -webkit-text-fill-color:currentColor; }
+.pymtw-brand .pymtw-brand-tagline { display:block; font:500 12px/1.35 Arial,Helvetica,sans-serif; color:#4a524e; letter-spacing:0; -webkit-text-fill-color:currentColor; }
 header.shell.header, .header > .header-inner, .nav-container, .bk-nav-inner, .pb-nav-inner,
 body > nav > .wrap:has(> .pymtw-brand) {
-  box-sizing:border-box; width:100%; max-width:1200px; margin-inline:auto;
+  box-sizing:border-box; width:100%; max-width:1208px; margin-inline:auto;
   padding:0 24px; height:76px; min-height:76px;
   display:flex; align-items:center; justify-content:space-between;
 }
@@ -33,7 +35,7 @@ body.pymtw-page #site-header, body.bitcoin-with-price #site-header, .navbar { to
 /* Keep the alignment independent of older custom scrollbar and touch-target rules. */
 html { scrollbar-gutter:stable; }
 ::-webkit-scrollbar { width:15px; }
-.pymtw-brand.pymtw-brand { min-height:36px; }
+.pymtw-brand.pymtw-brand { min-height:44px; }
 header.shell.header { height:77px; min-height:77px; }
 @media(max-width:768px) {
   header.shell.header { height:69px; min-height:69px; }
@@ -52,3 +54,17 @@ header.shell.header { height:77px; min-height:77px; }
   .header-right { gap:12px; }
   .header .private { font-size:0; gap:0; }
 }
+/* Keep both checklist navigation links readable beside the full brand on phones. */
+@media(max-width:360px) {
+  body > nav > .wrap:has(> .nav-links) {
+    height:auto; min-height:112px; padding-block:12px; align-items:flex-start;
+  }
+  body > nav > .wrap > .nav-links {
+    flex-direction:column; align-items:flex-end; flex-shrink:0; gap:0;
+  }
+  body > nav > .wrap > .nav-links > a { white-space:nowrap; min-height:44px; display:flex; align-items:center; }
+  .site-header > .container { width:calc(100% - 48px); }
+}
+/* The parent homepage shares the same first-row logo baseline. */
+.site-header { padding-top:14px; }
+@media(max-width:768px) { .site-header { padding-top:12px; } }
