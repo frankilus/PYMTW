@@ -21,7 +21,9 @@ for(const width of [320,390,1280]){await p.setViewportSize({width,height:900});
   await p.goto(base+route);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,route+' overflow '+width);
  }
 }
-await p.goto(base+'/tools/debt-payoff-planner/');for(const button of await p.locator('#debts .x').all()){const b=await button.boundingBox();assert.ok(b.width>=44&&b.height>=44);}
+await p.goto(base+'/tools/debt-payoff-planner/');await p.evaluate(()=>document.fonts.ready);
+// CSS min size is 44px; Playwright boundingBox can report ~43.9999 after a fractional Y (subpixel), so compare rounded sizes.
+for(const button of await p.locator('#debts .x').all()){const b=await button.boundingBox();assert.ok(Math.round(b.width)>=44&&Math.round(b.height)>=44);}
 await p.setViewportSize({width:390,height:900});await p.goto(base+'/tools/debt-payoff-planner/');await p.locator('#add').click();assert.equal(await p.locator('#debts tbody tr').count(),5);await p.locator('#debts .x').last().click();assert.equal(await p.locator('#debts tbody tr').count(),4);
 for(const route of ['/members.html','/dashboard.html']){await p.goto(base+route);assert.equal(await p.locator('meta[name=robots]').getAttribute('content'),'noindex');assert.equal(await p.locator('input').count(),0);assert.ok(await p.getByRole('heading',{name:'Not yet available.'}).isVisible());}
 await p.route(base+'/missing/deep/path',r=>r.fulfill({status:404,contentType:'text/html',body:fs.readFileSync(path.join(__dirname,'../404.html'),'utf8')}));

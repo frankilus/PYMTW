@@ -10,10 +10,10 @@ from pathlib import Path
 import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
-# Shipped main as of 2026-11-11 (checklists hub, 9430efd). Scope guards
-# compare against this commit so they still catch later accidental changes
-# after accepting pages already live on that date.
-SHIPPED='9430efdc8b2832495b2e54b7107bff64518df262'
+# Shipped main as of 2026-11-12 (brand lockup PR #86 + share-card copy, c83d5b1).
+# Scope guards compare against this commit so they still catch later accidental
+# changes after accepting pages already live on that date.
+SHIPPED='c83d5b10b0f1f0e8109e93f9a96f9429ecbcf7f9'
 # Exact edits made by fix/tests-and-small-ui-2026-10-25.
 APPROVED_EDITS={
  'tools/v7/home.css':[('.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px}','.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center}')],
@@ -213,7 +213,7 @@ FOOTER_PRIVACY_EDITS=[('The newsletter signup form is run by <a href="https://ww
 for _g in ['first-home', 'lost-my-job', 'old-401k', 'true-cost-of-a-baby', 'true-cost-of-a-car', 'true-cost-of-a-wedding', 'true-cost-of-owning-a-home']:
  APPROVED_EDITS.setdefault('tools/guides/'+_g+'/index.html',[]).extend(FOOTER_PRIVACY_EDITS)
 # Tests updated 2026-10-28 to assert the owner-approved PR #55 newsletter copy (The Long Game, pymtw.beehiiv.com/subscribe, no embedded form) instead of the retired Next Dollar copy.
-THIS_PR_TESTS|={'tests/round2-browser.cjs','tests/round3-browser.cjs','tests/round4-browser.cjs','tests/v7-browser.cjs','tests/v7-newsletter.cjs','tests/old-401k-static.py','tests/round2-static.py','tests/round3-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
+THIS_PR_TESTS|={'tests/round2-browser.cjs','tests/round3-browser.cjs','tests/round4-browser.cjs','tests/v7-browser.cjs','tests/v7-newsletter.cjs','tests/old-401k-static.py','tests/round2-static.py','tests/round3-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py','tests/site-audit-browser.cjs'}
 # Exact edits made by feat/lost-my-job-checklist (2026-10-28): add the printable lost-my-job checklist to the guide, catalog, search, sitemap and llms.txt.
 APPROVED_EDITS.setdefault('tools/guides/lost-my-job/index.html',[]).extend([('cashing out your 401(k) if you can.</p>\n', 'cashing out your 401(k) if you can.</p>\n  <a class="toolcard light" href="checklist/" id="get-checklist"><div><small>Free printable · one page per phase</small><b>Get the printable 90-day checklist</b></div><span class="go">Open →</span></a>\n'), ('<span class="go">Start →</span></a>\n    </div></div>\n  </section>\n', '<span class="go">Start →</span></a>\n      <a class="toolcard" href="checklist/"><div><small>Next step · free printable</small><b>Get the printable checklist: 42 items, 72 hours to day 90</b></div><span class="go">Open →</span></a>\n    </div></div>\n  </section>\n'), ('ed</h2><ul', 'ed</h2><ul><li><a href="checklist/"><b>Printable lost-my-job checklist</b><span>Four phases, one page each. Tick items off, then print or save as a PDF.</span></a></li>')])
 APPROVED_EDITS.setdefault('tools/catalog.js',[]).extend([('"final paycheck"]},\n', '"final paycheck"]},\n {"slug": "guides/lost-my-job/checklist", "kind": "guide", "v7icon": "route", "name": "Printable lost-my-job checklist", "desc": "Four phases from the first 72 hours to day 90: unemployment, severance, health coverage, your 401(k) and the job search. Tick items off, then print.", "kw": ["lost my job checklist", "job loss checklist", "layoff checklist", "laid off checklist", "unemployment checklist", "severance checklist", "printable checklist", "printable", "checklist", "pdf", "cobra deadline", "what to do after a layoff", "90 days"]},\n'), ('"severance-runway", "guides/lost-my-job"]', '"severance-runway", "guides/lost-my-job", "guides/lost-my-job/checklist"]'), ('"guides/lost-my-job", "guides/old-401k"', '"guides/lost-my-job", "guides/lost-my-job/checklist", "guides/old-401k"')])
@@ -275,3 +275,5 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/guard-baseline.cjs',
  'tests/bitcoin-resources-browser.cjs','tests/bitcoin-browser.cjs',
  'tests/bitcoin-theme-browser.cjs','tests/bitcoin-interiors-browser.cjs',
  'tests/round2-browser.cjs','tests/round4-browser.cjs'}
+# 2026-11-12: re-baseline scope guards and header/lockup expectations to accept shipped main (c83d5b1).
+THIS_PR_TESTS|={'tests/guard_baseline.py','tests/401k-browser.cjs','tests/401k-import-browser.cjs','tests/paycheck-import-browser.cjs','tests/money-homepage-browser.cjs','tests/bitcoin-book-comparison.py','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-security.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py','tests/site-audit-browser.cjs'}
