@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import subprocess,re,json
 ROOT=Path(__file__).resolve().parents[1]
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
 class Page(HTMLParser):
     def __init__(self):
         super().__init__();self.ids=[];self.links=[];self.inputs=[];self.scripts=[];self.headings=[]
@@ -47,7 +48,8 @@ assert '"href": "/bitcoin/security/"' in (ROOT/'pymtw.js').read_text()
 assert 'https://pymtw.com/bitcoin/security/' in (ROOT/'sitemap.xml').read_text()
 for slug in ('paycheck-decoder','explain-my-401k','bitcoin-tax-lot-cleanup','bitcoin-household-plan'):
     name='tools/'+slug+'/index.html'
-    baseline=subprocess.check_output(['git','show','b7c4ae0:'+name],cwd=ROOT)
+    # Re-baselined to SHIPPED after the Nov 12 brand lockup (and 401(k) share-card copy) landed on these private tool pages.
+    baseline=subprocess.check_output(['git','show',SHIPPED+':'+name],cwd=ROOT)
     current=(ROOT/name).read_bytes()
     if slug in ('bitcoin-tax-lot-cleanup','bitcoin-household-plan'):
         # Approved 2026-11-04 (Household Plan paywall ON with Stripe): Lemon Squeezy is gone; still analytics-free.

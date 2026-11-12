@@ -2,8 +2,8 @@
 from pathlib import Path
 import subprocess,re
 r=Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either
-base='9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
+base=SHIPPED  # shipped main 2026-11-12 (c83d5b1); still flags later accidental changes
 for name in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=r,text=True).splitlines():
  if name.startswith('tests/'):
   continue  # test files are updated with this re-baseline

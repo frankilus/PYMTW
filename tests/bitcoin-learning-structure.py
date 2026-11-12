@@ -8,7 +8,8 @@ import io
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = '9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
+BASE = SHIPPED  # shipped main 2026-11-12 (c83d5b1); still flags later accidental changes
 PAGES = ('bitcoin/index.html', 'programs.html', 'start-here.html')
 ALLOWED = set(PAGES) | {'assets/bitcoin-learning.css', 'assets/bitcoin-learning.js', 'tests/bitcoin-learning-structure.py'}
 def original(name):

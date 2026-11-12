@@ -2,10 +2,10 @@ from pathlib import Path
 import re,json,html,subprocess
 from urllib.parse import urlsplit,parse_qs
 R=Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
 slugs=['true-cost-of-a-baby','true-cost-of-owning-a-home','true-cost-of-a-wedding']
 def clean(s):return html.unescape(re.sub('<[^>]*>','',s)).strip()
-base='9430efdc8b2832495b2e54b7107bff64518df262'  # shipped main 2026-11-11 (9430efd); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-12 (c83d5b1); still flags later accidental changes
 allowed={'tools/index.html','tools/v7/home.css','tools/v7/home.js','tools/router.js','tools/sitemap.xml','tools/llms.txt','tools/guides/true-cost-of-a-car/index.html','tools/guides/first-home/index.html','tools/guides/lost-my-job/index.html','tools/rent-vs-buy/index.html','tools/emergency-fund-runway/index.html'}
 for n in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=R,text=True).splitlines():
  if n not in allowed and not n.startswith('tests/'):
