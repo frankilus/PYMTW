@@ -153,7 +153,7 @@
     return (
       '<nav class="navbar" id="navbar"><div class="nav-container">' +
       '<a href="/" class="nav-logo pymtw-brand" aria-label="PYMTW home — Put Your Money to Work"><img class="pymtw-brand-icon" src="/assets/brand/pymtw-icon.svg" width="36" height="36" alt="" aria-hidden="true">' +
-      '<span class="pymtw-brand-name">PYMTW</span></a>' +
+      '<span class="pymtw-brand-words"><span class="pymtw-brand-name">PYMTW</span><span class="pymtw-brand-tagline">Put Your Money to Work</span></span></a>' +
       '<ul class="nav-links" id="nav-links">' + items +
       "</ul>" +
       '<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">' +
