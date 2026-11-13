@@ -32,7 +32,7 @@ assert.ok(await p.locator('.print-foot').isVisible());assert.match(await p.locat
 const breaks=await p.locator('section.phase').evaluateAll(es=>es.map(e=>getComputedStyle(e).breakBefore));assert.deepEqual(breaks.slice(1),Array(3).fill('page'),JSON.stringify(breaks));
 await p.emulateMedia({media:'screen'});
 // newsletter line: one on-screen link to The Long Game, no embedded forms
-assert.equal(await p.locator('a[href="https://pymtw.beehiiv.com/subscribe"]').count(),1);assert.equal(await p.locator('iframe,form').count(),0);
+assert.equal(await p.locator('a[href="https://pymtw.beehiiv.com/subscribe"]:not(.nl-success a)').count(),1);assert.equal(await p.locator('iframe,form').count(),0);
 const ld=JSON.parse(await p.locator('script[type="application/ld+json"]').textContent());assert.deepEqual(ld['@graph'].map(x=>x['@type']),['BreadcrumbList','HowTo']);
 // only the shared analytics may be requested
 const bad=outgoing.filter(u=>!/^https:\/\/(gc\.zgo\.at|pymtw\.goatcounter\.com)\//.test(u));assert.deepEqual(bad,[],'unexpected requests');

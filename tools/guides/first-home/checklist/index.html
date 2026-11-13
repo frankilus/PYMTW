@@ -81,11 +81,15 @@
 @media (max-width:760px){.chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.g-hero{padding:40px 0 4px}.phase{padding:22px 18px 10px;border-radius:20px}.actions .btn{flex:1 1 100%}.ck{gap:12px}}
 @page{size:Letter;margin:0.5in 0.6in 0.6in}
+.nl-success{display:flex;gap:12px;align-items:flex-start;margin:16px 0 0;padding:14px 18px;border-radius:16px;background:rgba(10,124,85,.07);border:1px solid rgba(10,124,85,.22);font-size:15px;line-height:1.5;color:var(--ink-2)}
+.nl-success[hidden]{display:none}
+.nl-success-check{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:#0a7c55;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.nl-success a{color:#0a7c55;font-weight:600;white-space:nowrap}
 @media print{
   html,body{background:#fff!important}
   body{font-size:10.5pt;color:#111}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  nav,footer,.v7-next,.newsletter,.no-print,.actions,.chips,.progress-wrap,.back,.after,.nl-line,.seo-extra{display:none!important}
+  nav,footer,.v7-next,.newsletter,.no-print,.actions,.chips,.progress-wrap,.back,.after,.nl-line,.nl-success,.seo-extra{display:none!important}
   .narrow{max-width:none;padding:0}
   .g-hero{padding:0 0 4pt}
   .g-hero .eyebrow{display:none}
@@ -513,6 +517,7 @@
     <button type="button" class="btn accent" id="ck-print">🖨️ Print / Save as PDF</button>
     <button type="button" class="btn ghost" id="ck-reset">Clear checkmarks</button>
   </div>
+  <p class="nl-success" id="nl-success-top" role="status" aria-live="polite" hidden><span class="nl-success-check" aria-hidden="true">✓</span><span>Printed or saved? The Long Game is our free newsletter: personal finance on Tuesdays, Bitcoin on Fridays. <a href="https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener">Subscribe free ↗</a></span></p>
   <div class="progress-wrap" role="status" aria-live="polite">
     <div class="progress-top"><span><b id="ck-done">0</b> of 45 done</span><span id="ck-pct">0%</span></div>
     <div class="bar" aria-hidden="true"><i id="ck-bar"></i></div>
@@ -633,6 +638,7 @@
     <button type="button" class="btn accent" id="ck-print-2">🖨️ Print / Save as PDF</button>
     <a class="btn ghost" href="../">Read the full guide</a>
   </div>
+  <p class="nl-success" id="nl-success-bottom" role="status" aria-live="polite" hidden><span class="nl-success-check" aria-hidden="true">✓</span><span>Printed or saved? The Long Game is our free newsletter: personal finance on Tuesdays, Bitcoin on Fridays. <a href="https://pymtw.beehiiv.com/subscribe" target="_blank" rel="noopener">Subscribe free ↗</a></span></p>
 
   <section class="sources" aria-labelledby="src-h">
     <h2 id="src-h">Sources</h2>
@@ -720,9 +726,10 @@
       save(); render();
     });
   });
-  function doPrint() { track('print-click', 'Checklist print clicked'); window.print(); }
-  document.getElementById('ck-print').addEventListener('click', doPrint);
-  document.getElementById('ck-print-2').addEventListener('click', doPrint);
+  function showNl(id, how) { var el = document.getElementById(id); if (!el || !el.hidden) return; el.hidden = false; track('nl-success-shown', 'Subscribe line shown after ' + how); }
+  function doPrint(id) { track('print-click', 'Checklist print clicked'); window.print(); showNl(id, 'print'); }
+  document.getElementById('ck-print').addEventListener('click', function () { doPrint('nl-success-top'); });
+  document.getElementById('ck-print-2').addEventListener('click', function () { doPrint('nl-success-bottom'); });
   document.getElementById('ck-reset').addEventListener('click', function () {
     if (!window.confirm('Clear all checkmarks saved in this browser?')) return;
     state = {}; boxes.forEach(function (b) { b.checked = false; });

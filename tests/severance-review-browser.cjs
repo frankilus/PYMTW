@@ -47,7 +47,7 @@ const breaks=await p.locator('section.phase, section.qs, section.sources').evalu
 const pdf=await p.pdf({format:'Letter',preferCSSPageSize:true});const pages=(pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/g)||[]).length;assert.ok(pages>=8&&pages<=10,'print pages '+pages);
 await p.emulateMedia({media:'screen'});
 // newsletter line: one on-screen link to The Long Game, no embedded forms
-assert.equal(await p.locator('a[href="https://pymtw.beehiiv.com/subscribe"]').count(),1);assert.equal(await p.locator('iframe,form').count(),0);
+assert.equal(await p.locator('a[href="https://pymtw.beehiiv.com/subscribe"]:not(.nl-success a)').count(),1);assert.equal(await p.locator('iframe,form').count(),0);
 const ld=JSON.parse(await p.locator('script[type="application/ld+json"]').textContent());assert.deepEqual(ld['@graph'].map(x=>x['@type']),['BreadcrumbList','HowTo']);
 // only the shared analytics may be requested
 const bad=outgoing.filter(u=>!/^https:\/\/(gc\.zgo\.at|pymtw\.goatcounter\.com)\//.test(u));assert.deepEqual(bad,[],'unexpected requests');

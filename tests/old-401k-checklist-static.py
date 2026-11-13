@@ -37,7 +37,7 @@ assert 'window.print()' in s
 js=' '.join(re.findall(r'<script>(.*?)</script>',s,re.S))
 assert 'localStorage' in js
 for bad in ['fetch(','XMLHttpRequest','sendBeacon','sessionStorage','indexedDB','document.cookie','<form','<iframe','embed.beehiiv','subscribe-forms.beehiiv','pymtwtools.beehiiv.com']:assert bad not in s,bad
-assert s.count('href="https://pymtw.beehiiv.com/subscribe"')==1 and 'Personal finance Tuesdays. Bitcoin Fridays.' in s
+assert __import__('re').sub(r'<p class="nl-success".*?</p>','',s,flags=__import__('re').S).count('href="https://pymtw.beehiiv.com/subscribe"')==1 and s.count('class="nl-success"')>=2 and 'Personal finance Tuesdays. Bitcoin Fridays.' in s
 # linked from the old 401(k) guide (near the top and in the next-steps area)
 gd=(R/'tools/guides/old-401k/index.html').read_text()
 assert gd.count('href="checklist/"')>=2 and 'Get the printable checklist' in gd and 'id="get-checklist"' in gd

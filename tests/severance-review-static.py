@@ -48,7 +48,7 @@ assert 'navigator.clipboard.writeText' in s and 'mailto:' not in s and 'Nothing 
 js=' '.join(re.findall(r'<script>(.*?)</script>',s,re.S))
 assert 'localStorage' in js and "'pymtw-severance-review-v1'" in js
 for bad in ['fetch(','XMLHttpRequest','sendBeacon','sessionStorage','indexedDB','document.cookie','<form','<iframe','embed.beehiiv','subscribe-forms.beehiiv','pymtwtools.beehiiv.com']:assert bad not in s,bad
-assert s.count('href="https://pymtw.beehiiv.com/subscribe"')==1 and 'Personal finance Tuesdays. Bitcoin Fridays.' in s
+assert __import__('re').sub(r'<p class="nl-success".*?</p>','',s,flags=__import__('re').S).count('href="https://pymtw.beehiiv.com/subscribe"')==1 and s.count('class="nl-success"')>=2 and 'Personal finance Tuesdays. Bitcoin Fridays.' in s
 assert 'href="../"' in s and 'href="../checklist/"' in s and '../../../severance-runway/' in s and '../../old-401k/' in s and '../../../paycheck-decoder/' in s
 # linked from the lost-my-job guide (top + severance step + Related), its checklist and the severance runway tool
 gd=(R/'tools/guides/lost-my-job/index.html').read_text()
