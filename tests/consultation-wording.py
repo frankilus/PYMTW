@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 import subprocess, json, re, html
 ROOT=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
-BASE=SHIPPED  # shipped main 2026-11-12 (c83d5b1); still flags later accidental changes
+BASE=SHIPPED  # shipped main 2026-11-13 (b653f0e); still flags later accidental changes
 class Page(HTMLParser):
     def __init__(self,text):
         super().__init__(); self.nodes=[]; self.text=[]; self.skip=0; self.feed(text)
