@@ -10,10 +10,10 @@ from pathlib import Path
 import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
-# Shipped main as of 2026-11-12 (brand lockup PR #86 + share-card copy, c83d5b1).
+# Shipped main as of 2026-11-13 (Long Game success-line on printable checklists, b653f0e).
 # Scope guards compare against this commit so they still catch later accidental
 # changes after accepting pages already live on that date.
-SHIPPED='c83d5b10b0f1f0e8109e93f9a96f9429ecbcf7f9'
+SHIPPED='b653f0e85466a0b1bbd72fae46f6c1be6069276a'
 # Exact edits made by fix/tests-and-small-ui-2026-10-25.
 APPROVED_EDITS={
  'tools/v7/home.css':[('.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px}','.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center}')],
@@ -277,3 +277,5 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/guard-baseline.cjs',
  'tests/round2-browser.cjs','tests/round4-browser.cjs'}
 # 2026-11-12: re-baseline scope guards and header/lockup expectations to accept shipped main (c83d5b1).
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/401k-browser.cjs','tests/401k-import-browser.cjs','tests/paycheck-import-browser.cjs','tests/money-homepage-browser.cjs','tests/bitcoin-book-comparison.py','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-security.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py','tests/site-audit-browser.cjs'}
+# 2026-11-13: re-baseline scope guards to accept shipped main (b653f0e).
+THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py','tests/bitcoin-homepage-browser.cjs'}

@@ -9,7 +9,7 @@ for(const width of [320,390,768,1280,1440]){
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,width+' '+name);
   for(const href of await page.locator('#lessons a').evaluateAll(links=>links.map(a=>a.getAttribute('href')))){assert.equal((await page.request.get(base+href)).status(),200,href);}
  }
- assert.ok(await page.locator('.book-art img').evaluate(i=>i.complete&&i.naturalWidth>0));
+ await page.locator('.book-art img').scrollIntoViewIfNeeded();await page.waitForFunction(()=>{const i=document.querySelector('.book-art img');return !!(i&&i.complete&&i.naturalWidth>0);});
  if(process.env.SCREENSHOT_DIR&&[390,1440].includes(width)){await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(500);await page.screenshot({path:process.env.SCREENSHOT_DIR+'/bitcoin-homepage-'+width+'.png',fullPage:true});}
 }
 await page.locator('#evaluate').focus();await page.keyboard.press('Enter');assert.equal(await page.locator('#evaluate').getAttribute('aria-expanded'),'true');await page.locator('#protect').click();await page.goBack();assert.equal(await page.locator('#evaluate').getAttribute('aria-expanded'),'true');await page.goForward();assert.equal(await page.locator('#protect').getAttribute('aria-expanded'),'true');await page.reload();assert.equal(await page.locator('#protect').getAttribute('aria-expanded'),'true');await page.locator('#start-simple').click();assert.equal(await page.locator('#understand').getAttribute('aria-expanded'),'true');
