@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess,re,json,hashlib
 root=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import matches,reviewed,either,FOOTER_PRIVACY_EDITS,SHIPPED
-# Re-baselined to shipped main (2026-11-13, b653f0e) so the guard still
+# Re-baselined to shipped main (2026-11-13, 594c167) so the guard still
 # flags later accidental changes after accepting already-live pages.
 base=SHIPPED
 def original(path):return subprocess.check_output(['git','show',base+':'+path],cwd=root)
