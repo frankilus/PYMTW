@@ -5,7 +5,7 @@ R=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
 slugs=['true-cost-of-a-baby','true-cost-of-owning-a-home','true-cost-of-a-wedding']
 def clean(s):return html.unescape(re.sub('<[^>]*>','',s)).strip()
-base=SHIPPED  # shipped main 2026-11-13 (b653f0e); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-13 (594c167); still flags later accidental changes
 allowed={'tools/index.html','tools/v7/home.css','tools/v7/home.js','tools/router.js','tools/sitemap.xml','tools/llms.txt','tools/guides/true-cost-of-a-car/index.html','tools/guides/first-home/index.html','tools/guides/lost-my-job/index.html','tools/rent-vs-buy/index.html','tools/emergency-fund-runway/index.html'}
 for n in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=R,text=True).splitlines():
  if n not in allowed and not n.startswith('tests/'):
