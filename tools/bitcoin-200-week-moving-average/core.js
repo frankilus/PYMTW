@@ -5,10 +5,10 @@
 var WEEKS = 200, DAY = 86400000;
 /* Zone edges are rounded plain-English cut-offs, not a trading signal. */
 var ZONES = [
-  { id: 'deep', name: 'Deep value', lo: 0, hi: 1.1, color: '#0a7c55', fill: 'rgba(10,124,85,.20)', text: 'Near or below the 200-week average. Historically rare, and past bear-market lows have clustered here.' },
-  { id: 'fair', name: 'Fair', lo: 1.1, hi: 2, color: '#1769a8', fill: 'rgba(23,105,168,.10)', text: 'Moderately above the long-run average. Ordinary territory in most market cycles.' },
-  { id: 'stretched', name: 'Stretched', lo: 2, hi: 3.5, color: '#d9730d', fill: 'rgba(217,115,13,.13)', text: 'Well above the long-run average. Price is running ahead of its trend.' },
-  { id: 'hot', name: 'Overheated', lo: 3.5, hi: Infinity, color: '#b42727', fill: 'rgba(180,39,39,.14)', text: 'Far above the long-run average. In the past this has come near the tops of big rallies.' }
+  { id: 'deep', name: 'Near or below average', lo: 0, hi: 1.1, color: '#0a7c55', fill: 'rgba(10,124,85,.20)', text: 'Below 1.1 times the 200-week average. This describes relative price, not fundamental value.' },
+  { id: 'fair', name: 'Above average', lo: 1.1, hi: 2, color: '#1769a8', fill: 'rgba(23,105,168,.10)', text: 'From 1.1 to less than 2 times the 200-week average.' },
+  { id: 'stretched', name: 'Elevated', lo: 2, hi: 3.5, color: '#d9730d', fill: 'rgba(217,115,13,.13)', text: 'From 2 to less than 3.5 times the 200-week average.' },
+  { id: 'hot', name: 'Far above average', lo: 3.5, hi: Infinity, color: '#b42727', fill: 'rgba(180,39,39,.14)', text: 'At least 3.5 times the 200-week average. A high multiple alone cannot predict a reversal.' }
 ];
 function zoneOf(m) { for (var i = 0; i < ZONES.length; i++) if (m < ZONES[i].hi) return ZONES[i]; return ZONES[ZONES.length - 1]; }
 function parseDay(s) { var p = s.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
