@@ -15,7 +15,10 @@ let {c,p,errors,outgoing}=await open('live');
 const today=new Date().toISOString().slice(0,10);const exp=W.build(data,{price:60000,date:today<data.latest.date?data.latest.date:today}).current;
 for(const width of [320,375,1280]){await p.setViewportSize({width,height:900});const res=await p.goto(URL);assert.equal(res.status(),200);await p.evaluate(()=>document.fonts.ready);
  assert.match(await p.title(),/^Bitcoin 200-Week Moving Average Tracker/);assert.equal(await p.locator('h1').count(),1);
- await p.waitForFunction(()=>/Coinbase/.test(document.querySelector('.wm-asof')?.textContent||''));
+ await p.waitForFunction(()=>/Price live as of/.test(document.querySelector('#wm-asof')?.textContent||''));
+ const hist=new Date(data.updated+'T00:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+ const asof=await p.locator('#wm-asof').innerText();assert.match(asof,/^Price live as of .+; weekly history as of /);assert.ok(asof.endsWith('weekly history as of '+hist+'.'),asof);
+ assert.equal(await p.locator('#wm-chart-asof').innerText(),asof);
  assert.equal(await p.locator('#wm-mult').innerText(),exp.mult.toFixed(2)+'x');assert.equal(await p.locator('#wm-price').innerText(),usd(60000));assert.equal(await p.locator('#wm-ma').innerText(),usd(exp.ma));
  assert.ok((await p.locator('.wm-chip').innerText())===exp.zone.name);assert.equal(await p.locator('.wm-stats .stat').count(),6);assert.equal(await p.locator('#wm-zones .wm-zone').count(),4);assert.equal(await p.locator('#wm-zones .wm-zone.now').count(),1);
  assert.equal(await p.locator('#wm-chart svg').count(),1);assert.ok(await p.locator('#wm-chart polygon').count()>=4,'zone bands');assert.ok(await p.locator('#wm-chart path').count()>=2,'price and 200WMA lines');
@@ -39,12 +42,15 @@ const ev=await p.evaluate(()=>window.__events);assert.ok(ev.includes('event/bitc
 assert.deepEqual(errors,[]);assert.deepEqual([...new Set(outgoing)].filter(u=>!/fonts\.|goatcounter|gc\.zgo\.at\/count\.js/.test(u)),[TICK],'outgoing requests: only the ticker');
 await c.close();
 // 2) ticker blocked: falls back to the saved daily price, still no layout or script errors
-({c,p,errors}=await open('blocked'));await p.setViewportSize({width:375,height:900});await p.goto(URL);await p.waitForFunction(()=>/live price was not available/.test(document.querySelector('.wm-asof')?.textContent||''));
+({c,p,errors}=await open('blocked'));await p.setViewportSize({width:375,height:900});await p.goto(URL);await p.waitForFunction(()=>/Data as of/.test(document.querySelector('#wm-asof')?.textContent||'')&&/live price was not available/.test(document.querySelector('#wm-asof')?.textContent||''));
+const histFb=new Date(data.updated+'T00:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+assert.match(await p.locator('#wm-asof').innerText(),/^Data as of /);assert.ok((await p.locator('#wm-asof').innerText()).startsWith('Data as of '+histFb+'.'),await p.locator('#wm-asof').innerText());assert.match(await p.locator('#wm-asof').innerText(),/live price was not available/);
+assert.equal(await p.locator('#wm-chart-asof').innerText(),await p.locator('#wm-asof').innerText());
 const fb=W.build(data,null).current;assert.equal(await p.locator('#wm-mult').innerText(),fb.mult.toFixed(2)+'x');assert.equal(await p.locator('#wm-price').innerText(),usd(fb.price));await noOverflow(p,375);assert.deepEqual(errors,[]);await c.close();
 // 3) findable in "Find the right tool." search and the Bitcoin topic
 ({c,p,errors}=await open('blocked'));await p.goto(base+'/tools/');
 for(const q of ['200 week moving average','200wma','is bitcoin cheap','moving average','buying opportunity']){await p.locator('#directory-search-input').fill(q);assert.equal(await p.locator(`#tools-grid a.directory-tool[href="./${'bitcoin-200-week-moving-average'}/"]`).count(),1,q);}
 await p.locator('#directory-search-input').fill('');await p.locator('[data-category=bitcoin]').click();assert.equal(await p.locator('#tools-grid a.directory-tool[href="./bitcoin-200-week-moving-average/"]').count(),1);
 assert.deepEqual(errors,[]);await c.close();
-if(process.env.AXE_PATH){({c,p}=await open('live'));for(const width of [375,1280]){await p.setViewportSize({width,height:1000});await p.goto(URL);await p.waitForFunction(()=>/Coinbase/.test(document.querySelector('.wm-asof')?.textContent||''));await p.addScriptTag({path:process.env.AXE_PATH});const v=await p.evaluate(async()=>(await axe.run()).violations.map(x=>x.id+':'+x.nodes.length));assert.deepEqual(v,[],'axe '+width);}await c.close();}
+if(process.env.AXE_PATH){({c,p}=await open('live'));for(const width of [375,1280]){await p.setViewportSize({width,height:1000});await p.goto(URL);await p.waitForFunction(()=>/Price live as of/.test(document.querySelector('#wm-asof')?.textContent||''));await p.addScriptTag({path:process.env.AXE_PATH});const v=await p.evaluate(async()=>(await axe.run()).violations.map(x=>x.id+':'+x.nodes.length));assert.deepEqual(v,[],'axe '+width);}await c.close();}
 console.log('ok');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});
