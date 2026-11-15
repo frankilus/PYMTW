@@ -49,7 +49,9 @@
   function cheaperLine(s, m) {
     var share = WMA.shareAtOrBelow(s, m);
     if (!(share >= 0 && share <= 1)) return '';
-    return 'Cheaper than ' + ((1 - share) * 100).toFixed(1) + '% of weeks since mid-2014.';
+    return 'Relative to its 200-week average,<span class="wma-when-cheap-br"></span> cheaper than '
+      + ((1 - share) * 100).toFixed(1)
+      + '% of weeks <span class="wma-when-cheap-end">since 2014.</span>';
   }
   function logPos(m) {
     var v = Math.max(GAUGE_LO, Math.min(GAUGE_HI, m));
@@ -162,7 +164,7 @@
     if (zoneEl) zoneEl.textContent = c.zone.name;
     if (priceEl) priceEl.textContent = usd(c.price);
     if (maEl) maEl.textContent = usd(c.ma);
-    if (cheapEl) cheapEl.textContent = cheaperLine(s, c.mult);
+    if (cheapEl) cheapEl.innerHTML = cheaperLine(s, c.mult);
     if (asofEl) {
       var line = asofText(data, live);
       if (line) asofEl.textContent = line;

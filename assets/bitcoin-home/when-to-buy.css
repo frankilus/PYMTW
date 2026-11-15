@@ -115,6 +115,8 @@
   color:var(--ink);
   min-height:calc(15px * 1.45 * 2);
 }
+.wma-when-cheap-br{display:none}
+.wma-when-cheap-end{white-space:nowrap}
 
 .wma-when-note,
 .wma-when-asof{
@@ -250,6 +252,8 @@
   .wma-when-head h2{font-size:32px}
   .wma-when-stats{gap:8px 16px;min-height:48px}
   .wma-when-stats dd{font-size:16px}
+  .wma-when-cheap{min-height:calc(15px * 1.45 * 3)}
+  .wma-when-cheap-br{display:block}
   .wma-when-cta{width:100%;justify-content:center;min-height:48px}
 }
 
