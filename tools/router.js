@@ -58,7 +58,8 @@ var I = { // line icons, 24x24
  'bitcoin-tax-lot-cleanup':'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h8"/>',
  'before-you-sign':'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h4"/><path d="m15 17 1.5 1.5L19 16"/>',
  'money-timeline':'<path d="M2 12h20"/><circle cx="6" cy="12" r="2.2"/><circle cx="13" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/><path d="M6 9.8V5M13 14.2V19M19 9.8V6"/>',
- 'bitcoin-dca-backtester':'<path d="M9 5v14M9 5h5a3 3 0 0 1 0 6H9h6a3 3 0 0 1 0 6H9M11 3v2M11 19v2M7 5h2M7 19h2"/>'};
+ 'bitcoin-dca-backtester':'<path d="M9 5v14M9 5h5a3 3 0 0 1 0 6H9h6a3 3 0 0 1 0 6H9M11 3v2M11 19v2M7 5h2M7 19h2"/>',
+ 'bitcoin-retirement-drawdown':'<path d="M3 5h18M3 5v14h18"/><path d="M6 9l4 3 3-2 5 5"/><path d="M18 12v3h-3"/>'};
 var X = { // example outcome lines + tint
  'subscription-leak-finder':['“10 recurring charges, $4,274 a year”','#fdf1e7','#c2571a'],
  'credit-card-optimizer':['“Grocery booster wins for this budget”','#eef0fd','#3b4cc0'],
@@ -73,8 +74,9 @@ var X = { // example outcome lines + tint
  'bitcoin-tax-lot-cleanup':['FIFO, HIFO or spec-ID, 8949-ready','#f1f1f4','#55555c'],
  'before-you-sign':['“2 red flags, true rate 10.2% vs. 6.9%”','#fdecec','#b42727'],
  'money-timeline':['“Debt-free by 2030, down payment by 2031”','#e7f4ee','#0a7c55'],
- 'bitcoin-dca-backtester':['“$100/mo since 2019 → $37,867”','#fff1e0','#d9730d']};
-var TAG = { 'before-you-sign':['new','New'], 'money-timeline':['new','New'], 'debt-payoff-planner':['hot','Start here'], 'subscription-leak-finder':['hot','Start here'], 'severance-runway':['new','New'], 'fee-x-ray':['new','New'], 'bitcoin-dca-backtester':['new','New'] };
+ 'bitcoin-dca-backtester':['“$100/mo since 2019 → $37,867”','#fff1e0','#d9730d'],
+ 'bitcoin-retirement-drawdown':['“Safe to spend $65,750/yr, even in a 75% crash”','#fff1e0','#d9730d']};
+var TAG = { 'before-you-sign':['new','New'], 'money-timeline':['new','New'], 'debt-payoff-planner':['hot','Start here'], 'subscription-leak-finder':['hot','Start here'], 'severance-runway':['new','New'], 'fee-x-ray':['new','New'], 'bitcoin-dca-backtester':['new','New'], 'bitcoin-retirement-drawdown':['new','New'] };
 var svg = function (k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + I[k] + '</svg>'; };
 var BY = {}; ALL.forEach(function (t) { BY[t.slug] = t; });
 // Featured row with mini result previews (sample numbers from each tool's demo)
