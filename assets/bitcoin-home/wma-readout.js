@@ -1,209 +1,90 @@
-/* Bitcoin homepage 200-week average: Keep exploring row + "When to buy?" section.
-   Same math and zone thresholds as /tools/bitcoin-200-week-moving-average/ (core.js).
-   Loads the saved weekly.json; optionally tops up with the public Coinbase ticker.
-   If a fetch fails, the static fallback already in the page is left in place. */
+/* Homepage context panel. Uses the tracker's unchanged model and public data.
+   Relative price is historical context, not a valuation or a trading signal. */
 (function () {
-  var row = document.getElementById('wma-readout');
   var section = document.getElementById('when-to-buy');
-  if ((!row && !section) || !window.WMA) return;
-
+  if (!section || !window.WMA) return;
+  var lastSeries = null;
   var TICK = 'https://api.exchange.coinbase.com/products/BTC-USD/ticker';
-  var GAUGE_LO = 0.5, GAUGE_HI = 5;
-  /* Darker than the tracker's fill colors so zone names meet contrast on #f2eade. */
-  var ZONE_TEXT = { deep: '#086848', fair: '#155e96', stretched: '#8a4a0a', hot: '#9d2222' };
-
-  function usd(n) {
-    if (n >= 100) return '$' + Math.round(n).toLocaleString('en-US');
-    if (n >= 1) return '$' + n.toFixed(2);
-    return '$' + n.toFixed(4);
-  }
-  function dateLong(ms) {
-    return new Date(ms).toLocaleDateString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'
-    });
-  }
-  function liveStamp(d) {
-    try {
-      return new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York',
-        month: 'short', day: 'numeric', year: 'numeric',
-        hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
-      }).format(d);
-    } catch (e) {
-      return d.toISOString();
-    }
-  }
-  function historyAsOf(data) {
-    var raw = data && data.updated;
-    var ms = raw ? Date.parse(raw + 'T00:00:00Z') : NaN;
-    return isFinite(ms) ? dateLong(ms) : '';
+  function usd(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function historyDate(data) {
+    var ms = Date.parse(data.updated + 'T00:00:00Z');
+    return isFinite(ms) ? new Date(ms).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}) : '';
   }
   function asofText(data, live) {
-    var hist = historyAsOf(data);
-    if (live && live.price) {
-      return 'Price live as of ' + liveStamp(new Date()) +
-        (hist ? '; weekly history as of ' + hist + '.' : '.');
-    }
-    return hist ? 'Data as of ' + hist + '.' : '';
+    var hist = historyDate(data);
+    if (!live) return 'Saved daily price and weekly history as of ' + hist + '. Live price unavailable.';
+    var stamp = new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date());
+    return 'Price live as of ' + stamp + '; weekly history as of ' + hist + '.';
   }
-  function cheaperLine(s, m) {
-    var share = WMA.shareAtOrBelow(s, m);
-    if (!(share >= 0 && share <= 1)) return '';
-    return 'Relative to its 200-week average,<span class="wma-when-cheap-br"></span> cheaper than '
-      + ((1 - share) * 100).toFixed(1)
-      + '% of weeks <span class="wma-when-cheap-end">since 2014.</span>';
+  function relative(pct) {
+    var magnitude = Math.abs(pct * 100);
+    if (magnitude < 0.05) return 'Approximately equal to its 200-week average';
+    return 'About ' + magnitude.toFixed(1) + '% ' + (pct < 0 ? 'below' : 'above') + ' its 200-week average';
   }
-  function logPos(m) {
-    var v = Math.max(GAUGE_LO, Math.min(GAUGE_HI, m));
-    return (Math.log(v / GAUGE_LO) / Math.log(GAUGE_HI / GAUGE_LO)) * 100;
+  function rangeText(z) {
+    if (!z.lo) return 'Below ' + z.hi + '×';
+    if (!isFinite(z.hi)) return z.lo + '× or more';
+    return z.lo + '× to under ' + z.hi + '×';
   }
-
-  function paintRow(c) {
-    if (!row || !c || !c.mult || !c.zone) return;
-    row.textContent = 'Bitcoin is ' + c.mult.toFixed(2) + 'x its 200-week average today: ' + c.zone.name + '.';
-  }
-
-  function paintGauge(el, c) {
-    if (!el) return;
-    var zones = WMA.ZONES;
-    var edges = [GAUGE_LO];
-    for (var i = 0; i < zones.length; i++) {
-      var hi = zones[i].hi;
-      if (hi > GAUGE_LO && hi < GAUGE_HI) edges.push(hi);
-    }
-    edges.push(GAUGE_HI);
-    var segs = '';
-    for (var j = 0; j < edges.length - 1; j++) {
-      var width = logPos(edges[j + 1]) - logPos(edges[j]);
-      var z = WMA.zoneOf((edges[j] + edges[j + 1]) / 2);
-      segs += '<span class="wma-when-seg" style="width:' + width.toFixed(2) + '%;background:' + z.color + '"></span>';
-    }
-    var ticks = [0.5, 1.1, 2, 3.5, 5];
-    var tickHtml = '';
-    for (var t = 0; t < ticks.length; t++) {
-      var label = ticks[t] >= 5 ? '5x+' : ticks[t] + 'x';
-      tickHtml += '<span style="left:' + logPos(ticks[t]).toFixed(2) + '%">' + label + '</span>';
-    }
-    var pin = Math.max(GAUGE_LO, Math.min(GAUGE_HI, c.mult));
-    var pinLeft = logPos(pin);
-    el.innerHTML =
-      '<div class="wma-when-pin" style="left:' + pinLeft.toFixed(2) + '%">' +
-        '<span class="wma-when-pin-label">' + c.mult.toFixed(2) + 'x</span>' +
-        '<span class="wma-when-pin-caret" aria-hidden="true"></span>' +
-      '</div>' +
-      '<div class="wma-when-bar" aria-hidden="true">' + segs + '</div>' +
-      '<div class="wma-when-ticks" aria-hidden="true">' + tickHtml + '</div>';
-    el.setAttribute('role', 'img');
-    el.setAttribute('aria-label',
-      'Today’s multiple is ' + c.mult.toFixed(2) + ' times the 200-week average, in the ' + c.zone.name + ' zone.');
-  }
-
-  function paintSpark(el, s) {
-    if (!el) return;
-    var years = 5;
-    var latestMs = s.dates && s.dates[s.n];
-    if (!latestMs) return;
-    var start = latestMs - years * 365.25 * 24 * 3600 * 1000;
-    var pts = [];
+  function paintSpark(s) {
+    var host = document.getElementById('wma-when-spark');
+    if (!host || !host.clientWidth) return;
+    var end = s.dates[s.n], start = end - 5 * 365.25 * 86400000, pts = [];
     for (var i = 0; i <= s.n; i++) {
-      if (!s.ma[i] || s.dates[i] < start) continue;
-      pts.push({ price: s.price[i], ma: s.ma[i] });
+      if (s.ma[i] && s.dates[i] >= start) pts.push({date:s.dates[i],price:s.price[i],ma:s.ma[i]});
     }
     if (pts.length < 2) return;
-    var w = 640, h = 112, padL = 2, padR = 8, padT = 8, padB = 8;
+    var w = Math.max(260, host.clientWidth), h = 138, left = 5, right = 7, top = 8, bottom = 26;
     var min = Infinity, max = 0;
-    for (var p = 0; p < pts.length; p++) {
-      min = Math.min(min, pts[p].price, pts[p].ma);
-      max = Math.max(max, pts[p].price, pts[p].ma);
-    }
+    pts.forEach(function (p) {min = Math.min(min,p.price,p.ma);max = Math.max(max,p.price,p.ma);});
     if (!(min > 0) || !(max > min)) return;
-    var logMin = Math.log(min), logMax = Math.log(max);
-    function x(idx) {
-      return padL + (idx / (pts.length - 1)) * (w - padL - padR);
+    var t0 = pts[0].date, t1 = pts[pts.length-1].date;
+    function x(t) {return left + (t-t0)/(t1-t0)*(w-left-right);}
+    function y(p) {return top + (Math.log(max)-Math.log(p))/(Math.log(max)-Math.log(min))*(h-top-bottom);}
+    function path(key) {return pts.map(function (p,i) {return (i?'L':'M')+x(p.date).toFixed(1)+' '+y(p[key]).toFixed(1);}).join(' ');}
+    var axes = '', firstYear = new Date(t0).getUTCFullYear(), lastYear = new Date(t1).getUTCFullYear();
+    var yearStep = w < 380 ? 2 : 1;
+    for (var yr = firstYear+1; yr <= lastYear; yr++) {
+      if ((lastYear-yr)%yearStep) continue;
+      var xx = x(Date.UTC(yr,0,1));
+      if (xx < left+15 || xx > w-right-15) continue;
+      axes += '<line x1="'+xx+'" x2="'+xx+'" y1="'+top+'" y2="'+(h-bottom)+'" class="wma-year-line"/><text x="'+xx+'" y="'+(h-6)+'" text-anchor="middle">'+yr+'</text>';
     }
-    function y(v) {
-      return padT + (logMax - Math.log(v)) / (logMax - logMin) * (h - padT - padB);
-    }
-    function path(key) {
-      var d = '';
-      for (var i = 0; i < pts.length; i++) {
-        d += (i ? ' L ' : 'M ') + x(i).toFixed(1) + ' ' + y(pts[i][key]).toFixed(1);
-      }
-      return d;
-    }
-    var last = pts[pts.length - 1];
-    var zoneColor = WMA.zoneOf(last.price / last.ma).color || '#29261f';
-    el.innerHTML =
-      '<svg viewBox="0 0 ' + w + ' ' + h + '" width="640" height="112" focusable="false" aria-hidden="true">' +
-        '<path d="' + path('ma') + '" style="fill:none;stroke:#6e1fd1;stroke-width:2;stroke-linejoin:round;stroke-linecap:round"/>' +
-        '<path d="' + path('price') + '" style="fill:none;stroke:#29261f;stroke-width:2.25;stroke-linejoin:round;stroke-linecap:round"/>' +
-        '<circle cx="' + x(pts.length - 1).toFixed(1) + '" cy="' + y(last.price).toFixed(1) + '" r="4" style="fill:' + zoneColor + ';stroke:#fffcf7;stroke-width:1.5"/>' +
-      '</svg>' +
-      '<ul class="wma-when-legend">' +
-        '<li><span class="wma-when-swatch price" aria-hidden="true"></span>Weekly price</li>' +
-        '<li><span class="wma-when-swatch ma" aria-hidden="true"></span>200-week average</li>' +
-      '</ul>';
-    el.setAttribute('role', 'img');
-    el.setAttribute('aria-label',
-      'Log-scale sparkline of bitcoin’s weekly price versus its 200-week average over the last five years.');
+    var last = pts[pts.length-1];
+    host.innerHTML = '<svg viewBox="0 0 '+w+' '+h+'" width="'+w+'" height="'+h+'" role="img" aria-labelledby="wma-spark-title"><title id="wma-spark-title">Bitcoin price and 200-week average over five years, on a logarithmic scale</title>'+axes+'<path d="'+path('ma')+'" class="wma-line-average"/><path d="'+path('price')+'" class="wma-line-price"/><circle cx="'+x(last.date).toFixed(1)+'" cy="'+y(last.price).toFixed(1)+'" r="3" class="wma-price-dot"/></svg><ul class="wma-when-legend"><li><span class="wma-when-swatch price" aria-hidden="true"></span>Bitcoin price</li><li><span class="wma-when-swatch ma" aria-hidden="true"></span>200-week average</li></ul>';
   }
-
-  function paintSection(s, data, live) {
-    if (!section) return;
-    var c = s && s.current;
-    if (!c || !c.mult || !c.zone) return;
-    var textColor = ZONE_TEXT[c.zone.id] || c.zone.color;
-    section.style.setProperty('--wma-zone', textColor);
-    var multEl = document.getElementById('wma-when-mult');
-    var zoneEl = document.getElementById('wma-when-zone');
-    var priceEl = document.getElementById('wma-when-price');
-    var maEl = document.getElementById('wma-when-ma');
-    var cheapEl = document.getElementById('wma-when-cheap');
-    var asofEl = document.getElementById('wma-when-asof');
-    if (multEl) multEl.textContent = c.mult.toFixed(2) + 'x';
-    if (zoneEl) zoneEl.textContent = c.zone.name;
-    if (priceEl) priceEl.textContent = usd(c.price);
-    if (maEl) maEl.textContent = usd(c.ma);
-    if (cheapEl) cheapEl.innerHTML = cheaperLine(s, c.mult);
-    if (asofEl) {
-      var line = asofText(data, live);
-      if (line) asofEl.textContent = line;
-    }
-    paintGauge(document.getElementById('wma-when-gauge'), c);
-    paintSpark(document.getElementById('wma-when-spark'), s);
-    section.classList.add('is-ready');
-    section.setAttribute('aria-busy', 'false');
-  }
-
   function paint(data, live) {
     var s = WMA.build(data, live), c = s && s.current;
-    if (!c || !c.mult || !c.zone) return;
-    paintRow(c);
-    paintSection(s, data, live);
+    if (!c || !(c.mult > 0)) return;
+    lastSeries = s;
+    document.getElementById('wma-when-mult').textContent = c.mult.toFixed(2) + '×';
+    document.getElementById('wma-when-relative').textContent = relative(c.pct);
+    document.getElementById('wma-when-zone').textContent = c.zone.name + ' · ' + rangeText(c.zone);
+    document.getElementById('wma-when-price').textContent = usd(c.price);
+    document.getElementById('wma-when-ma').textContent = usd(c.ma);
+    document.getElementById('wma-when-asof').textContent = asofText(data, live);
+    section.classList.add('is-ready');
+    section.setAttribute('aria-busy','false');
+    paintSpark(s);
   }
-
-  if (section) section.setAttribute('aria-busy', 'true');
-
-  fetch('/tools/bitcoin-200-week-moving-average/data/weekly.json', { cache: 'no-cache' }).then(function (r) {
-    if (!r.ok) throw new Error(r.status);
-    return r.json();
-  }).then(function (d) {
-    paint(d, null);
+  section.setAttribute('aria-busy','true');
+  fetch('/tools/bitcoin-200-week-moving-average/data/weekly.json', {cache:'no-cache'}).then(function(r) {
+    if (!r.ok) throw new Error(r.status);return r.json();
+  }).then(function(data) {
+    paint(data,null);
     var ctl = typeof AbortController === 'function' ? new AbortController() : null;
-    var to = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
-    fetch(TICK, ctl ? { signal: ctl.signal } : {}).then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    }).then(function (t) {
-      clearTimeout(to);
-      var p = parseFloat(t.price), last = d.latest && d.latest.price;
-      if (!(p > 0) || !last || p < last * 0.5 || p > last * 2) return;
-      var day = new Date().toISOString().slice(0, 10);
-      if (d.latest.date && day < d.latest.date) day = d.latest.date;
-      paint(d, { price: p, date: day });
-    }).catch(function () { clearTimeout(to); });
-  }).catch(function () {
-    if (section) section.setAttribute('aria-busy', 'false');
-    /* keep the static fallback already in the HTML */
-  });
+    var timeout = setTimeout(function(){if(ctl)ctl.abort();},5000);
+    fetch(TICK,ctl?{signal:ctl.signal}:{}).then(function(r) {
+      if(!r.ok)throw new Error(r.status);return r.json();
+    }).then(function(t) {
+      clearTimeout(timeout);
+      var p = parseFloat(t.price), last = data.latest && data.latest.price;
+      if(!(p > 0)||!last||p < last*0.5||p > last*2)return;
+      var day = new Date().toISOString().slice(0,10);
+      if(data.latest.date && day < data.latest.date)day=data.latest.date;
+      paint(data,{price:p,date:day});
+    }).catch(function(){clearTimeout(timeout);});
+  }).catch(function(){section.setAttribute('aria-busy','false');});
+  var resize;
+  window.addEventListener('resize',function(){clearTimeout(resize);resize=setTimeout(function(){if(lastSeries)paintSpark(lastSeries);},120);});
 })();

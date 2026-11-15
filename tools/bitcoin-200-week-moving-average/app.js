@@ -41,7 +41,7 @@ function renderToday() {
     '<div class="stat"><small>200-week average</small><b id="wm-ma">' + usd(c.ma) + '</b></div>' +
     '<div class="stat"><small>' + (c.pct >= 0 ? 'Above' : 'Below') + ' the average</small><b>' + pct(c.pct) + '</b></div>' +
     '<div class="stat"><small>Zone</small><b style="color:' + z.color + '">' + z.name + '</b></div>' +
-    '<div class="stat"><small>Weeks this cheap or cheaper</small><b id="wm-cheap">' + cheap + '</b></div>' +
+    '<div class="stat"><small>Weeks at this multiple or lower</small><b id="wm-cheap">' + cheap + '</b></div>' +
     '<div class="stat"><small>Weeks tracked</small><b>' + nweeks + '</b></div></div>' +
     '<p class="wm-asof" id="wm-asof">' + asof + '</p>';
   var gl = $('.wm-gauge-lab'); if (gl) gl.querySelectorAll('span.r').forEach(function (s) { s.style.transform = 'translateX(-100%)'; });
@@ -49,10 +49,10 @@ function renderToday() {
   $('#wm-rare').textContent = 'Since the first 200-week average (mid-2014), bitcoin closed a week below it ' + tot + ' times out of ' + nweeks + ' (' + Math.round(tot / nweeks * 1000) / 10 + '% of weeks), in a handful of separate stretches. The longest ran from mid-2022 to early 2023.';
   var st = WMA.zoneStats(series);
   $('#wm-zones').innerHTML = st.map(function (s) {
-    var zz = s.zone, rng = zz.lo === 0 ? 'Below ' + zz.hi + 'x' : zz.hi === Infinity ? 'Above ' + zz.lo + 'x' : zz.lo + 'x to ' + zz.hi + 'x';
+    var zz = s.zone, rng = zz.lo === 0 ? 'Below ' + zz.hi + 'x' : zz.hi === Infinity ? 'At least ' + zz.lo + 'x' : zz.lo + 'x to ' + zz.hi + 'x';
     return '<div class="wm-zone' + (zz.id === z.id ? ' now' : '') + '" style="--zc:' + zz.color + '"><h3>' + zz.name + (zz.id === z.id ? ' · now' : '') + '</h3><div class="rng">' + rng + ' the 200-week average</div><dl><dt>Share of weeks</dt><dd>' + Math.round(s.share * 100) + '%</dd><dt>Median price change 52 weeks later</dt><dd>' + (s.median === null ? 'n/a' : pct0(s.median)) + '</dd><dt>Price higher 52 weeks later</dt><dd>' + (s.upShare === null ? 'n/a' : Math.round(s.upShare * 100) + '% of weeks') + '</dd></dl></div>';
   }).join('');
-  $('#wm-legend').innerHTML = '<span><i class="ln" style="background:#0b0b0c"></i>Weekly price</span><span><i class="ln" style="background:#6e1fd1;height:5px"></i>200-week average</span>' + Z.map(function (zz) { return '<span><i style="background:' + zz.color + ';opacity:.5"></i>' + zz.name + '</span>'; }).join('');
+  $('#wm-legend').innerHTML = '<span><i class="ln" style="background:#0b0b0c"></i>Weekly price</span><span><i class="ln" style="background:#927139;height:5px"></i>200-week average</span>' + Z.map(function (zz) { return '<span><i style="background:' + zz.color + ';opacity:.5"></i>' + zz.name + '</span>'; }).join('');
 }
 
 function visible() {
@@ -101,7 +101,7 @@ function drawChart() {
   for (var k = i0; k <= i1; k++) { pd += (k === i0 ? 'M' : 'L') + X(s.dates[k]).toFixed(1) + ' ' + Y(s.price[k]).toFixed(1); }
   var first = true; for (var m = Math.max(i0, s.firstMa); m <= i1; m++) { md += (first ? 'M' : 'L') + X(s.dates[m]).toFixed(1) + ' ' + Y(s.ma[m]).toFixed(1); first = false; }
   plot.appendChild(el('path', { d: pd, fill: 'none', stroke: '#0b0b0c', 'stroke-width': 1.6, 'stroke-linejoin': 'round' }));
-  if (md) plot.appendChild(el('path', { d: md, fill: 'none', stroke: '#6e1fd1', 'stroke-width': 2.8, 'stroke-linejoin': 'round' }));
+  if (md) plot.appendChild(el('path', { d: md, fill: 'none', stroke: '#927139', 'stroke-width': 2.8, 'stroke-linejoin': 'round' }));
   svg.appendChild(plot);
   // today marker
   var tx2 = X(s.dates[i1]), ty = Y(s.price[i1]);
