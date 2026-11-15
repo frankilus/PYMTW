@@ -29,6 +29,15 @@
 <link rel="stylesheet" href="/assets/bitcoin-learning.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/consultations.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/explore.css">
+<style>
+/* Preview: 200-week tracker links on the Bitcoin homepage. Page-local so shared CSS stays untouched. */
+.hero-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:22px}
+.hero-links .text-link{display:inline;margin-top:0;line-height:1.6;text-decoration:underline;text-underline-offset:4px}
+.hero-links .consultation-jump{margin-top:0}
+#wma-readout{min-height:calc(14px * 1.7)}
+@media(max-width:720px){#wma-readout{min-height:calc(14px * 1.7 * 2)}}
+@media(max-width:768px){.hero-links{margin-top:18px;gap:8px}.hero-links .text-link{font-size:13px}}
+</style>
 </head>
 <body class="bitcoin-learning">
 
@@ -55,7 +64,10 @@
 <h1 id="headline">Make sense of Bitcoin.<br> <em>Find your next step.</em>
 </h1>
 <p class="intro">Practical education for your working life.<br> Understand the ideas, explore your options, and learn what ownership involves.</p>
+<div class="hero-links">
+<a class="text-link" href="/tools/bitcoin-200-week-moving-average/">Wondering how cheap or stretched bitcoin looks today? See price vs. its 200-week average →</a>
 <a class="text-link consultation-jump" href="/bitcoin/security/">Own bitcoin? Start with a security plan →</a>
+</div>
 </div>
 <aside class="hero-note">
 <span class="note-line">
@@ -182,6 +194,11 @@
 <p>A little context. A useful resource. A plan for the people you care about.</p>
 </div>
 <div class="explore-list">
+<a class="explore-row" href="/tools/bitcoin-200-week-moving-average/">
+<span class="explore-label">TODAY’S CONTEXT</span>
+<div><h3>200-week average tracker</h3><p id="wma-readout" aria-live="polite">See where today’s bitcoin price sits versus its 200-week average.</p></div>
+<span class="explore-arrow" aria-hidden="true">↗</span>
+</a>
 <a class="explore-row" href="/bitcoin/history/">
 <span class="explore-label">THE HISTORY</span>
 <div><h3>The Bitcoin Timeline</h3><p>Explore the ideas, people and turning points on one interactive timeline.</p></div>
@@ -204,6 +221,7 @@
 <a href="/start-here.html#common-questions">Common questions ↗</a>
 <a href="/bitcoin/explore/#learn">Bitcoin knowledge check ↗</a>
 <a href="/dca.html">DCA calculator ↗</a>
+<a href="/tools/bitcoin-200-week-moving-average/">200-week average tracker ↗</a>
 <a href="/tools/checkup/">Money checkup ↗</a>
 <a href="/security-promise.html">Our security promise ↗</a>
 </nav>
@@ -262,6 +280,10 @@
 </script>
 
 <script src="/assets/bitcoin-learning.js?v=20261029" defer>
+</script>
+<script src="/tools/bitcoin-200-week-moving-average/core.js" defer>
+</script>
+<script src="/assets/bitcoin-home/wma-readout.js" defer>
 </script>
 <script src="/assets/site-analytics.js" defer>
 </script>
