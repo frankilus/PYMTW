@@ -1,153 +1,156 @@
-/* Bitcoin 200-Week Moving Average Tracker UI. Math is in core.js. Only network calls: the saved weekly.json (same site)
-   and one public Coinbase Exchange ticker request for a live price; nothing is sent from the visitor. */
-(function () {
-var Z = WMA.ZONES, $ = function (s, r) { return (r || document).querySelector(s); };
-var data = null, series = null, range = 'all', hoverIdx = null, liveInfo = null;
-var NS = 'http://www.w3.org/2000/svg';
-function usd(n) { return n >= 100 ? '$' + Math.round(n).toLocaleString('en-US') : '$' + n.toFixed(2); }
-function axisUsd(n) { return n >= 1e6 ? '$' + n / 1e6 + 'M' : n >= 1e3 ? '$' + n / 1e3 + 'k' : '$' + n; }
-function pct(x) { return (x >= 0 ? '+' : '−') + Math.abs(x * 100).toFixed(x * 100 >= 1000 || x * 100 <= -1000 ? 0 : 1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%'; }
-function pct0(x) { return (x >= 0 ? '+' : '−') + Math.abs(Math.round(x * 100)).toLocaleString('en-US') + '%'; }
-function dateLong(ms) { return new Date(ms).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); }
-function liveStamp(d) { return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short' }); }
-function historyAsOf() { return dateLong(WMA.parseDay(data.updated || data.latest.date)); }
-function asofHtml() {
-  var hist = historyAsOf();
-  return liveInfo
-    ? 'Price live as of <b>' + liveInfo + '</b>; weekly history as of <b>' + hist + '</b>.'
-    : 'Data as of <b>' + hist + '</b>. A live price was not available, so this uses the daily average from the saved file.';
+/* Page-local interactive research UI. Public data only; original 200-week model retained. */
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s);}, Z=WMA.ZONES, NS='http://www.w3.org/2000/svg';
+var BAND_COLORS={deep:'#b9aa8b',fair:'#ae8b4b',stretched:'#b77040',hot:'#914b32'};
+var data,series,history,range='5',view='price',bands=false,moment=null,hoverIdx=null,liveInfo=null;
+var moments={
+ expansion:{title:'2017–18 · Expansion & reversal',start:'2016-01-01',end:'2019-07-01',from:'2017-01-01',to:'2018-12-31',note:'A wide distance from the average can persist before narrowing. A high multiple alone does not tell you when a reversal will begin.'},
+ shock:{title:'March 2020 · A sharp shock',start:'2019-07-01',end:'2021-04-01',from:'2020-03-01',to:'2020-04-30',note:'A sudden fall can carry price below a slow-moving average. Compare this brief shock with the much longer period below the line in 2022–23.'},
+ drawdown:{title:'2022–23 · A longer test',start:'2021-11-01',end:'2023-12-31',from:'2022-06-01',to:'2023-03-31',note:'Price spent extended stretches below the average. Reaching a historical reference did not guarantee an immediate recovery or prevent further losses.'}
+};
+function usd(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function pct(n){return n===null?'Not enough history':(n>0?'+':n<0?'−':'')+Math.abs(n*100).toFixed(1)+'%';}
+function day(ms){return new Date(ms).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});}
+function stamp(d){return d.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});}
+function node(name,attrs){var e=document.createElementNS(NS,name);Object.keys(attrs||{}).forEach(function(k){e.setAttribute(k,attrs[k]);});return e;}
+function rangeLabel(z){return z.lo===0?'Below '+z.hi+'×':!isFinite(z.hi)?z.lo+'× or more':z.lo+'× to under '+z.hi+'×';}
+function asof(){
+ var date=day(WMA.parseDay(data.updated||data.latest.date));
+ var line=liveInfo?'Coinbase snapshot fetched '+liveInfo+'; history as of '+date+'.':'Saved daily price and history as of '+date+'. Live quote unavailable.';
+ var age=(Date.now()-WMA.parseDay(data.updated))/86400000;
+ return line+(age>4?' History is more than three days old; interpret the reading cautiously.':'');
 }
-function mult(m) { return m.toFixed(2) + 'x'; }
-function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-
-function renderToday() {
-  var c = series.current, z = c.zone, share = WMA.shareAtOrBelow(series, c.mult), nweeks = series.n - series.firstMa + 1;
-  var rel = c.pct >= 0 ? 'above' : 'below';
-  var sentence = 'Bitcoin is ' + usd(c.price) + ', which is <b>' + Math.abs(c.pct * 100).toFixed(1) + '% ' + rel + '</b> its 200-week moving average of ' + usd(c.ma) + '. That puts it in the <b>' + z.name + '</b> zone. ' + z.text;
-  var cheap = share < 0.005 ? 'under 1%' : (share * 100 < 10 ? (share * 100).toFixed(1) : Math.round(share * 100)) + '%';
-  var edges = [0.5, 1.1, 2, 3.5, 5], gmin = 0.5, gmax = 5;
-  var seg = Z.map(function (zz) { var lo = Math.max(zz.lo, gmin), hi = Math.min(zz.hi, gmax); return '<i style="width:' + ((hi - lo) / (gmax - gmin) * 100) + '%;background:' + zz.color + '"></i>'; }).join('');
-  var pos = Math.min(gmax, Math.max(gmin, c.mult)); var left = (pos - gmin) / (gmax - gmin) * 100;
-  var ticks = [[gmin, '0.5x'], [1.1, '1.1x'], [2, '2x'], [3.5, '3.5x'], [5, '5x+']].map(function (t, i) { return '<span style="left:' + ((t[0] - gmin) / (gmax - gmin) * 100) + '%"' + (i === 4 ? ' class="r"' : '') + '>' + t[1] + '</span>'; }).join('');
-  var asof = asofHtml();
-  var chartAsof = $('#wm-chart-asof'); if (chartAsof) chartAsof.innerHTML = asof;
-  $('#wm-today').innerHTML = '<div class="big-label">Price ÷ 200-week average</div>' +
-    '<div class="wm-chip" style="background:' + z.color + '">' + z.name + '</div>' +
-    '<div class="wm-big" style="color:' + z.color + '" id="wm-mult">' + c.mult.toFixed(2) + '<small>x</small></div>' +
-    '<p class="sentence" style="margin-top:14px">' + sentence + '</p>' +
-    '<div class="wm-gauge" role="img" aria-label="Today’s multiple of ' + c.mult.toFixed(2) + ' on a scale from 0.5x to 5x, zone ' + z.name + '"><div class="wm-gauge-bar">' + seg + '<span class="wm-gauge-pin" style="left:' + left + '%"></span></div><div class="wm-gauge-lab" aria-hidden="true">' + ticks + '</div></div>' +
-    '<div class="wm-stats">' +
-    '<div class="stat"><small>Bitcoin price</small><b id="wm-price">' + usd(c.price) + '</b></div>' +
-    '<div class="stat"><small>200-week average</small><b id="wm-ma">' + usd(c.ma) + '</b></div>' +
-    '<div class="stat"><small>' + (c.pct >= 0 ? 'Above' : 'Below') + ' the average</small><b>' + pct(c.pct) + '</b></div>' +
-    '<div class="stat"><small>Zone</small><b style="color:' + z.color + '">' + z.name + '</b></div>' +
-    '<div class="stat"><small>Weeks at this multiple or lower</small><b id="wm-cheap">' + cheap + '</b></div>' +
-    '<div class="stat"><small>Weeks tracked</small><b>' + nweeks + '</b></div></div>' +
-    '<p class="wm-asof" id="wm-asof">' + asof + '</p>';
-  var gl = $('.wm-gauge-lab'); if (gl) gl.querySelectorAll('span.r').forEach(function (s) { s.style.transform = 'translateX(-100%)'; });
-  var spells = WMA.belowOne(series).filter(function (b) { return b.weeks >= 1; }), tot = spells.reduce(function (a, b) { return a + b.weeks; }, 0);
-  $('#wm-rare').textContent = 'Since the first 200-week average (mid-2014), bitcoin closed a week below it ' + tot + ' times out of ' + nweeks + ' (' + Math.round(tot / nweeks * 1000) / 10 + '% of weeks), in a handful of separate stretches. The longest ran from mid-2022 to early 2023.';
-  var st = WMA.zoneStats(series);
-  $('#wm-zones').innerHTML = st.map(function (s) {
-    var zz = s.zone, rng = zz.lo === 0 ? 'Below ' + zz.hi + 'x' : zz.hi === Infinity ? 'At least ' + zz.lo + 'x' : zz.lo + 'x to ' + zz.hi + 'x';
-    return '<div class="wm-zone' + (zz.id === z.id ? ' now' : '') + '" style="--zc:' + zz.color + '"><h3>' + zz.name + (zz.id === z.id ? ' · now' : '') + '</h3><div class="rng">' + rng + ' the 200-week average</div><dl><dt>Share of weeks</dt><dd>' + Math.round(s.share * 100) + '%</dd><dt>Median price change 52 weeks later</dt><dd>' + (s.median === null ? 'n/a' : pct0(s.median)) + '</dd><dt>Price higher 52 weeks later</dt><dd>' + (s.upShare === null ? 'n/a' : Math.round(s.upShare * 100) + '% of weeks') + '</dd></dl></div>';
-  }).join('');
-  $('#wm-legend').innerHTML = '<span><i class="ln" style="background:#0b0b0c"></i>Weekly price</span><span><i class="ln" style="background:#927139;height:5px"></i>200-week average</span>' + Z.map(function (zz) { return '<span><i style="background:' + zz.color + ';opacity:.5"></i>' + zz.name + '</span>'; }).join('');
+function renderToday(){
+ var c=series.current,below=c.pct<0,amount=Math.abs(c.pct*100);
+ var difference=amount<0.05?'≈ 0%':(below?'−':'+')+amount.toFixed(1)+'%';
+ $('#wm-today').innerHTML='<dl class="wm-snapshot-grid"><div class="wm-metric"><dt>Bitcoin price</dt><dd id="wm-price">'+usd(c.price)+'</dd><p>'+(liveInfo?'Coinbase snapshot':'Saved daily average')+'</p></div><div class="wm-metric"><dt>200-week average</dt><dd id="wm-ma">'+usd(c.ma)+'</dd><p>Current week provisional</p></div><div class="wm-metric"><dt>'+(amount<0.05?'At':below?'Below':'Above')+' the average</dt><dd>'+difference+'</dd><p id="wm-mult">'+c.mult.toFixed(2)+'× the average</p></div></dl><p class="wm-asof" id="wm-asof">'+asof()+'</p>';
 }
-
-function visible() {
-  var s = series, end = s.n, startMs = range === 'all' ? WMA.parseDay('2011-01-02') : s.dates[end] - (+range) * 365.25 * 86400000, i0 = 0;
-  while (i0 < end && s.dates[i0] < startMs) i0++;
-  return [i0, end];
+function renderOutcomes(){
+ if(!history||history.n<history.firstMa+52){$('#wm-history-period').textContent='There is not enough completed history for a 52-week comparison.';return;}
+ var lastStart=history.n-52;
+ $('#wm-history-period').textContent='Eligible starting observations: '+day(history.dates[history.firstMa])+' – '+day(history.dates[lastStart])+'. Outcomes through '+day(history.dates[history.n])+'. Newer readings do not yet have a full 52-week follow-up.';
+ $('#wm-zones').innerHTML=WMAResearch.outcomes(history).map(function(s){
+  return '<article class="wm-zone"><h3>'+s.zone.name+'</h3><p class="rng">'+rangeLabel(s.zone)+'</p><dl><div><dt>Eligible weekly observations</dt><dd>'+s.n+'</dd></div><div><dt>Observed stretches</dt><dd>'+s.stretches+'</dd></div><div><dt>Median 52-week return</dt><dd>'+pct(s.median)+'</dd></div><div><dt>Worst 52-week return</dt><dd>'+pct(s.worst)+'</dd></div><div><dt>Worst drop along the way</dt><dd class="wm-loss">'+pct(s.interimLoss)+'</dd></div></dl></article>';
+ }).join('');
 }
-function drawChart() {
-  var host = $('#wm-chart'), s = series, W = Math.max(280, host.clientWidth - 8), H = W < 520 ? 340 : 440;
-  var ml = W < 520 ? 44 : 54, mr = 10, mt = 10, mb = 26, pw = W - ml - mr, ph = H - mt - mb;
-  var v = visible(), i0 = v[0], i1 = v[1], lo = Infinity, hi = 0;
-  for (var i = i0; i <= i1; i++) { lo = Math.min(lo, s.price[i]); hi = Math.max(hi, s.price[i]); if (s.ma[i]) { lo = Math.min(lo, s.ma[i] * 0.55); hi = Math.max(hi, s.ma[i] * 3.6); } }
-  hi = Math.max(hi, s.price[i1]) * 1.15; lo = lo / 1.15;
-  var lmin = Math.log10(lo), lmax = Math.log10(hi);
-  var t0 = s.dates[i0], t1 = s.dates[i1];
-  var X = function (t) { return ml + (t - t0) / (t1 - t0) * pw; };
-  var Y = function (p) { return mt + (1 - (Math.log10(Math.max(p, lo)) - lmin) / (lmax - lmin)) * ph; };
-  var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', tabindex: '0', 'aria-labelledby': 'wm-t wm-d' });
-  var t = el('title', { id: 'wm-t' }); t.textContent = 'Bitcoin weekly price and 200-week moving average, log scale'; svg.appendChild(t);
-  var c = s.current, dsc = el('desc', { id: 'wm-d' }); dsc.textContent = 'Today bitcoin is ' + usd(c.price) + ', ' + mult(c.mult) + ' its 200-week average of ' + usd(c.ma) + ', in the ' + c.zone.name + ' zone. Use the left and right arrow keys to read each week.'; svg.appendChild(dsc);
-  var defs = el('defs', {}), cp = el('clipPath', { id: 'wm-clip' }); cp.appendChild(el('rect', { x: ml, y: mt, width: pw, height: ph })); defs.appendChild(cp); svg.appendChild(defs);
-  // y grid
-  var g = el('g', {});
-  for (var e = Math.ceil(lmin); e <= Math.floor(lmax); e++) {
-    var y = Y(Math.pow(10, e)); g.appendChild(el('line', { x1: ml, x2: ml + pw, y1: y, y2: y, stroke: '#ececf0', 'stroke-width': 1 }));
-    var tx = el('text', { x: ml - 6, y: y + 4, 'text-anchor': 'end' }); tx.textContent = axisUsd(Math.pow(10, e)); g.appendChild(tx);
-  }
-  // x ticks by year
-  var y0 = new Date(t0).getUTCFullYear(), y1 = new Date(t1).getUTCFullYear(), step = Math.max(1, Math.ceil((y1 - y0) / (W < 520 ? 4 : 8)));
-  for (var yr = y0 + 1; yr <= y1; yr++) { if ((yr - y0) % step) continue; var xx = X(Date.UTC(yr, 0, 1)); if (xx < ml + 12 || xx > ml + pw - 8) continue; g.appendChild(el('line', { x1: xx, x2: xx, y1: mt, y2: mt + ph, stroke: '#f1f1f4' })); var xt = el('text', { x: xx, y: H - 8, 'text-anchor': 'middle' }); xt.textContent = yr; g.appendChild(xt); }
-  svg.appendChild(g);
-  var plot = el('g', { 'clip-path': 'url(#wm-clip)' });
-  // zone bands (only where a 200WMA exists)
-  var from = Math.max(i0, s.firstMa);
-  if (from < i1) {
-    var edges = [0].concat(Z.map(function (z) { return z.hi; }).slice(0, -1)); // 0,1.1,2,3.5
-    Z.forEach(function (z) {
-      var upper = z.hi === Infinity ? null : z.hi, lower = z.lo, pts = [], back = [];
-      for (var i = from; i <= i1; i++) { pts.push(X(s.dates[i]).toFixed(1) + ',' + (upper === null ? mt - 5 : Y(s.ma[i] * upper)).toFixed(1)); }
-      for (var j = i1; j >= from; j--) { back.push(X(s.dates[j]).toFixed(1) + ',' + (lower === 0 ? Y(s.ma[j] * 0.5) : Y(s.ma[j] * lower)).toFixed(1)); }
-      plot.appendChild(el('polygon', { points: pts.concat(back).join(' '), fill: z.color, 'fill-opacity': z.id === 'deep' ? .22 : .10 }));
-    });
-  }
-  // lines
-  var pd = '', md = '';
-  for (var k = i0; k <= i1; k++) { pd += (k === i0 ? 'M' : 'L') + X(s.dates[k]).toFixed(1) + ' ' + Y(s.price[k]).toFixed(1); }
-  var first = true; for (var m = Math.max(i0, s.firstMa); m <= i1; m++) { md += (first ? 'M' : 'L') + X(s.dates[m]).toFixed(1) + ' ' + Y(s.ma[m]).toFixed(1); first = false; }
-  plot.appendChild(el('path', { d: pd, fill: 'none', stroke: '#0b0b0c', 'stroke-width': 1.6, 'stroke-linejoin': 'round' }));
-  if (md) plot.appendChild(el('path', { d: md, fill: 'none', stroke: '#927139', 'stroke-width': 2.8, 'stroke-linejoin': 'round' }));
-  svg.appendChild(plot);
-  // today marker
-  var tx2 = X(s.dates[i1]), ty = Y(s.price[i1]);
-  svg.appendChild(el('circle', { cx: tx2, cy: ty, r: 5, fill: c.zone.color, stroke: '#fff', 'stroke-width': 2 }));
-  // hover layer
-  var cross = el('line', { y1: mt, y2: mt + ph, stroke: '#0b0b0c', 'stroke-width': 1, 'stroke-dasharray': '3 3', visibility: 'hidden' }), dot = el('circle', { r: 4.5, fill: '#fff', stroke: '#0b0b0c', 'stroke-width': 2, visibility: 'hidden' });
-  svg.appendChild(cross); svg.appendChild(dot);
-  if (i0 < s.firstMa - 20 && X(s.dates[s.firstMa]) - ml > 190) { var nt = el('text', { x: X(s.dates[s.firstMa]) - 8, y: mt + 14, 'text-anchor': 'end' }); nt.textContent = 'No 200-week average yet'; svg.appendChild(nt); }
-  host.innerHTML = ''; host.appendChild(svg);
-  function show(i) {
-    i = Math.max(i0, Math.min(i1, i)); hoverIdx = i;
-    cross.setAttribute('x1', X(s.dates[i])); cross.setAttribute('x2', X(s.dates[i])); cross.setAttribute('visibility', 'visible');
-    dot.setAttribute('cx', X(s.dates[i])); dot.setAttribute('cy', Y(s.price[i])); dot.setAttribute('visibility', 'visible');
-    var h = '<b>Week of ' + dateLong(s.dates[i]) + '</b> · price <b>' + usd(s.price[i]) + '</b>';
-    if (s.ma[i]) { var zz = WMA.zoneOf(s.mult[i]); h += ' · 200-week avg <b>' + usd(s.ma[i]) + '</b> · <b style="color:' + zz.color + '">' + mult(s.mult[i]) + ' (' + zz.name + ')</b>'; }
-    else h += ' · no 200-week average yet (needs 200 weeks of history)';
-    $('#wm-hover').innerHTML = h;
-  }
-  function idxAt(ev) { var r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width * W, tt = t0 + (x - ml) / pw * (t1 - t0), best = i0, bd = Infinity; for (var i = i0; i <= i1; i++) { var d = Math.abs(s.dates[i] - tt); if (d < bd) { bd = d; best = i; } } return best; }
-  svg.addEventListener('pointermove', function (ev) { show(idxAt(ev)); });
-  svg.addEventListener('pointerdown', function (ev) { show(idxAt(ev)); });
-  svg.addEventListener('keydown', function (ev) { var d = ev.key === 'ArrowLeft' ? -1 : ev.key === 'ArrowRight' ? 1 : ev.key === 'Home' ? -9999 : ev.key === 'End' ? 9999 : 0; if (!d) return; ev.preventDefault(); show((hoverIdx === null ? i1 : hoverIdx) + d); });
-  if (hoverIdx !== null && hoverIdx >= i0 && hoverIdx <= i1) show(hoverIdx); else hoverIdx = null;
+function visible(){
+ var a=0,b=series.n,start=range==='all'?series.dates[0]:series.dates[b]-Number(range)*365.25*86400000;
+ if(moment){start=WMA.parseDay(moment.start);var end=WMA.parseDay(moment.end);while(b>0&&series.dates[b]>end)b--;}
+ while(a<b&&series.dates[a]<start)a++;
+ if(view==='distance')a=Math.max(a,series.firstMa);
+ return [a,b];
 }
-
-function renderAll() { renderToday(); drawChart(); }
-function start(live) { series = WMA.build(data, live); renderAll(); }
-
-var tracked = false;
-function afterFirst() { if (tracked) return; tracked = true; if (window.PT && PT.track) PT.track('results-shown', 'Results shown'); }
-
-fetch('data/weekly.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
-  data = d; start(null); afterFirst();
-  // Live top-up: a public, keyless ticker. Ignored if blocked, slow or implausible.
-  var ctl = typeof AbortController === 'function' ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
-  fetch('https://api.exchange.coinbase.com/products/BTC-USD/ticker', ctl ? { signal: ctl.signal } : {}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (t) {
-    clearTimeout(to);
-    var p = parseFloat(t.price), last = d.latest.price;
-    if (!(p > 0) || p < last * 0.5 || p > last * 2) return;
-    var now = new Date(), day = now.toISOString().slice(0, 10);
-    if (day < d.latest.date) day = d.latest.date;
-    liveInfo = liveStamp(now);
-    start({ price: p, date: day });
-  }).catch(function () { clearTimeout(to); });
-}).catch(function () { $('#wm-loading').textContent = 'Sorry, the price history could not be loaded. Please try again later.'; });
-
-PT.$$('input[name="wm-range"]').forEach(function (r) { r.addEventListener('change', function () { range = r.value; hoverIdx = null; $('#wm-hover').textContent = 'Hover or tap the chart to read a week.'; if (series) drawChart(); }); });
-var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (series) drawChart(); }, 120); });
+function labelPrice(n){if(n>=1e6)return '$'+n/1e6+'m';if(n>=1000)return '$'+n/1000+'k';if(n>=1)return '$'+n;return '$'+n.toFixed(n<.1?2:1);}
+function draw(){
+ if(!series)return;
+ var host=$('#wm-chart'), width=Math.max(260,host.clientWidth),small=width<600,H=small?300:405;
+ var ml=small?43:53,mr=16,mt=16,mb=29,pw=width-ml-mr,ph=H-mt-mb,s=series,v=visible(),a=v[0],b=v[1];
+ if(b<=a)return;
+ var min=Infinity,max=0;
+ for(var i=a;i<=b;i++){
+  var val=view==='price'?s.price[i]:s.mult[i];
+  if(val>0){min=Math.min(min,val);max=Math.max(max,val);}
+  if(view==='price'&&s.ma[i]){min=Math.min(min,s.ma[i]);max=Math.max(max,s.ma[i]);if(bands){min=Math.min(min,s.ma[i]*.5);max=Math.max(max,s.ma[i]*3.5);}}
+ }
+ if(view==='distance'){min=Math.min(min,1);max=Math.max(max,1);if(bands){min=Math.min(min,.5);max=Math.max(max,3.5);}}
+ min/=1.16;max*=1.16;
+ var lm=Math.log10(min),lx=Math.log10(max),t0=s.dates[a],t1=s.dates[b];
+ function X(t){return ml+(t-t0)/(t1-t0)*pw;}
+ function Y(p){return mt+(lx-Math.log10(Math.max(p,min)))/(lx-lm)*ph;}
+ function path(key){var d='';for(var k=a;k<=b;k++){var value=s[key][k];if(!(value>0))continue;d+=(d?'L':'M')+X(s.dates[k]).toFixed(1)+' '+Y(value).toFixed(1);}return d;}
+ var svg=node('svg',{viewBox:'0 0 '+width+' '+H,role:'img',tabindex:'0','aria-labelledby':'wm-chart-title wm-chart-description'});
+ var title=node('title',{id:'wm-chart-title'});title.textContent=view==='price'?'Bitcoin price and 200-week average, log scale':'Bitcoin price divided by its 200-week average, log scale';svg.appendChild(title);
+ var desc=node('desc',{id:'wm-chart-description'});desc.textContent='From '+day(t0)+' to '+day(t1)+'. '+(view==='distance'?'The dashed 1× line means price equals the average. ':'')+'Use Left and Right arrow keys to inspect each observation; Home and End jump to the first and last.';svg.appendChild(desc);
+ var defs=node('defs'),clip=node('clipPath',{id:'wm-clip'});clip.appendChild(node('rect',{x:ml,y:mt,width:pw,height:ph}));defs.appendChild(clip);svg.appendChild(defs);
+ var plot=node('g',{'clip-path':'url(#wm-clip)'});
+ if(bands){
+  Z.forEach(function(z){
+   var lower=z.lo||.000001,upper=isFinite(z.hi)?z.hi:1e12;
+   if(view==='distance'){
+    var topY=Math.max(mt,Y(upper)),bottomY=Math.min(mt+ph,Y(lower));
+    if(bottomY>topY)plot.appendChild(node('rect',{x:ml,y:topY,width:pw,height:bottomY-topY,fill:BAND_COLORS[z.id],'fill-opacity':'.07'}));
+   }else{
+    var front=[],back=[];
+    for(var k=Math.max(a,s.firstMa);k<=b;k++)front.push(X(s.dates[k]).toFixed(1)+','+Y(s.ma[k]*upper).toFixed(1));
+    for(var j=b;j>=Math.max(a,s.firstMa);j--)back.push(X(s.dates[j]).toFixed(1)+','+Y(s.ma[j]*lower).toFixed(1));
+    if(front.length>1)plot.appendChild(node('polygon',{points:front.concat(back).join(' '),fill:BAND_COLORS[z.id],'fill-opacity':'.07'}));
+   }
+  });
+ }
+ if(moment){var x0=Math.max(ml,X(WMA.parseDay(moment.from))),x1=Math.min(ml+pw,X(WMA.parseDay(moment.to)));if(x1>x0)plot.appendChild(node('rect',{x:x0,y:mt,width:x1-x0,height:ph,fill:'#927139','fill-opacity':'.09'}));}
+ var grid=node('g');
+ function tick(n){
+  if(n<min||n>max)return;
+  var yy=Y(n),ref=view==='distance'&&Math.abs(n-1)<.00001;
+  grid.appendChild(node('line',{x1:ml,x2:ml+pw,y1:yy,y2:yy,stroke:ref?'#927139':'#e8e8df','stroke-width':ref?1.5:1,'stroke-dasharray':ref?'5 4':'none'}));
+  var tx=node('text',{x:ml-7,y:yy+4,'text-anchor':'end'});tx.textContent=view==='price'?labelPrice(n):n+'×';grid.appendChild(tx);
+ }
+ var ticks=[];
+ for(var exp=Math.floor(lm);exp<=Math.ceil(lx);exp++)[1,2,5].forEach(function(k){var n=k*Math.pow(10,exp);if(n>=min&&n<=max)ticks.push(n);});
+ if(ticks.length>7)ticks=ticks.filter(function(_,i){return i%2===0;});
+ if(view==='distance'&&!ticks.some(function(n){return Math.abs(n-1)<.00001;}))ticks.push(1);
+ ticks.forEach(tick);
+ var y0=new Date(t0).getUTCFullYear(),y1=new Date(t1).getUTCFullYear(),step=Math.max(1,Math.ceil((y1-y0)/(small?4:9)));
+ for(var yr=y0;yr<=y1;yr++){
+  if((y1-yr)%step)continue;
+  var xx=X(Date.UTC(yr,0,1));if(xx<ml+12||xx>ml+pw-12)continue;
+  grid.appendChild(node('line',{x1:xx,x2:xx,y1:mt,y2:mt+ph,stroke:'#f1f0e9'}));
+  var tx=node('text',{x:xx,y:H-7,'text-anchor':'middle'});tx.textContent=yr;grid.appendChild(tx);
+ }
+ svg.appendChild(plot);svg.appendChild(grid);
+ var lines=node('g',{'clip-path':'url(#wm-clip)'});
+ if(view==='price')lines.appendChild(node('path',{d:path('ma'),fill:'none',stroke:'#927139','stroke-width':2.5,'stroke-linejoin':'round'}));
+ lines.appendChild(node('path',{d:path(view==='price'?'price':'mult'),fill:'none',stroke:'#29261f','stroke-width':1.9,'stroke-linejoin':'round'}));
+ var lastY=Y(view==='price'?s.price[b]:s.mult[b]);lines.appendChild(node('circle',{cx:X(s.dates[b]),cy:lastY,r:4,fill:'#29261f',stroke:'white','stroke-width':1.5}));
+ svg.appendChild(lines);
+ var cross=node('line',{y1:mt,y2:mt+ph,stroke:'#6f7a78','stroke-dasharray':'3 4',visibility:'hidden'}),dot=node('circle',{r:4,fill:'white',stroke:'#29261f','stroke-width':2,visibility:'hidden'});svg.appendChild(cross);svg.appendChild(dot);
+ function show(idx){
+  idx=Math.max(a,Math.min(b,idx));hoverIdx=idx;
+  var value=view==='price'?s.price[idx]:s.mult[idx],xx=X(s.dates[idx]);
+  cross.setAttribute('x1',xx);cross.setAttribute('x2',xx);cross.setAttribute('visibility','visible');dot.setAttribute('cx',xx);dot.setAttribute('cy',Y(value));dot.setAttribute('visibility','visible');
+  var current=idx===s.n;
+  var line='<b>'+day(s.dates[idx])+(current?' · provisional snapshot':' · Sunday sample')+'</b> · Bitcoin <b>'+usd(s.price[idx])+'</b>';
+  line+=s.ma[idx]?' · average <b>'+usd(s.ma[idx])+'</b> · <b>'+s.mult[idx].toFixed(2)+'×</b> ('+pct(s.mult[idx]-1)+')':' · 200 observations needed before an average is available';
+  $('#wm-hover').innerHTML=line;
+ }
+ function indexAt(ev){var rect=svg.getBoundingClientRect(),xx=(ev.clientX-rect.left)/rect.width*width,t=t0+(xx-ml)/pw*(t1-t0),best=a;for(var k=a+1;k<=b;k++)if(Math.abs(s.dates[k]-t)<Math.abs(s.dates[best]-t))best=k;return best;}
+ svg.addEventListener('pointermove',function(e){show(indexAt(e));});svg.addEventListener('pointerdown',function(e){show(indexAt(e));});
+ svg.addEventListener('keydown',function(e){var delta=e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:e.key==='Home'?-99999:e.key==='End'?99999:0;if(!delta)return;e.preventDefault();show((hoverIdx===null?b:hoverIdx)+delta);});
+ host.innerHTML='';host.appendChild(svg);host.setAttribute('aria-busy','false');
+ if(hoverIdx!==null&&hoverIdx>=a&&hoverIdx<=b)show(hoverIdx);
+ $('#chart-h').textContent=moment?moment.title:'Price, with perspective.';
+ var viewNote=view==='price'?'Bitcoin’s price alongside its 200-week average. Logarithmic scale: equal percentage moves take up equal space.':'Price divided by its 200-week average. 1× means equal to the average; 2× means double. Logarithmic scale.';
+ $('#wm-view-note').textContent=(moment?moment.note+' ':'')+viewNote;
+ $('#wm-legend').innerHTML=view==='price'?'<span><i class="wm-price-swatch"></i>Bitcoin price</span><span><i class="wm-average-swatch"></i>200-week average</span>':'<span><i class="wm-price-swatch"></i>Price ÷ average</span><span><i class="wm-reference-swatch"></i>1× · equal to the average</span>';
+ if(bands)$('#wm-legend').innerHTML+=Z.map(function(z){return '<span><i class="wm-band-key" style="background:'+BAND_COLORS[z.id]+'"></i>'+z.name+'</span>';}).join('');
+}
+function resetHover(){hoverIdx=null;$('#wm-hover').textContent='Hover or tap to inspect a week. Keyboard: focus the chart and use the arrow keys.';}
+function clearMoment(){moment=null;$('#wm-reset').hidden=true;$('#wm-moment-detail').hidden=true;document.querySelectorAll('[data-moment]').forEach(function(b){b.setAttribute('aria-pressed','false');});}
+function selectMoment(id){
+ if(!series)return;
+ moment=moments[id];resetHover();$('#wm-reset').hidden=false;document.querySelectorAll('[data-moment]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.moment===id));});document.querySelectorAll('input[name="wm-range"]').forEach(function(r){r.checked=false;});
+ var facts=history?WMAResearch.period(history,moment.from,moment.to):null;
+ var extra=facts?'<p>Highlighted window: '+facts.n+' completed Sunday samples; '+facts.below+' below 1×. Multiple ranged from '+facts.low.toFixed(2)+'× to '+facts.high.toFixed(2)+'×.</p>':'';
+ $('#wm-moment-detail').innerHTML='<p><strong>'+moment.title+'.</strong> '+moment.note+'</p>'+extra+'<a href="#wm-chart-panel">Return to the highlighted chart ↑</a>';$('#wm-moment-detail').hidden=false;
+ draw();
+ $('#wm-chart-panel').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}
+function start(live){series=WMA.build(data,live);renderToday();draw();$('#wm-controls').disabled=false;}
+var tracked=false;
+function afterFirst(){if(tracked)return;tracked=true;if(window.PT&&PT.track)PT.track('results-shown','Results shown');}
+fetch('data/weekly.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
+ data=d;history=WMAResearch.historicalSeries(d);start(null);renderOutcomes();afterFirst();
+ var ctl=typeof AbortController==='function'?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort();},5000);
+ fetch('https://api.exchange.coinbase.com/products/BTC-USD/ticker',ctl?{signal:ctl.signal}:{}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(t){
+  clearTimeout(to);var p=parseFloat(t.price),last=d.latest.price;if(!(p>0)||p<last*.5||p>last*2)return;
+  var now=new Date(),date=now.toISOString().slice(0,10);if(date<d.latest.date)date=d.latest.date;liveInfo=stamp(now);start({price:p,date:date});
+ }).catch(function(){clearTimeout(to);});
+}).catch(function(){var loading=$('#wm-loading');if(loading)loading.textContent='Price history could not be loaded. Please reload to try again; the explanations and sources remain available.';$('#wm-chart').setAttribute('aria-busy','false');});
+document.querySelectorAll('input[name="wm-view"]').forEach(function(r){r.addEventListener('change',function(){view=r.value;resetHover();draw();});});
+document.querySelectorAll('input[name="wm-range"]').forEach(function(r){r.addEventListener('change',function(){range=r.value;clearMoment();resetHover();draw();});});
+$('#wm-bands').addEventListener('change',function(e){bands=e.target.checked;draw();});
+document.querySelectorAll('[data-moment]').forEach(function(b){b.addEventListener('click',function(){selectMoment(b.dataset.moment);});});
+$('#wm-reset').addEventListener('click',function(){clearMoment();range='5';document.querySelector('input[name="wm-range"][value="5"]').checked=true;resetHover();draw();});
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(draw,120);});
 })();
