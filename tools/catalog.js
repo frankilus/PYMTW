@@ -362,6 +362,37 @@ var PT_CATS = [
     ]
    },
    {
+    "slug": "bitcoin-200-week-moving-average",
+    "icon": "📈",
+    "v7icon": "bitcoin",
+    "name": "Bitcoin 200-week moving average tracker",
+    "desc": "Is bitcoin cheap right now? See today's price against its 200-week moving average, with the full history on one log chart and how often it has been this low.",
+    "time": "1 min",
+    "live": true,
+    "kw": [
+     "200 week moving average",
+     "200wma",
+     "200-week moving average",
+     "200 week ma",
+     "moving average",
+     "bitcoin price",
+     "is bitcoin cheap",
+     "is bitcoin a good buy",
+     "good time to buy bitcoin",
+     "buy the dip",
+     "bitcoin buying opportunity",
+     "bitcoin bottom",
+     "bear market",
+     "overvalued",
+     "undervalued",
+     "bitcoin cycle",
+     "log chart",
+     "valuation",
+     "cheap",
+     "when to buy bitcoin"
+    ]
+   },
+   {
     "slug": "bitcoin-dca-backtester",
     "icon": "₿",
     "name": "Bitcoin DCA backtester",
@@ -453,7 +484,7 @@ var PT_TOPICS = [
  {"id": "debt", "name": "Debt & emergencies", "desc": "Pay down balances and prepare for income changes.", "slugs": ["debt-payoff-planner", "emergency-fund-runway", "severance-runway", "guides/lost-my-job", "guides/lost-my-job/checklist", "guides/lost-my-job/severance-review"]},
  {"id": "home", "name": "Home & big purchases", "desc": "Compare your options and see the true cost before a big commitment.", "slugs": ["rent-vs-buy", "before-you-sign", "guides/first-home", "guides/first-home/checklist", "guides/true-cost-of-owning-a-home", "guides/true-cost-of-a-car", "guides/true-cost-of-a-car/checklist"]},
  {"id": "retirement", "name": "Retirement & investing", "desc": "Understand your plan, tax choices, investment fees and an old 401(k).", "slugs": ["explain-my-401k", "roth-vs-traditional", "fee-x-ray", "guides/old-401k", "guides/old-401k/checklist"]},
- {"id": "bitcoin", "name": "Bitcoin", "desc": "Write a plan for your family, test how much you can sell in retirement, organize your records and explore historical scenarios.", "slugs": ["bitcoin-household-plan", "bitcoin-retirement-drawdown", "bitcoin-tax-lot-cleanup", "bitcoin-dca-backtester", "ext/stackcost-calculator", "ext/btc-loan-rates"]},
+ {"id": "bitcoin", "name": "Bitcoin", "desc": "Write a plan for your family, see where bitcoin sits against its 200-week average, test how much you can sell in retirement, organize your records and explore historical scenarios.", "slugs": ["bitcoin-household-plan", "bitcoin-200-week-moving-average", "bitcoin-retirement-drawdown", "bitcoin-tax-lot-cleanup", "bitcoin-dca-backtester", "ext/stackcost-calculator", "ext/btc-loan-rates"]},
  {"id": "guides", "name": "Life guides & checkup", "desc": "Step-by-step guides for big life moments, plus a 2-minute checkup.", "slugs": ["checkup", "checklists", "guides/lost-my-job", "guides/lost-my-job/checklist", "guides/lost-my-job/severance-review", "guides/old-401k", "guides/old-401k/checklist", "guides/first-home", "guides/first-home/checklist", "guides/true-cost-of-owning-a-home", "guides/true-cost-of-a-car", "guides/true-cost-of-a-car/checklist", "guides/true-cost-of-a-baby", "guides/true-cost-of-a-wedding"]}
 ];
 if (typeof module !== "undefined") { module.exports = PT_CATS; module.exports.guides = PT_GUIDES; module.exports.topics = PT_TOPICS; module.exports.external = PT_EXTERNAL; }
