@@ -10,10 +10,10 @@ from pathlib import Path
 import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
-# Shipped main as of 2026-11-15 (Google Search Console homepage meta tag and Bitcoin Retirement Drawdown Planner, 3dec112).
+# Shipped main as of 2026-11-15 (Bitcoin 200-Week Moving Average Tracker, f2f433a).
 # Scope guards compare against this commit so they still catch later accidental
 # changes after accepting pages already live on that date.
-SHIPPED='3dec11238cdce2fa5ad2750584a1d50b1f89ccb9'
+SHIPPED='f2f433a75b520e27c211493656f489cb94e817e8'
 # Exact edits made by fix/tests-and-small-ui-2026-10-25.
 APPROVED_EDITS={
  'tools/v7/home.css':[('.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px}','.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center}')],
@@ -282,4 +282,6 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','te
 # 2026-11-13: re-baseline scope guards to accept shipped main (594c167).
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/find-right-tool.cjs','tests/homepage-migration.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-browser.cjs','tests/v7-preservation.py'}
 # 2026-11-15: re-baseline scope guards to accept shipped main (3dec112).
+THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
+# 2026-11-15: re-baseline scope guards to accept shipped main (f2f433a, Bitcoin 200-Week Moving Average Tracker).
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
