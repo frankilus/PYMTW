@@ -51,6 +51,7 @@ Pages marked "coming soon" describe tools that are not yet functional.
 
 ## Bitcoin
 
+- [Bitcoin retirement drawdown planner](https://pymtw.com/tools/bitcoin-retirement-drawdown/): Your safe yearly sell amount is the most you can spend each year, rising with inflation, without running out before the age you choose, even if bitcoin falls 75% the year you retire or has its worst years first. Models bitcoin, 401(k)/IRA and Roth year by year with 2026 federal tax (IRS Rev. Proc. 2025-32 brackets and 0%/15%/20% capital gains, 3.8% NIIT, RMDs from age 73 or 75 with the Uniform Lifetime Table). Federal only, educational, runs in the browser.
 - [Bitcoin DCA backtester](https://pymtw.com/tools/bitcoin-dca-backtester/): Dollar-cost averaging (DCA) means buying a fixed dollar amount on a regular schedule regardless of price.
 - [Bitcoin DCA Cost Calculator](https://stackcost-pink.vercel.app/calculator) (external, StackCost): Enter any weekly or monthly amount and see what 8 apps (Cash App, Strike, River, Robinhood, Swan, Kraken, Coinbase, PayPal) really cost per year in fees and spread, ranked cheapest first. Example: https://stackcost-pink.vercel.app/calculator?amount=100&freq=weekly
 - [BTC Loan Rates](https://btc-loan-rates.vercel.app) (external): Compare what a Bitcoin-backed loan really costs. Ranks 11 US lenders by all-in cost (interest + fees), with LTV, liquidation and custody details and a loan calculator.
