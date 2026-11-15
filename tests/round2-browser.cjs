@@ -14,7 +14,7 @@ if(process.env.SCREENSHOT_DIR){await p.setViewportSize({width:390,height:950});f
 // than enlarging them, so they are allowlisted; any other sub-12px text still fails.
 const allowedSmall={
  '/':new Set(['2-minute money checkup','Question 1','The Long Game · Free newsletter','Read before you subscribe']),
- '/bitcoin/':new Set(['Request availability first. Agree your appointment and ','THE FOUNDATIONS · ONE CLIENT','CUSTODY & SECURITY · ONE CLIENT','SHARED DECISIONS · ONE HOUSEHOLD','THE HISTORY','THE LIBRARY','YOUR FAMILY']),
+ '/bitcoin/':new Set(['Request availability first. Agree your appointment and ','THE FOUNDATIONS · ONE CLIENT','CUSTODY & SECURITY · ONE CLIENT','SHARED DECISIONS · ONE HOUSEHOLD','TODAY’S CONTEXT','THE HISTORY','THE LIBRARY','YOUR FAMILY']),
  '/bitcoin/explore/':new Set(),
  '/resources.html':new Set()
 };

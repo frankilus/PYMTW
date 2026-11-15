@@ -1,0 +1,262 @@
+/* Preview: Bitcoin homepage "When to buy?" band and Keep exploring readout.
+   Page-local so shared bitcoin-home CSS stays untouched. */
+
+#wma-readout{min-height:calc(14px * 1.7)}
+@media(max-width:720px){#wma-readout{min-height:calc(14px * 1.7 * 2)}}
+
+/* The homepage's global svg rule (stroke:currentColor, fill:none) would
+   flatten the gauge and sparkline. Reset inside this section only. */
+.wma-when svg{
+  fill:initial;
+  stroke:initial;
+  stroke-width:initial;
+  stroke-linecap:initial;
+  stroke-linejoin:initial;
+}
+
+.wma-when{
+  background:#f2eade;
+  border-top:1px solid #e7ddce;
+  border-bottom:1px solid #e7ddce;
+  padding:42px 0 40px;
+  margin:0 0 52px;
+}
+.wma-when-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);
+  grid-template-areas:
+    "head viz"
+    "readout viz"
+    "cta viz"
+    "notes viz";
+  column-gap:56px;
+  row-gap:14px;
+  align-items:start;
+}
+.wma-when-head{grid-area:head}
+.wma-when-readout{grid-area:readout;min-height:210px}
+.wma-when-viz{grid-area:viz;align-self:center;min-width:0}
+.wma-when-cta{grid-area:cta;justify-self:start;font-size:14px;gap:16px;margin:8px 0 0;padding:14px 20px}
+.wma-when-notes{grid-area:notes}
+
+.wma-when-head h2{
+  font:400 40px/1.15 Georgia,'Times New Roman',serif;
+  letter-spacing:-.03em;
+  margin:0 0 10px;
+  color:var(--ink);
+}
+.wma-when-sub{
+  font-size:15px;
+  line-height:1.6;
+  color:#5f574b;
+  margin:0;
+}
+
+.wma-when-br{display:none}
+@media(min-width:821px){.wma-when-br{display:block}}
+
+.wma-when-kicker{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:10px 18px;
+  min-height:88px;
+  margin:8px 0 6px;
+}
+.wma-when-mult{
+  font:400 clamp(56px,7vw,80px)/.95 Georgia,'Times New Roman',serif;
+  letter-spacing:-.04em;
+  margin:0;
+  color:#8a8174;
+  font-variant-numeric:tabular-nums;
+}
+.wma-when.is-ready .wma-when-mult,
+.wma-when.is-ready .wma-when-chip{color:var(--wma-zone,var(--ink))}
+.wma-when-chip{
+  display:inline-flex;
+  align-items:center;
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-.01em;
+  color:#5f574b;
+  line-height:1.2;
+}
+
+.wma-when-stats{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:10px 24px;
+  margin:0 0 12px;
+  min-height:52px;
+}
+.wma-when-stats div{min-width:0}
+.wma-when-stats dt{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#726454;
+  margin:0 0 2px;
+}
+.wma-when-stats dd{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+
+.wma-when-cheap{
+  margin:0;
+  font-size:15px;
+  line-height:1.45;
+  color:var(--ink);
+  min-height:calc(15px * 1.45 * 2);
+}
+.wma-when-cheap-br{display:none}
+.wma-when-cheap-end{white-space:nowrap}
+
+.wma-when-note,
+.wma-when-asof{
+  margin:0;
+  font-size:12px;
+  line-height:1.55;
+  color:#5f574b;
+  max-width:40em;
+}
+.wma-when-note{margin-bottom:6px}
+.wma-when-asof{min-height:calc(12px * 1.55 * 2)}
+
+.wma-when-gauge{
+  position:relative;
+  min-height:64px;
+  padding-top:22px;
+}
+.wma-when-bar{
+  display:flex;
+  height:12px;
+  border-radius:6px;
+  overflow:hidden;
+  background:#e4d8c8;
+}
+.wma-when-seg{height:100%;min-width:0}
+.wma-when-pin{
+  position:absolute;
+  top:0;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  pointer-events:none;
+  width:max-content;
+  max-width:42%;
+}
+.wma-when-pin-label{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--ink);
+  line-height:1;
+  margin-bottom:4px;
+  white-space:nowrap;
+}
+.wma-when-pin-caret{
+  width:0;
+  height:0;
+  border-left:6px solid transparent;
+  border-right:6px solid transparent;
+  border-top:8px solid var(--ink);
+}
+.wma-when-ticks{
+  display:block;
+  position:relative;
+  height:22px;
+  margin-top:6px;
+}
+.wma-when-ticks span{
+  position:absolute;
+  top:0;
+  transform:translateX(-50%);
+  font-size:12px;
+  font-weight:600;
+  color:#726454;
+  line-height:1.2;
+  white-space:nowrap;
+}
+.wma-when-ticks span:first-child{transform:translateX(0)}
+.wma-when-ticks span:last-child{transform:translateX(-100%)}
+
+.wma-when-spark{
+  min-height:128px;
+  margin-top:14px;
+}
+.wma-when-spark svg{display:block;width:100%;height:112px}
+.wma-when-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 16px;
+  margin:8px 0 0;
+  padding:0;
+  list-style:none;
+  font-size:12px;
+  color:#5f574b;
+}
+.wma-when-legend li{display:flex;align-items:center;gap:7px}
+.wma-when-swatch{
+  display:inline-block;
+  width:16px;
+  height:0;
+  border-top:2px solid currentColor;
+  flex-shrink:0;
+}
+.wma-when-swatch.ma{color:#6e1fd1;border-top-width:2px}
+.wma-when-swatch.price{color:var(--ink)}
+
+.wma-when-fallback{
+  margin:8px 0 0;
+  font-size:15px;
+  line-height:1.6;
+  color:#5f574b;
+  max-width:32em;
+}
+.wma-when.is-ready .wma-when-fallback{display:none}
+.wma-when:not(.is-ready) .wma-when-live{display:none}
+
+@media(max-width:820px){
+  .wma-when{padding:30px 0 28px;margin-bottom:40px}
+  .wma-when-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "head"
+      "readout"
+      "viz"
+      "cta"
+      "notes";
+    row-gap:12px;
+  }
+  .wma-when-head h2{font-size:34px}
+  .wma-when-sub{font-size:14px}
+  .wma-when-readout{min-height:190px}
+  .wma-when-kicker{min-height:72px;margin:4px 0 2px}
+  .wma-when-mult{font-size:clamp(52px,15vw,68px)}
+  .wma-when-chip{font-size:18px}
+  .wma-when-viz{margin-top:4px}
+  .wma-when-spark{min-height:120px}
+  .wma-when-asof{min-height:calc(12px * 1.55 * 3)}
+}
+
+@media(max-width:720px){
+  .wma-when{padding:26px 0 24px;margin-bottom:36px}
+  .wma-when-head h2{font-size:32px}
+  .wma-when-stats{gap:8px 16px;min-height:48px}
+  .wma-when-stats dd{font-size:16px}
+  .wma-when-cheap{min-height:calc(15px * 1.45 * 3)}
+  .wma-when-cheap-br{display:block}
+  .wma-when-cta{width:100%;justify-content:center;min-height:48px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .wma-when-pin{transition:none}
+}
