@@ -45,7 +45,7 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   for(const e of ext){const a=page.locator(`#tools-grid a.directory-tool[href="${e.url}"]`);assert.equal(await a.getAttribute('target'),'_blank');assert.equal(await a.getAttribute('rel'),'noopener');assert.equal(await a.locator('.directory-tag').innerText(),'External site');}
   const all=hrefs.filter(h=>!/^https:/.test(h)).map(h=>h.replace(/^\.\//,'').replace(/\/$/,'')).sort();
   assert.deepEqual(all,sitemap,'the All view shows every sitemap page exactly once');
-  assert.match(await page.locator('#tool-count').innerText(),/16 tools, 14 guides & 2 external links in all topics/);
+  assert.match(await page.locator('#tool-count').innerText(),/17 tools, 14 guides & 2 external links in all topics/);
   for(const s of sitemap){await search.fill('');await search.fill(items.find(t=>t.slug===s).name);
    assert.equal(await page.locator(`#tools-grid a.directory-tool[href="./${s}/"]`).count(),1,'searching its name finds '+s);}
   for(const q of ['rollover','old 401k','IRA','Roth IRA','leaving job','cash out','401k','401(k) rollover','what should I do with my old 401(k)']){
@@ -58,7 +58,7 @@ for(const k of ['rollover','ira','roth','leaving job','cash out','401k'])assert.
   for(const q of ['dca cost','cash app','cheapest app to buy bitcoin','strike fees','coinbase spread','compare bitcoin apps']){await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/calculator"]').count(),1,q+' finds the DCA cost calculator');}
   await search.fill('compare bitcoin apps');assert.equal(await page.locator('#tools-grid a.directory-tool[href^="https://stackcost-pink.vercel.app"]').count(),1,'one StackCost result');assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://stackcost-pink.vercel.app/compare"]').count(),0);
   for(const q of ['loan','bitcoin-backed loan','btc loan rates']){await search.fill(q);assert.equal(await page.locator('#tools-grid a.directory-tool[href="https://btc-loan-rates.vercel.app"]').count(),1,q+' finds BTC Loan Rates');}
-  await search.fill('');await page.locator('[data-category=bitcoin]').click();assert.match(await page.locator('#tool-count').innerText(),/4 tools & 2 external links in bitcoin/);await page.locator('[data-category=all]').click();
+  await search.fill('');await page.locator('[data-category=bitcoin]').click();assert.match(await page.locator('#tool-count').innerText(),/5 tools & 2 external links in bitcoin/);await page.locator('[data-category=all]').click();
   await search.fill('zzqx');assert.equal(await page.locator('#tools-grid a.directory-tool').count(),0);assert.equal(await page.locator('.directory-empty a[href="/tools/checkup/"]').count(),1);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'no horizontal overflow at '+width);
   // Keyboard: Escape clears and restores the topic; the clear button and a topic click also clear.

@@ -33,7 +33,7 @@ assert all('?' not in u for u in re.findall(r'href="(https://btc-loan-rates\.ver
 for f in [s,app,core]:
   for bad in ['fetch(','XMLHttpRequest','sendBeacon','document.cookie','localStorage','<iframe','embed.beehiiv','utm_','?ref=','&ref=']:assert bad not in f,bad
 # wiring
-cat=(R/'tools/catalog.js').read_text();assert '"slug": "bitcoin-retirement-drawdown"' in cat and re.search(r'"id": "bitcoin".*?"slugs": \["bitcoin-household-plan", "bitcoin-retirement-drawdown"',cat)
+cat=(R/'tools/catalog.js').read_text();assert '"slug": "bitcoin-retirement-drawdown"' in cat and re.search(r'"id": "bitcoin".*?"slugs": \["bitcoin-household-plan", (?:"bitcoin-200-week-moving-average", )?"bitcoin-retirement-drawdown"',cat)
 idx=(R/'tools/index.html').read_text();assert '<li><a href="/tools/bitcoin-retirement-drawdown/">Bitcoin retirement drawdown planner</a></li>' in idx
 assert 'catalog.js?v='+hashlib.sha256((R/'tools/catalog.js').read_bytes()).hexdigest()[:12] in idx,'catalog cache-bust matches file'
 r=(R/'tools/router.js').read_text();assert "'bitcoin-retirement-drawdown':'<path" in r and "'bitcoin-retirement-drawdown':['" in r
