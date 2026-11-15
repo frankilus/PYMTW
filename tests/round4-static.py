@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess,re,json,os
 root=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
-base=SHIPPED  # shipped main 2026-11-15 (0e8ce1d, Bitcoin 200-week tracker as-of date); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-15 (26ccbbd, Bitcoin homepage When to buy section); still flags later accidental changes
 # PRs 23/24 are the baseline; allow only this follow-up’s reviewed files.
 allowed={
  'tools/guides/first-home/index.html',
