@@ -9,6 +9,14 @@ function axisUsd(n) { return n >= 1e6 ? '$' + n / 1e6 + 'M' : n >= 1e3 ? '$' + n
 function pct(x) { return (x >= 0 ? '+' : '−') + Math.abs(x * 100).toFixed(x * 100 >= 1000 || x * 100 <= -1000 ? 0 : 1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%'; }
 function pct0(x) { return (x >= 0 ? '+' : '−') + Math.abs(Math.round(x * 100)).toLocaleString('en-US') + '%'; }
 function dateLong(ms) { return new Date(ms).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); }
+function liveStamp(d) { return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short' }); }
+function historyAsOf() { return dateLong(WMA.parseDay(data.updated || data.latest.date)); }
+function asofHtml() {
+  var hist = historyAsOf();
+  return liveInfo
+    ? 'Price live as of <b>' + liveInfo + '</b>; weekly history as of <b>' + hist + '</b>.'
+    : 'Data as of <b>' + hist + '</b>. A live price was not available, so this uses the daily average from the saved file.';
+}
 function mult(m) { return m.toFixed(2) + 'x'; }
 function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
 
@@ -21,7 +29,8 @@ function renderToday() {
   var seg = Z.map(function (zz) { var lo = Math.max(zz.lo, gmin), hi = Math.min(zz.hi, gmax); return '<i style="width:' + ((hi - lo) / (gmax - gmin) * 100) + '%;background:' + zz.color + '"></i>'; }).join('');
   var pos = Math.min(gmax, Math.max(gmin, c.mult)); var left = (pos - gmin) / (gmax - gmin) * 100;
   var ticks = [[gmin, '0.5x'], [1.1, '1.1x'], [2, '2x'], [3.5, '3.5x'], [5, '5x+']].map(function (t, i) { return '<span style="left:' + ((t[0] - gmin) / (gmax - gmin) * 100) + '%"' + (i === 4 ? ' class="r"' : '') + '>' + t[1] + '</span>'; }).join('');
-  var asof = liveInfo ? 'Live price from Coinbase Exchange, fetched ' + liveInfo + '. ' : 'Price as of ' + dateLong(series.dates[series.n]) + ' (daily average from the saved data file; a live price was not available). ';
+  var asof = asofHtml();
+  var chartAsof = $('#wm-chart-asof'); if (chartAsof) chartAsof.innerHTML = asof;
   $('#wm-today').innerHTML = '<div class="big-label">Price ÷ 200-week average</div>' +
     '<div class="wm-chip" style="background:' + z.color + '">' + z.name + '</div>' +
     '<div class="wm-big" style="color:' + z.color + '" id="wm-mult">' + c.mult.toFixed(2) + '<small>x</small></div>' +
@@ -34,7 +43,7 @@ function renderToday() {
     '<div class="stat"><small>Zone</small><b style="color:' + z.color + '">' + z.name + '</b></div>' +
     '<div class="stat"><small>Weeks this cheap or cheaper</small><b id="wm-cheap">' + cheap + '</b></div>' +
     '<div class="stat"><small>Weeks tracked</small><b>' + nweeks + '</b></div></div>' +
-    '<p class="wm-asof">' + asof + 'About ' + cheap + ' of the ' + nweeks + ' weeks since mid-2014 had a lower multiple. Weekly history from the Blockchain.com daily average, saved ' + dateLong(WMA.parseDay(data.updated)) + '.</p>';
+    '<p class="wm-asof" id="wm-asof">' + asof + '</p>';
   var gl = $('.wm-gauge-lab'); if (gl) gl.querySelectorAll('span.r').forEach(function (s) { s.style.transform = 'translateX(-100%)'; });
   var spells = WMA.belowOne(series).filter(function (b) { return b.weeks >= 1; }), tot = spells.reduce(function (a, b) { return a + b.weeks; }, 0);
   $('#wm-rare').textContent = 'Since the first 200-week average (mid-2014), bitcoin closed a week below it ' + tot + ' times out of ' + nweeks + ' (' + Math.round(tot / nweeks * 1000) / 10 + '% of weeks), in a handful of separate stretches. The longest ran from mid-2022 to early 2023.';
@@ -134,7 +143,7 @@ fetch('data/weekly.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) 
     if (!(p > 0) || p < last * 0.5 || p > last * 2) return;
     var now = new Date(), day = now.toISOString().slice(0, 10);
     if (day < d.latest.date) day = d.latest.date;
-    liveInfo = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    liveInfo = liveStamp(now);
     start({ price: p, date: day });
   }).catch(function () { clearTimeout(to); });
 }).catch(function () { $('#wm-loading').textContent = 'Sorry, the price history could not be loaded. Please try again later.'; });

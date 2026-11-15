@@ -32,6 +32,8 @@ assert 'goatcounter' not in app and re.findall(r"PT\.track\('([^']+)'",app)==['r
 data=json.loads((d/'data/weekly.json').read_text());assert data['firstWeek']=='2010-08-22' and len(data['weekly'])>=848
 sc=(R/'.github/scripts/update-btc-weekly.py').read_text()
 assert 'api.blockchain.info/charts/market-price' in sc and not re.search(r'api[_-]?key|token|secret',sc,re.I)
+assert '"updated": last.isoformat()' in sc
+assert 'Price live as of' in app and 'weekly history as of' in app and 'Data as of' in app and 'liveStamp' in app and 'historyAsOf' in app and 'id="wm-asof"' in app and 'wm-chart-asof' in s
 wfp=R/'.github/workflows/update-btc-weekly.yml'
 if wfp.exists():  # the schedule is added by the repo owner (pushing workflow files needs the workflow scope)
   wf=wfp.read_text();assert 'schedule:' in wf and 'cron:' in wf and 'workflow_dispatch' in wf and 'contents: write' in wf and 'secrets.' not in wf
