@@ -33,7 +33,11 @@ data=json.loads((d/'data/weekly.json').read_text());assert data['firstWeek']=='2
 sc=(R/'.github/scripts/update-btc-weekly.py').read_text()
 assert 'api.blockchain.info/charts/market-price' in sc and not re.search(r'api[_-]?key|token|secret',sc,re.I)
 assert '"updated": last.isoformat()' in sc
-assert 'Price live as of' in app and 'weekly history as of' in app and 'Data as of' in app and 'liveStamp' in app and 'historyAsOf' in app and 'id="wm-asof"' in app and 'wm-chart-asof' in s
+assert 'Coinbase snapshot fetched' in app and 'history as of' in app and 'Live quote unavailable' in app and 'id="wm-asof"' in app
+assert 'data/weekly.json' in app and 'research.js?v=' in s and 'wm-view' in s and 'wm-bands' in s
+assert 'checks for new data daily' in s and 'not weekly closing prices' in s
+assert 'wm-history' in s and 'observations, not odds' in s and 'Worst drop along the way' in app
+assert 'historicalSeries' in app and 'WMAResearch.outcomes(history)' in app
 wfp=R/'.github/workflows/update-btc-weekly.yml'
 if wfp.exists():  # the schedule is added by the repo owner (pushing workflow files needs the workflow scope)
   wf=wfp.read_text();assert 'schedule:' in wf and 'cron:' in wf and 'workflow_dispatch' in wf and 'contents: write' in wf and 'secrets.' not in wf
