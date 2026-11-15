@@ -1,0 +1,36 @@
+name: Update bitcoin weekly price data
+
+# Free, keyless source (Blockchain.com Charts API). No secrets, no paid services.
+# The Python script writes tools/bitcoin-200-week-moving-average/data/weekly.json,
+# including an "updated" field (the last source day, YYYY-MM-DD) that the page
+# shows as "weekly history as of <date>".
+on:
+  schedule:
+    - cron: "23 6 * * *"   # daily; the saved file only changes when there is new data
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-btc-weekly
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild tools/bitcoin-200-week-moving-average/data/weekly.json
+        run: python3 .github/scripts/update-btc-weekly.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- tools/bitcoin-200-week-moving-average/data/weekly.json; then
+            echo "No new data."; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/bitcoin-200-week-moving-average/data/weekly.json
+          git commit -m "Update bitcoin weekly price data"
+          git push
