@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess,re
 r=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
-base=SHIPPED  # shipped main 2026-11-15 (f2f433a, Bitcoin 200-Week Moving Average Tracker); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-15 (0e8ce1d, Bitcoin 200-week tracker as-of date); still flags later accidental changes
 for name in subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=r,text=True).splitlines():
  if name.startswith('tests/'):
   continue  # test files are updated with this re-baseline
