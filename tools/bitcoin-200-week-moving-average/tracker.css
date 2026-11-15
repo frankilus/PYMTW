@@ -111,3 +111,24 @@
 .wm-view label:hover span{background:#f4e3cd;color:#29261f}
 .wm-view input:checked+span{background:#a54415;color:white}
 .wm-newsletter.result-newsletter a:hover{background:#873710}
+
+/* Historical-context scale: same thresholds as the chart, warm Bitcoin palette. */
+.wm-scale{border-top:1px solid #ded8cc;padding-top:17px;margin-top:18px}
+.wm-scale-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:13px}
+.wm-scale-heading h3{font-size:13px;font-weight:600;margin:0}.wm-scale-heading>span{font-size:12px;color:var(--wm-muted)}
+.wm-scale-gauge{position:relative;padding-top:29px;min-height:69px;margin-inline:3px}
+.wm-scale-bar{display:flex;overflow:hidden;height:12px;border-radius:8px;background:#ded3c0}
+.wm-scale-bar>span{display:block;height:100%;flex-shrink:0}
+.wm-scale-marker{position:absolute;top:0;transform:translateX(-50%);font-size:12px;line-height:1.4;font-weight:700;color:#29261f;white-space:nowrap}
+.wm-scale-pointer{position:absolute;top:22px;width:0;height:0;transform:translateX(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #29261f}
+.wm-scale-ticks{position:relative;height:23px;margin-top:6px;font-size:12px;color:#655d52}
+.wm-scale-ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.wm-scale-ticks span:first-child{transform:none}.wm-scale-ticks span:last-child{transform:translateX(-100%)}
+.wm-scale-legend{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.wm-scale-legend li{display:flex;align-items:flex-start;gap:8px;padding:8px 9px;border:1px solid transparent;border-radius:5px;min-width:0}
+.wm-scale-legend li.is-current{border-color:#c4ac87;background:#f4e3cd}
+.wm-scale-key{width:9px;height:9px;margin-top:4px;border-radius:2px;flex-shrink:0}
+.wm-scale-legend strong{display:block;font-size:12px;font-weight:600;line-height:1.5}.wm-scale-legend small{display:block;font-size:12px;color:#655d52;line-height:1.5}
+.wm-scale-context{font-size:12px;line-height:1.7;color:#655d52;margin-top:10px;max-width:850px}
+.wm-scale-context a{display:inline-flex;align-items:center;min-height:44px;color:#a54415;text-decoration:underline;text-underline-offset:4px;margin-left:4px}
+@media(max-width:720px){.wm-scale{padding-top:14px;margin-top:16px}.wm-scale-heading{display:block;margin-bottom:12px}.wm-scale-heading>span{display:block;margin-top:3px}.wm-scale-legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.wm-scale-legend li{padding:7px}.wm-scale-context a{margin-left:0}.wm-scale-gauge{margin-inline:0}}

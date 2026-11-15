@@ -21,10 +21,20 @@ function asof(){
  var age=(Date.now()-WMA.parseDay(data.updated))/86400000;
  return line+(age>4?' History is more than three days old; interpret the reading cautiously.':'');
 }
+function scaleMarkup(c){
+ var lo=.5,hi=5;
+ function position(m){return Math.log(Math.max(lo,Math.min(hi,m))/lo)/Math.log(hi/lo)*100;}
+ var edges=[lo,1.1,2,3.5,hi],segments='',ticks='';
+ for(var i=0;i<edges.length-1;i++)segments+='<span style="width:'+(position(edges[i+1])-position(edges[i])).toFixed(3)+'%;background:'+BAND_COLORS[Z[i].id]+'"></span>';
+ edges.forEach(function(m,i){ticks+='<span style="left:'+position(m).toFixed(3)+'%">'+(i===0?'≤':i===edges.length-1?'≥':'')+m+'×</span>';});
+ var left=position(c.mult).toFixed(3),label=c.mult.toFixed(2)+'×';
+ var notes={deep:'Some past bear-market lows occurred near or below this average. Price can still fall further, and lower multiples do not guarantee future gains.',fair:'Above the long-term average. This describes a relative price range, not an estimate of fair value.',stretched:'At least twice the long-term average. A high multiple describes distance; it cannot time a reversal.',hot:'At least 3.5 times the long-term average. Historical extremes are context, not a sell signal.'};
+ return '<section class="wm-scale" aria-labelledby="wm-scale-title"><div class="wm-scale-heading"><h3 id="wm-scale-title">Where today sits</h3><span>Price ÷ 200-week average</span></div><div class="wm-scale-gauge" role="img" aria-label="Today '+label+', '+c.zone.name+'. Descriptive ranges: below 1.1 times, 1.1 to under 2 times, 2 to under 3.5 times, and 3.5 times or more. The scale is logarithmic, from 0.5 to 5 times; values beyond the ends are pinned to the edge."><span class="wm-scale-marker" style="left:clamp(48px,'+left+'%,calc(100% - 48px))">Today '+label+'</span><span class="wm-scale-pointer" style="left:'+left+'%" aria-hidden="true"></span><div class="wm-scale-bar" aria-hidden="true">'+segments+'</div><div class="wm-scale-ticks" aria-hidden="true">'+ticks+'</div></div><ul class="wm-scale-legend">'+Z.map(function(z){return '<li'+(z.id===c.zone.id?' class="is-current"':'')+'><span class="wm-scale-key" style="background:'+BAND_COLORS[z.id]+'" aria-hidden="true"></span><span><strong>'+z.name+'</strong><small>'+rangeLabel(z)+'</small></span></li>';}).join('')+'</ul><p class="wm-scale-context">'+notes[c.zone.id]+' <a href="#wm-history" data-scale-history>See historical results ↓</a></p></section>';
+}
 function renderToday(){
  var c=series.current,below=c.pct<0,amount=Math.abs(c.pct*100);
  var difference=amount<0.05?'≈ 0%':(below?'−':'+')+amount.toFixed(1)+'%';
- $('#wm-today').innerHTML='<dl class="wm-snapshot-grid"><div class="wm-metric"><dt>Bitcoin price</dt><dd id="wm-price">'+usd(c.price)+'</dd><p>'+(liveInfo?'Coinbase snapshot':'Saved daily average')+'</p></div><div class="wm-metric"><dt>200-week average</dt><dd id="wm-ma">'+usd(c.ma)+'</dd><p>Current week provisional</p></div><div class="wm-metric"><dt>'+(amount<0.05?'At':below?'Below':'Above')+' the average</dt><dd>'+difference+'</dd><p id="wm-mult">'+c.mult.toFixed(2)+'× the average</p></div></dl><p class="wm-asof" id="wm-asof">'+asof()+'</p>';
+ $('#wm-today').innerHTML='<dl class="wm-snapshot-grid"><div class="wm-metric"><dt>Bitcoin price</dt><dd id="wm-price">'+usd(c.price)+'</dd><p>'+(liveInfo?'Coinbase snapshot':'Saved daily average')+'</p></div><div class="wm-metric"><dt>200-week average</dt><dd id="wm-ma">'+usd(c.ma)+'</dd><p>Current week provisional</p></div><div class="wm-metric"><dt>'+(amount<0.05?'At':below?'Below':'Above')+' the average</dt><dd>'+difference+'</dd><p id="wm-mult">'+c.mult.toFixed(2)+'× the average</p></div></dl>'+scaleMarkup(c)+'<p class="wm-asof" id="wm-asof">'+asof()+'</p>';
 }
 function renderOutcomes(){
  if(!history||history.n<history.firstMa+52){$('#wm-history-period').textContent='There is not enough completed history for a 52-week comparison.';return;}
@@ -147,6 +157,7 @@ fetch('data/weekly.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new
   var now=new Date(),date=now.toISOString().slice(0,10);if(date<d.latest.date)date=d.latest.date;liveInfo=stamp(now);start({price:p,date:date});
  }).catch(function(){clearTimeout(to);});
 }).catch(function(){var loading=$('#wm-loading');if(loading)loading.textContent='Price history could not be loaded. Please reload to try again; the explanations and sources remain available.';$('#wm-chart').setAttribute('aria-busy','false');});
+$('#wm-today').addEventListener('click',function(e){if(e.target.closest('[data-scale-history]'))$('#wm-history').open=true;});
 document.querySelectorAll('input[name="wm-view"]').forEach(function(r){r.addEventListener('change',function(){view=r.value;resetHover();draw();});});
 document.querySelectorAll('input[name="wm-range"]').forEach(function(r){r.addEventListener('change',function(){range=r.value;clearMoment();resetHover();draw();});});
 $('#wm-bands').addEventListener('change',function(e){bands=e.target.checked;draw();});
