@@ -29,15 +29,7 @@
 <link rel="stylesheet" href="/assets/bitcoin-learning.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/consultations.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/explore.css">
-<style>
-/* Preview: 200-week tracker links on the Bitcoin homepage. Page-local so shared CSS stays untouched. */
-.hero-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:22px}
-.hero-links .text-link{display:inline;margin-top:0;line-height:1.6;text-decoration:underline;text-underline-offset:4px}
-.hero-links .consultation-jump{margin-top:0}
-#wma-readout{min-height:calc(14px * 1.7)}
-@media(max-width:720px){#wma-readout{min-height:calc(14px * 1.7 * 2)}}
-@media(max-width:768px){.hero-links{margin-top:18px;gap:8px}.hero-links .text-link{font-size:13px}}
-</style>
+<link rel="stylesheet" href="/assets/bitcoin-home/when-to-buy.css">
 </head>
 <body class="bitcoin-learning">
 
@@ -64,10 +56,7 @@
 <h1 id="headline">Make sense of Bitcoin.<br> <em>Find your next step.</em>
 </h1>
 <p class="intro">Practical education for your working life.<br> Understand the ideas, explore your options, and learn what ownership involves.</p>
-<div class="hero-links">
-<a class="text-link" href="/tools/bitcoin-200-week-moving-average/">Wondering how cheap or stretched bitcoin looks today? See price vs. its 200-week average →</a>
 <a class="text-link consultation-jump" href="/bitcoin/security/">Own bitcoin? Start with a security plan →</a>
-</div>
 </div>
 <aside class="hero-note">
 <span class="note-line">
@@ -75,6 +64,37 @@
 <p>You don’t have to buy Bitcoin<br> to learn about it.</p>
 <span>No trading signals.<br> No pressure to get started.<br> Just a clearer place to begin.</span>
 </aside>
+</section>
+<section class="wma-when" id="when-to-buy" aria-labelledby="wma-when-title">
+<div class="shell wma-when-grid">
+<header class="wma-when-head">
+<h2 id="wma-when-title">When to buy?</h2>
+<p class="wma-when-sub">See how cheap or stretched bitcoin looks today,<span class="wma-when-br"></span> compared with its 200-week average.</p>
+</header>
+<div class="wma-when-readout">
+<p class="wma-when-fallback">The live reading appears here when weekly data loads. Open the 200-week tracker to see today’s price versus the average.</p>
+<div class="wma-when-live">
+<div class="wma-when-kicker">
+<p class="wma-when-mult" id="wma-when-mult">—.—x</p>
+<p class="wma-when-chip" id="wma-when-zone">Waiting for weekly data</p>
+</div>
+<dl class="wma-when-stats">
+<div><dt>Bitcoin price</dt><dd id="wma-when-price"></dd></div>
+<div><dt>200-week average</dt><dd id="wma-when-ma"></dd></div>
+</dl>
+<p class="wma-when-cheap" id="wma-when-cheap"></p>
+</div>
+</div>
+<div class="wma-when-viz">
+<div class="wma-when-gauge" id="wma-when-gauge"></div>
+<div class="wma-when-spark" id="wma-when-spark"></div>
+</div>
+<a class="cta wma-when-cta" href="/tools/bitcoin-200-week-moving-average/">Open the 200-week tracker <span aria-hidden="true">→</span></a>
+<div class="wma-when-notes">
+<p class="wma-when-note">Education, not advice. The 200-week average is one historical lens, not a prediction.</p>
+<p class="wma-when-asof" id="wma-when-asof">Weekly history from the Blockchain.com daily average.</p>
+</div>
+</div>
 </section>
 <section class="shell pathways" id="paths" aria-labelledby="path-heading">
 <div class="section-top">
