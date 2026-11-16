@@ -10,10 +10,14 @@ from pathlib import Path
 import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
-# Shipped main as of 2026-11-15 (Bitcoin 200-week tracker contrast and snapshot markup, 4555baf).
+# Shipped main as of 2026-11-16 (COBRA vs. Marketplace checklist, c8380d9).
 # Scope guards compare against this commit so they still catch later accidental
 # changes after accepting pages already live on that date.
-SHIPPED='4555bafde02107d8f6a32907e2ac5081223ec084'
+SHIPPED='c8380d96c605d4bc6362ddddff5970ff5f12fde5'
+# Data files rewritten by approved scheduled jobs (the daily Bitcoin weekly-price refresh,
+# PR #97). Scope guards skip them so each refresh commit doesn't turn the suite red;
+# their contents are still checked by tests/bitcoin-200-week-moving-average-core.cjs.
+AUTO_DATA=frozenset({'tools/bitcoin-200-week-moving-average/data/weekly.json'})
 # Exact edits made by fix/tests-and-small-ui-2026-10-25.
 APPROVED_EDITS={
  'tools/v7/home.css':[('.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px}','.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center}')],
@@ -83,7 +87,7 @@ THIS_PR_TESTS|={'tests/find-right-tool.cjs','tests/site-audit-browser.cjs','test
 def current(name):return (ROOT/name).read_bytes()
 def matches(name,expected):
  """True when name equals the guard's own expectation or the reviewed baseline."""
- if name in THIS_PR_TESTS:return True
+ if name in THIS_PR_TESTS or name in AUTO_DATA:return True
  now=current(name)
  return now==(expected if isinstance(expected,bytes) else expected.encode()) or now==reviewed(name)
 def either(check,name,before):
@@ -293,3 +297,7 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','te
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
 # 2026-11-15: re-baseline scope guards to accept shipped main (4555baf, Bitcoin 200-week tracker contrast and snapshot markup).
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
+# 2026-11-16: re-baseline scope guards to accept shipped main (c8380d9, COBRA vs. Marketplace checklist).
+THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
+# 2026-11-16: scope guards skip AUTO_DATA (daily weekly.json refresh) in these tests too.
+THIS_PR_TESTS|={'tests/guard-baseline.cjs','tests/bitcoin-homepage.cjs','tests/bitcoin-learning-structure.py','tests/consultation-wording.py'}

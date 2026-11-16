@@ -4,7 +4,7 @@ import subprocess,re,json,hashlib
 from html.parser import HTMLParser
 r=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed,either
-base=SHIPPED  # shipped main 2026-11-15 (4555baf, Bitcoin 200-week tracker contrast and snapshot markup); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 def old(n):return subprocess.check_output(['git','show',base+':'+n],cwd=r)
 files=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=r,text=True).splitlines()
 for n in files:

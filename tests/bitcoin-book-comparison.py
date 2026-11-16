@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlsplit, unquote
 import re, subprocess
 ROOT = Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
-BASE = SHIPPED  # shipped main 2026-11-15 (4555baf, Bitcoin 200-week tracker contrast and snapshot markup); still flags later accidental changes
+BASE = SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 PAGE = ROOT / 'compare-bitcoin-books.html'
 class Page(HTMLParser):
     def __init__(self):
