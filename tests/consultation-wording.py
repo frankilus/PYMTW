@@ -4,8 +4,8 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import subprocess, json, re, html
 ROOT=Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
-BASE=SHIPPED  # shipped main 2026-11-15 (4555baf, Bitcoin 200-week tracker contrast and snapshot markup); still flags later accidental changes
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,AUTO_DATA
+BASE=SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 class Page(HTMLParser):
     def __init__(self,text):
         super().__init__(); self.nodes=[]; self.text=[]; self.skip=0; self.feed(text)
@@ -20,6 +20,7 @@ def before(name): return subprocess.check_output(['git','show',BASE+':'+name],cw
 changed=subprocess.check_output(['git','diff','--name-only',BASE],cwd=ROOT,text=True).splitlines()
 checked=0
 for name in changed:
+    if name in AUTO_DATA: continue  # daily data refresh
     assert not name.startswith('tools/'), 'Private tool changed: '+name
     if not name.endswith('.html'): continue
     # Pages added after the wording baseline (e.g. bitcoin/history from PR #71) have no ancestor to diff.

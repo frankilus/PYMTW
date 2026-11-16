@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 import subprocess, os, re
 root=Path(__file__).resolve().parents[1]
 import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,matches,reviewed
-base=SHIPPED  # shipped main 2026-11-15 (4555baf, Bitcoin 200-week tracker contrast and snapshot markup); still flags later accidental changes
+base=SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 paths=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines()
 for name in paths:
  if name.startswith('tools/') or name in ['index.html','CNAME','robots.txt','bitcoin-playbook.pdf']:

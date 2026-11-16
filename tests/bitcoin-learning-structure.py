@@ -8,8 +8,8 @@ import io
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED
-BASE = SHIPPED  # shipped main 2026-11-15 (4555baf, Bitcoin 200-week tracker contrast and snapshot markup); still flags later accidental changes
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,AUTO_DATA
+BASE = SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 PAGES = ('bitcoin/index.html', 'programs.html', 'start-here.html')
 ALLOWED = set(PAGES) | {'assets/bitcoin-learning.css', 'assets/bitcoin-learning.js', 'tests/bitcoin-learning-structure.py'}
 def original(name):
@@ -37,7 +37,7 @@ def parse(text):
 # Catch unintended changes to calculators, imports, providers, assets and privacy.
 archive = tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', BASE], cwd=ROOT)))
 for member in archive.getmembers():
-    if not member.isfile() or member.name in ALLOWED:
+    if not member.isfile() or member.name in ALLOWED or member.name in AUTO_DATA:
         continue
     if member.name.startswith('tests/') or '__pycache__' in member.name.split('/'):
         continue  # test files are updated with this re-baseline
