@@ -1,53 +1,62 @@
-/* A compact, neutral context panel after the three learning paths.
+/* A featured Bitcoin context panel after the complete learning section.
    Legacy filename and #when-to-buy anchor remain usable. */
-.wma-when{margin:22px 0 0;padding:26px 28px;background:#f2eade;border:1px solid #e0d5c5;border-radius:8px;color:var(--ink)}
-.wma-when-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"head viz" "readout viz" "cta viz" "notes notes";gap:12px 36px;align-items:start}
+.wma-when{margin:46px auto 36px;padding:34px 36px 26px;background:#f7e6d2;border:1px solid #dfc2a3;border-top:4px solid #a54415;border-radius:8px;color:var(--ink)}
+.wma-when-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-areas:"head viz" "readout viz" "cta viz" "notes notes";gap:17px 36px;align-items:start}
 .wma-when-head{grid-area:head}
-.wma-when-eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;color:#81532f;margin:0 0 8px}
-.wma-when-head h2{font:400 31px/1.15 Georgia,serif;letter-spacing:-.035em;margin:0 0 8px}
-.wma-when-sub{font-size:14px;line-height:1.6;color:#5f574b;margin:0;max-width:32em}
-.wma-when-readout{grid-area:readout;min-width:0;min-height:132px}
-.wma-when-kicker{display:flex;align-items:center;gap:16px;margin:0 0 8px}
-.wma-when-mult{font:400 52px/1 Georgia,serif;letter-spacing:-.045em;margin:0;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
-.wma-when-relative{font-size:14px;line-height:1.5;margin:0;max-width:15em}
-.wma-when-chip{font-size:12px;line-height:1.5;color:#625342;margin:0 0 10px}
-.wma-when-stats{display:flex;flex-wrap:wrap;gap:8px 30px;margin:0}
-.wma-when-stats dt{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#665b4d}
-.wma-when-stats dd{font-size:16px;font-weight:600;margin:0;white-space:nowrap;font-variant-numeric:tabular-nums}
-.wma-when-viz{grid-area:viz;align-self:center;min-width:0;margin:0}
-.wma-when-viz figcaption{font-size:12px;font-weight:700;line-height:1.5;margin:0 0 12px}
-.wma-when-viz figcaption span{display:block;font-size:11px;font-weight:400;color:#665b4d}
-.wma-when-spark{min-height:166px}
-.wma-when-spark svg{display:block;width:100%;height:138px;fill:none;stroke:none}
+.wma-when-eyebrow{font-size:12px;font-weight:700;letter-spacing:.13em;color:#9a3e15;margin:0 0 10px}
+.wma-when-head h2{font:400 38px/1.12 Georgia,serif;letter-spacing:-.035em;margin:0 0 12px}
+.wma-when-sub{font-size:15px;line-height:1.65;color:#5f4d3c;margin:0;max-width:32em}
+.wma-when-readout{grid-area:readout;min-width:0;min-height:167px}
+.wma-when-kicker{display:flex;align-items:center;gap:18px;margin:0 0 12px}
+.wma-when-mult{font:400 76px/1 Georgia,serif;letter-spacing:-.045em;margin:0;white-space:nowrap;font-variant-numeric:tabular-nums;color:#29261f}
+.wma-when-relative{font-size:16px;line-height:1.55;margin:0;max-width:14em;color:#493a2c}
+.wma-when-chip{display:inline-block;font-size:12px;line-height:1.6;color:#5a4633;margin:0 0 15px;border:1px solid #d9b590;border-radius:4px;padding:4px 9px;background:#fff6ea}
+.wma-when-stats{display:flex;flex-wrap:wrap;gap:10px 30px;margin:0}
+.wma-when-stats dt{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#68513c}
+.wma-when-stats dd{font-size:18px;font-weight:600;margin:2px 0 0;white-space:nowrap;font-variant-numeric:tabular-nums}
+.wma-when-viz{grid-area:viz;align-self:center;min-width:0;margin:0;padding:20px 20px 16px;background:#fff7ed;border:1px solid #dfc5a7;border-radius:6px}
+.wma-when-viz figcaption{font-size:14px;font-weight:700;line-height:1.5;margin:0 0 13px;color:#493a2c}
+.wma-when-viz figcaption span{display:block;font-size:12px;font-weight:400;color:#68513c;margin-top:2px}
+.wma-when-spark{min-height:217px}
+.wma-when-spark svg{display:block;width:100%;height:auto;fill:none;stroke:none}
 .wma-when-spark .wma-line-average{fill:none;stroke:#927139;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .wma-when-spark .wma-line-price{fill:none;stroke:#29261f;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.wma-when-spark .wma-price-dot{fill:#29261f;stroke:#f2eade;stroke-width:1.5}
-.wma-when-spark .wma-year-line{stroke:#d9cdbc;stroke-width:.7;stroke-dasharray:2 4}
-.wma-when-spark text{fill:#665b4d;stroke:none;font:11px Arial,sans-serif}
-.wma-when-legend{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;padding:0;margin:8px 0 0;color:#5f574b;font-size:11px;line-height:1.5}
+.wma-when-spark .wma-price-dot{fill:#29261f;stroke:#fff7ed;stroke-width:1.5}
+.wma-when-spark .wma-year-line{stroke:#dfcdb6;stroke-width:.7;stroke-dasharray:2 4}
+.wma-when-spark text{fill:#68513c;stroke:none;font:12px Arial,sans-serif}
+.wma-when-legend{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;padding:0;margin:9px 0 0;color:#5f4d3c;font-size:12px;line-height:1.5}
 .wma-when-legend li{display:flex;align-items:center;gap:6px}
 .wma-when-swatch{display:block;width:15px;height:0;border-top:2px solid currentColor;flex-shrink:0}
 .wma-when-swatch.price{color:#29261f}.wma-when-swatch.ma{color:#927139}
-.wma-when-cta{grid-area:cta;justify-self:start;gap:20px;margin:0;font-size:12px;min-height:44px;padding:12px 16px}
-.wma-when-notes{grid-area:notes;border-top:1px solid #dfd3c1;padding-top:12px}
-.wma-when-note,.wma-when-asof{font-size:11px;line-height:1.6;color:#62594c;margin:0}
-.wma-when-asof{margin-top:3px;min-height:18px}
-.wma-when-fallback{font-size:14px;color:#5f574b;margin:0;line-height:1.6}
+.wma-when-cta{grid-area:cta;justify-self:start;gap:28px;margin:0;font-size:14px;min-height:49px;padding:14px 20px}
+.wma-when-notes{grid-area:notes;border-top:1px solid #d9b999;padding-top:14px;margin-top:3px}
+.wma-when-note,.wma-when-asof{font-size:12px;line-height:1.65;color:#5f4d3c;margin:0}
+.wma-when-asof{margin-top:4px;min-height:20px}
+.wma-when-fallback{font-size:15px;color:#5f4d3c;margin:0;line-height:1.65}
 .wma-when:not(.is-ready) .wma-when-live{display:none}
 .wma-when.is-ready .wma-when-fallback{display:none}
+@media(max-width:1000px) and (min-width:721px){.wma-when{padding:28px}.wma-when-grid{gap:17px 25px}.wma-when-mult{font-size:64px}.wma-when-relative{font-size:14px}.wma-when-viz{padding:16px}.wma-when-head h2{font-size:34px}}
 @media(max-width:720px){
- .wma-when{padding:22px 20px;margin-top:18px}
- .wma-when-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "readout" "viz" "cta" "notes";gap:16px}
- .wma-when-head h2{font-size:29px}
- .wma-when-sub{font-size:13px}
- .wma-when-readout{min-height:127px}
- .wma-when-kicker{gap:12px}
- .wma-when-mult{font-size:46px}
- .wma-when-relative{font-size:13px}
- .wma-when-stats{gap:8px 24px}
- .wma-when-stats dd{font-size:15px}
- .wma-when-viz figcaption{margin-bottom:6px}
- .wma-when-viz figcaption span{display:inline;font-size:10px;margin-left:6px}
+ .wma-when{padding:25px 22px 22px;margin-top:32px;margin-bottom:28px}
+ .wma-when-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "readout" "viz" "cta" "notes";gap:20px}
+ .wma-when-head h2{font-size:32px}
+ .wma-when-sub{font-size:14px}
+ .wma-when-readout{min-height:151px}
+ .wma-when-kicker{gap:14px}
+ .wma-when-mult{font-size:60px}
+ .wma-when-relative{font-size:14px}
+ .wma-when-stats{gap:10px 25px}
+ .wma-when-stats dd{font-size:17px}
+ .wma-when-viz{padding:16px 14px}
+ .wma-when-viz figcaption{margin-bottom:11px}
+ .wma-when-spark{min-height:190px}
  .wma-when-cta{width:100%;justify-content:space-between}
 }
-@media(max-width:360px){.wma-when{padding-inline:16px}.wma-when-kicker{flex-wrap:wrap;gap:8px}.wma-when-relative{max-width:none}.wma-when-mult{font-size:42px}}
+@media(max-width:360px){.wma-when{padding-inline:17px}.wma-when-kicker{flex-wrap:wrap;gap:10px}.wma-when-relative{max-width:none}.wma-when-mult{font-size:56px}.wma-when-head h2{font-size:30px}.wma-when-viz{padding-inline:10px}}
+
+/* A clear route to market context from the top of the homepage. */
+.hero-shortcuts{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:17px}
+.hero .hero-shortcuts a{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:0;line-height:1.6;text-decoration:underline;text-underline-offset:4px}
+.hero .price-action-jump{font-size:14px;font-weight:700;color:#a54415}
+.hero .hero-shortcuts .consultation-jump{font-size:12px}
+@media(max-width:720px){.hero-shortcuts{gap:0;margin-top:14px;align-items:flex-start;flex-direction:column}.hero .hero-shortcuts .consultation-jump{font-size:13px}}

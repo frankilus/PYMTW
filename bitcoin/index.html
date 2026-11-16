@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="/assets/bitcoin-learning.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/consultations.css?v=20261029">
 <link rel="stylesheet" href="/assets/bitcoin-home/explore.css">
-<link rel="stylesheet" href="/assets/bitcoin-home/when-to-buy.css?v=20261115-perspective">
+<link rel="stylesheet" href="/assets/bitcoin-home/when-to-buy.css?v=20261115-price-action">
 </head>
 <body class="bitcoin-learning">
 
@@ -56,7 +56,10 @@
 <h1 id="headline">Make sense of Bitcoin.<br> <em>Find your next step.</em>
 </h1>
 <p class="intro">Practical education for your working life.<br> Understand the ideas, explore your options, and learn what ownership involves.</p>
+<div class="hero-shortcuts">
+<a class="text-link price-action-jump" href="#when-to-buy">Explore Bitcoin’s price action <span aria-hidden="true">↓</span></a>
 <a class="text-link consultation-jump" href="/bitcoin/security/">Own bitcoin? Start with a security plan →</a>
+</div>
 </div>
 <aside class="hero-note">
 <span class="note-line">
@@ -110,29 +113,7 @@
 </span>
 </a>
 </div>
-<section class="wma-when" id="when-to-buy" aria-labelledby="wma-when-title">
-<div class="wma-when-grid">
-<header class="wma-when-head">
-<p class="wma-when-eyebrow">TODAY’S CONTEXT</p>
-<h2 id="wma-when-title">Bitcoin in perspective.</h2>
-<p class="wma-when-sub">See where today’s price sits relative to Bitcoin’s long-term average.</p>
-</header>
-<div class="wma-when-readout">
-<p class="wma-when-fallback">Open the tracker to compare Bitcoin’s price with its 200-week average.</p>
-<div class="wma-when-live">
-<div class="wma-when-kicker"><p class="wma-when-mult" id="wma-when-mult">—.—×</p><p class="wma-when-relative" id="wma-when-relative"></p></div>
-<p class="wma-when-chip" id="wma-when-zone">Waiting for weekly data</p>
-<dl class="wma-when-stats"><div><dt>Bitcoin price</dt><dd id="wma-when-price"></dd></div><div><dt>200-week average</dt><dd id="wma-when-ma"></dd></div></dl>
-</div>
-</div>
-<figure class="wma-when-viz">
-<figcaption>Five-year view <span>Weekly prices · log scale</span></figcaption>
-<div class="wma-when-spark" id="wma-when-spark"></div>
-</figure>
-<a class="cta wma-when-cta" href="/tools/bitcoin-200-week-moving-average/">Explore the 200-week tracker <span aria-hidden="true">→</span></a>
-<div class="wma-when-notes"><p class="wma-when-note">Historical context, not a buy or sell signal. Price can fall further.</p><p class="wma-when-asof" id="wma-when-asof">Weekly history from the Blockchain.com daily average.</p></div>
-</div>
-</section>
+
 <div class="path-detail" id="path-detail" role="region" aria-labelledby="detail-title" tabindex="-1">
 <div class="detail-intro">
 <p class="eyebrow" id="detail-kicker">YOUR UNDERSTAND PATH</p>
@@ -171,6 +152,30 @@
 </div>
 </div>
 <p class="path-help">Not sure? <a id="start-simple" href="/start-here.html">Start with Understand.</a> You can change paths whenever you like.</p>
+</section>
+
+<section class="shell wma-when" id="when-to-buy" aria-labelledby="wma-when-title">
+<div class="wma-when-grid">
+<header class="wma-when-head">
+<p class="wma-when-eyebrow">BITCOIN MARKET CONTEXT</p>
+<h2 id="wma-when-title">Bitcoin in perspective.</h2>
+<p class="wma-when-sub">See where today’s price sits relative to Bitcoin’s long-term average.</p>
+</header>
+<div class="wma-when-readout">
+<p class="wma-when-fallback">Open the tracker to compare Bitcoin’s price with its 200-week average.</p>
+<div class="wma-when-live">
+<div class="wma-when-kicker"><p class="wma-when-mult" id="wma-when-mult">—.—×</p><p class="wma-when-relative" id="wma-when-relative"></p></div>
+<p class="wma-when-chip" id="wma-when-zone">Waiting for weekly data</p>
+<dl class="wma-when-stats"><div><dt>Bitcoin price</dt><dd id="wma-when-price"></dd></div><div><dt>200-week average</dt><dd id="wma-when-ma"></dd></div></dl>
+</div>
+</div>
+<figure class="wma-when-viz">
+<figcaption>Five-year view <span>Weekly prices · log scale</span></figcaption>
+<div class="wma-when-spark" id="wma-when-spark"></div>
+</figure>
+<a class="cta wma-when-cta" href="/tools/bitcoin-200-week-moving-average/">Explore today’s reading <span aria-hidden="true">→</span></a>
+<div class="wma-when-notes"><p class="wma-when-note">Historical context, not a buy or sell signal. Price can fall further.</p><p class="wma-when-asof" id="wma-when-asof">Weekly history from the Blockchain.com daily average.</p></div>
+</div>
 </section>
 
 <section class="shell guidance consultation-feature" id="guided-help" aria-labelledby="consultation-title">
@@ -292,7 +297,7 @@
 </script>
 <script src="/tools/bitcoin-200-week-moving-average/core.js?v=20261115-perspective" defer>
 </script>
-<script src="/assets/bitcoin-home/wma-readout.js?v=20261115-perspective" defer>
+<script src="/assets/bitcoin-home/wma-readout.js?v=20261115-context-feature" defer>
 </script>
 <script src="/assets/site-analytics.js" defer>
 </script>

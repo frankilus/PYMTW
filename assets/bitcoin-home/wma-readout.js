@@ -34,7 +34,7 @@
       if (s.ma[i] && s.dates[i] >= start) pts.push({date:s.dates[i],price:s.price[i],ma:s.ma[i]});
     }
     if (pts.length < 2) return;
-    var w = Math.max(260, host.clientWidth), h = 138, left = 5, right = 7, top = 8, bottom = 26;
+    var w = Math.max(220, host.clientWidth), h = host.clientWidth < 380 ? 160 : 192, left = 5, right = 7, top = 8, bottom = 26;
     var min = Infinity, max = 0;
     pts.forEach(function (p) {min = Math.min(min,p.price,p.ma);max = Math.max(max,p.price,p.ma);});
     if (!(min > 0) || !(max > min)) return;
