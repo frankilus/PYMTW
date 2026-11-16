@@ -9,7 +9,7 @@ const base=process.env.PREVIEW_URL||'http://127.0.0.1:8773';
    await page.setViewportSize({width,height:900});
    await page.goto(base+'/tools/');
    await page.locator('[data-category=all]').click();
-   assert.equal(await page.locator('a.directory-tool:not(.is-external)').count(),31); // 17 calculators + checkup + 12 guides (incl. first-home, lost-my-job, car and old-401k checklists and the severance review sheet)
+   assert.equal(await page.locator('a.directory-tool:not(.is-external)').count(),32); // 17 calculators + checkup + 13 guides (incl. first-home, lost-my-job, car and old-401k checklists, the severance review sheet and the COBRA vs. Marketplace checklist)
    assert.ok(!(await page.locator('main').innerText()).match(/coming soon|planned/i));
    const card=page.locator('a.directory-tool[href="./paycheck-decoder/"]');
    assert.equal(await card.count(),1);

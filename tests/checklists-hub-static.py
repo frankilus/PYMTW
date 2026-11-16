@@ -10,10 +10,10 @@ assert f'<link rel="canonical" href="{URL}">' in s and f'<meta property="og:url"
 assert s.count('<script src="/assets/site-analytics.js" defer></script>')==1 and 'goatcounter.com/count' not in s
 ld=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)[1]);g={x['@type']:x for x in ld['@graph']}
 assert set(g)=={'BreadcrumbList','CollectionPage'} and g['BreadcrumbList']['itemListElement'][-1]['item']==URL
-il=g['CollectionPage']['mainEntity'];assert il['@type']=='ItemList' and il['numberOfItems']==5==len(il['itemListElement'])
-PAGES={'guides/lost-my-job/checklist':'pymtw-lost-my-job-checklist-v1','guides/lost-my-job/severance-review':'pymtw-severance-review-v1','guides/old-401k/checklist':'pymtw-old-401k-checklist-v1','guides/first-home/checklist':'pymtw-first-home-checklist-v1','guides/true-cost-of-a-car/checklist':'pymtw-car-checklist-v1'}
+il=g['CollectionPage']['mainEntity'];assert il['@type']=='ItemList' and il['numberOfItems']==6==len(il['itemListElement'])
+PAGES={'guides/lost-my-job/checklist':'pymtw-lost-my-job-checklist-v1','guides/lost-my-job/severance-review':'pymtw-severance-review-v1','guides/lost-my-job/cobra-vs-marketplace':'pymtw-cobra-vs-marketplace-v1','guides/old-401k/checklist':'pymtw-old-401k-checklist-v1','guides/first-home/checklist':'pymtw-first-home-checklist-v1','guides/true-cost-of-a-car/checklist':'pymtw-car-checklist-v1'}
 assert [x['url'] for x in il['itemListElement']]==['https://pymtw.com/tools/'+k+'/' for k in PAGES]
-cards=re.findall(r'<article class="cl" data-key="([^"]+)" data-items="(\d+)">(.*?)</article>',s,re.S);assert len(cards)==5
+cards=re.findall(r'<article class="cl" data-key="([^"]+)" data-items="(\d+)">(.*?)</article>',s,re.S);assert len(cards)==6
 total=0
 for (slug,key),(ck,ci,body) in zip(PAGES.items(),cards):
     ps=(R/'tools'/slug/'index.html').read_text()

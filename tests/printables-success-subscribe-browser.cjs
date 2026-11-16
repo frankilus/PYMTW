@@ -3,7 +3,7 @@
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const assert = require('assert');
 const base = process.env.BASE || 'http://127.0.0.1:8797';
-const pages = ['first-home/checklist', 'lost-my-job/checklist', 'true-cost-of-a-car/checklist', 'old-401k/checklist', 'lost-my-job/severance-review'];
+const pages = ['first-home/checklist', 'lost-my-job/checklist', 'true-cost-of-a-car/checklist', 'old-401k/checklist', 'lost-my-job/severance-review', 'lost-my-job/cobra-vs-marketplace'];
 (async () => {
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
   for (const width of [1280, 375]) {
@@ -27,7 +27,7 @@ const pages = ['first-home/checklist', 'lost-my-job/checklist', 'true-cost-of-a-
       assert.ok(await page.isVisible('#nl-success-bottom'), `${p} bottom line shown`);
       const ev = await page.evaluate(() => window.__ev);
       assert.strictEqual(ev.filter(e => e === 'nl-success-shown').length, 2, `${p} shown events ${ev}`);
-      if (p.includes('severance')) {
+      if (p.includes('severance') || p.includes('cobra')) {
         await ctx.grantPermissions(['clipboard-read', 'clipboard-write']);
         await page.click('#qs-copy');
         await page.waitForSelector('#nl-success-qs:not([hidden])', { timeout: 3000 });
