@@ -112,11 +112,5 @@ await p.locator('#directory-search-input').waitFor({state:'visible'});
 for(const q of ['200 week moving average','200wma','is bitcoin cheap','moving average','buying opportunity']){await p.locator('#directory-search-input').fill(q);assert.equal(await p.locator(`#tools-grid a.directory-tool[href="./${'bitcoin-200-week-moving-average'}/"]`).count(),1,q);}
 await p.locator('#directory-search-input').fill('');await p.locator('[data-category=bitcoin]').click();assert.equal(await p.locator('#tools-grid a.directory-tool[href="./bitcoin-200-week-moving-average/"]').count(),1);
 assert.deepEqual(errors,[]);await c.close();
-if(process.env.AXE_PATH){({c,p}=await open('live'));for(const width of [375,1280]){await p.setViewportSize({width,height:1000});await p.goto(URL);await waitLive(p);await p.addScriptTag({path:process.env.AXE_PATH});
- // The shipped redesign already has two axe findings (gold 01–03 step numbers at 4.41:1 vs 4.5:1, and a <p> inside the snapshot <dl>). Pin them so new violations still fail; do not treat them as a clean slate.
- const v=await p.evaluate(async()=>(await axe.run()).violations.map(x=>({id:x.id,targets:x.nodes.map(n=>n.target.join(' '))})));
- assert.deepEqual(v,[
-  {id:'color-contrast',targets:['ol > li:nth-child(1) > span','ol > li:nth-child(2) > span','ol > li:nth-child(3) > span']},
-  {id:'definition-list',targets:['.wm-snapshot-grid']}
- ],'axe '+width);}await c.close();}
+if(process.env.AXE_PATH){({c,p}=await open('live'));for(const width of [375,1280]){await p.setViewportSize({width,height:1000});await p.goto(URL);await waitLive(p);await p.addScriptTag({path:process.env.AXE_PATH});const v=await p.evaluate(async()=>(await axe.run()).violations.map(x=>x.id+':'+x.nodes.length));assert.deepEqual(v,[],'axe '+width);}await c.close();}
 console.log('ok');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

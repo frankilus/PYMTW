@@ -34,7 +34,7 @@ function scaleMarkup(c){
 function renderToday(){
  var c=series.current,below=c.pct<0,amount=Math.abs(c.pct*100);
  var difference=amount<0.05?'≈ 0%':(below?'−':'+')+amount.toFixed(1)+'%';
- $('#wm-today').innerHTML='<dl class="wm-snapshot-grid"><div class="wm-metric"><dt>Bitcoin price</dt><dd id="wm-price">'+usd(c.price)+'</dd><p>'+(liveInfo?'Coinbase snapshot':'Saved daily average')+'</p></div><div class="wm-metric"><dt>200-week average</dt><dd id="wm-ma">'+usd(c.ma)+'</dd><p>Current week provisional</p></div><div class="wm-metric"><dt>'+(amount<0.05?'At':below?'Below':'Above')+' the average</dt><dd>'+difference+'</dd><p id="wm-mult">'+c.mult.toFixed(2)+'× the average</p></div></dl>'+scaleMarkup(c)+'<p class="wm-asof" id="wm-asof">'+asof()+'</p>';
+ $('#wm-today').innerHTML='<dl class="wm-snapshot-grid"><div class="wm-metric"><dt>Bitcoin price</dt><dd id="wm-price">'+usd(c.price)+'</dd><dd>'+(liveInfo?'Coinbase snapshot':'Saved daily average')+'</dd></div><div class="wm-metric"><dt>200-week average</dt><dd id="wm-ma">'+usd(c.ma)+'</dd><dd>Current week provisional</dd></div><div class="wm-metric"><dt>'+(amount<0.05?'At':below?'Below':'Above')+' the average</dt><dd>'+difference+'</dd><dd id="wm-mult">'+c.mult.toFixed(2)+'× the average</dd></div></dl>'+scaleMarkup(c)+'<p class="wm-asof" id="wm-asof">'+asof()+'</p>';
 }
 function renderOutcomes(){
  if(!history||history.n<history.firstMa+52){$('#wm-history-period').textContent='There is not enough completed history for a 52-week comparison.';return;}
