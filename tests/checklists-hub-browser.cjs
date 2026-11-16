@@ -8,7 +8,7 @@ for(const width of [320,390,1280]){await p.setViewportSize({width,height:950});c
  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);
  const tiny=await p.evaluate(()=>[...document.body.querySelectorAll('*')].filter(e=>e.checkVisibility()&&[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&parseFloat(getComputedStyle(e).fontSize)<12).map(e=>e.textContent.slice(0,40)));assert.deepEqual(tiny,[],'small text '+width);
  const small=await p.locator('.btn,.cl-guide,.back,.money a,.nl-line a').evaluateAll(es=>es.filter(e=>e.checkVisibility()&&e.getBoundingClientRect().height<43.9).map(e=>e.textContent.slice(0,30)));assert.deepEqual(small,[],'tap targets '+width);
- assert.equal(await p.locator('article.cl').count(),5);
+ assert.equal(await p.locator('article.cl').count(),6);
 }
 // no progress shown until a checklist has saved some; then shown read-only
 assert.equal(await p.locator('.cl-progress:not([hidden])').count(),0);
