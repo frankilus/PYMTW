@@ -146,7 +146,35 @@ function selectMoment(id){
  draw();
  $('#wm-chart-panel').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 }
-function start(live){series=WMA.build(data,live);renderToday();draw();$('#wm-controls').disabled=false;}
+function shareInfo(){
+ var bounds=visible(), title=view==='price'?'Bitcoin price and its 200-week average':'Bitcoin price ÷ 200-week average';
+ return {title:title,period:day(series.dates[bounds[0]])+' – '+day(series.dates[bounds[1]]),url:'https://pymtw.com/tools/bitcoin-200-week-moving-average/'};
+}
+$('#wm-copy').onclick=async function(){
+ var info=shareInfo(),text='PYMTW, '+info.title+', '+info.period+'. '+asof()+' '+info.url;
+ try{await navigator.clipboard.writeText(text);$('#wm-share-status').textContent='Chart citation copied.';}catch(err){$('#wm-share-status').textContent=text;}
+};
+$('#wm-download').onclick=async function(){
+ var info=shareInfo(),svg=$('#wm-chart svg').cloneNode(true),box=svg.viewBox.baseVal;
+ var width=box.width,height=box.height,foot=asof(),legend=view==='price'?'Charcoal: Bitcoin price   ·   Gold: 200-week average':'Charcoal: price divided by average   ·   Dashed: 1× reference';
+ svg.setAttribute('width',width);svg.setAttribute('height',height);
+ svg.querySelectorAll('text').forEach(function(el){el.setAttribute('font-family','Arial, sans-serif');el.setAttribute('font-size','11');});
+ var url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml;charset=utf-8'}));
+ try{
+  var img=new Image();img.src=url;await img.decode();
+  var canvas=document.createElement('canvas'),w=1200,h=Math.round(height*1100/width);
+  canvas.width=w;canvas.height=h+320;var ctx=canvas.getContext('2d');
+  ctx.fillStyle='#fffcf7';ctx.fillRect(0,0,w,canvas.height);ctx.fillStyle='#914b32';ctx.font='bold 19px Arial';ctx.fillText('PYMTW  /  BITCOIN IN PERSPECTIVE',48,42);
+  ctx.fillStyle='#29261f';ctx.font='36px Georgia';ctx.fillText(info.title,48,92);
+  ctx.font='20px Arial';ctx.fillText(info.period+'  ·  Log scale',48,128);
+  ctx.drawImage(img,48,150,1100,h);var y=h+182;
+  ctx.fillText(legend,48,y,1100);ctx.font='17px Arial';
+  ctx.fillText(foot,48,y+33,1100);ctx.fillText('Sources: Blockchain.com historical prices; Coinbase when available. Historical context, not a trading signal.',48,y+61,1100);
+  ctx.fillText(info.url,48,y+91);
+  var link=document.createElement('a');link.href=canvas.toDataURL('image/png');link.download='PYMTW-bitcoin-'+view+'-'+data.updated+'.png';link.click();$('#wm-share-status').textContent='Chart ready to download.';
+ }catch(err){$('#wm-share-status').textContent='Download unavailable. Use Copy chart citation to share the source.';}finally{URL.revokeObjectURL(url);}
+};
+function start(live){$('#wm-share').hidden=false;series=WMA.build(data,live);renderToday();draw();$('#wm-controls').disabled=false;}
 var tracked=false;
 function afterFirst(){if(tracked)return;tracked=true;if(window.PT&&PT.track)PT.track('results-shown','Results shown');}
 fetch('data/weekly.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){

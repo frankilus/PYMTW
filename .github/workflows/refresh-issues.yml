@@ -1,0 +1,28 @@
+name: Refresh published Long Game issues
+on:
+  schedule:
+    - cron: '43 15,22 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency: refresh-long-game-homepage
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update homepage from confirmed publications
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsSL --retry 2 --max-time 30 https://pymtw.beehiiv.com/sitemap.xml -o "$RUNNER_TEMP/issues.xml"
+          python3 .github/scripts/refresh-issues.py "$RUNNER_TEMP/issues.xml"
+          if git diff --quiet -- index.html; then exit 0; fi
+          git config user.name github-actions[bot]
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m "Refresh published Long Game reading links"
+          git push
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds"
