@@ -25,6 +25,17 @@
 <meta property="og:image" content="https://pymtw.com/assets/og/pymtw.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="PYMTW — Put Your Money to Work: Bitcoin education and Money Tools"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://pymtw.com/assets/og/pymtw.png">
 <link rel="icon" href="/assets/brand/pymtw-icon.ico?v=20261021" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="/assets/brand/pymtw-icon.svg?v=20261021" type="image/svg+xml" sizes="any"><link rel="apple-touch-icon" href="/assets/brand/pymtw-icon-180.png?v=20261021">
 <link rel="stylesheet" href="/assets/brand/site-header.css?v=20261111">
+<style>
+.wallet-comparison tbody td:first-child a {
+  color: var(--accent-orange);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: .1em;
+  text-underline-offset: .18em;
+}
+.wallet-comparison tbody td:first-child a:hover { text-decoration-thickness: .15em; }
+.wallet-comparison tbody td:first-child a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+</style>
 </head>
 <body class="pymtw-page bitcoin-interior bitcoin-guide" data-page="compare-hardware-wallets">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -60,8 +71,8 @@
         <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px;" id="guide-section-2">Popular options compared</h2>
         <p class="muted" style="margin-bottom:14px;font-size:0.9rem;">These are editorial comparisons based on manufacturer information, not hands-on test scores. Follow the official links for current models, supported workflows and security notices. None of these manufacturer links earns PYMTW a commission.</p>
         <div class="spec-table-wrap" style="margin-bottom:20px;">
-          <table class="spec-table">
-            <thead><tr><th>Device</th><th>Open-source</th><th>Bitcoin-only option</th><th>Air-gap</th><th>Best for</th></tr></thead>
+          <table class="spec-table wallet-comparison">
+            <thead><tr><th>Device · official link</th><th>Open-source</th><th>Bitcoin-only option</th><th>Air-gap</th><th>Best for</th></tr></thead>
             <tbody>
               <tr><td><a href="https://foundation.xyz/">Foundation Passport</a></td><td>Yes</td><td>Yes (Bitcoin-only)</td><td>Yes (QR)</td><td>Bitcoin-only, air-gap preference</td></tr>
               <tr><td><a href="https://bitbox.swiss/">BitBox02 / Nova</a></td><td>Yes</td><td>Yes (Bitcoin-only edition)</td><td>No (USB/microSD backup)</td><td>Simplicity-seeking beginners</td></tr>
