@@ -5,7 +5,7 @@ const PATH='/tools/guides/true-cost-of-a-car/checklist/',KEY='pymtw-car-checklis
 await c.route('**/*',r=>{const u=r.request().url();if(!u.startsWith(base+'/')){outgoing.push(u);return r.abort();}return r.continue();});
 await c.addInitScript(()=>{window.__printed=0;window.print=()=>{window.__printed++;};window.__events=[];const t=setInterval(()=>{if(window.PT&&PT.track&&!PT.__wrapped){const o=PT.track;PT.track=function(n,ti){window.__events.push(n);try{return o.apply(this,arguments);}catch(e){}};PT.__wrapped=1;clearInterval(t);}},5);});
 for(const width of [320,390,1280]){await p.setViewportSize({width,height:950});const res=await p.goto(base+PATH);assert.equal(res.status(),200);await p.evaluate(()=>document.fonts.ready);
- assert.match(await p.title(),/Car Buying Checklist: Printable Free PDF/);
+ assert.match(await p.title(),/Free Printable Car Buying Checklist \(PDF, 42 Items\)/);
  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);
  const tiny=await p.evaluate(()=>[...document.body.querySelectorAll('*')].filter(e=>e.checkVisibility()&&[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&parseFloat(getComputedStyle(e).fontSize)<12).map(e=>e.textContent.slice(0,60)));assert.deepEqual(tiny,[],'small text '+width);
  const small=await p.locator('.actions button,.btn,label.ck,.chips a,.sources a,sup.refs a,.nl-line a,.back,input[type=checkbox]').evaluateAll(es=>es.filter(e=>e.checkVisibility()).filter(e=>{const r=e.getBoundingClientRect(),h=r.height;const min=e.matches('button,.btn,label.ck,.chips a')?44:24;return h<min-.1;}).map(e=>(e.id||e.className||e.tagName)+':'+Math.round(e.getBoundingClientRect().height)));assert.deepEqual(small,[],'tap targets '+width);

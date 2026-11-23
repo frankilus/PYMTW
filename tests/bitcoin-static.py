@@ -8,6 +8,7 @@ import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_ba
 base=SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 paths=subprocess.check_output(['git','ls-tree','-r','--name-only',base],cwd=root,text=True).splitlines()
 for name in paths:
+ # index.html is still pinned, but matches() ignores the automated Long Game issue-link refresh.
  if name.startswith('tools/') or name in ['index.html','CNAME','robots.txt','bitcoin-playbook.pdf']:
   assert matches(name,subprocess.check_output(['git','show',base+':'+name],cwd=root)), name+' unexpectedly changed'
 class Page(HTMLParser):
