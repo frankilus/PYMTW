@@ -7,7 +7,7 @@ either its original pinned bytes or the reviewed main at REVIEWED, plus only the
 exact edits listed in APPROVED_EDITS. Nothing else is accepted.
 """
 from pathlib import Path
-import subprocess
+import re, subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
 # Shipped main as of 2026-11-23 (shorter printable checklist titles, a0fd86c).
@@ -18,6 +18,22 @@ SHIPPED='a0fd86c9b20ee26726821685c61fc5c1dc4d5257'
 # PR #97). Scope guards skip them so each refresh commit doesn't turn the suite red;
 # their contents are still checked by tests/bitcoin-200-week-moving-average-core.cjs.
 AUTO_DATA=frozenset({'tools/bitcoin-200-week-moving-average/data/weekly.json'})
+# The scheduled refresh-issues workflow rewrites only the three published Long Game
+# issue links on the root homepage (URL, date, and title). Normalize that block so a
+# legitimate refresh does not fail the suite, while still requiring the same markup
+# shape and leaving the rest of the page pinned.
+ISSUE_LINKS=re.compile(
+    r'(?:<a class="issue" href="https://pymtw\.beehiiv\.com/p/[a-z0-9-]+" target="_blank" rel="noopener noreferrer"><time datetime="\d{4}-\d{2}-\d{2}">[^<]+</time><span>[^<]+</span></a>){3}'
+)
+def normalize_auto_content(name,data,require=False):
+ raw=data if isinstance(data,bytes) else data.encode()
+ if name!='index.html':return raw
+ text,n=ISSUE_LINKS.subn('<!--auto-issue-links-->',raw.decode())
+ if require:
+  assert n==1,'index.html must keep exactly one block of three Long Game issue links'
+ elif n!=1:
+  return raw
+ return text.encode()
 # Exact edits made by fix/tests-and-small-ui-2026-10-25.
 APPROVED_EDITS={
  'tools/v7/home.css':[('.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px}','.menu-toggle{border:0;background:none;display:none;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center}')],
@@ -88,8 +104,9 @@ def current(name):return (ROOT/name).read_bytes()
 def matches(name,expected):
  """True when name equals the guard's own expectation or the reviewed baseline."""
  if name in THIS_PR_TESTS or name in AUTO_DATA:return True
- now=current(name)
- return now==(expected if isinstance(expected,bytes) else expected.encode()) or now==reviewed(name)
+ now=normalize_auto_content(name,current(name),require=(name=='index.html'))
+ exp=expected if isinstance(expected,bytes) else expected.encode()
+ return now==normalize_auto_content(name,exp) or now==normalize_auto_content(name,reviewed(name))
 def either(check,name,before):
  """Run check(before_text); if the original expectation no longer holds, the
  same check must hold against the reviewed baseline for name instead."""
@@ -301,3 +318,5 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','te
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','tests/bitcoin-homepage.cjs','tests/bitcoin-interiors-preservation.py','tests/bitcoin-learning-structure.py','tests/bitcoin-static.py','tests/consultation-wording.py','tests/private-consultations.py','tests/round2-static.py','tests/round3-static.py','tests/round4-static.py','tests/tax-lot-static.py','tests/true-cost-guides-static.py','tests/v7-preservation.py'}
 # 2026-11-16: scope guards skip AUTO_DATA (daily weekly.json refresh) in these tests too.
 THIS_PR_TESTS|={'tests/guard-baseline.cjs','tests/bitcoin-homepage.cjs','tests/bitcoin-learning-structure.py','tests/consultation-wording.py'}
+# 2026-11-23: homepage issue-link normalization and main-site test updates to match the live site.
+THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-browser.cjs','tests/bitcoin-static.py','tests/car-checklist-browser.cjs','tests/lost-my-job-checklist-browser.cjs','tests/printables-success-subscribe-browser.cjs'}

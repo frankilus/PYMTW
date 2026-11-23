@@ -2,7 +2,7 @@
 // subscribe line to The Long Game. Hidden before the action, hidden in print, link counted as nl-click.
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const assert = require('assert');
-const base = process.env.BASE || 'http://127.0.0.1:8797';
+const base = process.env.PREVIEW_URL || process.env.BASE || 'http://127.0.0.1:8797';
 const pages = ['first-home/checklist', 'lost-my-job/checklist', 'true-cost-of-a-car/checklist', 'old-401k/checklist', 'lost-my-job/severance-review', 'lost-my-job/cobra-vs-marketplace'];
 (async () => {
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
