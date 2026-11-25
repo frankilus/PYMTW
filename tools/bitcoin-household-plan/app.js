@@ -313,6 +313,8 @@
   $('policy-first').addEventListener('click',function(){choosePath(false);});
   var sample = B.blank(); sample.owner.name='Alex Example (fictional)'; sample.owner.household='Example household — demonstration only'; sample.why.words='Bitcoin is one part of our long-term investments, not our emergency fund.'; sample.people.executor='Morgan Example'; sample.letter.note='Please take your time. Contact our professional advisers before acting.'; sample.accounts=[B.account()]; sample.accounts[0].type='brokerage'; sample.accounts[0].provider='Example brokerage (fictional)'; sample.records.exports='Fictional example: annual tax folder held with our adviser'; sample.people.executorContact='Contact details held with our estate documents (example)'; sample.ready.incapacity='Authorized adviser named in our legal documents (example)'; sample.review.month='6'; sample.review.day='1'; sample.ready.aware=true; sample.ready.locate=true;
   $('sample-binder').innerHTML=B.renderBinder(sample,new Date()).replace(/id="([^"]+)"/g,'id="sample-$1"');
+  /* Links to #sample-title (e.g. from the drawdown planner's binder card) open the fictional example right away. */
+  if (location.hash === '#sample-title') { var sd = $('sample-binder').parentNode; if (sd && sd.tagName === 'DETAILS') sd.open = true; }
   var arrivedToUnlock = PAYWALL && setupPaywall();
   var saved = null, st = storage();
   try { saved = st && st.getItem(KEY); } catch (e) { saved = null; }

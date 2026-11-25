@@ -49,7 +49,14 @@ document.addEventListener('click', function (e) {
   if (a) PT.track('nl-click', 'Newsletter link clicked');
 }, true);
 
-/* Fire once when the newsletter section scrolls into view. */
+/* Count clicks on Bitcoin Household Plan binder offers per placement (data-binder-placement).
+   Records only event/<page>/binder-click with the placement name as its title, never anything typed. */
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest ? e.target.closest('a[data-binder-placement]') : null;
+  if (a) PT.track('binder-click', a.getAttribute('data-binder-placement'));
+}, true);
+
+/* Fire once when the newsletter section scrolls into view.
 (function () {
   function watch() {
     var el = document.getElementById('newsletter');
