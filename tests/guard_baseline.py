@@ -10,10 +10,10 @@ from pathlib import Path
 import re, subprocess
 ROOT=Path(__file__).resolve().parents[1]
 REVIEWED='117a2a7c8b71ff429acf2bdbca6da0b1b10a23d3'  # main after PR #37 (2026-10-21)
-# Shipped main as of 2026-11-25 (drawdown planner binder offer card + binder-click tracking, 7477859).
+# Shipped main as of 2026-11-25 (binder refund wording on legal.html, baa6d6e).
 # Scope guards compare against this commit so they still catch later accidental
 # changes after accepting pages already live on that date.
-SHIPPED='7477859c588a0c7838a703c3d0ed018de5ded97a'
+SHIPPED='baa6d6ee779372ad11505b71acb747872cd05d73'
 # Data files rewritten by approved scheduled jobs (the daily Bitcoin weekly-price refresh,
 # PR #97). Scope guards skip them so each refresh commit doesn't turn the suite red;
 # their contents are still checked by tests/bitcoin-200-week-moving-average-core.cjs.
