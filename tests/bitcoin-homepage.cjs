@@ -3,6 +3,8 @@ const fs=require('node:fs');const path=require('node:path');const vm=require('no
 const {execFileSync,spawnSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');const {matches,reviewed,SHIPPED,AUTO_DATA}=require('./guard-baseline.cjs');
 const historical='cfe4a189337bba5fa17a9d99279e32f6a5731113'; // pre-move Bitcoin homepage, for legacy fragment IDs only
+const ISSUE_LINKS=/(?:<a class="issue" href="https:\/\/pymtw\.beehiiv\.com\/p\/[a-z0-9-]+" target="_blank" rel="noopener noreferrer"><time datetime="\d{4}-\d{2}-\d{2}">[^<]+<\/time><span>[^<]+<\/span><\/a>){3}/g; // mirrors guard_baseline.ISSUE_LINKS
+const normIssues=(t,require)=>{const n=(t.match(ISSUE_LINKS)||[]).length;if(require)assert.equal(n,1,'index.html must keep exactly one block of three Long Game issue links');return n===1?t.replace(ISSUE_LINKS,'<!--auto-issue-links-->'):t;};
 const original=name=>execFileSync('git',['show',historical+':'+name],{cwd:root,encoding:'utf8'});
 const shipped=name=>execFileSync('git',['show',SHIPPED+':'+name],{cwd:root});
 const old=original('bitcoin/index.html');const library=fs.readFileSync(path.join(root,'bitcoin/explore/index.html'),'utf8');
@@ -15,7 +17,8 @@ for(const name of execFileSync('git',['ls-tree','-r','--name-only',SHIPPED],{cwd
  if(interior)continue; // Detailed page/form/data preservation is tested separately.
  // git show of large binaries (book-cover PNGs) overflows execFileSync's buffer.
  // git diff --quiet compares working-tree bytes to SHIPPED without loading them.
- const unchanged=spawnSync('git',['diff','--quiet',SHIPPED,'--',name],{cwd:root}).status===0;
+ // index.html: the scheduled refresh-issues workflow may rewrite only the Long Game issue links.
+ const unchanged=name==='index.html'?normIssues(fs.readFileSync(path.join(root,name),'utf8'),true)===normIssues(shipped(name).toString('utf8')):spawnSync('git',['diff','--quiet',SHIPPED,'--',name],{cwd:root}).status===0;
  assert.ok(unchanged,name+' preserves shipped source');
 }
 const code=fs.readFileSync(path.join(root,'assets/bitcoin-home/home.js'),'utf8');

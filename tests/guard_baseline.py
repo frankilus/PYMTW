@@ -320,3 +320,5 @@ THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-book-comparison.py','te
 THIS_PR_TESTS|={'tests/guard-baseline.cjs','tests/bitcoin-homepage.cjs','tests/bitcoin-learning-structure.py','tests/consultation-wording.py'}
 # 2026-11-23: homepage issue-link normalization and main-site test updates to match the live site.
 THIS_PR_TESTS|={'tests/guard_baseline.py','tests/bitcoin-browser.cjs','tests/bitcoin-static.py','tests/car-checklist-browser.cjs','tests/lost-my-job-checklist-browser.cjs','tests/printables-success-subscribe-browser.cjs'}
+# 2026-11-25: bitcoin-homepage and bitcoin-learning-structure guards accept the scheduled Long Game issue-link refresh on index.html.
+THIS_PR_TESTS|={'tests/bitcoin-homepage.cjs','tests/bitcoin-learning-structure.py'}

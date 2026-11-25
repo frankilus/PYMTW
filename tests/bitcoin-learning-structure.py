@@ -8,7 +8,7 @@ import io
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,AUTO_DATA
+import sys;sys.path.insert(0,str(Path(__file__).resolve().parent));from guard_baseline import SHIPPED,AUTO_DATA,normalize_auto_content
 BASE = SHIPPED  # shipped main 2026-11-16 (c8380d9, COBRA vs. Marketplace checklist); still flags later accidental changes
 PAGES = ('bitcoin/index.html', 'programs.html', 'start-here.html')
 ALLOWED = set(PAGES) | {'assets/bitcoin-learning.css', 'assets/bitcoin-learning.js', 'tests/bitcoin-learning-structure.py'}
@@ -41,7 +41,8 @@ for member in archive.getmembers():
         continue
     if member.name.startswith('tests/') or '__pycache__' in member.name.split('/'):
         continue  # test files are updated with this re-baseline
-    assert (ROOT / member.name).read_bytes() == archive.extractfile(member).read(), f'Unrelated file changed: {member.name}'
+    # index.html: the scheduled refresh-issues workflow may rewrite only the Long Game issue links.
+    assert normalize_auto_content(member.name, (ROOT / member.name).read_bytes(), require=member.name == 'index.html') == normalize_auto_content(member.name, archive.extractfile(member).read()), f'Unrelated file changed: {member.name}'
 checked = 0
 for name in PAGES:
     before_text, after_text = original(name).decode(), (ROOT / name).read_text()
